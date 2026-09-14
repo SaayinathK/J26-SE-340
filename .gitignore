@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+data/*.sqlite
+outputs/
+*.egg-info/
+*.zip
+Microsoft/
+.task-history-work/
+.ipynb_checkpoints/
+data/*.sqlite-*
