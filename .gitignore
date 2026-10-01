@@ -1,11 +1,14 @@
-node_modules/
 .env
 .env.*
 !.env.example
-
+*.log
 .venv/
+node_modules/
 __pycache__/
 *.pyc
-
-# Generated fine-tuning examples; keep preparation code, notebooks, and reports.
-ml/finetune/**/*.jsonl
+.local/
+.runtime/
+dist/
+ml/models/
+ml/*/data/raw/
+ml/*/data/processed/
