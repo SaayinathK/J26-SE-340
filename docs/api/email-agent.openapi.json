@@ -1,0 +1,123 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "email-agent API",
+    "version": "1.0.0",
+    "description": "Current contract summary. Browser access is through the single frontend and gateway. Agent identity is signed internally; do not send user-supplied tenant headers."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:4001"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Service availability",
+        "responses": {
+          "200": {
+            "description": "API available"
+          }
+        }
+      }
+    },
+    "/api/email/snapshot": {
+      "get": {
+        "summary": "Email workspace snapshot",
+        "responses": {
+          "200": {
+            "description": "Tenant-scoped response"
+          },
+          "401": {
+            "description": "Missing/invalid identity"
+          },
+          "403": {
+            "description": "Insufficient permission"
+          }
+        }
+      }
+    },
+    "/api/email/status": {
+      "get": {
+        "summary": "Email workspace status",
+        "responses": {
+          "200": {
+            "description": "Tenant-scoped response"
+          },
+          "401": {
+            "description": "Missing/invalid identity"
+          },
+          "403": {
+            "description": "Insufficient permission"
+          }
+        }
+      }
+    },
+    "/api/email/sequence": {
+      "post": {
+        "summary": "Generate a sequence using the configured model",
+        "responses": {
+          "201": {
+            "description": "Saved result"
+          },
+          "400": {
+            "description": "Validation failed"
+          },
+          "401": {
+            "description": "Missing/invalid identity"
+          },
+          "403": {
+            "description": "Insufficient permission"
+          },
+          "503": {
+            "description": "Service or model unavailable"
+          }
+        }
+      }
+    },
+    "/api/email/sequences": {
+      "post": {
+        "summary": "Save a manual draft",
+        "responses": {
+          "201": {
+            "description": "Saved result"
+          },
+          "400": {
+            "description": "Validation failed"
+          },
+          "401": {
+            "description": "Missing/invalid identity"
+          },
+          "403": {
+            "description": "Insufficient permission"
+          },
+          "503": {
+            "description": "Service or model unavailable"
+          }
+        }
+      }
+    },
+    "/api/email/knowledge": {
+      "post": {
+        "summary": "Add workspace knowledge",
+        "responses": {
+          "201": {
+            "description": "Saved result"
+          },
+          "400": {
+            "description": "Validation failed"
+          },
+          "401": {
+            "description": "Missing/invalid identity"
+          },
+          "403": {
+            "description": "Insufficient permission"
+          },
+          "503": {
+            "description": "Service or model unavailable"
+          }
+        }
+      }
+    }
+  }
+}

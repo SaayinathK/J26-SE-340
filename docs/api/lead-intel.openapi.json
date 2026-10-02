@@ -1,0 +1,25 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "lead-intel API",
+    "version": "1.0.0",
+    "description": "Current contract summary. Pending implementation: no business endpoints are available."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:4003"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Service availability",
+        "responses": {
+          "503": {
+            "description": "Not implemented; ready=false"
+          }
+        }
+      }
+    }
+  }
+}

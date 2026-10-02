@@ -1,0 +1,196 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "gateway API",
+    "version": "1.0.0",
+    "description": "Current contract summary. Browser access is through the single frontend and gateway. Agent identity is signed internally; do not send user-supplied tenant headers."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:4000"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Service availability",
+        "responses": {
+          "200": {
+            "description": "API available"
+          }
+        }
+      }
+    },
+    "/api/auth/config": {
+      "get": {
+        "summary": "CSRF and public sign-in configuration",
+        "responses": {
+          "200": {
+            "description": "CSRF and public sign-in configuration"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "summary": "Current session and workspace",
+        "responses": {
+          "200": {
+            "description": "Current session and workspace"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      }
+    },
+    "/api/services": {
+      "get": {
+        "summary": "Role-filtered agent availability",
+        "responses": {
+          "200": {
+            "description": "Role-filtered agent availability"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "Sign in and set the gateway session cookie",
+        "responses": {
+          "200": {
+            "description": "Authenticated"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "403": {
+            "description": "Invalid origin or CSRF token"
+          }
+        }
+      }
+    },
+    "/api/email/{path}": {
+      "parameters": [
+        {
+          "name": "path",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Fixed upstream API routing with current session identity",
+        "responses": {
+          "200": {
+            "description": "Agent response"
+          },
+          "401": {
+            "description": "Sign in required"
+          },
+          "403": {
+            "description": "Role cannot access this agent"
+          },
+          "503": {
+            "description": "Agent unavailable or not implemented"
+          }
+        }
+      }
+    },
+    "/api/content/{path}": {
+      "parameters": [
+        {
+          "name": "path",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Fixed upstream API routing with current session identity",
+        "responses": {
+          "200": {
+            "description": "Agent response"
+          },
+          "401": {
+            "description": "Sign in required"
+          },
+          "403": {
+            "description": "Role cannot access this agent"
+          },
+          "503": {
+            "description": "Agent unavailable or not implemented"
+          }
+        }
+      }
+    },
+    "/api/lead-intel/{path}": {
+      "parameters": [
+        {
+          "name": "path",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Fixed upstream API routing with current session identity",
+        "responses": {
+          "200": {
+            "description": "Agent response"
+          },
+          "401": {
+            "description": "Sign in required"
+          },
+          "403": {
+            "description": "Role cannot access this agent"
+          },
+          "503": {
+            "description": "Agent unavailable or not implemented"
+          }
+        }
+      }
+    },
+    "/api/strategy/{path}": {
+      "parameters": [
+        {
+          "name": "path",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Fixed upstream API routing with current session identity",
+        "responses": {
+          "200": {
+            "description": "Agent response"
+          },
+          "401": {
+            "description": "Sign in required"
+          },
+          "403": {
+            "description": "Role cannot access this agent"
+          },
+          "503": {
+            "description": "Agent unavailable or not implemented"
+          }
+        }
+      }
+    }
+  }
+}
