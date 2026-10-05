@@ -2,18 +2,11 @@
 require('dotenv').config();
 
 const bcrypt = require('bcryptjs');
-const { Pool } = require('pg');
-
-const pool = new Pool({
-  host: 'localhost',
-  port: 5433,
-  database: 'saas_platform',
-  user: 'c4_app',
-  password: 'c4_local_dev_only_2026'
-});
+const pool = require('../src/config/db');
+if ((process.env.DEMO_PASSWORD || '').length < 12) throw new Error('Set a DEMO_PASSWORD of at least 12 characters before seeding demo users.');
 
 async function seedUsers() {
-  const passwordHash = await bcrypt.hash('Test@12345', 12);
+  const passwordHash = await bcrypt.hash(process.env.DEMO_PASSWORD, 12);
 
   const users = [
     ['tenant_a', 'admin@tenant-a.com', 'agency_admin'],
