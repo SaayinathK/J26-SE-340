@@ -1,0 +1,89 @@
+{
+  "args": {
+    "base_model": "mistralai/Mistral-7B-Instruct-v0.3",
+    "data_dir": "data/strategy_sft/v1",
+    "out": "/content/drive/MyDrive/strategy_agent_run/sft_adapter",
+    "epochs": 2.0,
+    "lr": 0.0002,
+    "seq_len": 2048,
+    "batch_size": 1,
+    "grad_accum": 16,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "seed": 42,
+    "max_steps": -1,
+    "no_quantize": false,
+    "save_every": 20,
+    "resume": true,
+    "dry_run": false,
+    "experiment_log": "/content/drive/MyDrive/strategy_agent_run/runs.jsonl"
+  },
+  "data": {
+    "train": {
+      "examples": 964,
+      "mean_tokens": 1436.4,
+      "max_tokens": 1999,
+      "seq_len": 2048,
+      "examples_over_seq_len": 0,
+      "fits": true,
+      "alignment": {
+        "examples_checked": 964,
+        "prompt_prefix_mismatches": 0,
+        "first_bad_example": null,
+        "aligned": true
+      }
+    },
+    "val": {
+      "examples": 119,
+      "mean_tokens": 1453.9,
+      "max_tokens": 1996,
+      "seq_len": 2048,
+      "examples_over_seq_len": 0,
+      "fits": true,
+      "alignment": {
+        "examples_checked": 119,
+        "prompt_prefix_mismatches": 0,
+        "first_bad_example": null,
+        "aligned": true
+      }
+    }
+  },
+  "recipe": {
+    "base_model": "mistralai/Mistral-7B-Instruct-v0.3",
+    "quantisation": "4-bit NF4 + double quant",
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "loss": "completion-only",
+    "seq_len": 2048,
+    "epochs": 2.0,
+    "max_steps": -1,
+    "lr": 0.0002,
+    "scheduler": "cosine",
+    "effective_batch": 16,
+    "gradient_checkpointing": true
+  },
+  "final_train_loss": 0.1599,
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "trl": "1.16.0",
+    "bitsandbytes": "0.50.2",
+    "datasets": "5.1.0",
+    "accelerate": "1.15.0"
+  },
+  "python": "3.13.15"
+}

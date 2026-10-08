@@ -1,0 +1,7 @@
+# Optional: run the real local LLM generator and embedding retriever on CPU.
+# The service works without these (template generator + TF-IDF retriever fallbacks).
+-r requirements.txt
+torch>=2.2
+transformers>=4.44
+sentence-transformers>=3.0
+huggingface_hub>=0.24

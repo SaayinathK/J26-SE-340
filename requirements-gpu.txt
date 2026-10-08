@@ -1,0 +1,9 @@
+# GPU-only, optional: the QLoRA SFT and DPO training scripts in strategy_agent/training/.
+# Run on a single 24 GB GPU, or Kaggle / Colab T4. NOT needed for the local demo.
+# (bitsandbytes 4-bit does not run on Apple Silicon.)
+-r requirements-llm.txt
+accelerate>=0.33
+peft>=0.12
+trl>=0.10
+bitsandbytes>=0.43
+datasets>=2.20
