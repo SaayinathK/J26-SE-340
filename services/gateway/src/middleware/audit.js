@@ -1,5 +1,5 @@
 
-const pool = require('../db');
+const pool = require('../config/db');
 
 function audit(action) {
   return (req, res, next) => {
