@@ -1,0 +1,11 @@
+,mean_abs_shap
+num__time_on_site_sec,0.8414
+cat__last_activity_SMS Sent,0.5809
+cat__occupation_Unknown,0.5456
+cat__lead_origin_Lead Add Form,0.2924
+cat__occupation_Working Professional,0.2531
+cat__specialization_Unknown,0.2218
+num__time_per_visit,0.217
+cat__lead_origin_Landing Page Submission,0.181
+cat__last_activity_Email Opened,0.1693
+num__pages_per_visit,0.1104
