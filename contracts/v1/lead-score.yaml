@@ -1,0 +1,44 @@
+# I-04  Lead score  — producer: C3 Lead Intelligence (Shathursini J)
+openapi: 3.0.3
+info: { title: "C3 Lead score (I-04)", version: "1.0.0" }
+servers: [ { url: "http://localhost:3001" } ]
+paths:
+  /leads/score:
+    post:
+      summary: Score one lead (0-100), segment it and explain the top factors
+      parameters:
+        - { in: header, name: X-Tenant-Id, required: true, schema: { type: string },
+            description: "Set by the C4 gateway from the JWT. Clients must not send it." }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [lead_id]
+              properties:
+                lead_id: { type: string }
+                source: { type: string }
+                lead_origin: { type: string }
+                last_activity: { type: string }
+                occupation: { type: string }
+                specialization: { type: string }
+                total_visits: { type: number }
+                time_on_site_sec: { type: number }
+                pages_per_visit: { type: number }
+      responses:
+        "200":
+          description: Lead score
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lead_id: { type: string }
+                  score: { type: integer, minimum: 0, maximum: 100 }
+                  segment: { type: string, enum: [hot, warm, cold] }
+                  top_factors:
+                    type: array
+                    items: { type: object, properties: { feature: { type: string }, impact: { type: number } } }
+                  model_version: { type: string }
+        "422": { description: Missing X-Tenant-Id or invalid body }

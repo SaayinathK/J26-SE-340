@@ -1,0 +1,11 @@
+{
+  "lead_id": "L-test000001",
+  "score": 81,
+  "segment": "hot",
+  "top_factors": [
+    {"feature": "num__time_on_site_sec", "impact": 1.336},
+    {"feature": "cat__occupation_Working Professional", "impact": 1.296},
+    {"feature": "cat__specialization_Unknown", "impact": -0.713}
+  ],
+  "model_version": "c3-gbm-v1"
+}
