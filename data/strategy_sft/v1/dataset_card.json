@@ -1,0 +1,74 @@
+{
+  "name": "strategy_sft",
+  "version": "v1",
+  "generated_at": "2026-10-22T08:35:06.918973+00:00",
+  "seed": 42,
+  "format": "prompt/completion (TRL conversational)",
+  "date_range": {
+    "generation_started": "2026-10-22T08:34:26+00:00",
+    "generation_finished": "2026-10-22T08:35:06+00:00",
+    "note": "synthetic data: there is no real-world collection period"
+  },
+  "total_examples": 1200,
+  "splits": {
+    "train": 964,
+    "val": 119,
+    "test": 117
+  },
+  "sources": [
+    "rule-based TemplateGenerator (labels)",
+    "synthetic business briefs sampled from fixed industry / audience / region / constraint tables"
+  ],
+  "by_objective": {
+    "awareness": 346,
+    "sales": 288,
+    "lead_gen": 243,
+    "retention": 323
+  },
+  "by_business_model": {
+    "B2B": 606,
+    "B2C": 594
+  },
+  "by_industry": {
+    "logistics": 59,
+    "tea exporter": 66,
+    "fashion e-commerce": 70,
+    "fitness studio": 79,
+    "retail": 69,
+    "fintech": 69,
+    "SaaS": 57,
+    "beauty salon": 70,
+    "real estate": 63,
+    "education": 68,
+    "telecom": 59,
+    "consulting": 66,
+    "automotive": 76,
+    "restaurant": 61,
+    "travel agency": 55,
+    "healthcare clinic": 65,
+    "manufacturing": 76,
+    "nonprofit": 72
+  },
+  "with_evidence": 435,
+  "length_checked_with": {
+    "mistralai/Mistral-7B-Instruct-v0.3": {
+      "max": 1999,
+      "mean": 1435.6
+    },
+    "Qwen/Qwen2.5-1.5B-Instruct": {
+      "max": 1783,
+      "mean": 1275.0
+    }
+  },
+  "max_tokens_allowed": 2000,
+  "approx_tokens_per_example": {
+    "mean": 1378,
+    "max": 2023,
+    "estimate": "chars / 3.2 (fallback)"
+  },
+  "label_source": "rule-based TemplateGenerator (deterministic teacher). NOT human- or LLM-written.",
+  "schema_sha256": "8859208eeda7b148",
+  "validation": "every completion passes JSON-schema + pydantic + constraint-compliance validation; duplicates removed by prompt hash; every example fits the training sequence length under each tokenizer listed",
+  "synthetic": true,
+  "contains_personal_data": false
+}
