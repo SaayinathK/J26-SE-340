@@ -1,0 +1,51 @@
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a cooking class to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a coaching program to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a fitness workshop to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a bookkeeping service to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a design course to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a gardening kit to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a language class to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a photography course to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a local cafe to new customers.
+✅ expected=meta_ad actual=meta_ad: Create a paid Facebook ad introducing a consulting service to new customers.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a cooking class.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a coaching program.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a fitness workshop.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a bookkeeping service.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a design course.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a gardening kit.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a language class.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a photography course.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a local cafe.
+✅ expected=funnel_page actual=funnel_page: Write a landing page inviting visitors to sign up for a consulting service.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a cooking class.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a coaching program.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a fitness workshop.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a bookkeeping service.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a design course.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a gardening kit.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a language class.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a photography course.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a local cafe.
+✅ expected=email actual=email: Write an email asking existing subscribers to buy a consulting service.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a cooking class.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a coaching program.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a fitness workshop.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a bookkeeping service.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a design course.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a gardening kit.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a language class.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a photography course.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a local cafe.
+✅ expected=social_post actual=social_post: Create an organic Instagram post introducing a consulting service.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a cooking class.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a coaching program.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a fitness workshop.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a bookkeeping service.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a design course.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a gardening kit.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a language class.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a photography course.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a local cafe.
+✅ expected=vsl actual=vsl: Write a video sales letter selling a consulting service.
+50/50 = 100%; target 43/50: PASS
