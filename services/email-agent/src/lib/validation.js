@@ -1,0 +1,4 @@
+'use strict';
+const uuid = value => typeof value === 'string' && /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(value);
+const text = (value, max) => typeof value === 'string' && value.trim().length > 0 && value.trim().length <= max;
+module.exports = { uuid, text };

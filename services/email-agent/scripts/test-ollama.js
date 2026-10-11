@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('node:path').resolve(__dirname, '../.env') });
 
 const OLLAMA = process.env.OLLAMA_HOST || 'http://localhost:11434';
 
@@ -17,7 +17,7 @@ async function test() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'mistral:7b-instruct-q4_K_M',
+      model: process.env.OLLAMA_MODEL || 'mistral:7b-instruct-q4_K_M',
       prompt: 'Write one short marketing email subject line for a fitness brand.',
       stream: false
     })
