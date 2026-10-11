@@ -1,0 +1,55 @@
+.registration-layout .signin-panel { padding-top: 50px; padding-bottom: 45px; }
+.registration-layout .signin-form { max-width: 390px; }
+.registration-layout .signin-form .form-stack { gap: 17px; }
+.registration-layout .signin-form > h2 { font-size: 32px; }
+.registration-layout .signin-story { position: sticky; top: 0; height: 100dvh; }
+.registration-note { display: flex; gap: 10px; padding: 13px; border: 1px solid #009f952a; border-radius: 8px; background: var(--accent-soft); font-size: 11px; line-height: 1.8; color: var(--secondary); margin-bottom: 23px; }
+.registration-note > svg { color: var(--accent); margin-top: 3px; }
+.auth-error { display: flex; align-items: flex-start; gap: 10px; background: #d14e4e0c; border: 1px solid #d14e4e40; color: #ae3737; padding: 13px 15px; border-radius: 8px; font-size: 12px; line-height: 1.8; margin-bottom: 22px; overflow-wrap: anywhere; }
+.auth-error > svg { margin-top: 2px; flex-shrink: 0; }
+[data-theme="dark"] .auth-error { color: #f29595; background: #d14e4e13; }
+.auth-mode-link { text-align: center; margin-top: 25px; font-size: 12px; color: var(--secondary); line-height: 1.9; }
+.auth-mode-link a { display: inline-flex; align-items: center; gap: 4px; margin-left: 5px; color: var(--accent); font-weight: 600; }
+.auth-mode-link a:hover { text-decoration: underline; }
+.auth-role-preview { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 36px; }
+.auth-role-preview > span { display: inline-flex; gap: 6px; align-items: center; font-size: 10px; padding: 7px 10px; border: 1px solid #ffffff19; border-radius: 99px; color: #adbbbf; background: #ffffff04; }
+.auth-role-preview svg { color: var(--brand-aqua); }
+.password-requirements { display: flex; flex-wrap: wrap; gap: 7px 12px; padding: 0; margin: -6px 0 0; list-style: none; }
+.password-requirements > li { display: flex; gap: 5px; align-items: center; font-size: 10px; color: var(--muted); line-height: 1.7; transition: color .2s ease; }
+.password-requirements > li.passed { color: var(--accent); }
+.google-signin-wrapper { min-width: 0; width: 100%; }
+.google-button-container { display: flex; justify-content: center; min-width: 0; max-width: 100%; overflow: hidden; }
+.google-button-container.is-disabled { opacity: .55; pointer-events: none; }
+.google-status { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 13px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; font-size: 11px; line-height: 1.8; color: var(--secondary); text-align: left; }
+.google-status .lucide-loader-circle { animation: spin 1s linear infinite; }
+.auth-loading-screen { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 17px; padding: 30px; color: var(--secondary); }
+.auth-loading-screen > svg { color: var(--accent); animation: spin 1s linear infinite; }
+.auth-loading-screen strong { font: 650 20px 'Manrope', sans-serif; color: var(--heading); }
+.auth-loading-screen > span { font-size: 12px; }
+.auth-loading-inline { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 45px; font-size: 12px; color: var(--muted); }
+.auth-loading-inline svg { animation: spin 1s linear infinite; }
+.authenticated-workspace { cursor: default; }
+.authenticated-workspace > svg { color: var(--brand-aqua); }
+.connected-signin { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 23px; }
+.connected-signin > svg { color: var(--accent); margin-top: 3px; }
+.connected-signin > div { flex: 1; }
+.connected-signin p { font-size: 11px; line-height: 1.9; color: var(--muted); margin-top: 7px; }
+.security-note { margin-top: 20px; }
+.google-account-help { padding: 15px; margin: 16px 0; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-alt); font-size: 12px; }
+.google-account-help p { margin: 7px 0 12px; font-size: 12px; line-height: 1.8; color: var(--secondary); }
+.google-account-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.google-account-actions .button { white-space: normal; text-align: center; }
+.pending-invitations { margin-top: 25px; }
+@media (max-width: 700px) {
+  .registration-layout .signin-story { position: relative; height: auto; }
+  .registration-layout .signin-panel { padding: 40px 27px; }
+  .registration-layout .signin-form > h2 { font-size: 28px; }
+  .auth-role-preview { margin-top: 20px; margin-bottom: 9px; }
+  .auth-role-preview > span { font-size: 9px; padding: 6px 8px; }
+  .connected-signin { flex-wrap: wrap; }
+  .connected-signin > div { min-width: 150px; }
+  .connected-signin > .badge { margin-left: 37px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-loading-screen > svg, .auth-loading-inline svg, .google-status .lucide-loader-circle { animation: none; }
+}
