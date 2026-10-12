@@ -1,0 +1,1 @@
+const http=require('node:http');http.createServer((_req,res)=>{res.writeHead(503,{'Content-Type':'application/json'});res.end(JSON.stringify({service:process.env.COMPONENT_NAME,status:'not_implemented',ready:false}));}).listen(11434,'0.0.0.0');
