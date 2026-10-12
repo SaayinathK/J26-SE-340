@@ -1,0 +1,86 @@
+{
+  "cold": {
+    "next_best_action": "Follow up with a monthly newsletter to the lead.",
+    "message_draft": "Hi there! We noticed you're interested in learning more about our 12-week online Data Analytics certificate. We'd love to keep you updated on our latest news and offerings. Please let us know if you have any questions or if there's anything we can help you with.",
+    "sources": [
+      {
+        "id": "tenant_a:761",
+        "label": "S1",
+        "type": "lead_profile",
+        "text": "Lead from source Olark Chat via API. Occupation: Unemployed. Specialization: unknown. 0 website visits, 0 seconds on site, 0.0 pages per visit. Last activity: Olark Chat Conversation. Tags: none. Outcome: converted."
+      },
+      {
+        "id": "tenant_a:3148",
+        "label": "S4",
+        "type": "pattern",
+        "text": "Pattern: leads with lead source 'Olark Chat' converted at 25% (n=619), compared with the tenant average of 38%."
+      }
+    ],
+    "confidence": 0.82,
+    "grounded": true,
+    "policy_rule": "go into a monthly newsletter",
+    "policy_check": "consistent",
+    "citation_method": "model_citation",
+    "lead_id": "L-17684aace4",
+    "score": 16,
+    "segment": "cold",
+    "similar_leads_converted": "3 of 3",
+    "latency_sec": 43.0
+  },
+  "warm": {
+    "next_best_action": "The sales team should send an email with a student success story to this warm lead within 24 hours.",
+    "message_draft": "Hi [Lead Name], We noticed you recently submitted your information for our 12-week online Data Analytics certificate. As a warm lead, we would like to share a success story of one of our previous students who was able to advance their career through our program. If you have any questions or would like to learn more, please don't hesitate to reach out. Best regards, [Your Name]",
+    "sources": [
+      {
+        "id": "tenant_a:2131",
+        "label": "S1",
+        "type": "lead_profile",
+        "text": "Lead from source Google via Landing Page Submission. Occupation: Unemployed. Specialization: Operations Management. 10 website visits, 1341 seconds on site, 3.3 pages per visit. Last activity: Email Opened. Tags: none. Outcome: converted."
+      },
+      {
+        "id": "tenant_a:3147",
+        "label": "S4",
+        "type": "pattern",
+        "text": "Pattern: leads with lead source 'Google' converted at 40% (n=973), compared with the tenant average of 38%."
+      }
+    ],
+    "confidence": 0.79,
+    "grounded": true,
+    "policy_rule": "get an email with a student success story",
+    "policy_check": "consistent",
+    "citation_method": "model_citation",
+    "lead_id": "L-42a58da9b0",
+    "score": 68,
+    "segment": "warm",
+    "similar_leads_converted": "2 of 3",
+    "latency_sec": 88.5
+  },
+  "hot": {
+    "next_best_action": "Call the lead within 24 hours to discuss the 12-week online Data Analytics certificate.",
+    "message_draft": "Hi [Lead Name], we noticed you're interested in our 12-week online Data Analytics certificate. As a hot lead, we'd like to offer you a personalized phone call to discuss the program and answer any questions you may have. Let us know a convenient time for us to connect. Best regards, [Your Name].",
+    "sources": [
+      {
+        "id": "tenant_a:1706",
+        "label": "S1",
+        "type": "lead_profile",
+        "text": "Lead from source Google via API. Occupation: Unemployed. Specialization: Finance Management. 2 website visits, 1164 seconds on site, 1.0 pages per visit. Last activity: Form Submitted on Website. Tags: none. Outcome: converted."
+      },
+      {
+        "id": "tenant_a:3151",
+        "label": "S4",
+        "type": "pattern",
+        "text": "Pattern: leads with lead source 'Referral Sites' converted at 26% (n=47), compared with the tenant average of 38%."
+      }
+    ],
+    "confidence": 0.78,
+    "grounded": true,
+    "policy_rule": "get a phone call within 24 hours",
+    "policy_check": "consistent",
+    "citation_method": "model_citation",
+    "lead_id": "L-eb300d7648",
+    "score": 71,
+    "segment": "hot",
+    "similar_leads_converted": "2 of 3",
+    "latency_sec": 82.3
+  }
+}
