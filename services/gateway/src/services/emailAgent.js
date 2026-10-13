@@ -6,12 +6,28 @@ const OLLAMA      = process.env.OLLAMA_HOST  || 'http://localhost:11434';
 const GEN_MODEL   = process.env.OLLAMA_MODEL || 'mistral:7b-instruct-q4_K_M';
 const EMBED_MODEL = process.env.EMBED_MODEL  || 'nomic-embed-text';
 
+// Fetch with a hard timeout — aborts and throws if Ollama doesn't respond in time
+async function fetchWithTimeout(url, options, ms) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  try {
+    const res = await fetch(url, { ...options, signal: controller.signal });
+    return res;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function getEmbedding(text) {
-  const res = await fetch(`${OLLAMA}/api/embeddings`, {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ model: EMBED_MODEL, prompt: text }),
-  });
+  const res = await fetchWithTimeout(
+    `${OLLAMA}/api/embeddings`,
+    {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ model: EMBED_MODEL, prompt: text }),
+    },
+    3000  // 8-second timeout
+  );
   if (!res.ok) throw new Error('Ollama embeddings HTTP ' + res.status);
   return (await res.json()).embedding;
 }
@@ -76,20 +92,24 @@ async function generateSequence(tenant_id, campaignGoal, audienceSegment) {
     + ']}';
 
   try {
-    var res = await fetch(OLLAMA + '/api/generate', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-      model:   GEN_MODEL,
-      prompt:  prompt,
-      stream:  false,
-      options: {
-        num_predict: 600,   // ← add this — caps output at ~600 tokens
-        temperature: 0.7,
-        stop: ['}]}'],      // stop when JSON closes
+    var res = await fetchWithTimeout(
+      OLLAMA + '/api/generate',
+      {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model:   GEN_MODEL,
+          prompt:  prompt,
+          stream:  false,
+          options: {
+            num_predict: 600,
+            temperature: 0.7,
+            stop: ['}]}'],
+          },
+        }),
       },
-    }),
-    });
+      20000  // 25-second timeout — lets Mistral finish if it can, aborts before Jest's 30s limit
+    );
     if (!res.ok) throw new Error('Ollama generate HTTP ' + res.status);
     var data = await res.json();
     var match = data.response && data.response.match(/\{[\s\S]*\}/);
