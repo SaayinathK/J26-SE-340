@@ -1,8 +1,9 @@
-# services/lead-intel/kb.py  — C3-07 Tenant-scoped lead knowledge base
+# services/lead-intel/kb.py  — C3-07 Tenant-scoped lead knowledge base (+ C3-09 retrieval methods)
 # Builds anonymised text documents per tenant, embeds them with nomic-embed-text
 # (Ollama) and stores them per tenant. Storage: local files now (data/kb/<tenant>.*);
 # the same documents move to the shared pgvector table when the C4 database is ready.
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -13,7 +14,7 @@ import requests
 
 from features import load
 
-OLLAMA = "http://localhost:11434"          # or Jasinthan's shared host
+OLLAMA = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434")   # 127.0.0.1, not localhost: avoids a ~2 s IPv6 delay on Windows
 EMBED_MODEL = "nomic-embed-text"
 KB_DIR = Path("data/kb")
 BC_DIR = Path("data/business_context")
@@ -117,13 +118,13 @@ def _open(tenant: str):
     return _CACHE[tenant]
 
 
-def search(tenant: str, query: str, k: int = 5, types=None, exclude_contact=None) -> list[dict]:
-    """Cosine-similarity search inside ONE tenant's knowledge base only."""
-    docs, vecs = _open(tenant)
-    q = embed([query])[0]
-    sims = vecs @ q
+def search(tenant: str, query: str, k: int = 5, types=None, exclude_contact=None,
+           method: str = "embedding") -> list[dict]:
+    """Search inside ONE tenant's knowledge base only (method: see RETRIEVAL_METHODS)."""
+    docs, _ = _open(tenant)
+    sims = scores(tenant, query, method)
     hits = []
-    for i in np.argsort(-sims):
+    for i in np.argsort(-sims, kind="stable"):
         d = docs[i]
         if types and d["type"] not in types:
             continue
@@ -135,12 +136,84 @@ def search(tenant: str, query: str, k: int = 5, types=None, exclude_contact=None
     return hits
 
 
+# ---------------- C3-09: keyword (BM25), embedding, hybrid and RRF scoring ----------------
+RETRIEVAL_METHODS = ["bm25", "embedding", "hybrid", "rrf"]
+HYBRID_ALPHA = 0.7          # weight of the embedding score in the hybrid (0.5 = equal)
+RRF_K = 60                  # standard constant for reciprocal rank fusion
+_BM25 = {}
+
+
+def tokens(text: str) -> list[str]:
+    return re.findall(r"[a-z0-9]+", str(text).lower())
+
+
+def _bm25(tenant: str):
+    if tenant not in _BM25:
+        from rank_bm25 import BM25Okapi
+        docs, _ = _open(tenant)
+        _BM25[tenant] = BM25Okapi([tokens(d["text"]) for d in docs])
+    return _BM25[tenant]
+
+
+def _minmax(x: np.ndarray) -> np.ndarray:
+    lo, hi = float(x.min()), float(x.max())
+    return np.zeros_like(x) if hi == lo else (x - lo) / (hi - lo)
+
+
+def _ranks(x: np.ndarray) -> np.ndarray:
+    r = np.empty(len(x))
+    r[np.argsort(-x, kind="stable")] = np.arange(1, len(x) + 1)
+    return r
+
+
+def scores(tenant: str, query: str, method: str = "embedding", q_vec=None,
+           alpha: float = HYBRID_ALPHA) -> np.ndarray:
+    """One relevance score per document of this tenant (higher = more relevant).
+    q_vec can be passed in so the query is embedded only once."""
+    if method not in RETRIEVAL_METHODS:
+        raise ValueError(f"unknown retrieval method {method!r}; use one of {RETRIEVAL_METHODS}")
+    docs, vecs = _open(tenant)
+    kw = _bm25(tenant).get_scores(tokens(query)) if method != "embedding" else None
+    if method == "bm25":
+        return np.asarray(kw, dtype=float)
+    if q_vec is None:
+        q_vec = embed([query])[0]
+    emb = vecs @ q_vec
+    if method == "embedding":
+        return emb
+    if method == "hybrid":
+        return alpha * _minmax(emb) + (1 - alpha) * _minmax(np.asarray(kw, dtype=float))
+    return 1 / (RRF_K + _ranks(emb)) + 1 / (RRF_K + _ranks(np.asarray(kw, dtype=float)))   # rrf
+
+
+# ---------------- KB size report ----------------
+COUNTS_CSV = Path("reports/c3-07_kb_counts.csv")
+
+
+def counts_from_files() -> pd.DataFrame:
+    """Re-count documents from the saved KB files (no embedding needed)."""
+    rows = {}
+    for t in TENANTS:
+        f = KB_DIR / f"{t}_docs.jsonl"
+        if f.exists():
+            types = [json.loads(l)["type"] for l in open(f, encoding="utf-8")]
+            rows[t] = pd.Series(types).value_counts().to_dict()
+    return pd.DataFrame(rows).T.fillna(0).astype(int)[["lead_profile", "pattern", "business_context"]]
+
+
 if __name__ == "__main__":
+    if sys.argv[1:] == ["--counts"]:                     # python kb.py --counts
+        c = counts_from_files()
+        c.to_csv(COUNTS_CSV)
+        print(c)
+        sys.exit()
     df = load()
     tenants = sys.argv[1:] or TENANTS
-    summary = {t: build(t, df) for t in tenants}
-    pd.DataFrame(summary).T.fillna(0).astype(int).to_csv("reports/c3-07_kb_counts.csv")
-    print("\nKB summary:", summary)
+    for t in tenants:
+        build(t, df)
+    c = counts_from_files()                              # all tenants, not only the ones just built
+    c.to_csv(COUNTS_CSV)
+    print("\nKB summary:\n", c)
     print("\nTest search (tenant_a): 'working professional from Google who opened an email'")
     for h in search("tenant_a", "working professional from Google who opened an email", k=3):
         print(f"  [{h['score']}] {h['type']}: {h['text'][:110]}")

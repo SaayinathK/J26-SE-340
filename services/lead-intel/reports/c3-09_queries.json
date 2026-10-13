@@ -1,0 +1,2452 @@
+[
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: unknown. Specialization: Media and Advertising. 2 website visits, 6 seconds on site, 2.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 76,
+  "top5": {
+   "bm25": [
+    "tenant_a:1480",
+    "tenant_a:828",
+    "tenant_a:1444",
+    "tenant_a:1326",
+    "tenant_a:3059"
+   ],
+   "embedding": [
+    "tenant_a:3059",
+    "tenant_a:3107",
+    "tenant_a:1571",
+    "tenant_a:574",
+    "tenant_a:2163"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1480",
+    "tenant_a:3059",
+    "tenant_a:828",
+    "tenant_a:1444",
+    "tenant_a:1326"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3059",
+    "tenant_a:1480",
+    "tenant_a:828",
+    "tenant_a:1444",
+    "tenant_a:574"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3059",
+    "tenant_a:828",
+    "tenant_a:1444",
+    "tenant_a:1480",
+    "tenant_a:574"
+   ],
+   "rrf": [
+    "tenant_a:3059",
+    "tenant_a:828",
+    "tenant_a:1480",
+    "tenant_a:1444",
+    "tenant_a:574"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via API. Occupation: Unemployed. Specialization: unknown. 2 website visits, 59 seconds on site, 2.0 pages per visit. Last activity: SMS Sent. Tags: none.",
+  "n_relevant": 64,
+  "top5": {
+   "bm25": [
+    "tenant_a:990",
+    "tenant_a:696",
+    "tenant_a:802",
+    "tenant_a:908",
+    "tenant_a:1125"
+   ],
+   "embedding": [
+    "tenant_a:802",
+    "tenant_a:2627",
+    "tenant_a:1309",
+    "tenant_a:2754",
+    "tenant_a:1125"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:802",
+    "tenant_a:2627",
+    "tenant_a:1309",
+    "tenant_a:2754",
+    "tenant_a:1125"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:802",
+    "tenant_a:2627",
+    "tenant_a:1309",
+    "tenant_a:2754",
+    "tenant_a:1125"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:802",
+    "tenant_a:2627",
+    "tenant_a:1309",
+    "tenant_a:2754",
+    "tenant_a:1125"
+   ],
+   "rrf": [
+    "tenant_a:802",
+    "tenant_a:2627",
+    "tenant_a:1309",
+    "tenant_a:1125",
+    "tenant_a:696"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: Student. Specialization: Marketing Management. 1 website visits, 49 seconds on site, 1.0 pages per visit. Last activity: Converted to Lead. Tags: none.",
+  "n_relevant": 3,
+  "top5": {
+   "bm25": [
+    "tenant_a:1292",
+    "tenant_a:77",
+    "tenant_a:2789",
+    "tenant_a:1899",
+    "tenant_a:604"
+   ],
+   "embedding": [
+    "tenant_a:1575",
+    "tenant_a:2668",
+    "tenant_a:2789",
+    "tenant_a:2504",
+    "tenant_a:2073"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:2789",
+    "tenant_a:77",
+    "tenant_a:1292",
+    "tenant_a:1899",
+    "tenant_a:604"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:2789",
+    "tenant_a:77",
+    "tenant_a:604",
+    "tenant_a:2520",
+    "tenant_a:1899"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:2789",
+    "tenant_a:1575",
+    "tenant_a:2315",
+    "tenant_a:2073",
+    "tenant_a:604"
+   ],
+   "rrf": [
+    "tenant_a:2789",
+    "tenant_a:604",
+    "tenant_a:2520",
+    "tenant_a:77",
+    "tenant_a:2315"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Referral Sites via API. Occupation: Unemployed. Specialization: unknown. 3 website visits, 1641 seconds on site, 3.0 pages per visit. Last activity: SMS Sent. Tags: none.",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:172",
+    "tenant_a:208",
+    "tenant_a:152",
+    "tenant_a:98",
+    "tenant_a:1513"
+   ],
+   "embedding": [
+    "tenant_a:1513",
+    "tenant_a:360",
+    "tenant_a:629",
+    "tenant_a:1349",
+    "tenant_a:381"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1513",
+    "tenant_a:152",
+    "tenant_a:360",
+    "tenant_a:172",
+    "tenant_a:208"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1513",
+    "tenant_a:360",
+    "tenant_a:381",
+    "tenant_a:152",
+    "tenant_a:342"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1513",
+    "tenant_a:360",
+    "tenant_a:381",
+    "tenant_a:629",
+    "tenant_a:1349"
+   ],
+   "rrf": [
+    "tenant_a:1513",
+    "tenant_a:360",
+    "tenant_a:381",
+    "tenant_a:342",
+    "tenant_a:629"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: Unemployed. Specialization: IT Projects Management. 12 website visits, 142 seconds on site, 4.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 220,
+  "top5": {
+   "bm25": [
+    "tenant_a:1872",
+    "tenant_a:2619",
+    "tenant_a:711",
+    "tenant_a:2031",
+    "tenant_a:3029"
+   ],
+   "embedding": [
+    "tenant_a:705",
+    "tenant_a:1293",
+    "tenant_a:1350",
+    "tenant_a:1348",
+    "tenant_a:558"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:711",
+    "tenant_a:1708",
+    "tenant_a:1872",
+    "tenant_a:3029",
+    "tenant_a:558"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:711",
+    "tenant_a:1708",
+    "tenant_a:705",
+    "tenant_a:558",
+    "tenant_a:3029"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:705",
+    "tenant_a:1293",
+    "tenant_a:711",
+    "tenant_a:1708",
+    "tenant_a:1350"
+   ],
+   "rrf": [
+    "tenant_a:711",
+    "tenant_a:1708",
+    "tenant_a:558",
+    "tenant_a:3029",
+    "tenant_a:1872"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Olark Chat via API. Occupation: Unemployed. Specialization: unknown. 0 website visits, 0 seconds on site, 0.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 116,
+  "top5": {
+   "bm25": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ],
+   "embedding": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ],
+   "rrf": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Olark Chat via API. Occupation: Unemployed. Specialization: Travel and Tourism. 0 website visits, 0 seconds on site, 0.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 116,
+  "top5": {
+   "bm25": [
+    "tenant_a:2814",
+    "tenant_a:1114",
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382"
+   ],
+   "embedding": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:2814",
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:2814",
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ],
+   "rrf": [
+    "tenant_a:27",
+    "tenant_a:268",
+    "tenant_a:382",
+    "tenant_a:384",
+    "tenant_a:420"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Facebook via Lead Import. Occupation: Unemployed. Specialization: Human Resource Management. 0 website visits, 0 seconds on site, 0.0 pages per visit. Last activity: SMS Sent. Tags: none.",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:206",
+    "tenant_a:377",
+    "tenant_a:548",
+    "tenant_a:376",
+    "tenant_a:204"
+   ],
+   "embedding": [
+    "tenant_a:376",
+    "tenant_a:207",
+    "tenant_a:205",
+    "tenant_a:204",
+    "tenant_a:551"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:376",
+    "tenant_a:206",
+    "tenant_a:377",
+    "tenant_a:207",
+    "tenant_a:205"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:376",
+    "tenant_a:207",
+    "tenant_a:205",
+    "tenant_a:204",
+    "tenant_a:206"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:376",
+    "tenant_a:207",
+    "tenant_a:205",
+    "tenant_a:204",
+    "tenant_a:206"
+   ],
+   "rrf": [
+    "tenant_a:376",
+    "tenant_a:206",
+    "tenant_a:207",
+    "tenant_a:377",
+    "tenant_a:205"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Organic Search via Landing Page Submission. Occupation: unknown. Specialization: Marketing Management. 3 website visits, 149 seconds on site, 3.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 17,
+  "top5": {
+   "bm25": [
+    "tenant_a:830",
+    "tenant_a:288",
+    "tenant_a:1982",
+    "tenant_a:1283",
+    "tenant_a:2169"
+   ],
+   "embedding": [
+    "tenant_a:2040",
+    "tenant_a:976",
+    "tenant_a:1998",
+    "tenant_a:2169",
+    "tenant_a:2561"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:830",
+    "tenant_a:1982",
+    "tenant_a:2169",
+    "tenant_a:2040",
+    "tenant_a:1283"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:830",
+    "tenant_a:2040",
+    "tenant_a:2169",
+    "tenant_a:1982",
+    "tenant_a:976"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:2040",
+    "tenant_a:2169",
+    "tenant_a:830",
+    "tenant_a:1982",
+    "tenant_a:976"
+   ],
+   "rrf": [
+    "tenant_a:2169",
+    "tenant_a:1982",
+    "tenant_a:830",
+    "tenant_a:2040",
+    "tenant_a:2657"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via Landing Page Submission. Occupation: unknown. Specialization: Marketing Management. 2 website visits, 1542 seconds on site, 2.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 58,
+  "top5": {
+   "bm25": [
+    "tenant_a:1869",
+    "tenant_a:258",
+    "tenant_a:1882",
+    "tenant_a:578",
+    "tenant_a:1047"
+   ],
+   "embedding": [
+    "tenant_a:1480",
+    "tenant_a:3121",
+    "tenant_a:1347",
+    "tenant_a:1882",
+    "tenant_a:3003"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1869",
+    "tenant_a:258",
+    "tenant_a:1882",
+    "tenant_a:285",
+    "tenant_a:951"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1869",
+    "tenant_a:1882",
+    "tenant_a:258",
+    "tenant_a:285",
+    "tenant_a:951"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1869",
+    "tenant_a:1882",
+    "tenant_a:1480",
+    "tenant_a:258",
+    "tenant_a:3121"
+   ],
+   "rrf": [
+    "tenant_a:1882",
+    "tenant_a:1869",
+    "tenant_a:258",
+    "tenant_a:285",
+    "tenant_a:951"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via Landing Page Submission. Occupation: Unemployed. Specialization: Finance Management. 4 website visits, 391 seconds on site, 4.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 165,
+  "top5": {
+   "bm25": [
+    "tenant_a:649",
+    "tenant_a:939",
+    "tenant_a:534",
+    "tenant_a:623",
+    "tenant_a:906"
+   ],
+   "embedding": [
+    "tenant_a:201",
+    "tenant_a:787",
+    "tenant_a:1882",
+    "tenant_a:2131",
+    "tenant_a:2886"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:939",
+    "tenant_a:649",
+    "tenant_a:2547",
+    "tenant_a:534",
+    "tenant_a:2345"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:939",
+    "tenant_a:649",
+    "tenant_a:2547",
+    "tenant_a:534",
+    "tenant_a:1414"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:939",
+    "tenant_a:649",
+    "tenant_a:2547",
+    "tenant_a:201",
+    "tenant_a:534"
+   ],
+   "rrf": [
+    "tenant_a:649",
+    "tenant_a:939",
+    "tenant_a:2547",
+    "tenant_a:534",
+    "tenant_a:1414"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Organic Search via API. Occupation: Unemployed. Specialization: unknown. 9 website visits, 96 seconds on site, 4.5 pages per visit. Last activity: Page Visited on Website. Tags: none.",
+  "n_relevant": 5,
+  "top5": {
+   "bm25": [
+    "tenant_a:341",
+    "tenant_a:831",
+    "tenant_a:693",
+    "tenant_a:2225",
+    "tenant_a:2632"
+   ],
+   "embedding": [
+    "tenant_a:1713",
+    "tenant_a:790",
+    "tenant_a:3132",
+    "tenant_a:1064",
+    "tenant_a:2035"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:341",
+    "tenant_a:831",
+    "tenant_a:3132",
+    "tenant_a:693",
+    "tenant_a:2225"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3132",
+    "tenant_a:831",
+    "tenant_a:341",
+    "tenant_a:2225",
+    "tenant_a:693"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3132",
+    "tenant_a:831",
+    "tenant_a:1713",
+    "tenant_a:18",
+    "tenant_a:790"
+   ],
+   "rrf": [
+    "tenant_a:3132",
+    "tenant_a:831",
+    "tenant_a:18",
+    "tenant_a:2225",
+    "tenant_a:1307"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via API. Occupation: Unemployed. Specialization: unknown. 2 website visits, 1319 seconds on site, 2.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 91,
+  "top5": {
+   "bm25": [
+    "tenant_a:443",
+    "tenant_a:387",
+    "tenant_a:676",
+    "tenant_a:1337",
+    "tenant_a:998"
+   ],
+   "embedding": [
+    "tenant_a:1337",
+    "tenant_a:676",
+    "tenant_a:387",
+    "tenant_a:2486",
+    "tenant_a:437"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:443",
+    "tenant_a:1337",
+    "tenant_a:676",
+    "tenant_a:387",
+    "tenant_a:2486"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:443",
+    "tenant_a:1337",
+    "tenant_a:676",
+    "tenant_a:387",
+    "tenant_a:2486"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:443",
+    "tenant_a:1337",
+    "tenant_a:676",
+    "tenant_a:387",
+    "tenant_a:2486"
+   ],
+   "rrf": [
+    "tenant_a:1337",
+    "tenant_a:676",
+    "tenant_a:387",
+    "tenant_a:443",
+    "tenant_a:437"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via API. Occupation: Unemployed. Specialization: International Business. 10 website visits, 1618 seconds on site, 2.0 pages per visit. Last activity: SMS Sent. Tags: none.",
+  "n_relevant": 64,
+  "top5": {
+   "bm25": [
+    "tenant_a:2029",
+    "tenant_a:1781",
+    "tenant_a:1737",
+    "tenant_a:964",
+    "tenant_a:2246"
+   ],
+   "embedding": [
+    "tenant_a:438",
+    "tenant_a:381",
+    "tenant_a:1125",
+    "tenant_a:629",
+    "tenant_a:1349"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:2029",
+    "tenant_a:964",
+    "tenant_a:1737",
+    "tenant_a:2246",
+    "tenant_a:1125"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1125",
+    "tenant_a:2753",
+    "tenant_a:696",
+    "tenant_a:908",
+    "tenant_a:1309"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1125",
+    "tenant_a:2753",
+    "tenant_a:696",
+    "tenant_a:908",
+    "tenant_a:1309"
+   ],
+   "rrf": [
+    "tenant_a:1125",
+    "tenant_a:696",
+    "tenant_a:908",
+    "tenant_a:2753",
+    "tenant_a:1309"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Organic Search via Landing Page Submission. Occupation: unknown. Specialization: Retail Management. 14 website visits, 1627 seconds on site, 14.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 17,
+  "top5": {
+   "bm25": [
+    "tenant_a:991",
+    "tenant_a:567",
+    "tenant_a:1905",
+    "tenant_a:2424",
+    "tenant_a:1974"
+   ],
+   "embedding": [
+    "tenant_a:2873",
+    "tenant_a:972",
+    "tenant_a:697",
+    "tenant_a:1204",
+    "tenant_a:2571"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:991",
+    "tenant_a:2424",
+    "tenant_a:1878",
+    "tenant_a:972",
+    "tenant_a:1698"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:972",
+    "tenant_a:1878",
+    "tenant_a:697",
+    "tenant_a:3137",
+    "tenant_a:830"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:972",
+    "tenant_a:697",
+    "tenant_a:3137",
+    "tenant_a:2873",
+    "tenant_a:830"
+   ],
+   "rrf": [
+    "tenant_a:972",
+    "tenant_a:830",
+    "tenant_a:3137",
+    "tenant_a:697",
+    "tenant_a:1878"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Organic Search via Landing Page Submission. Occupation: Unemployed. Specialization: Human Resource Management. 4 website visits, 95 seconds on site, 4.0 pages per visit. Last activity: SMS Sent. Tags: none.",
+  "n_relevant": 51,
+  "top5": {
+   "bm25": [
+    "tenant_a:715",
+    "tenant_a:3069",
+    "tenant_a:1091",
+    "tenant_a:1896",
+    "tenant_a:1246"
+   ],
+   "embedding": [
+    "tenant_a:874",
+    "tenant_a:1107",
+    "tenant_a:1634",
+    "tenant_a:2327",
+    "tenant_a:2250"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:715",
+    "tenant_a:3069",
+    "tenant_a:1896",
+    "tenant_a:874",
+    "tenant_a:2250"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:715",
+    "tenant_a:3069",
+    "tenant_a:874",
+    "tenant_a:1896",
+    "tenant_a:2250"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:874",
+    "tenant_a:1107",
+    "tenant_a:3069",
+    "tenant_a:2250",
+    "tenant_a:1896"
+   ],
+   "rrf": [
+    "tenant_a:874",
+    "tenant_a:3069",
+    "tenant_a:1896",
+    "tenant_a:2250",
+    "tenant_a:2430"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Olark Chat via API. Occupation: unknown. Specialization: Supply Chain Management. 4 website visits, 169 seconds on site, 1.3 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 101,
+  "top5": {
+   "bm25": [
+    "tenant_a:151",
+    "tenant_a:633",
+    "tenant_a:1004",
+    "tenant_a:580",
+    "tenant_a:68"
+   ],
+   "embedding": [
+    "tenant_a:836",
+    "tenant_a:1478",
+    "tenant_a:1891",
+    "tenant_a:1928",
+    "tenant_a:2677"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:421",
+    "tenant_a:68",
+    "tenant_a:836",
+    "tenant_a:1478",
+    "tenant_a:1891"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:421",
+    "tenant_a:836",
+    "tenant_a:1478",
+    "tenant_a:1891",
+    "tenant_a:1928"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:836",
+    "tenant_a:1478",
+    "tenant_a:1891",
+    "tenant_a:1928",
+    "tenant_a:421"
+   ],
+   "rrf": [
+    "tenant_a:421",
+    "tenant_a:68",
+    "tenant_a:836",
+    "tenant_a:1478",
+    "tenant_a:1891"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via API. Occupation: unknown. Specialization: unknown. 6 website visits, 481 seconds on site, 6.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 55,
+  "top5": {
+   "bm25": [
+    "tenant_a:1377",
+    "tenant_a:1547",
+    "tenant_a:2513",
+    "tenant_a:438",
+    "tenant_a:1551"
+   ],
+   "embedding": [
+    "tenant_a:1944",
+    "tenant_a:2662",
+    "tenant_a:3080",
+    "tenant_a:3083",
+    "tenant_a:1337"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1272",
+    "tenant_a:1547",
+    "tenant_a:2513",
+    "tenant_a:1377",
+    "tenant_a:438"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1272",
+    "tenant_a:1547",
+    "tenant_a:2513",
+    "tenant_a:1944",
+    "tenant_a:2662"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1944",
+    "tenant_a:2662",
+    "tenant_a:3080",
+    "tenant_a:3083",
+    "tenant_a:1272"
+   ],
+   "rrf": [
+    "tenant_a:1272",
+    "tenant_a:1547",
+    "tenant_a:1944",
+    "tenant_a:2513",
+    "tenant_a:2662"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: Unemployed. Specialization: Operations Management. 1 website visits, 485 seconds on site, 1.0 pages per visit. Last activity: Converted to Lead. Tags: none.",
+  "n_relevant": 43,
+  "top5": {
+   "bm25": [
+    "tenant_a:2733",
+    "tenant_a:2330",
+    "tenant_a:193",
+    "tenant_a:77",
+    "tenant_a:1083"
+   ],
+   "embedding": [
+    "tenant_a:1848",
+    "tenant_a:2226",
+    "tenant_a:705",
+    "tenant_a:1293",
+    "tenant_a:2330"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:2330",
+    "tenant_a:193",
+    "tenant_a:1848",
+    "tenant_a:432",
+    "tenant_a:1083"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:2330",
+    "tenant_a:1848",
+    "tenant_a:193",
+    "tenant_a:2226",
+    "tenant_a:432"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:2330",
+    "tenant_a:1848",
+    "tenant_a:2226",
+    "tenant_a:432",
+    "tenant_a:193"
+   ],
+   "rrf": [
+    "tenant_a:2330",
+    "tenant_a:1848",
+    "tenant_a:2226",
+    "tenant_a:432",
+    "tenant_a:193"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via API. Occupation: Unemployed. Specialization: unknown. 2 website visits, 476 seconds on site, 1.0 pages per visit. Last activity: Olark Chat Conversation. Tags: none.",
+  "n_relevant": 26,
+  "top5": {
+   "bm25": [
+    "tenant_a:1513",
+    "tenant_a:1343",
+    "tenant_a:761",
+    "tenant_a:161",
+    "tenant_a:1995"
+   ],
+   "embedding": [
+    "tenant_a:410",
+    "tenant_a:269",
+    "tenant_a:579",
+    "tenant_a:1343",
+    "tenant_a:2329"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:269",
+    "tenant_a:1343",
+    "tenant_a:410",
+    "tenant_a:761",
+    "tenant_a:161"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:269",
+    "tenant_a:410",
+    "tenant_a:1343",
+    "tenant_a:761",
+    "tenant_a:313"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:269",
+    "tenant_a:410",
+    "tenant_a:1343",
+    "tenant_a:579",
+    "tenant_a:313"
+   ],
+   "rrf": [
+    "tenant_a:1343",
+    "tenant_a:269",
+    "tenant_a:410",
+    "tenant_a:761",
+    "tenant_a:342"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via API. Occupation: unknown. Specialization: unknown. 3 website visits, 1302 seconds on site, 3.0 pages per visit. Last activity: Email Bounced. Tags: none.",
+  "n_relevant": 5,
+  "top5": {
+   "bm25": [
+    "tenant_a:1161",
+    "tenant_a:1191",
+    "tenant_a:78",
+    "tenant_a:84",
+    "tenant_a:570"
+   ],
+   "embedding": [
+    "tenant_a:998",
+    "tenant_a:622",
+    "tenant_a:1161",
+    "tenant_a:1944",
+    "tenant_a:1191"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1161",
+    "tenant_a:1191",
+    "tenant_a:998",
+    "tenant_a:1118",
+    "tenant_a:2736"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1161",
+    "tenant_a:1191",
+    "tenant_a:998",
+    "tenant_a:1118",
+    "tenant_a:2736"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1161",
+    "tenant_a:1191",
+    "tenant_a:998",
+    "tenant_a:1118",
+    "tenant_a:2736"
+   ],
+   "rrf": [
+    "tenant_a:1161",
+    "tenant_a:1191",
+    "tenant_a:1118",
+    "tenant_a:998",
+    "tenant_a:450"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: unknown. Specialization: Marketing Management. 2 website visits, 162 seconds on site, 2.0 pages per visit. Last activity: SMS Sent. Tags: none.",
+  "n_relevant": 51,
+  "top5": {
+   "bm25": [
+    "tenant_a:1609",
+    "tenant_a:464",
+    "tenant_a:332",
+    "tenant_a:1920",
+    "tenant_a:1048"
+   ],
+   "embedding": [
+    "tenant_a:1609",
+    "tenant_a:2720",
+    "tenant_a:2413",
+    "tenant_a:1515",
+    "tenant_a:1651"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1609",
+    "tenant_a:464",
+    "tenant_a:2720",
+    "tenant_a:2616",
+    "tenant_a:1836"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1609",
+    "tenant_a:2720",
+    "tenant_a:2616",
+    "tenant_a:464",
+    "tenant_a:1836"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1609",
+    "tenant_a:2720",
+    "tenant_a:1836",
+    "tenant_a:2616",
+    "tenant_a:1515"
+   ],
+   "rrf": [
+    "tenant_a:1609",
+    "tenant_a:2720",
+    "tenant_a:2616",
+    "tenant_a:1836",
+    "tenant_a:464"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: Unemployed. Specialization: Healthcare Management. 2 website visits, 638 seconds on site, 2.0 pages per visit. Last activity: Page Visited on Website. Tags: none.",
+  "n_relevant": 36,
+  "top5": {
+   "bm25": [
+    "tenant_a:2964",
+    "tenant_a:1615",
+    "tenant_a:1752",
+    "tenant_a:2282",
+    "tenant_a:2509"
+   ],
+   "embedding": [
+    "tenant_a:1615",
+    "tenant_a:1348",
+    "tenant_a:1380",
+    "tenant_a:2964",
+    "tenant_a:1752"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:2964",
+    "tenant_a:1615",
+    "tenant_a:1752",
+    "tenant_a:2282",
+    "tenant_a:985"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:2964",
+    "tenant_a:1615",
+    "tenant_a:1752",
+    "tenant_a:2282",
+    "tenant_a:985"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:2964",
+    "tenant_a:1615",
+    "tenant_a:1752",
+    "tenant_a:2282",
+    "tenant_a:985"
+   ],
+   "rrf": [
+    "tenant_a:1615",
+    "tenant_a:2964",
+    "tenant_a:1752",
+    "tenant_a:2282",
+    "tenant_a:985"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: Unemployed. Specialization: Human Resource Management. 1 website visits, 9 seconds on site, 1.0 pages per visit. Last activity: Converted to Lead. Tags: none.",
+  "n_relevant": 43,
+  "top5": {
+   "bm25": [
+    "tenant_a:2820",
+    "tenant_a:1756",
+    "tenant_a:2970",
+    "tenant_a:75",
+    "tenant_a:2646"
+   ],
+   "embedding": [
+    "tenant_a:75",
+    "tenant_a:1756",
+    "tenant_a:1848",
+    "tenant_a:2820",
+    "tenant_a:2459"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:2820",
+    "tenant_a:1756",
+    "tenant_a:75",
+    "tenant_a:2970",
+    "tenant_a:2459"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:2820",
+    "tenant_a:1756",
+    "tenant_a:75",
+    "tenant_a:2459",
+    "tenant_a:3020"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:2820",
+    "tenant_a:75",
+    "tenant_a:1756",
+    "tenant_a:2459",
+    "tenant_a:1848"
+   ],
+   "rrf": [
+    "tenant_a:1756",
+    "tenant_a:75",
+    "tenant_a:2820",
+    "tenant_a:2970",
+    "tenant_a:2459"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: Unemployed. Specialization: Healthcare Management. 3 website visits, 1487 seconds on site, 3.0 pages per visit. Last activity: SMS Sent. Tags: none.",
+  "n_relevant": 163,
+  "top5": {
+   "bm25": [
+    "tenant_a:1630",
+    "tenant_a:2628",
+    "tenant_a:2382",
+    "tenant_a:2629",
+    "tenant_a:3073"
+   ],
+   "embedding": [
+    "tenant_a:1630",
+    "tenant_a:1771",
+    "tenant_a:2085",
+    "tenant_a:1708",
+    "tenant_a:711"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1630",
+    "tenant_a:2628",
+    "tenant_a:1771",
+    "tenant_a:2629",
+    "tenant_a:2382"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1630",
+    "tenant_a:1771",
+    "tenant_a:2628",
+    "tenant_a:1165",
+    "tenant_a:2629"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1630",
+    "tenant_a:1771",
+    "tenant_a:2628",
+    "tenant_a:2085",
+    "tenant_a:1165"
+   ],
+   "rrf": [
+    "tenant_a:1630",
+    "tenant_a:2628",
+    "tenant_a:1771",
+    "tenant_a:2382",
+    "tenant_a:2629"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: Unemployed. Specialization: Marketing Management. 2 website visits, 245 seconds on site, 2.0 pages per visit. Last activity: SMS Sent. Tags: none.",
+  "n_relevant": 163,
+  "top5": {
+   "bm25": [
+    "tenant_a:1773",
+    "tenant_a:1609",
+    "tenant_a:2794",
+    "tenant_a:44",
+    "tenant_a:1615"
+   ],
+   "embedding": [
+    "tenant_a:2085",
+    "tenant_a:1609",
+    "tenant_a:1708",
+    "tenant_a:2720",
+    "tenant_a:711"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1773",
+    "tenant_a:1609",
+    "tenant_a:2794",
+    "tenant_a:1708",
+    "tenant_a:3073"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1609",
+    "tenant_a:1773",
+    "tenant_a:1708",
+    "tenant_a:2720",
+    "tenant_a:3073"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1609",
+    "tenant_a:1773",
+    "tenant_a:1708",
+    "tenant_a:2085",
+    "tenant_a:2720"
+   ],
+   "rrf": [
+    "tenant_a:1609",
+    "tenant_a:1773",
+    "tenant_a:1708",
+    "tenant_a:3073",
+    "tenant_a:2629"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via Landing Page Submission. Occupation: unknown. Specialization: Human Resource Management. 4 website visits, 768 seconds on site, 4.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 58,
+  "top5": {
+   "bm25": [
+    "tenant_a:261",
+    "tenant_a:826",
+    "tenant_a:1286",
+    "tenant_a:1198",
+    "tenant_a:2010"
+   ],
+   "embedding": [
+    "tenant_a:1238",
+    "tenant_a:1598",
+    "tenant_a:211",
+    "tenant_a:1286",
+    "tenant_a:2010"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:1286",
+    "tenant_a:826",
+    "tenant_a:261",
+    "tenant_a:2010",
+    "tenant_a:1198"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:1286",
+    "tenant_a:826",
+    "tenant_a:261",
+    "tenant_a:2010",
+    "tenant_a:1198"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1286",
+    "tenant_a:826",
+    "tenant_a:261",
+    "tenant_a:2010",
+    "tenant_a:1198"
+   ],
+   "rrf": [
+    "tenant_a:1286",
+    "tenant_a:261",
+    "tenant_a:826",
+    "tenant_a:2010",
+    "tenant_a:1198"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Organic Search via API. Occupation: Unemployed. Specialization: unknown. 5 website visits, 1468 seconds on site, 2.5 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 39,
+  "top5": {
+   "bm25": [
+    "tenant_a:2772",
+    "tenant_a:2479",
+    "tenant_a:2651",
+    "tenant_a:2738",
+    "tenant_a:1330"
+   ],
+   "embedding": [
+    "tenant_a:1713",
+    "tenant_a:790",
+    "tenant_a:2651",
+    "tenant_a:3082",
+    "tenant_a:2813"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:2772",
+    "tenant_a:2651",
+    "tenant_a:2479",
+    "tenant_a:2738",
+    "tenant_a:3082"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:2772",
+    "tenant_a:2651",
+    "tenant_a:2479",
+    "tenant_a:790",
+    "tenant_a:3082"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:2772",
+    "tenant_a:790",
+    "tenant_a:2651",
+    "tenant_a:1713",
+    "tenant_a:3082"
+   ],
+   "rrf": [
+    "tenant_a:2651",
+    "tenant_a:2772",
+    "tenant_a:3082",
+    "tenant_a:2479",
+    "tenant_a:790"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Google via API. Occupation: Unemployed. Specialization: unknown. 1 website visits, 94 seconds on site, 1.0 pages per visit. Last activity: Converted to Lead. Tags: none.",
+  "n_relevant": 13,
+  "top5": {
+   "bm25": [
+    "tenant_a:2833",
+    "tenant_a:2796",
+    "tenant_a:217",
+    "tenant_a:368",
+    "tenant_a:687"
+   ],
+   "embedding": [
+    "tenant_a:341",
+    "tenant_a:684",
+    "tenant_a:1337",
+    "tenant_a:676",
+    "tenant_a:924"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:2833",
+    "tenant_a:1076",
+    "tenant_a:2379",
+    "tenant_a:2622",
+    "tenant_a:217"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:2833",
+    "tenant_a:1076",
+    "tenant_a:2379",
+    "tenant_a:2622",
+    "tenant_a:217"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:2833",
+    "tenant_a:684",
+    "tenant_a:1076",
+    "tenant_a:2379",
+    "tenant_a:2622"
+   ],
+   "rrf": [
+    "tenant_a:2833",
+    "tenant_a:217",
+    "tenant_a:1220",
+    "tenant_a:368",
+    "tenant_a:1076"
+   ]
+  }
+ },
+ {
+  "type": "lead_similarity",
+  "query": "Lead from source Direct Traffic via Landing Page Submission. Occupation: unknown. Specialization: International Business. 12 website visits, 382 seconds on site, 3.0 pages per visit. Last activity: Email Opened. Tags: none.",
+  "n_relevant": 76,
+  "top5": {
+   "bm25": [
+    "tenant_a:3003",
+    "tenant_a:3117",
+    "tenant_a:2178",
+    "tenant_a:1796",
+    "tenant_a:485"
+   ],
+   "embedding": [
+    "tenant_a:1571",
+    "tenant_a:3107",
+    "tenant_a:3059",
+    "tenant_a:2163",
+    "tenant_a:1563"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3003",
+    "tenant_a:2178",
+    "tenant_a:3117",
+    "tenant_a:1796",
+    "tenant_a:1571"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3003",
+    "tenant_a:2178",
+    "tenant_a:1796",
+    "tenant_a:1571",
+    "tenant_a:3117"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:1571",
+    "tenant_a:2178",
+    "tenant_a:3003",
+    "tenant_a:1796",
+    "tenant_a:3107"
+   ],
+   "rrf": [
+    "tenant_a:3003",
+    "tenant_a:2178",
+    "tenant_a:1796",
+    "tenant_a:3117",
+    "tenant_a:1571"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with occupation Working Professional convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3164",
+    "tenant_a:3162",
+    "tenant_a:3163",
+    "tenant_a:3147",
+    "tenant_a:3150"
+   ],
+   "embedding": [
+    "tenant_a:3164",
+    "tenant_a:3167",
+    "tenant_a:3150",
+    "tenant_a:3153",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3164",
+    "tenant_a:3162",
+    "tenant_a:3163",
+    "tenant_a:3150",
+    "tenant_a:3167"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3164",
+    "tenant_a:3162",
+    "tenant_a:3150",
+    "tenant_a:3167",
+    "tenant_a:3163"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3164",
+    "tenant_a:3167",
+    "tenant_a:3150",
+    "tenant_a:3153",
+    "tenant_a:3146"
+   ],
+   "rrf": [
+    "tenant_a:3164",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3162",
+    "tenant_a:3167"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead source Reference convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3150",
+    "tenant_a:3147",
+    "tenant_a:3146",
+    "tenant_a:3148",
+    "tenant_a:3149"
+   ],
+   "embedding": [
+    "tenant_a:3150",
+    "tenant_a:3151",
+    "tenant_a:3167",
+    "tenant_a:3146",
+    "tenant_a:3147"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3150",
+    "tenant_a:3151",
+    "tenant_a:3147",
+    "tenant_a:3146",
+    "tenant_a:3152"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3150",
+    "tenant_a:3151",
+    "tenant_a:3146",
+    "tenant_a:3147",
+    "tenant_a:3167"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3150",
+    "tenant_a:3151",
+    "tenant_a:3146",
+    "tenant_a:3167",
+    "tenant_a:3147"
+   ],
+   "rrf": [
+    "tenant_a:3150",
+    "tenant_a:3147",
+    "tenant_a:3146",
+    "tenant_a:3151",
+    "tenant_a:3167"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead source Google convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3148",
+    "tenant_a:3149"
+   ],
+   "embedding": [
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3167",
+    "tenant_a:3146",
+    "tenant_a:3151"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3151",
+    "tenant_a:3152"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3151",
+    "tenant_a:3152"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3151",
+    "tenant_a:3152"
+   ],
+   "rrf": [
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3151",
+    "tenant_a:3167"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead source Direct Traffic convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3146",
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3148",
+    "tenant_a:3149"
+   ],
+   "embedding": [
+    "tenant_a:3146",
+    "tenant_a:3151",
+    "tenant_a:3167",
+    "tenant_a:3150",
+    "tenant_a:3147"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3146",
+    "tenant_a:3150",
+    "tenant_a:3147",
+    "tenant_a:3151",
+    "tenant_a:3152"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3146",
+    "tenant_a:3150",
+    "tenant_a:3151",
+    "tenant_a:3147",
+    "tenant_a:3152"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3146",
+    "tenant_a:3150",
+    "tenant_a:3151",
+    "tenant_a:3147",
+    "tenant_a:3167"
+   ],
+   "rrf": [
+    "tenant_a:3146",
+    "tenant_a:3150",
+    "tenant_a:3147",
+    "tenant_a:3151",
+    "tenant_a:3167"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead source Welingak Website convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3152",
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3148"
+   ],
+   "embedding": [
+    "tenant_a:3152",
+    "tenant_a:3151",
+    "tenant_a:3167",
+    "tenant_a:3147",
+    "tenant_a:3165"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3152",
+    "tenant_a:3151",
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3152",
+    "tenant_a:3151",
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3152",
+    "tenant_a:3151",
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3167"
+   ],
+   "rrf": [
+    "tenant_a:3152",
+    "tenant_a:3147",
+    "tenant_a:3151",
+    "tenant_a:3167",
+    "tenant_a:3150"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with occupation Student convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3162",
+    "tenant_a:3163",
+    "tenant_a:3164",
+    "tenant_a:3147",
+    "tenant_a:3150"
+   ],
+   "embedding": [
+    "tenant_a:3162",
+    "tenant_a:3164",
+    "tenant_a:3153",
+    "tenant_a:3167",
+    "tenant_a:3151"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3162",
+    "tenant_a:3164",
+    "tenant_a:3163",
+    "tenant_a:3150",
+    "tenant_a:3153"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3162",
+    "tenant_a:3164",
+    "tenant_a:3163",
+    "tenant_a:3153",
+    "tenant_a:3167"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3162",
+    "tenant_a:3164",
+    "tenant_a:3153",
+    "tenant_a:3167",
+    "tenant_a:3163"
+   ],
+   "rrf": [
+    "tenant_a:3162",
+    "tenant_a:3164",
+    "tenant_a:3150",
+    "tenant_a:3163",
+    "tenant_a:3153"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead origin Lead Add Form convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3166",
+    "tenant_a:3147",
+    "tenant_a:3150"
+   ],
+   "embedding": [
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3150",
+    "tenant_a:3166",
+    "tenant_a:3157"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3166",
+    "tenant_a:3150",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3166",
+    "tenant_a:3150",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3166",
+    "tenant_a:3150",
+    "tenant_a:3146"
+   ],
+   "rrf": [
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3150",
+    "tenant_a:3166",
+    "tenant_a:3146"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with last activity SMS Sent convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3160",
+    "tenant_a:3161",
+    "tenant_a:3154",
+    "tenant_a:3156",
+    "tenant_a:3153"
+   ],
+   "embedding": [
+    "tenant_a:3160",
+    "tenant_a:3156",
+    "tenant_a:3153",
+    "tenant_a:3157",
+    "tenant_a:3155"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3160",
+    "tenant_a:3156",
+    "tenant_a:3153",
+    "tenant_a:3154",
+    "tenant_a:3155"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3160",
+    "tenant_a:3156",
+    "tenant_a:3153",
+    "tenant_a:3154",
+    "tenant_a:3157"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3160",
+    "tenant_a:3156",
+    "tenant_a:3153",
+    "tenant_a:3157",
+    "tenant_a:3154"
+   ],
+   "rrf": [
+    "tenant_a:3160",
+    "tenant_a:3156",
+    "tenant_a:3153",
+    "tenant_a:3154",
+    "tenant_a:3157"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead origin Landing Page Submission convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3166",
+    "tenant_a:3165",
+    "tenant_a:3167",
+    "tenant_a:3147",
+    "tenant_a:3150"
+   ],
+   "embedding": [
+    "tenant_a:3166",
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3157",
+    "tenant_a:3151"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3166",
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3151",
+    "tenant_a:3152"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3166",
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3151",
+    "tenant_a:3152"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3166",
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3151",
+    "tenant_a:3152"
+   ],
+   "rrf": [
+    "tenant_a:3166",
+    "tenant_a:3167",
+    "tenant_a:3165",
+    "tenant_a:3151",
+    "tenant_a:3146"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead source Organic Search convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3149",
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3148"
+   ],
+   "embedding": [
+    "tenant_a:3149",
+    "tenant_a:3150",
+    "tenant_a:3167",
+    "tenant_a:3147",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3149",
+    "tenant_a:3150",
+    "tenant_a:3147",
+    "tenant_a:3146",
+    "tenant_a:3151"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3149",
+    "tenant_a:3150",
+    "tenant_a:3147",
+    "tenant_a:3146",
+    "tenant_a:3151"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3149",
+    "tenant_a:3150",
+    "tenant_a:3147",
+    "tenant_a:3146",
+    "tenant_a:3167"
+   ],
+   "rrf": [
+    "tenant_a:3149",
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3167",
+    "tenant_a:3146"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead source Referral Sites convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3151",
+    "tenant_a:3147",
+    "tenant_a:3150",
+    "tenant_a:3146",
+    "tenant_a:3148"
+   ],
+   "embedding": [
+    "tenant_a:3151",
+    "tenant_a:3150",
+    "tenant_a:3152",
+    "tenant_a:3147",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3151",
+    "tenant_a:3150",
+    "tenant_a:3152",
+    "tenant_a:3147",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3151",
+    "tenant_a:3150",
+    "tenant_a:3152",
+    "tenant_a:3147",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3151",
+    "tenant_a:3150",
+    "tenant_a:3152",
+    "tenant_a:3147",
+    "tenant_a:3146"
+   ],
+   "rrf": [
+    "tenant_a:3151",
+    "tenant_a:3150",
+    "tenant_a:3152",
+    "tenant_a:3147",
+    "tenant_a:3146"
+   ]
+  }
+ },
+ {
+  "type": "pattern",
+  "query": "How well do leads with lead origin API convert?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3165",
+    "tenant_a:3167",
+    "tenant_a:3166",
+    "tenant_a:3147",
+    "tenant_a:3150"
+   ],
+   "embedding": [
+    "tenant_a:3165",
+    "tenant_a:3167",
+    "tenant_a:3146",
+    "tenant_a:3166",
+    "tenant_a:3150"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3165",
+    "tenant_a:3167",
+    "tenant_a:3166",
+    "tenant_a:3150",
+    "tenant_a:3146"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3165",
+    "tenant_a:3167",
+    "tenant_a:3166",
+    "tenant_a:3146",
+    "tenant_a:3150"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3165",
+    "tenant_a:3167",
+    "tenant_a:3166",
+    "tenant_a:3146",
+    "tenant_a:3150"
+   ],
+   "rrf": [
+    "tenant_a:3165",
+    "tenant_a:3167",
+    "tenant_a:3166",
+    "tenant_a:3146",
+    "tenant_a:3150"
+   ]
+  }
+ },
+ {
+  "type": "business_context",
+  "query": "What is the follow-up policy for a hot lead?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3169"
+   ],
+   "embedding": [
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3171",
+    "tenant_a:3170",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3169",
+    "tenant_a:3172"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3169",
+    "tenant_a:3171",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3169",
+    "tenant_a:3171",
+    "tenant_a:3173"
+   ],
+   "rrf": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3169"
+   ]
+  }
+ },
+ {
+  "type": "business_context",
+  "query": "How should we follow up with cold leads?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3172"
+   ],
+   "embedding": [
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3172",
+    "tenant_a:3171"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3172",
+    "tenant_a:3171"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3172",
+    "tenant_a:3171"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3172",
+    "tenant_a:3171"
+   ],
+   "rrf": [
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3172"
+   ]
+  }
+ },
+ {
+  "type": "business_context",
+  "query": "What should the next step be for a warm lead?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3169"
+   ],
+   "embedding": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3169",
+    "tenant_a:3172",
+    "tenant_a:3171"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3172",
+    "tenant_a:3173",
+    "tenant_a:3169"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3172",
+    "tenant_a:3169",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3169",
+    "tenant_a:3172",
+    "tenant_a:3173"
+   ],
+   "rrf": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3169"
+   ]
+  }
+ },
+ {
+  "type": "business_context",
+  "query": "What does the business sell to its customers?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3171"
+   ],
+   "embedding": [
+    "tenant_a:3170",
+    "tenant_a:3174",
+    "tenant_a:3171",
+    "tenant_a:3169",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3174",
+    "tenant_a:3171"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3174",
+    "tenant_a:3171",
+    "tenant_a:3169"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3170",
+    "tenant_a:3174",
+    "tenant_a:3171",
+    "tenant_a:3169",
+    "tenant_a:3173"
+   ],
+   "rrf": [
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3174",
+    "tenant_a:3171"
+   ]
+  }
+ },
+ {
+  "type": "business_context",
+  "query": "Who is the ideal customer for this programme?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3169",
+    "tenant_a:3171"
+   ],
+   "embedding": [
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3172"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3172"
+   ],
+   "rrf": [
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3171",
+    "tenant_a:3172",
+    "tenant_a:3174"
+   ]
+  }
+ },
+ {
+  "type": "business_context",
+  "query": "What payment options or discounts can we offer?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3172",
+    "tenant_a:3173"
+   ],
+   "embedding": [
+    "tenant_a:3171",
+    "tenant_a:3169",
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3174",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3174",
+    "tenant_a:3173"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3169",
+    "tenant_a:3171",
+    "tenant_a:3170",
+    "tenant_a:3174",
+    "tenant_a:3173"
+   ],
+   "rrf": [
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3174",
+    "tenant_a:3173"
+   ]
+  }
+ },
+ {
+  "type": "business_context",
+  "query": "A lead is worried about the cost. What can we offer?",
+  "n_relevant": 1,
+  "top5": {
+   "bm25": [
+    "tenant_a:3169",
+    "tenant_a:3170",
+    "tenant_a:3174",
+    "tenant_a:3173",
+    "tenant_a:3172"
+   ],
+   "embedding": [
+    "tenant_a:3174",
+    "tenant_a:3173",
+    "tenant_a:3170",
+    "tenant_a:3171",
+    "tenant_a:3169"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3169",
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3174",
+    "tenant_a:3169",
+    "tenant_a:3173",
+    "tenant_a:3170",
+    "tenant_a:3171"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3174",
+    "tenant_a:3173",
+    "tenant_a:3170",
+    "tenant_a:3169",
+    "tenant_a:3171"
+   ],
+   "rrf": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3169",
+    "tenant_a:3173",
+    "tenant_a:3171"
+   ]
+  }
+ },
+ {
+  "type": "business_context",
+  "query": "How do we answer a lead who raises an objection?",
+  "n_relevant": 2,
+  "top5": {
+   "bm25": [
+    "tenant_a:3170",
+    "tenant_a:3174",
+    "tenant_a:3172",
+    "tenant_a:3173",
+    "tenant_a:3169"
+   ],
+   "embedding": [
+    "tenant_a:3174",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3170",
+    "tenant_a:3169"
+   ],
+   "hybrid_0.3": [
+    "tenant_a:3174",
+    "tenant_a:3170",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3169"
+   ],
+   "hybrid_0.5": [
+    "tenant_a:3174",
+    "tenant_a:3173",
+    "tenant_a:3170",
+    "tenant_a:3172",
+    "tenant_a:3169"
+   ],
+   "hybrid_0.7": [
+    "tenant_a:3174",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3170",
+    "tenant_a:3169"
+   ],
+   "rrf": [
+    "tenant_a:3174",
+    "tenant_a:3173",
+    "tenant_a:3172",
+    "tenant_a:3170",
+    "tenant_a:3169"
+   ]
+  }
+ }
+]

@@ -9,11 +9,14 @@ import time
 import numpy as np
 import requests
 
-from kb import OLLAMA, embed, lead_text, _open
+from kb import OLLAMA, RETRIEVAL_METHODS, embed, lead_text, scores, _open
 
 LLM_MODEL = os.getenv("C3_LLM_MODEL", "mistral:7b-instruct-q4_K_M")
 K = {"lead_profile": 3, "pattern": 3, "business_context": 4}
 ATTRIBUTION_MIN_SIM = 0.60     # answer must be this similar to a source to count as supported
+# C3-09: how documents are ranked (bm25 | embedding | hybrid | rrf). Chosen from reports/c3-09_*.
+RETRIEVAL = os.getenv("C3_RETRIEVAL", "hybrid")      # C3-09 result: hybrid (alpha 0.7) beat embedding-only
+assert RETRIEVAL in RETRIEVAL_METHODS, f"C3_RETRIEVAL must be one of {RETRIEVAL_METHODS}"
 
 
 def query_text(lead: dict) -> str:
@@ -21,13 +24,16 @@ def query_text(lead: dict) -> str:
     return lead_text({**lead, "tags": []}, with_outcome=False)
 
 
-def retrieve(tenant: str, lead: dict) -> list[dict]:
-    """One embedding of the lead (outcome hidden), then top-k per document type."""
+def retrieve(tenant: str, lead: dict, method: str | None = None) -> list[dict]:
+    """One embedding of the lead (outcome hidden), then top-k per document type.
+    Ranking uses the C3-09 method; 'score' stays the cosine similarity (used for confidence)."""
     docs, vecs = _open(tenant)
-    q = embed([query_text(lead)])[0]
+    text = query_text(lead)
+    q = embed([text])[0]
     sims = vecs @ q
+    rank = scores(tenant, text, method or RETRIEVAL, q_vec=q)
     hits, need = [], dict(K)
-    for i in np.argsort(-sims):
+    for i in np.argsort(-rank, kind="stable"):
         d = docs[i]
         if need.get(d["type"], 0) == 0:
             continue
@@ -187,7 +193,8 @@ def recommend(tenant: str, lead: dict, scored: dict) -> dict:
             out["model_raw"] = raw
     out["policy_rule"] = rule
     out["policy_check"] = policy_check(out.get("next_best_action") or "", rule)
-    out.update({"citation_method": method, "lead_id": lead["lead_id"], "score": scored["score"],
+    out.update({"citation_method": method, "retrieval_method": RETRIEVAL,
+                "lead_id": lead["lead_id"], "score": scored["score"],
                 "segment": scored["segment"], "similar_leads_converted": similar_rate,
                 "latency_sec": round(time.perf_counter() - t0, 1)})
     return out
