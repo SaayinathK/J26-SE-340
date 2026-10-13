@@ -31,6 +31,8 @@ print("\nSegments on validation set (cold <40, warm 40-69, hot >=70):")
 print(seg)
 seg.to_csv("reports/c3-05_segments.csv")
 
+from pathlib import Path
+Path("models").mkdir(exist_ok=True)              # fresh clone has no models/
 joblib.dump({"calibrated": calibrated, "explainer_pipe": explainer_pipe,
              "model_version": "c3-gbm-v1"}, "models/lead_scorer.joblib")
 print("\nSaved models/lead_scorer.joblib and reports/c3-05_segments.csv")

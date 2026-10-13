@@ -2,6 +2,7 @@
 # Converts the Kaggle X Education leads into GHL-style CRM lead records
 # split across 3 simulated tenants.
 import hashlib
+from pathlib import Path
 import numpy as np
 import pandas as pd
 
@@ -54,6 +55,7 @@ def main():
     out["date_added"] = pd.Timestamp("2026-07-01") + pd.to_timedelta(days, unit="D")
     out["date_is_synthetic"] = True
 
+    Path(OUT).parent.mkdir(parents=True, exist_ok=True)   # fresh clone has no data/processed/
     out.to_json(OUT, orient="records", lines=True, date_format="iso")
     print("Saved", len(out), "leads to", OUT)
     print(out.groupby("tenant").size())
