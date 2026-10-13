@@ -12,6 +12,8 @@ const authenticate = require('./middleware/auth');
 const authorize = require('./middleware/authorize');
 const audit = require('./middleware/audit');
 
+const emailRoutes = require('./routes/emailRoutes');
+
 // Validate environment variables
 if (!process.env.JWT_SECRET || !process.env.DB_PASSWORD) {
   throw new Error('Missing required environment variables');
@@ -22,6 +24,13 @@ const app = express();
 // Global middleware
 app.use(helmet());
 app.use(express.json({ limit: '16kb' }));
+
+app.use('/api/email',
+  authenticate,
+  authorize('agency_admin', 'marketer'),
+  audit('email_sequence'),
+  emailRoutes
+);
 
 // Login rate limiting
 const loginLimiter = rateLimit({
@@ -222,8 +231,11 @@ app.get(
 
 const PORT = Number(process.env.PORT || 4000);
 
-app.listen(PORT, '127.0.0.1', () => {
-  console.log(
-    `C4 Gateway running on http://localhost:${PORT}`
-  );
-});
+// Only bind to port when run directly (not when required by tests)
+if (require.main === module) {
+  app.listen(PORT, '127.0.0.1', () => {
+    console.log(`C4 Gateway running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
