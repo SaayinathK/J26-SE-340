@@ -138,7 +138,7 @@ def search(tenant: str, query: str, k: int = 5, types=None, exclude_contact=None
 
 # ---------------- C3-09: keyword (BM25), embedding, hybrid and RRF scoring ----------------
 RETRIEVAL_METHODS = ["bm25", "embedding", "hybrid", "rrf"]
-HYBRID_ALPHA = 0.7          # weight of the embedding score in the hybrid (0.5 = equal)
+HYBRID_ALPHA = 0.7          # weight of the embedding score in the hybrid; 0.7 was best in C3-09 (MRR, P@5)
 RRF_K = 60                  # standard constant for reciprocal rank fusion
 _BM25 = {}
 

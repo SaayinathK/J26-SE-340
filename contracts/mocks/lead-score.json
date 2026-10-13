@@ -3,9 +3,26 @@
   "score": 81,
   "segment": "hot",
   "top_factors": [
-    {"feature": "num__time_on_site_sec", "impact": 1.336},
-    {"feature": "cat__occupation_Working Professional", "impact": 1.296},
-    {"feature": "cat__specialization_Unknown", "impact": -0.713}
+    {
+      "feature": "num__time_on_site_sec",
+      "impact": 1.336
+    },
+    {
+      "feature": "cat__occupation_Working Professional",
+      "impact": 1.296
+    },
+    {
+      "feature": "cat__specialization_Unknown",
+      "impact": -0.713
+    }
   ],
-  "model_version": "c3-gbm-v1"
+  "model_version": "c3-gbm-v1",
+  "confidence": {
+    "level": "medium",
+    "points_from_boundary": 11,
+    "segment_conversion_rate": 0.847,
+    "segment_validation_leads": 353,
+    "note": "In validation, 85% of hot leads converted."
+  },
+  "alert": null
 }

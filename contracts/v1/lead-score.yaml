@@ -1,6 +1,6 @@
 # I-04  Lead score  — producer: C3 Lead Intelligence (Shathursini J)
 openapi: 3.0.3
-info: { title: "C3 Lead score (I-04)", version: "1.0.0" }
+info: { title: "C3 Lead score (I-04)", version: "1.1.0" }   # 1.1.0: + confidence, alert (additive, C3-11)
 servers: [ { url: "http://localhost:3001" } ]
 paths:
   /leads/score:
@@ -41,4 +41,25 @@ paths:
                     type: array
                     items: { type: object, properties: { feature: { type: string }, impact: { type: number } } }
                   model_version: { type: string }
+                  confidence:
+                    type: object
+                    description: "C3-11 (FR9) how far to trust the segment"
+                    properties:
+                      level: { type: string, enum: [low, medium, high] }
+                      points_from_boundary: { type: integer }
+                      segment_conversion_rate: { type: number }
+                      segment_validation_leads: { type: integer }
+                      note: { type: string }
+                  alert:
+                    type: object
+                    nullable: true
+                    description: "C3-11 (FR8) set when the lead dropped a segment since its last score (same tenant)"
+                    properties:
+                      type: { type: string, enum: [segment_drop] }
+                      from: { type: string, enum: [hot, warm] }
+                      to: { type: string, enum: [warm, cold] }
+                      previous_score: { type: integer }
+                      score: { type: integer }
+                      previous_scored_at: { type: string, format: date-time }
+                      message: { type: string }
         "422": { description: Missing X-Tenant-Id or invalid body }
