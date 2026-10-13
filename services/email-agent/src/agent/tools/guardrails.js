@@ -23,7 +23,8 @@ function runGuardrails(emails) {
     }
 
     // 4. Excessive caps (tone check)
-    const capsWords = (text.match(/[A-Z]{4,}/g) || []).length;
+    // STOP is the required opt-out keyword, not promotional emphasis.
+    const capsWords = (text.match(/[A-Z]{4,}/g) || []).filter(word => word !== 'STOP').length;
     if (capsWords > 3)
       flags.push({ email_index: email.email_index, check: 'TONE', detail: `${capsWords} all-caps words detected` });
   }
