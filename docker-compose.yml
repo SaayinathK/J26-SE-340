@@ -1,0 +1,17 @@
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: c4-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: saas_platform
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: localdev
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - c4_pgdata:/var/lib/postgresql/data
+
+volumes:
+  c4_pgdata:
