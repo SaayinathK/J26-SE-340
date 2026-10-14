@@ -1,0 +1,7 @@
+operation,runs,p50_ms,p95_ms,max_ms
+POST /leads/score,100,65.1,96.5,144.1
+GET /leads/analytics,20,76.1,92.1,93.8
+GET /leads/dashboard,20,42.5,76.0,314.8
+KB search bm25,50,32.2,52.4,149.5
+KB search embedding (incl. query embedding),50,112.0,131.5,1215.7
+KB search hybrid (incl. query embedding),50,157.8,213.8,376.1
