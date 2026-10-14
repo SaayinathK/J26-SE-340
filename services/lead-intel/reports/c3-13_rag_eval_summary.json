@@ -1,0 +1,18 @@
+{
+  "tenant": "tenant_a",
+  "leads": 30,
+  "errors_skipped": 0,
+  "retrieval_method": "hybrid",
+  "grounded_rate": 1.0,
+  "policy_consistent_rate_of_grounded": 0.933,
+  "model_citation_rate": 1.0,
+  "avg_sources": 2.0,
+  "latency_sec_median": 134.3,
+  "latency_sec_p95": 191.57999999999993,
+  "same_answer_on_repeat": "2 of 3",
+  "by_segment": {
+    "cold": 1.0,
+    "hot": 1.0,
+    "warm": 1.0
+  }
+}
