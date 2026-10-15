@@ -2,8 +2,8 @@
 C4 fine-tuning data builder: Kaggle "Email Marketing Campaign CTR" CSV
 -> Mistral chat JSONL (train.jsonl / val.jsonl) of grounded 3-step email sequences.
 
-Put this file in services/gateway/ml/finetune/ (or ml/finetune/) and run:
-    python prepare_email_ft.py --csv Email_Marketing_Campaign_CTR_Dataset.csv --out data --n 900
+Put this file in ml/email-agent/training/ and run:
+    python prepare_data.py --csv Email_Marketing_Campaign_CTR_Dataset.csv --out data --n 900
 
 What it does (each step is printed in the report at the end):
   1. Cleans every email body (literal "/n", duplicated / misplaced signatures,
@@ -17,7 +17,7 @@ What it does (each step is printed in the report at the end):
      About 25% of sequences have NO offer in the context; for those, every
      sentence with a %, a price or a promo code is removed, so the model learns
      not to invent offers.
-  5. Uses the SAME prompt text as services/gateway/src/services/emailAgent.js.
+  5. Uses the SAME prompt text as services/email-agent/src/agent/prompts/emailPrompt.js.
      If you change the prompt there, change build_prompt() here too.
   6. Runs the same guardrails as guardrails.js plus the grounding check, and drops
      every example that fails.
@@ -213,7 +213,7 @@ def trim_words(body: str, limit: int = 140) -> str:
     return " ".join(out).strip()
 
 
-# ---------------------------------------------------------------- 5. prompt (= emailAgent.js)
+# ---------------------------------------------------------------- 5. prompt (= emailPrompt.js)
 def build_prompt(context: str, campaign_goal: str, audience: str) -> str:
     context_block = ("Brand context:\n" + context + "\n\n") if context else ""
     return (context_block
