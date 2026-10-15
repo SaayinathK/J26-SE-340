@@ -1,0 +1,34 @@
+{
+  "base_model": "unsloth/mistral-7b-instruct-v0.3",
+  "method": "QLoRA 4-bit nf4, LoRA r=16 alpha=32, 2 epochs, lr 0.0002",
+  "train_examples": 715,
+  "eval_prompts": 25,
+  "before": {
+    "json_valid": 1.0,
+    "three_emails": 1.0,
+    "unsubscribe_all": 0.32,
+    "grounded": 0.92,
+    "no_invented_offer": 1.0,
+    "under_150_words": 1.0,
+    "guardrails_pass": 0.24,
+    "seconds": 31.074
+  },
+  "after": {
+    "json_valid": 0.96,
+    "three_emails": 0.96,
+    "unsubscribe_all": 0.96,
+    "grounded": 0.76,
+    "no_invented_offer": 0.8,
+    "under_150_words": 0.96,
+    "guardrails_pass": 0.76,
+    "seconds": 64.28
+  },
+  "train_loss_first_last": [
+    1.2033,
+    0.1296
+  ],
+  "eval_loss_first_last": [
+    0.8793,
+    0.9924
+  ]
+}

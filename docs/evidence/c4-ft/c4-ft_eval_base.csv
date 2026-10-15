@@ -1,0 +1,524 @@
+i,json_valid,three_emails,unsubscribe_all,grounded,no_invented_offer,under_150_words,guardrails_pass,seconds,model,output
+0,True,True,False,True,True,True,False,26.61,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back to Sunday Paper Press, {{first_name}}!"",
+      ""body"": ""We're excited to share our latest blog post with you. This week, we're diving into the fascinating world of sustainable fashion. Discover how you can make a difference with your wardrobe choices. Click here to read more: {{cta_link}}"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Your Sustainable Fashion Journey Awaits, {{first_name}}!"",
+      ""body"": ""We hope you enjoyed our latest blog post! Today, we're offering a special 25% off on all fashion-related items as a token of our appreciation. Use promo code JOIN25 on orders over $40. Offer ends in 48 hours. Click here to shop now: {{cta_link}}"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last Chance to Save on Sustainable Fashion, {{first_name}}!"",
+      ""body"": ""Your 25% off promo code (JOIN25) is almost gone! Don't miss out on this opportunity to upgrade your wardrobe with sustainable fashion choices. Click here to shop now and save: {{cta_link}}"",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+1,True,True,False,True,True,True,False,34.54,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to the Spooktacular Halloween Recipes!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to our special Halloween Recipes series! This season, we're here to help you impress your guests with delightful, easy-to-make treats. From ghostly cupcakes to pumpkin spice cookies, we've got you covered. 🎃🍪\n\nGet started with our popular Witch's Brew Punch recipe. Click {{cta_link}} to download the recipe now.\n\nHappy Halloween baking!"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Elevate Your Halloween Party with These Easy Recipes!"",
+      ""body"": ""Hello {{first_name}},\n\nStill looking for the perfect recipe to wow your guests? We've got more spooktacular treats for you! Try our Mummy Brownies or our Jack-o'-Lantern Cheese Ball. 🎃🍫\n\nDon't forget, for a limited time, enjoy 30% off your order with promo code SPARK30 on orders over $25. Offer ends in 48 hours. Click {{cta_link}} to shop now.\n\nHappy Halloween baking!"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last Chance: 30% Off Halloween Recipes!"",
+      ""body"": ""Hello {{first_name}},\n\nYour Halloween party is just around the corner! Don't miss out on our special offer: 30% off with promo code SPARK30 on orders over $25. Offer ends in 24 hours. Click {{cta_link}} to shop now and elevate your party with our easy-to-make treats.\n\nHappy Halloween baking!"",
+      ""send_at_days"": 7
+    }
+ "
+2,True,True,True,False,True,True,False,30.86,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back to Sunday Paper Press, {{first_name}}!"",
+      ""body"": ""We're excited to share our latest blog post with you. Dive into the fascinating world of astronomy and discover the mysteries of the universe. Click here to read now {{cta_link}}. Don't forget, enjoy 20% off with promo code FRESH20 on orders over $75, offer ends in 48 hours! To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Your cosmic journey continues, {{first_name}}!"",
+      ""body"": ""We hope you're enjoying our latest blog post! If you're curious about more mind-bending facts, check out our new post on the secrets of the solar system. Click here to read now {{cta_link}}. Remember, the FRESH20 offer is still valid on orders over $75, but it won't last forever! To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Your final stop: The universe awaits, {{first_name}}!"",
+      ""body"": ""We hope you've enjoyed our cosmic journey! If you're still hungry for knowledge, don't miss our latest post on the mysteries of black holes. Click here to read now {{cta_link}}. The FRESH20 offer ends soon, so don't miss out on your chance to save 20% on orders over $75. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+3,True,True,True,True,True,True,False,27.05,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back to Kite Learning Hub, {{first_name}}!"",
+      ""body"": ""We're excited to share our latest blog posts with you. Dive into valuable insights and expert tips tailored to your interests. Check out our blog now and don't forget to share your thoughts! {{cta_link}} To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""New blog post: Boost your learning journey!"",
+      ""body"": ""We've just published a new blog post that's sure to help you enhance your learning experience. Discover expert tips and valuable insights that will take your skills to the next level. Read now and don't forget to share your thoughts! {{cta_link}} To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Limited Time Offer: 15% off on orders over $50!"",
+      ""body"": ""Celebrate our latest blog post with a special offer! Use promo code TREAT15 to get 15% off on orders over $50. Hurry, this offer ends in 48 hours! Read our latest blog post, share your thoughts, and save big! {{cta_link}} To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+4,True,True,False,True,True,True,False,32.53,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Spooktacular Halloween Recipes Await You at Greenway Grocers!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to our special Halloween edition! We've gathered some easy-to-follow recipes that will make your holiday menu a hit. From ghostly grilled cheese to pumpkin pasta, there's something for everyone. \n\nDon't forget to use promo code WELCOME15 for 15% off on orders over $75. Offer ends in 48 hours. \n\nHappy Halloween cooking!"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Halloween Recipe Ideas: Part 2"",
+      ""body"": ""Hello {{first_name}},\n\nWe hope you're enjoying our Halloween recipes! Today, we're sharing more spooky treats like mummy dogs and bat wing sandwiches. \n\nRemember, the promo code WELCOME15 is still active for 15% off on orders over $75. Offer ends soon. \n\nStay tuned for more Halloween inspiration!"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last Chance: Halloween Recipes and Special Offer"",
+      ""body"": ""Hello {{first_name}},\n\nToday's the last day to enjoy our Halloween recipes and the 15% off offer with promo code WELCOME15. Don't miss out on these spooktacular treats! \n\nTo help you plan your holiday menu, we've compiled all our recipes in one place. Find them here: {{cta_link}} \n\nHappy Halloween!"",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+5,True,True,True,True,True,True,True,26.03,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to Brightside Bank, {{first_name}}!"",
+      ""body"": ""We're thrilled to have you join our community. At Brightside Bank, we're committed to helping you make progress in your financial journey. Stay tuned for timely information, early access to new products, and more! To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Exclusive Insights: What's New at Brightside Bank"",
+      ""body"": ""Hello {{first_name}}, we're excited to share updates on our latest initiatives aimed at helping you achieve your financial goals. As a valued member of our community, you'll be among the first to hear about new products and services. Keep an eye on your inbox! To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Invitation: Exclusive Product Preview"",
+      ""body"": ""Dear {{first_name}}, we're inviting you to an exclusive product preview event! Be the first to learn about our latest offering and how it can help you take a step forward in your financial journey. Don't miss out on this opportunity. RSVP now at {{cta_link}}. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+6,True,True,False,True,True,True,False,31.66,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Spooktacular Halloween Recipes Await You at Greenway Grocers!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to our special Halloween edition! We've got a thrilling lineup of mouthwatering recipes that will make your Halloween a feast to remember. From ghostly goulash to pumpkin spice latte, there's something for everyone. Get ready to delight your taste buds and impress your friends! \n\nCheck out our recipes here: {{cta_link}}\n\nHappy Halloween, {{first_name}}!"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Countdown to Halloween: Recipe #2 Revealed!"",
+      ""body"": ""Hello {{first_name}},\n\nWe're one day closer to Halloween! Today, we're sharing our second spooktacular recipe: Witches' Brew Punch. It's a refreshing, non-alcoholic drink that's perfect for your Halloween party. \n\nRecipe here: {{cta_link}}\n\nStay tuned for our final recipe tomorrow!"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Halloween's Here! Last Recipe Revealed: Mummy Dogs!"",
+      ""body"": ""Hello {{first_name}},\n\nHalloween is finally here! We've saved the best for last: Mummy Dogs. They're easy to make, fun to eat, and sure to be a hit with the kids. \n\nRecipe here: {{cta_link}}\n\nWe hope you've enjoyed our Halloween recipes. Stay tuned for more deliciousness coming your way!"",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+7,True,True,False,True,True,True,False,21.16,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back to Kite Learning Hub, {{first_name}}!"",
+      ""body"": ""We're excited to share our latest blog post with you. This week, we're diving into the fascinating world of [Industry/Subject Matter] and exploring its latest trends. Click here to read more: {{cta_link}}"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Stay ahead of the curve with Kite Learning Hub!"",
+      ""body"": ""Did you catch our latest blog post? If not, don't worry! We've included a quick recap below. Keep learning and growing with us: {{cta_link}}"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Your journey continues with Kite Learning Hub!"",
+      ""body"": ""We hope you found our latest blog post informative and valuable. If you're hungry for more knowledge, check out our archive of past posts. Keep learning and growing with us: {{cta_link}}"",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+8,True,True,False,True,True,True,False,27.06,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back, {{first_name}}! Progress never stops with Wanderwise Travel"",
+      ""body"": ""We're excited to share some exciting updates with you! Our team has been working hard to bring you even more inspiring travel experiences. To kickstart your journey, enjoy 25% off your next order with promo code THANKS25 on orders over $50. Offer ends in 48 hours. Start exploring now at {{cta_link}}."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Travel tips: Making progress on your bucket list, {{first_name}}"",
+      ""body"": ""We've handpicked some of the most breathtaking destinations for you to conquer next. From hidden gems to iconic landmarks, we've got you covered. Don't miss out on these amazing experiences. Shop now at {{cta_link}}."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Your journey continues, {{first_name}}: Exclusive offers just for you"",
+      ""body"": ""We're thrilled to see you making progress on your travel journey! To keep the momentum going, we're offering an extended 25% off with promo code THANKS25 on orders over $50. This offer is valid for the next 24 hours. Explore more at {{cta_link}}."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+9,True,True,True,True,True,True,True,27.77,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back to Kite Learning Hub, {{first_name}}!"",
+      ""body"": ""We're excited to share our latest blog posts with you. Dive into valuable insights and expert tips tailored to your interests. Check out our blog now and don't forget to share your thoughts! {{cta_link}} To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""New blog posts just for you, {{first_name}}!"",
+      ""body"": ""We've handpicked some fresh content for you! Explore our blog to learn more about your areas of interest. Plus, enjoy 30% off your next order over $40 with promo code FRESH30. Offer ends in 48 hours! {{cta_link}} To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last chance to save, {{first_name}}!"",
+      ""body"": ""Your 30% off discount is almost gone! Don't miss out on this opportunity to learn more and save on your next order. Head to our blog now and use promo code FRESH30 at checkout. Offer ends in 24 hours! {{cta_link}} To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+10,True,True,True,True,True,True,True,31.61,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to Sunday Paper Press, {{first_name}}!"",
+      ""body"": ""We're thrilled to have you on board! At Sunday Paper Press, we're all about thoughtful, curious, and informative content. To kick things off, we'd like to offer you a special 10% discount on your first order. Use promo code JOIN10 at checkout and enjoy expert analysis and valuable insights. Shop now at {{cta_link}}. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Explore our latest blog post, {{first_name}}!"",
+      ""body"": ""We've just published a fascinating piece on [Blog Post Topic]. Dive into the insights and expert analysis that make Sunday Paper Press a must-read. Don't miss out! Read it now at {{cta_link}}. Remember, orders over $40 qualify for the 10% discount with promo code JOIN10. Offer ends in 48 hours. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Your time is running out, {{first_name}}!"",
+      ""body"": ""Just a friendly reminder that our special 10% discount offer ends in 48 hours! Don't miss out on the chance to save on expert analysis and valuable insights. Browse our blog posts and shop at {{cta_link}} using promo code JOIN10. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+11,True,True,False,True,True,True,False,29.14,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to Mosaic Art Collective's Progress Report!"",
+      ""body"": ""Hello {{first_name}},\n\nWe're thrilled to have you on board! This week, our team has been hard at work on the project. We've made significant strides in design and are now moving into the production phase. Stay tuned for updates on key deliverables and upcoming initiatives.\n\nCheers to progress!"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Weekly Progress Update: Overcoming Challenges Together"",
+      ""body"": ""Hello {{first_name}},\n\nThis week, we faced a few hurdles but managed to overcome them with teamwork and creativity. We're now back on track and excited to share our latest designs with you. Keep an eye out for our upcoming milestones and initiatives.\n\nProgress is a journey, and we're grateful to have you along for the ride!"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Exciting News: Our Project is Taking Shape!"",
+      ""body"": ""Hello {{first_name}},\n\nWe're excited to share that our project is really starting to take shape! This week, we've made significant progress in design and production. We're now gearing up for our next phase, which includes finalizing key deliverables and preparing for launch. We can't wait to share more updates with you soon.\n\nTo unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+12,True,True,False,True,True,True,False,31.91,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to the Spooktacular Halloween Recipe Series!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to our special Halloween Recipe Series! This season, we're here to help you impress your guests with delicious, easy-to-make treats. Stay tuned for our first recipe, a crowd-pleasing treat that's perfect for your Halloween party.\n\nLooking forward to sharing our culinary secrets with you!\n\n- The Bloom & Basil Kitchen Team"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Your First Halloween Recipe is Here!"",
+      ""body"": ""Hello {{first_name}},\n\nWe hope you're as excited as we are for our first recipe! Today, we're sharing our famous Pumpkin Spice Cookies recipe. These cookies are the perfect blend of sweet and spicy, and they're sure to be a hit at your Halloween party.\n\nTo get the recipe, simply click here: {{cta_link}}\n\nHappy baking!\n\n- The Bloom & Basil Kitchen Team"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""One More Halloween Recipe to Complete Your Party!"",
+      ""body"": ""Hello {{first_name}},\n\nWe hope you enjoyed our first recipe! Today, we're sharing our Ghostly Grilled Cheese Sandwich recipe. This twist on a classic sandwich is both fun and delicious, and it's the perfect addition to your Halloween party.\n\nTo get the recipe, simply click here: {{cta_link}}\n\nWe hope these recipes help you entertain effortlessly this se"
+13,True,True,False,True,True,True,False,25.72,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back to Sunday Paper Press, {{first_name}}!"",
+      ""body"": ""We're excited to share our latest blog post with you. In this article, we delve into the fascinating world of [Industry/Subject Matter], providing insights and tips to enhance your online experience. Click here to read more: {{cta_link}}."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Boost your online knowledge with our latest blog post!"",
+      ""body"": ""Still curious about [Industry/Subject Matter]? We've got you covered! Our latest blog post offers valuable insights and practical tips to help you make the most of your online experience. Don't miss out - read it now: {{cta_link}}."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Limited Time Offer: 30% off with promo code THANKS30!"",
+      ""body"": ""As a token of our appreciation, we're offering a 30% discount on orders over $75. Use promo code THANKS30 at checkout. Offer ends in 48 hours. Explore our collection and find something you love: {{cta_link}}. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+14,True,True,False,True,True,True,False,35.29,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to the Spooktacular Halloween Recipes Series!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to our special Halloween Recipes Series! We're excited to share some delicious, eerie treats and meals to make your Halloween extra magical. To kick things off, we've got a chilling recipe for Ghostly Goulash - a hearty meal that's sure to warm you up on a spooky night. Don't forget to use promo code SPARK30 for 30% off your order over $40. Offer ends in 48 hours. Enjoy cooking!"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""More Spooky Recipes to Delight Your Taste Buds!"",
+      ""body"": ""Hello {{first_name}},\n\nWe hope you've enjoyed our Ghostly Goulash! We've got more Halloween recipes to share with you. Next up, we've got a recipe for Witch's Brew Punch - a delightful, non-alcoholic beverage that's perfect for your Halloween party. Remember, use promo code SPARK30 for 30% off your order over $40. Offer ends in 2 days. Stay tuned for more recipes!"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last Call for Halloween Recipes!"",
+      ""body"": ""Hello {{first_name}},\n\nWe hope you've been enjoying our Halloween Recipes Series! We've got one more recipe to share with you - a frightfully delicious Pumpkin Spice Latte. Don't miss out on this opportunity to impress your friends and family with your culinary skills. Remember, the promo code SPARK30"
+15,True,True,False,True,True,True,False,40.23,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Spooktacular Halloween Recipes Await!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to our special Halloween Recipes series! This year, we're bringing you a delightful collection of healthy, fun, and easy-to-make recipes to make your holiday season extra special. From ghostly guacamole to pumpkin-spiced smoothies, there's something for everyone. Get ready to impress your friends and family with these delicious treats! \n\nClick here to explore our Halloween Recipes: {{cta_link}}\n\nHappy Halloween, {{first_name}},\n\nThe Greenway Grocers Team"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Halloween Recipe #1: Ghostly Guacamole"",
+      ""body"": ""Hello {{first_name}},\n\nToday, we're sharing our first recipe: Ghostly Guacamole! This spooky twist on a classic favorite is perfect for your Halloween party. Here's what you'll need: \n\n- 4 ripe avocados\n- 1 lime, juiced\n- 1 tomato, diced\n- 1 small onion, finely chopped\n- 2 cloves of garlic, minced\n- Salt to taste\n- Black olive slices for ghost eyes\n\nClick here for the full recipe: {{cta_link}\n\nStay tuned for more recipes!"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Halloween Recipe #2: Pumpkin-Spiced Smoothie"",
+      ""body"": ""Hello {{first_name}},\n\nNext up, we have a healthy and delicious Pumpkin-Spiced Smoothie! This refreshing drink is perfect for a Halloween brunch. Here's what you"
+16,True,True,False,True,True,True,False,35.4,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to the Spooktacular Halloween Recipes Series!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to Velvet Spoon Bakery's Halloween Recipes Series! We're so excited to share some delightful treats with you this season. Get ready to bake up some spooky fun!\n\nStay tuned for our first recipe, arriving in your inbox tomorrow. Don't forget to share your creations with us using #VelvetSpoonHalloween.\n\nBake some joy, \nThe Velvet Spoon Team"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Halloween Recipe #1: Ghostly Marshmallow Pops!"",
+      ""body"": ""Hello {{first_name}},\n\nToday, we're sharing our first Halloween recipe: Ghostly Marshmallow Pops! These adorable treats are perfect for your spooky soiree. Find the recipe here: {{cta_link}}\n\nDon't forget, you can save 15% on your order with promo code SPARK15. Offer ends in 48 hours.\n\nHappy baking, \nThe Velvet Spoon Team"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Halloween Recipe #2: Witch's Brew Cake!"",
+      ""body"": ""Hello {{first_name}},\n\nToday, we're brewing up some magical fun with our Witch's Brew Cake recipe! This enchanting dessert is sure to impress at your Halloween party. Find the recipe here: {{cta_link}}\n\nRemember, the SPARK15 offer ends in 48 hours. Don't miss out on your chance to save 15% on your order.\n\nHappy baking, \nThe Velvet Spoon Team"",
+      ""send_at_days"""
+17,True,True,False,False,True,True,False,36.52,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Spooktacular Halloween Recipes Await You at Greenway Grocers!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to our special Halloween edition! We've got a frightfully good collection of recipes that will make your autumn feast a hit. From ghostly gourds to witches' brew, we've got you covered. \n\nTo get started, check out our recipe for Jack-o'-Lantern Stuffed Peppers at {{cta_link}}.\n\nHurry, enjoy 25% off with promo code TREAT25 on orders over $25, offer ends in 48 hours! \n\nHappy Halloween cooking!"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""More Halloween Magic in Your Kitchen!"",
+      ""body"": ""Hello {{first_name}},\n\nWe hope you've been enjoying our Halloween recipes! Today, we're sharing our secret for the perfect Mummy Dogs. \n\nFind the recipe and more spooky delights at {{cta_link}}.\n\nDon't forget, our 25% off offer with promo code TREAT25 is still on, but it won't last forever! \n\nStay tuned for our final recipe tomorrow!"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last Call for Halloween Recipes!"",
+      ""body"": ""Hello {{first_name}},\n\nToday's the day! We've saved the best for last with our recipe for a sinfully delicious Pumpkin Spice Cake. \n\nFind the recipe and all our Halloween treats at {{cta_link}}.\n\nRemember, our 25% off offer with promo code TREAT25 ends in just 24 hours. Don't miss out on this treat! \n\nH"
+18,True,True,False,True,True,True,False,34.81,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back to Kite Learning Hub, {{first_name}}!"",
+      ""body"": ""We're thrilled to have you back! Our blog is filled with valuable insights and expert tips tailored to your areas of interest. Dive into our latest posts and join the learning community. Check it out now: {{cta_link}}"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""New blog post: Boost your skills in {{area_of_interest}}!"",
+      ""body"": ""We've just published a new blog post that's perfect for you, {{first_name}}! Learn expert tips and valuable insights to enhance your skills in {{area_of_interest}}. Don't miss out: {{cta_link}}"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last chance to read our latest post on {{area_of_interest}}!"",
+      ""body"": ""Your learning journey doesn't have to stop here, {{first_name}}! If you haven't had a chance to read our latest post on {{area_of_interest}}, now's the time. Gain valuable insights and expert tips to boost your skills. Read it now: {{cta_link}}"",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+19,True,True,True,True,True,True,True,51.7,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to Wanderwise Travel, {{first_name}}!"",
+      ""body"": ""We're thrilled to have you join our community of travel enthusiasts. To kick things off, we're offering you 30% off your first order with promo code JOIN30. This offer is valid for the next 48 hours on orders over $25. Start exploring the world with Wanderwise Travel today! To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Exclusive Content: Top 5 Destinations for 2023"",
+      ""body"": ""Discover the hottest travel destinations for 2023! As a valued member of our community, we're giving you early access to our top picks. Don't miss out on these incredible experiences. Shop now and save 30% with promo code JOIN30. Offer ends in 48 hours. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last Chance: 30% Off Ends Soon!"",
+      ""body"": ""Your adventure awaits! Don't let this amazing opportunity slip away. Our 30% off offer ends in just 48 hours. Explore new destinations, save big, and join us in creating unforgettable memories. Shop now with promo code JOIN30. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+20,True,True,False,True,True,True,False,20.99,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back to Kite Learning Hub, {{first_name}}!"",
+      ""body"": ""We're excited to share our latest blog post with you! Discover valuable insights and tips tailored to your interests. Stay informed and engaged with us. Click here to read now: {{cta_link}}"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Don't miss out on our latest blog post, {{first_name}}!"",
+      ""body"": ""We've received great feedback on our latest blog post. If you haven't had a chance to read it yet, we encourage you to do so. Click here to catch up: {{cta_link}}"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last chance to read our popular blog post, {{first_name}}!"",
+      ""body"": ""Our latest blog post is still generating buzz! Don't miss out on valuable insights and tips. Click here to read now: {{cta_link}}"",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+21,True,True,True,True,True,True,True,31.45,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome back, {{first_name}}! 📰"",
+      ""body"": ""We're thrilled to have you back at Sunday Paper Press! This week, we've got some fascinating reads lined up for you. From the latest scientific discoveries to intriguing historical tales, there's something for everyone. Dive in and feed your curiosity! 🌟\n\n🔗 Check out our latest blog posts: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Curious minds never rest, {{first_name}}! 🌟"",
+      ""body"": ""We hope you're enjoying our latest blog posts! Today, we're sharing an exclusive interview with a renowned scientist discussing their groundbreaking research. Don't miss out on this insightful read! 🔍\n\n🔗 Read the interview here: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""One more fascinating read for you, {{first_name}}! 📚"",
+      ""body"": ""We've saved the best for last! Today, we're diving into the captivating history of a lesser-known event that will leave you amazed. Don't miss out on this intriguing read! 🔎\n\n🔗 Read the article here: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+22,True,True,False,True,True,True,False,32.11,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to the Spooktacular Halloween Recipes!"",
+      ""body"": ""Hello {{first_name}},\n\nWelcome to Velvet Spoon Bakery's Spooktacular Halloween Recipes! We've got a delightful lineup of treats that will make your Halloween extra special. To kick things off, we're offering 30% off your first order over $50 with promo code FRESH30. Hurry, this offer ends in 48 hours! Click {{cta_link}} to explore our Halloween recipes and start baking your way to a magical Halloween night.\n\nHappy baking!"",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""A Spooky Surprise Awaits You!"",
+      ""body"": ""Hello {{first_name}},\n\nWe hope you're enjoying our Halloween Recipes! Today, we're sharing a secret recipe for our famous Ghostly Meringues. They're not only delicious but also a fun and easy treat to make with the family. Don't forget to share your creations with us using #VelvetSpoonHalloween. Click {{cta_link}} to get the recipe and start baking!"",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Your Halloween Baking Adventure Continues!"",
+      ""body"": ""Hello {{first_name}},\n\nWe hope you've been having a spooktacular time baking with our Halloween Recipes! Today, we're revealing our recipe for the Witch's Brew Punch. It's the perfect non-alcoholic drink to serve at your Halloween party. Click {{cta_link}} to get the recipe and make your party a hit!"",
+      ""send_a"
+23,True,True,False,True,True,True,False,23.45,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to Harbor Lane Boutique, {{first_name}}!"",
+      ""body"": ""We're thrilled to have you on board! Kickstart your fashion journey with us and enjoy 10% off on your first order over $75. Use promo code WELCOME10, but hurry! This offer ends in 48 hours. Shop now at {{cta_link}}."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""Fashion Forward Finds Just For You, {{first_name}}!"",
+      ""body"": ""Stay ahead of the curve with our trendy and affordable apparel. Don't miss out on this opportunity to save 10% on your purchase. Offer ends soon! Shop now at {{cta_link}}."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Last Chance to Save, {{first_name}}!"",
+      ""body"": ""Your time is running out! Grab your favorite fashion-forward pieces with a 10% discount. Offer ends in less than 24 hours. Don't wait, shop now at {{cta_link}}."",
+      ""send_at_days"": 7
+    }
+  ]
+}"
+24,True,True,True,True,True,True,True,31.24,base,"{
+  ""emails"": [
+    {
+      ""email_index"": 1,
+      ""subject"": ""Welcome to Northpeak Outdoor Co., {{first_name}}!"",
+      ""body"": ""Join our community of adventurers and get ready for exclusive content, early access to new products, and timely information. To kick things off, enjoy 10% off your first order with promo code BRIGHT10 on orders over $75. Offer ends in 48 hours. Shop now at {{cta_link}}. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 0
+    },
+    {
+      ""email_index"": 2,
+      ""subject"": ""New Arrivals: Gear Up for Your Next Adventure!"",
+      ""body"": ""Check out our latest collection of outdoor gear designed for the modern explorer. From lightweight backpacks to high-performance tents, we've got you covered. Don't miss out on our limited-time offer: 10% off with promo code BRIGHT10 on orders over $75. Offer ends in 48 hours. Shop now at {{cta_link}}. To unsubscribe from these emails, reply STOP or click here."",
+      ""send_at_days"": 3
+    },
+    {
+      ""email_index"": 3,
+      ""subject"": ""Exclusive Content: Tips for Your Next Outdoor Adventure"",
+      ""body"": ""Discover our latest blog post featuring expert advice on planning your next outdoor adventure. From packing essentials to navigating challenging terrain, we've got you covered. Plus, enjoy 10% off your next purchase with promo code BRIGHT10 on orders over $75. Offer ends in 48 hours. Read the post now at {{cta_link}}. To unsubscribe from these emails, reply STOP or click h"
