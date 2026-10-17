@@ -1,12 +1,13 @@
-//tests\test-tenant-isolation.js
-const { Pool } = require('../services/gateway/node_modules/pg');
+// Read-only tenant isolation diagnostic for the gateway database.
+require('../../node_modules/dotenv').config({ path: require('node:path').resolve(__dirname, '../../.env'), quiet: true });
+const { Pool } = require('../../node_modules/pg');
 
 const pool = new Pool({
-  host: 'localhost',
-  port: 5433,
-  database: 'saas_platform',
+  host: process.env.DB_HOST || '127.0.0.1',
+  port: Number(process.env.DB_PORT || 5433),
+  database: process.env.DB_NAME || 'saas_platform',
   user: 'c4_app',
-  password: 'c4_local_dev_only_2026'
+  password: process.env.DB_PASSWORD
 });
 
 async function getUsersForTenant(slug) {

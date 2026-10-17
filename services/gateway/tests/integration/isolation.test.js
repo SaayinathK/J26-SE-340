@@ -1,10 +1,10 @@
 'use strict';
 /**
  * C4 — Tenant Isolation & RBAC Integration Tests (25 cases)
- * Routes confirmed against src/server.js
+ * Routes confirmed against src/main.js
  */
 const request = require('supertest');
-const app     = require('../src/server');
+const app     = require('../../src/main');
 
 jest.setTimeout(30000);
 
