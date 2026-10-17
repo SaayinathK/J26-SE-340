@@ -1,0 +1,44 @@
+name: j26-se-340_development
+services:
+  strategy-fl:
+    image: ciftron-strategy-fl:local
+    build: .
+    container_name: strategy-fl
+    restart: unless-stopped
+    init: true
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      HOST: 0.0.0.0
+      PORT: "4004"
+      MODEL_HOST: http://strategy-fl-model:11434
+      DB_HOST: strategy-fl-database
+      DB_PORT: "5432"
+      DB_NAME: strategy_fl
+    ports: ["127.0.0.1:4004:4004"]
+    depends_on:
+      strategy-fl-database:
+        condition: service_healthy
+
+  strategy-fl-database:
+    image: pgvector/pgvector:pg16
+    container_name: strategy-fl-database
+    restart: unless-stopped
+    env_file: [db/.env]
+    environment:
+      POSTGRES_DB: strategy_fl
+      POSTGRES_USER: admin
+    ports: ["127.0.0.1:5437:5432"]
+    volumes:
+      - strategy-fl-data:/var/lib/postgresql/data
+      - ../../docker/db-init/01-enable-pgvector.sql:/docker-entrypoint-initdb.d/01-enable-pgvector.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U admin -d strategy_fl"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  strategy-fl-data:
+    name: ciftron_strategy_fl_pgdata

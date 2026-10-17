@@ -1,0 +1,10 @@
+name: j26-se-340_development
+services:
+  lead-intel-model:
+    image: ciftron-lead-intel-model:local
+    build: .
+    container_name: lead-intel-model
+    restart: unless-stopped
+    environment:
+      COMPONENT_NAME: lead-intel-model
+    ports: ["127.0.0.1:11437:11434"]

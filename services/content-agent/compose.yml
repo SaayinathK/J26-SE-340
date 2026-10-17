@@ -1,0 +1,44 @@
+name: j26-se-340_development
+services:
+  content-agent:
+    image: ciftron-content-agent:local
+    build: .
+    container_name: content-agent
+    restart: unless-stopped
+    init: true
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      HOST: 0.0.0.0
+      PORT: "4002"
+      MODEL_HOST: http://content-agent-model:11434
+      DB_HOST: content-agent-database
+      DB_PORT: "5432"
+      DB_NAME: content_agent
+    ports: ["127.0.0.1:4002:4002"]
+    depends_on:
+      content-agent-database:
+        condition: service_healthy
+
+  content-agent-database:
+    image: pgvector/pgvector:pg16
+    container_name: content-agent-database
+    restart: unless-stopped
+    env_file: [db/.env]
+    environment:
+      POSTGRES_DB: content_agent
+      POSTGRES_USER: admin
+    ports: ["127.0.0.1:5435:5432"]
+    volumes:
+      - content-agent-data:/var/lib/postgresql/data
+      - ../../docker/db-init/01-enable-pgvector.sql:/docker-entrypoint-initdb.d/01-enable-pgvector.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U admin -d content_agent"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  content-agent-data:
+    name: ciftron_content_agent_pgdata

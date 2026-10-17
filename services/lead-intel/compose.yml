@@ -1,0 +1,44 @@
+name: j26-se-340_development
+services:
+  lead-intel:
+    image: ciftron-lead-intel:local
+    build: .
+    container_name: lead-intel
+    restart: unless-stopped
+    init: true
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      HOST: 0.0.0.0
+      PORT: "4003"
+      MODEL_HOST: http://lead-intel-model:11434
+      DB_HOST: lead-intel-database
+      DB_PORT: "5432"
+      DB_NAME: lead_intel
+    ports: ["127.0.0.1:4003:4003"]
+    depends_on:
+      lead-intel-database:
+        condition: service_healthy
+
+  lead-intel-database:
+    image: pgvector/pgvector:pg16
+    container_name: lead-intel-database
+    restart: unless-stopped
+    env_file: [db/.env]
+    environment:
+      POSTGRES_DB: lead_intel
+      POSTGRES_USER: admin
+    ports: ["127.0.0.1:5436:5432"]
+    volumes:
+      - lead-intel-data:/var/lib/postgresql/data
+      - ../../docker/db-init/01-enable-pgvector.sql:/docker-entrypoint-initdb.d/01-enable-pgvector.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U admin -d lead_intel"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  lead-intel-data:
+    name: ciftron_lead_intel_pgdata

@@ -1,0 +1,71 @@
+name: j26-se-340_development
+services:
+  email-agent:
+    image: ciftron-email-agent:local
+    build: .
+    container_name: email-agent
+    restart: unless-stopped
+    init: true
+    env_file: [.env]
+    environment:
+      HOST: 0.0.0.0
+      PORT: "4001"
+      DB_HOST: email-agent-database
+      DB_PORT: "5432"
+      DB_NAME: email_agent
+      NODE_ENV: development
+      CLIENT_ORIGINS: http://localhost:4001,http://127.0.0.1:4001
+      OLLAMA_HOST: http://email-agent-model:11434
+    ports: ["127.0.0.1:4001:4001"]
+    depends_on:
+      email-agent-database:
+        condition: service_healthy
+      email-agent-model:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4001/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  email-agent-database:
+    image: pgvector/pgvector:pg16
+    container_name: email-agent-database
+    restart: unless-stopped
+    env_file: [db/.env]
+    environment:
+      POSTGRES_DB: email_agent
+      POSTGRES_USER: admin
+    ports: ["127.0.0.1:5434:5432"]
+    volumes:
+      - email-agent-data:/var/lib/postgresql/data
+      - ../../docker/db-init/01-enable-pgvector.sql:/docker-entrypoint-initdb.d/01-enable-pgvector.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U admin -d email_agent"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  email-agent-model:
+    image: ciftron-email-agent-model:local
+    build: ../../ml/email-agent/serving
+    container_name: email-agent-model
+    restart: unless-stopped
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+      OLLAMA_MODELS: /models
+    ports: ["127.0.0.1:11435:11434"]
+    volumes: ["email-agent-models:/models"]
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+volumes:
+  email-agent-data:
+    name: ciftron_email_agent_pgdata
+  email-agent-models:
+    name: ciftron_email_agent_models

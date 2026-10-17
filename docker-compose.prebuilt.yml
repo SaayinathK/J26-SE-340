@@ -1,0 +1,10 @@
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile.prebuilt
+  gateway:
+    build:
+      dockerfile: Dockerfile.prebuilt
+  email-agent:
+    build:
+      dockerfile: Dockerfile.prebuilt

@@ -1,0 +1,13 @@
+*
+!package.json
+!package-lock.json
+!src/
+!src/**
+!scripts/
+!scripts/migrate.js
+!db/
+!db/migrations/
+!db/migrations/**
+!.runtime/
+!.runtime/node_modules/
+!.runtime/node_modules/**

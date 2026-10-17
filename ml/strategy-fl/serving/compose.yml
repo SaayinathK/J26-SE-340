@@ -1,0 +1,10 @@
+name: j26-se-340_development
+services:
+  strategy-fl-model:
+    image: ciftron-strategy-fl-model:local
+    build: .
+    container_name: strategy-fl-model
+    restart: unless-stopped
+    environment:
+      COMPONENT_NAME: strategy-fl-model
+    ports: ["127.0.0.1:11438:11434"]

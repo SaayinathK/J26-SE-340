@@ -1,17 +1,11 @@
-
-services:
-  db:
-    image: pgvector/pgvector:pg16
-    container_name: c4-postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: saas_platform
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: localdev
-    ports:
-      - "127.0.0.1:5433:5432"
-    volumes:
-      - c4_pgdata:/var/lib/postgresql/data
-
-volumes:
-  c4_pgdata:
+# One web app, five APIs, four model runtimes and five databases.
+include:
+  - path: ./frontend/compose.yml
+  - path: ./services/gateway/compose.yml
+  - path: ./services/email-agent/compose.yml
+  - path: ./services/content-agent/compose.yml
+  - path: ./services/lead-intel/compose.yml
+  - path: ./services/strategy-fl/compose.yml
+  - path: ./ml/content-agent/serving/compose.yml
+  - path: ./ml/lead-intel/serving/compose.yml
+  - path: ./ml/strategy-fl/serving/compose.yml

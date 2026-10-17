@@ -1,0 +1,7 @@
+.local/
+# Keep downloaded/trained model binaries locally; use artifact storage for distribution.
+ml/finetune/models/**/*.safetensors
+ml/finetune/models/**/*.gguf
+ml/finetune/models/**/*.bin
+
+.runtime/
