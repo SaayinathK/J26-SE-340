@@ -1,0 +1,506 @@
+{
+  "meta": {
+    "generated_at": "2026-10-22T07:16:53+00:00",
+    "seed": 42,
+    "n_briefs": 60,
+    "n_tenants": 150,
+    "n_consenting": 118,
+    "k": 5,
+    "pii_detector": "presidio+regex",
+    "retrieval": "tfidf",
+    "runtime_seconds": 67.2,
+    "python": "3.11.15",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "generator_note": "the deterministic template generator was evaluated; no LLM was evaluated in this run, so no claim is made about LLM or fine-tuned quality. Production fine-tunes Mistral 7B (QLoRA); only the generator is swapped."
+  },
+  "structural": [
+    {
+      "generator": "template",
+      "briefs": 60,
+      "strategies_requested": 180,
+      "strategies_returned": 180,
+      "json_parse_rate": 1.0,
+      "schema_validity_rate": 1.0,
+      "raw_budget_sum_ok_rate": 1.0,
+      "constraint_compliance_rate": 1.0,
+      "generator_failures": 0,
+      "note": "measured on the generator's RAW output; the service would repair small budget-share errors and fall back on failure"
+    }
+  ],
+  "quality": {
+    "template": {
+      "scale": "1 (poor) to 5 (excellent); deterministic heuristic rubric",
+      "n_strategies": 180,
+      "relevance": {
+        "mean": 4.72,
+        "min": 4.2,
+        "max": 5.0
+      },
+      "specificity": {
+        "mean": 4.907,
+        "min": 4.2,
+        "max": 5.0
+      },
+      "feasibility": {
+        "mean": 4.2,
+        "min": 4.2,
+        "max": 4.2
+      },
+      "coherence": {
+        "mean": 4.338,
+        "min": 4.2,
+        "max": 5.0
+      },
+      "overall": {
+        "mean": 4.541,
+        "min": 4.4,
+        "max": 4.8
+      }
+    }
+  },
+  "simulator": {
+    "n_briefs": 60,
+    "systems": {
+      "uniform_reference": {
+        "mean_predicted_uplift": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "mean_true_uplift": 0.0,
+        "win_rate_vs_uniform": 0.0
+      },
+      "random_mix": {
+        "mean_predicted_uplift": -0.2905,
+        "ci95": [
+          -0.385,
+          -0.2018
+        ],
+        "mean_true_uplift": -0.3977,
+        "win_rate_vs_uniform": 0.183
+      },
+      "rule_baseline": {
+        "mean_predicted_uplift": 0.4741,
+        "ci95": [
+          0.4206,
+          0.5232
+        ],
+        "mean_true_uplift": 0.5502,
+        "win_rate_vs_uniform": 1.0
+      },
+      "agent_template_cold_start": {
+        "mean_predicted_uplift": 0.3946,
+        "ci95": [
+          0.3614,
+          0.4254
+        ],
+        "mean_true_uplift": 0.4892,
+        "win_rate_vs_uniform": 1.0,
+        "fell_back_to_template_rate": 1.0
+      },
+      "agent_template_with_shared": {
+        "mean_predicted_uplift": 0.4371,
+        "ci95": [
+          0.3904,
+          0.4855
+        ],
+        "mean_true_uplift": 0.5017,
+        "win_rate_vs_uniform": 1.0,
+        "fell_back_to_template_rate": 1.0
+      }
+    },
+    "paired_comparisons": {
+      "agent_template_cold_start vs rule_baseline": {
+        "mean_diff": -0.0795,
+        "ci95": [
+          -0.1012,
+          -0.0568
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 60,
+        "a_wins": 10,
+        "b_wins": 50
+      },
+      "agent_template_cold_start vs random_mix": {
+        "mean_diff": 0.6851,
+        "ci95": [
+          0.5948,
+          0.7778
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 60,
+        "a_wins": 59,
+        "b_wins": 1
+      },
+      "agent_template_with_shared vs agent_template_cold_start  (ablation: cross-tenant insights)": {
+        "mean_diff": 0.0424,
+        "ci95": [
+          0.0234,
+          0.0619
+        ],
+        "wilcoxon_p": 0.00011,
+        "n": 60,
+        "a_wins": 44,
+        "b_wins": 16
+      }
+    },
+    "simulator_fidelity": {
+      "held_out_r2_log_metric": {
+        "lead_gen": 0.8814,
+        "awareness": 0.8681,
+        "retention": 0.8575,
+        "sales": 0.8702
+      },
+      "pearson_predicted_vs_true_uplift": 0.958
+    },
+    "ranking": {
+      "mean_rank1_minus_other_strategies_uplift": 0.0332,
+      "mean_spearman_rank_vs_uplift": -0.2917,
+      "note": "negative Spearman is good: rank 1 should have the highest predicted uplift"
+    }
+  },
+  "privacy": {
+    "pii": {
+      "tenants_checked": 150,
+      "tenants_with_any_leak": 0,
+      "leakage_rate": 0.0,
+      "structured_pii_findings": 0,
+      "strings_scanned": 4480,
+      "leaks_by_tenant": {},
+      "opaque_ids_are_random_hex": true,
+      "detector": "presidio+regex"
+    },
+    "k_audit": {
+      "k": 5,
+      "insights_published": 9,
+      "min_distinct_contributors_in_published": 5,
+      "all_published_groups_have_at_least_k": true,
+      "groups_total": 24,
+      "groups_below_k": 15,
+      "below_k_groups_published": 0,
+      "contributions_held_back": 87
+    },
+    "reidentification": {
+      "insights_attacked": 9,
+      "mean_p_target_contributed": 0.7938,
+      "max_p_target_contributed": 1.0,
+      "insights_where_participation_is_certain": 2,
+      "prior_participation_rate": 0.7867,
+      "min_candidate_set": 6,
+      "min_contributors_behind_an_insight": 5,
+      "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+    },
+    "membership_inference": {
+      "insights_attacked": 7,
+      "pairs": 90,
+      "auc": 0.7164,
+      "chance_auc": 0.5
+    },
+    "sweep": [
+      {
+        "k": 2,
+        "noise": false,
+        "audit": {
+          "k": 2,
+          "insights_published": 17,
+          "min_distinct_contributors_in_published": 2,
+          "all_published_groups_have_at_least_k": true,
+          "groups_total": 24,
+          "groups_below_k": 6,
+          "below_k_groups_published": 0,
+          "contributions_held_back": 18
+        },
+        "reid": {
+          "insights_attacked": 17,
+          "mean_p_target_contributed": 0.8173,
+          "max_p_target_contributed": 1.0,
+          "insights_where_participation_is_certain": 6,
+          "prior_participation_rate": 0.7867,
+          "min_candidate_set": 2,
+          "min_contributors_behind_an_insight": 2,
+          "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+        },
+        "mia": {
+          "insights_attacked": 11,
+          "pairs": 103,
+          "auc": 0.7728,
+          "chance_auc": 0.5
+        },
+        "utility": 0.0416
+      },
+      {
+        "k": 2,
+        "noise": true,
+        "audit": {
+          "k": 2,
+          "insights_published": 16,
+          "min_distinct_contributors_in_published": 2,
+          "all_published_groups_have_at_least_k": true,
+          "groups_total": 24,
+          "groups_below_k": 6,
+          "below_k_groups_published": 0,
+          "contributions_held_back": 18
+        },
+        "reid": {
+          "insights_attacked": 16,
+          "mean_p_target_contributed": 0.8267,
+          "max_p_target_contributed": 1.0,
+          "insights_where_participation_is_certain": 6,
+          "prior_participation_rate": 0.7867,
+          "min_candidate_set": 2,
+          "min_contributors_behind_an_insight": 2,
+          "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+        },
+        "mia": {
+          "insights_attacked": 10,
+          "pairs": 100,
+          "auc": 0.6985,
+          "chance_auc": 0.5
+        },
+        "utility": 0.0027
+      },
+      {
+        "k": 3,
+        "noise": false,
+        "audit": {
+          "k": 3,
+          "insights_published": 11,
+          "min_distinct_contributors_in_published": 3,
+          "all_published_groups_have_at_least_k": true,
+          "groups_total": 24,
+          "groups_below_k": 12,
+          "below_k_groups_published": 0,
+          "contributions_held_back": 54
+        },
+        "reid": {
+          "insights_attacked": 11,
+          "mean_p_target_contributed": 0.8086,
+          "max_p_target_contributed": 1.0,
+          "insights_where_participation_is_certain": 3,
+          "prior_participation_rate": 0.7867,
+          "min_candidate_set": 4,
+          "min_contributors_behind_an_insight": 3,
+          "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+        },
+        "mia": {
+          "insights_attacked": 8,
+          "pairs": 94,
+          "auc": 0.7279,
+          "chance_auc": 0.5
+        },
+        "utility": 0.0437
+      },
+      {
+        "k": 3,
+        "noise": true,
+        "audit": {
+          "k": 3,
+          "insights_published": 12,
+          "min_distinct_contributors_in_published": 3,
+          "all_published_groups_have_at_least_k": true,
+          "groups_total": 24,
+          "groups_below_k": 12,
+          "below_k_groups_published": 0,
+          "contributions_held_back": 54
+        },
+        "reid": {
+          "insights_attacked": 12,
+          "mean_p_target_contributed": 0.8245,
+          "max_p_target_contributed": 1.0,
+          "insights_where_participation_is_certain": 4,
+          "prior_participation_rate": 0.7867,
+          "min_candidate_set": 4,
+          "min_contributors_behind_an_insight": 3,
+          "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+        },
+        "mia": {
+          "insights_attacked": 8,
+          "pairs": 94,
+          "auc": 0.5455,
+          "chance_auc": 0.5
+        },
+        "utility": 0.0093
+      },
+      {
+        "k": 5,
+        "noise": false,
+        "audit": {
+          "k": 5,
+          "insights_published": 9,
+          "min_distinct_contributors_in_published": 5,
+          "all_published_groups_have_at_least_k": true,
+          "groups_total": 24,
+          "groups_below_k": 15,
+          "below_k_groups_published": 0,
+          "contributions_held_back": 87
+        },
+        "reid": {
+          "insights_attacked": 9,
+          "mean_p_target_contributed": 0.7938,
+          "max_p_target_contributed": 1.0,
+          "insights_where_participation_is_certain": 2,
+          "prior_participation_rate": 0.7867,
+          "min_candidate_set": 6,
+          "min_contributors_behind_an_insight": 5,
+          "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+        },
+        "mia": {
+          "insights_attacked": 7,
+          "pairs": 90,
+          "auc": 0.7164,
+          "chance_auc": 0.5
+        },
+        "utility": 0.0447
+      },
+      {
+        "k": 5,
+        "noise": true,
+        "audit": {
+          "k": 5,
+          "insights_published": 9,
+          "min_distinct_contributors_in_published": 5,
+          "all_published_groups_have_at_least_k": true,
+          "groups_total": 24,
+          "groups_below_k": 15,
+          "below_k_groups_published": 0,
+          "contributions_held_back": 87
+        },
+        "reid": {
+          "insights_attacked": 9,
+          "mean_p_target_contributed": 0.7938,
+          "max_p_target_contributed": 1.0,
+          "insights_where_participation_is_certain": 2,
+          "prior_participation_rate": 0.7867,
+          "min_candidate_set": 6,
+          "min_contributors_behind_an_insight": 5,
+          "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+        },
+        "mia": {
+          "insights_attacked": 7,
+          "pairs": 90,
+          "auc": 0.6881,
+          "chance_auc": 0.5
+        },
+        "utility": 0.0247
+      },
+      {
+        "k": 8,
+        "noise": false,
+        "audit": {
+          "k": 8,
+          "insights_published": 4,
+          "min_distinct_contributors_in_published": 8,
+          "all_published_groups_have_at_least_k": true,
+          "groups_total": 24,
+          "groups_below_k": 20,
+          "below_k_groups_published": 0,
+          "contributions_held_back": 171
+        },
+        "reid": {
+          "insights_attacked": 4,
+          "mean_p_target_contributed": 0.8934,
+          "max_p_target_contributed": 1.0,
+          "insights_where_participation_is_certain": 2,
+          "prior_participation_rate": 0.7867,
+          "min_candidate_set": 9,
+          "min_contributors_behind_an_insight": 8,
+          "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+        },
+        "mia": {
+          "insights_attacked": 2,
+          "pairs": 50,
+          "auc": 0.5556,
+          "chance_auc": 0.5
+        },
+        "utility": 0.0284
+      },
+      {
+        "k": 8,
+        "noise": true,
+        "audit": {
+          "k": 8,
+          "insights_published": 4,
+          "min_distinct_contributors_in_published": 8,
+          "all_published_groups_have_at_least_k": true,
+          "groups_total": 24,
+          "groups_below_k": 20,
+          "below_k_groups_published": 0,
+          "contributions_held_back": 171
+        },
+        "reid": {
+          "insights_attacked": 4,
+          "mean_p_target_contributed": 0.8934,
+          "max_p_target_contributed": 1.0,
+          "insights_where_participation_is_certain": 2,
+          "prior_participation_rate": 0.7867,
+          "min_candidate_set": 9,
+          "min_contributors_behind_an_insight": 8,
+          "note": "P(a tenant matching the insight's public attributes contributed). The attacker is assumed to know the full list of tenants and their public attributes; compare with the prior participation rate"
+        },
+        "mia": {
+          "insights_attacked": 2,
+          "pairs": 50,
+          "auc": 0.5393,
+          "chance_auc": 0.5
+        },
+        "utility": 0.003
+      }
+    ],
+    "pipeline_batch": {
+      "tenants": 118,
+      "published_contribution": 354,
+      "rejected": 0,
+      "skipped_no_consent": 0,
+      "contributions": 354,
+      "groups": 24,
+      "published": 9,
+      "held_back_below_k": 15,
+      "dropped_by_validation": 0
+    }
+  },
+  "ablations": {
+    "shared_vs_none": {
+      "agent_template_cold_start vs rule_baseline": {
+        "mean_diff": -0.0795,
+        "ci95": [
+          -0.1012,
+          -0.0568
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 60,
+        "a_wins": 10,
+        "b_wins": 50
+      },
+      "agent_template_cold_start vs random_mix": {
+        "mean_diff": 0.6851,
+        "ci95": [
+          0.5948,
+          0.7778
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 60,
+        "a_wins": 59,
+        "b_wins": 1
+      },
+      "agent_template_with_shared vs agent_template_cold_start  (ablation: cross-tenant insights)": {
+        "mean_diff": 0.0424,
+        "ci95": [
+          0.0234,
+          0.0619
+        ],
+        "wilcoxon_p": 0.00011,
+        "n": 60,
+        "a_wins": 44,
+        "b_wins": 16
+      }
+    },
+    "template_vs_llm": {
+      "status": "not_run",
+      "reason": "the model Qwen/Qwen2.5-1.5B-Instruct is not available locally (weights are not cached, or torch / transformers / peft is missing). Make it available, then run `python -m strategy_agent.eval.run --model auto`."
+    },
+    "finetuned": {
+      "status": "not_run",
+      "reason": "no fine-tuned adapter was given (--adapter PATH). Fine-tuning needs a GPU: see docs/strategy_agent.md, section 10."
+    }
+  }
+}
