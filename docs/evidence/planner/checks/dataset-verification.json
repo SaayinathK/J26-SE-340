@@ -1,0 +1,102 @@
+{
+  "report_type": "provided_artifact_verification",
+  "csv_preparation_reproduced": false,
+  "preparation_status": "Original prepare_email_ft.py has not been supplied; no cleaning or regeneration is claimed.",
+  "csv": {
+    "file": "Email_Marketing_Campaign_CTR_Dataset.csv",
+    "sha256": "12e17aae2f1ddbf92c2f0770367f93083aa0063ccd276f33bb50dcec752afdc5",
+    "rows": 1000,
+    "nonempty_bodies": 999
+  },
+  "ctr": {
+    "column": "ctr(hypothetical)",
+    "synthetic": true,
+    "used_for_language_model_verification": false
+  },
+  "splits": {
+    "train": {
+      "file": "train.jsonl",
+      "sha256": "97c0544ecdf630830130ad0dc3d4bbd63526e7d43e049a67021f66c2ea7c4f1b",
+      "examples": 715,
+      "expected_examples": 715,
+      "expected_count_matches": true,
+      "reference_checks_passed": {
+        "json_valid": 715,
+        "three_emails": 715,
+        "unsubscribe_all": 715,
+        "grounded": 715,
+        "no_invented_offer": 715,
+        "under_150_words": 715,
+        "guardrails_pass": 715
+      },
+      "app_contract_checks_passed": {
+        "prompt_matches_app": 715,
+        "fixed_context_line": 715,
+        "app_guardrails_pass": 715
+      },
+      "products": [
+        "Abandoned Cart",
+        "Anniversary Message",
+        "Announcement",
+        "Art",
+        "Black Friday",
+        "Book a class",
+        "Chic Boutique",
+        "Christmas Greetings",
+        "Cyber Monday",
+        "Feedback",
+        "Food Order",
+        "Furniture Sale",
+        "Halloween Offer",
+        "Monthly newsletter",
+        "Newspaper",
+        "Notification",
+        "Onboarding",
+        "Order Confirmation",
+        "Premium benefits",
+        "Product Highlights #1",
+        "Product Highlights #2",
+        "Product Restaurant",
+        "Subscription",
+        "Thank You",
+        "Travelling",
+        "We Miss You",
+        "Welcome"
+      ]
+    },
+    "val": {
+      "file": "val.jsonl",
+      "sha256": "b85c89a52c2b30844a1e77f571f15a96a5ac5b5989d7989f447d8f5224053554",
+      "examples": 171,
+      "expected_examples": 171,
+      "expected_count_matches": true,
+      "reference_checks_passed": {
+        "json_valid": 171,
+        "three_emails": 171,
+        "unsubscribe_all": 171,
+        "grounded": 171,
+        "no_invented_offer": 171,
+        "under_150_words": 171,
+        "guardrails_pass": 171
+      },
+      "app_contract_checks_passed": {
+        "prompt_matches_app": 171,
+        "fixed_context_line": 171,
+        "app_guardrails_pass": 171
+      },
+      "products": [
+        "Blog Post",
+        "Fashion Forward",
+        "Halloween Recipes",
+        "Progress",
+        "Release"
+      ]
+    }
+  },
+  "product_split": {
+    "validation_product_count": 5,
+    "overlap": [],
+    "disjoint": true
+  },
+  "verification_passed": true
+}

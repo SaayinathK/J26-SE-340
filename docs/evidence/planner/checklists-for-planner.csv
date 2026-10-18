@@ -1,0 +1,421 @@
+﻿Task key,Task ID,Task name,Item,Checklist item,Verification state,Evidence,Detail / scope
+P-01,s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj,Set up the tenant database and sample tenants,1,Create PostgreSQL database using Docker,Verified,"E-SCHEMA: db/migrations/001_init.sql
+E-DBROLE: db/migrations/002_app_role.sql
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",
+P-01,s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj,Set up the tenant database and sample tenants,2,Configure Row-Level Security policies,Verified,"E-SCHEMA: db/migrations/001_init.sql
+E-DBROLE: db/migrations/002_app_role.sql
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",
+P-01,s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj,Set up the tenant database and sample tenants,3,Create three sample tenants,Verified,"E-SCHEMA: db/migrations/001_init.sql
+E-DBROLE: db/migrations/002_app_role.sql
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",
+P-01,s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj,Set up the tenant database and sample tenants,4,Create restricted application database role,Verified,"E-SCHEMA: db/migrations/001_init.sql
+E-DBROLE: db/migrations/002_app_role.sql
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",
+P-01,s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj,Set up the tenant database and sample tenants,5,Enable pgvector and UUID extensions,Verified,"E-SCHEMA: db/migrations/001_init.sql
+E-DBROLE: db/migrations/002_app_role.sql
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",
+P-01,s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj,Set up the tenant database and sample tenants,6,Run tenant isolation tests,Verified,"E-SCHEMA: db/migrations/001_init.sql
+E-DBROLE: db/migrations/002_app_role.sql
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",
+P-01,s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj,Set up the tenant database and sample tenants,7,"Create tenants, users, knowledge_base and audit_log tables",Verified,"E-SCHEMA: db/migrations/001_init.sql
+E-DBROLE: db/migrations/002_app_role.sql
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",
+P-02,Tebj5Z6QvU-SkCkqfGl5_8kALvN6,Set up the team GitHub repository,1,Create Repository,Verified,E-GIT: evidence/planner/checks/repository-snapshot.json,
+P-02,Tebj5Z6QvU-SkCkqfGl5_8kALvN6,Set up the team GitHub repository,2,Add Collabrators,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-02,Tebj5Z6QvU-SkCkqfGl5_8kALvN6,Set up the team GitHub repository,3,Verify Team Repository Access,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-02,Tebj5Z6QvU-SkCkqfGl5_8kALvN6,Set up the team GitHub repository,4,Create Branches,Verified,E-GIT: evidence/planner/checks/repository-snapshot.json,
+P-02,Tebj5Z6QvU-SkCkqfGl5_8kALvN6,Set up the team GitHub repository,5,Protect Main Branch,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-03,K0IRlzBiPESovq7UxQO9RMkAPHa4,Meet the supervisor to approve scope and Finalize the Individual Report,1,Create Individual Reports,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-03,K0IRlzBiPESovq7UxQO9RMkAPHa4,Meet the supervisor to approve scope and Finalize the Individual Report,2,Discuss with the Supervisor,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-03,K0IRlzBiPESovq7UxQO9RMkAPHa4,Meet the supervisor to approve scope and Finalize the Individual Report,3,Get Supervisor Signature,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-04,dvN4Bp4-KkKQe7Aqo54-C8kAKMfB,Set up Planner and add Sprint 1 and 2 tasks,1,Create Planner,Verified,E-PLANNER: evidence/planner/source-export.xlsx,
+P-04,dvN4Bp4-KkKQe7Aqo54-C8kAKMfB,Set up Planner and add Sprint 1 and 2 tasks,2,Assign People,Verified,E-PLANNER: evidence/planner/source-export.xlsx,
+P-04,dvN4Bp4-KkKQe7Aqo54-C8kAKMfB,Set up Planner and add Sprint 1 and 2 tasks,3,Create Sprints,Verified,E-PLANNER: evidence/planner/source-export.xlsx,
+P-04,dvN4Bp4-KkKQe7Aqo54-C8kAKMfB,Set up Planner and add Sprint 1 and 2 tasks,4,Add Tasks,Verified,E-PLANNER: evidence/planner/source-export.xlsx,
+P-05,509o6p7yikitvlPbyR7PJskAM4z6,Create diary and AI-use log templates,1,Each member fills in their first entry,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-05,509o6p7yikitvlPbyR7PJskAM4z6,Create diary and AI-use log templates,2,"Create the weekly diary template (date, attendees, work done, issues, next steps)",Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-05,509o6p7yikitvlPbyR7PJskAM4z6,Create diary and AI-use log templates,3,"Create the AI-use log template (date, tool, purpose, prompt summary, how the output was used, how it",Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-05,509o6p7yikitvlPbyR7PJskAM4z6,Create diary and AI-use log templates,4,Upload both templates to the team SharePoint folder,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-06,CQQEW_of-0eHfsbhnzLXuMkAOfC6,Agree and record key project decisions,1,"Agree on the multi-tenant approach (tenant identification, data isolation)",Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-06,CQQEW_of-0eHfsbhnzLXuMkAOfC6,Agree and record key project decisions,2,"Agree on GitHub branching, commit and PR review rules",Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-06,CQQEW_of-0eHfsbhnzLXuMkAOfC6,Agree and record key project decisions,3,All members confirm the decisions,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-06,CQQEW_of-0eHfsbhnzLXuMkAOfC6,Agree and record key project decisions,4,Record the decisions in a decision log,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-06,CQQEW_of-0eHfsbhnzLXuMkAOfC6,Agree and record key project decisions,5,Agree on the tech stack and frameworks,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-06,CQQEW_of-0eHfsbhnzLXuMkAOfC6,Agree and record key project decisions,6,Hold a team decision meeting,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,1,C3: I-05 contract + mock,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,2,Define the standard error format and status codes,Verified,E-API-DOC: frontend/PLATFORM_API.md,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,3,Define request and response schemas,Verified,E-API-DOC: frontend/PLATFORM_API.md,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,4,List the endpoints for each component,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,5,C3: I-05 lead-recommendation contract + mock (commit 89781CD,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,6,Define the auth and tenant ID headers,Verified,E-API-DOC: frontend/PLATFORM_API.md,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,7,Commit the contracts to GitHub,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,8,C3 I-04 v1.1.0 + I-05 v1.1.0 with mocks,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,9,Add sample JSON responses for each endpoint,Verified,E-API-DOC: frontend/PLATFORM_API.md,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,10,C3: I-04 lead-score contract + mock (commit 6ca606b),Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,11,Review the contracts with the team,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,12,Document the currently implemented C4 platform endpoints and integration limitations,Verified,E-API-DOC: frontend/PLATFORM_API.md,
+P-08,2G80Ovxsb0a9o6MtQHEGA8kAF9IF,Review Sprint 1 progress and risks,1,Record lessons learned,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-08,2G80Ovxsb0a9o6MtQHEGA8kAF9IF,Review Sprint 1 progress and risks,2,Check the completion status of every Sprint 1 task,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-08,2G80Ovxsb0a9o6MtQHEGA8kAF9IF,Review Sprint 1 progress and risks,3,Identify incomplete tasks and move them to Sprint 2,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-08,2G80Ovxsb0a9o6MtQHEGA8kAF9IF,Review Sprint 1 progress and risks,4,Confirm the Sprint 2 plan,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-08,2G80Ovxsb0a9o6MtQHEGA8kAF9IF,Review Sprint 1 progress and risks,5,Update the risk register with new risks and mitigations,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,1,Create JWT login endpoint,Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-SESSIONS: services/gateway/src/services/session.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,2,Test missing and invalid JWT,Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-SESSIONS: services/gateway/src/services/session.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,3,Implement protected user and tenant endpoints,Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-SESSIONS: services/gateway/src/services/session.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,4,Test valid and invalid credentials,Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-SESSIONS: services/gateway/src/services/session.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,5,Implement bcrypt password verification,Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-SESSIONS: services/gateway/src/services/session.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,6,Create JWT verification middleware,Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-SESSIONS: services/gateway/src/services/session.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,7,Restore identity through HTTP-only cookies and revoke sessions on logout,Verified,"E-SESSIONS: services/gateway/src/services/session.js
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,8,Reject forged tenant/role registration and cross-origin/CSRF mutations,Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+P-10,d15ir2Ejp0y8X0EVS5BJm8kAJyOT,Add role-based access permissions,1,Implement authorize middleware,Verified,"E-RBAC: services/gateway/src/policies/rbac.js
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-10,d15ir2Ejp0y8X0EVS5BJm8kAJyOT,Add role-based access permissions,2,Protect admin-only route,Verified,"E-RBAC: services/gateway/src/policies/rbac.js
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-10,d15ir2Ejp0y8X0EVS5BJm8kAJyOT,Add role-based access permissions,3,Test all nine role-route combinations,Verified,"E-RBAC: services/gateway/src/policies/rbac.js
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-10,d15ir2Ejp0y8X0EVS5BJm8kAJyOT,Add role-based access permissions,4,Protect campaign management route,Verified,"E-RBAC: services/gateway/src/policies/rbac.js
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-10,d15ir2Ejp0y8X0EVS5BJm8kAJyOT,Add role-based access permissions,5,Protect campaign viewing route,Verified,"E-RBAC: services/gateway/src/policies/rbac.js
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-10,d15ir2Ejp0y8X0EVS5BJm8kAJyOT,Add role-based access permissions,6,"Define agency_admin, marketer and viewer permissions",Verified,"E-RBAC: services/gateway/src/policies/rbac.js
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-10,d15ir2Ejp0y8X0EVS5BJm8kAJyOT,Add role-based access permissions,7,Apply live role changes and account deactivation to existing sessions,Verified,"E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,1,Define shared agent request and response contract,Pending,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,2,Connect Component 1 API endpoint,Pending,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,3,Connect Component 3 API endpoint,Pending,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,4,Create mock agent for unavailable services,Pending,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,5,Implement authenticated gateway proxy,Pending,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,6,Enforce roles and tenant context,Verified,"E-RBAC: services/gateway/src/policies/rbac.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,7,Connect Component 2 API endpoint,Pending,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,8,"Test successful, denied and unavailable-agent responses",Pending,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,9,Configure internal service URLs and credentials,Pending,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,10,Expose implemented C4 workspace and email APIs with explicit disconnected statuses,Verified,"E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-API-DOC: frontend/PLATFORM_API.md",
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,11,"Test C4 denied, unavailable-model and malformed-model responses",Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+P-12,tWW3Lz5eikqqko1AQ6-PhckAAchW,Record API actions in audit logs,1,"Record tenant, user, action and route",Verified,"E-AUDIT: services/gateway/src/middleware/audit.js
+E-ACCESS: evidence/planner/checks/access-audit.json",
+P-12,tWW3Lz5eikqqko1AQ6-PhckAAchW,Record API actions in audit logs,2,Record successful API access,Verified,"E-AUDIT: services/gateway/src/middleware/audit.js
+E-ACCESS: evidence/planner/checks/access-audit.json",
+P-12,tWW3Lz5eikqqko1AQ6-PhckAAchW,Record API actions in audit logs,3,Verify audit records in PostgreSQL,Verified,"E-AUDIT: services/gateway/src/middleware/audit.js
+E-ACCESS: evidence/planner/checks/access-audit.json",
+P-12,tWW3Lz5eikqqko1AQ6-PhckAAchW,Record API actions in audit logs,4,Create audit logging middleware,Verified,"E-AUDIT: services/gateway/src/middleware/audit.js
+E-ACCESS: evidence/planner/checks/access-audit.json",
+P-12,tWW3Lz5eikqqko1AQ6-PhckAAchW,Record API actions in audit logs,5,Record denied API access,Verified,"E-AUDIT: services/gateway/src/middleware/audit.js
+E-ACCESS: evidence/planner/checks/access-audit.json",
+P-13,GUVHbCA7PkqbbEu18R3v7ckAM1L6,Show each first key function to the supervisor,1,Each member prepares a demo of their first key function,Pending,,
+P-13,GUVHbCA7PkqbbEu18R3v7ckAM1L6,Show each first key function to the supervisor,2,Create follow-up tasks from the feedback,Pending,,
+P-13,GUVHbCA7PkqbbEu18R3v7ckAM1L6,Show each first key function to the supervisor,3,Schedule the meeting with the supervisor,Pending,,
+P-13,GUVHbCA7PkqbbEu18R3v7ckAM1L6,Show each first key function to the supervisor,4,Run the demos,Pending,,
+P-13,GUVHbCA7PkqbbEu18R3v7ckAM1L6,Show each first key function to the supervisor,5,Prepare a short demo order or script,Pending,,
+P-13,GUVHbCA7PkqbbEu18R3v7ckAM1L6,Show each first key function to the supervisor,6,Record the supervisor’s feedback,Pending,,
+P-13,GUVHbCA7PkqbbEu18R3v7ckAM1L6,Show each first key function to the supervisor,7,"Collect C4 overview, account, membership and mobile demo screenshots",Verified,"E-SCREEN-OVERVIEW: evidence/planner/screenshots/authenticated-overview-light.png
+E-SCREEN-TEAM: evidence/planner/screenshots/live-team-access.png
+E-SCREEN-MOBILE: evidence/planner/screenshots/register-mobile.png",
+P-14,CAUKFn_9p0eQoa1HyoThaMkABDY5,Review Sprint 2 progress and GitHub contributions,1,Check that PRs were reviewed and merged,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-14,CAUKFn_9p0eQoa1HyoThaMkABDY5,Review Sprint 2 progress and GitHub contributions,2,Move unfinished tasks and plan Sprint 3,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-14,CAUKFn_9p0eQoa1HyoThaMkABDY5,Review Sprint 2 progress and GitHub contributions,3,Check commits per member on GitHub,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-14,CAUKFn_9p0eQoa1HyoThaMkABDY5,Review Sprint 2 progress and GitHub contributions,4,Update the risk register,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-14,CAUKFn_9p0eQoa1HyoThaMkABDY5,Review Sprint 2 progress and GitHub contributions,5,Review the Sprint 2 board status,Export reported only,E-PLANNER: evidence/planner/source-export.xlsx,
+P-15,YusHog_KNEi38rVn5hM3h8kAJ6Gl,Arrange the user-feedback session,1,Agree the user-feedback goals and participant criteria,Pending,,
+P-15,YusHog_KNEi38rVn5hM3h8kAJ6Gl,Arrange the user-feedback session,2,Invite participants and record the confirmed session,Pending,,
+P-15,YusHog_KNEi38rVn5hM3h8kAJ6Gl,Arrange the user-feedback session,3,Prepare a runnable user journey and feedback questions,Pending,,
+P-15,YusHog_KNEi38rVn5hM3h8kAJ6Gl,Arrange the user-feedback session,4,Collect feedback and link the findings and resulting tasks,Pending,,
+P-16,35EcnmgUHkmORnMzFR-ltskALTIN,Test tenant isolation and access permissions,1,Verify Tenant B can read its own records,Verified,"E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-16,35EcnmgUHkmORnMzFR-ltskALTIN,Test tenant isolation and access permissions,2,Verify Tenant C can read its own records,Verified,"E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-16,35EcnmgUHkmORnMzFR-ltskALTIN,Test tenant isolation and access permissions,3,Verify Tenant A can read its own records,Verified,"E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-16,35EcnmgUHkmORnMzFR-ltskALTIN,Test tenant isolation and access permissions,4,Run RBAC tests for all roles,Verified,"E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-16,35EcnmgUHkmORnMzFR-ltskALTIN,Test tenant isolation and access permissions,5,Verify unauthorized writes are blocked,Verified,"E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-16,35EcnmgUHkmORnMzFR-ltskALTIN,Test tenant isolation and access permissions,6,Verify cross-tenant reads are blocked,Verified,"E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,1,Generate personalized subject lines and messages,Verified,"E-AGENT: services/gateway/src/services/emailAgent.js
+E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-RENDER: services/gateway/src/services/emailTemplates.js",
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,2,Prepare tenant-specific knowledge retrieval,Verified,"E-AGENT: services/gateway/src/services/emailAgent.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,3,Configure email agent and model,Verified,"E-AGENT: services/gateway/src/services/emailAgent.js
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,4,Test tenant-specific generation,Pending,,
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,5,Save generated output and test evidence,Verified,"E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,6,Add safety and content checks,Verified,"E-GUARDS: services/gateway/src/services/guardrails.js
+E-CONTENT: evidence/planner/checks/content-audit.json",
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,7,Define three-email sequence structure,Verified,"E-SEQUENCE: services/gateway/src/services/workspace.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,8,Pass a live tenant-context generation and persistence smoke test,Pending,E-AI-FAIL: evidence/planner/checks/browser-tests.txt,
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,9,Persist and reload manual email sequences without an AI dependency,Verified,"E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+P-18,TC0kO6inN0uNkshS4O9n7MkAOPSk,Connect all agents and test the complete workflow,1,"Run C4 registration, campaign, knowledge and saved-sequence workflow against PostgreSQL",Verified,"E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-18,TC0kO6inN0uNkshS4O9n7MkAOPSk,Connect all agents and test the complete workflow,2,Connect Component 1 strategy service,Pending,E-PLATFORM: services/gateway/src/routes/platformRoutes.js,
+P-18,TC0kO6inN0uNkshS4O9n7MkAOPSk,Connect all agents and test the complete workflow,3,Connect Component 2 content service,Pending,E-PLATFORM: services/gateway/src/routes/platformRoutes.js,
+P-18,TC0kO6inN0uNkshS4O9n7MkAOPSk,Connect all agents and test the complete workflow,4,Connect Component 3 lead-intelligence service,Pending,E-PLATFORM: services/gateway/src/routes/platformRoutes.js,
+P-18,TC0kO6inN0uNkshS4O9n7MkAOPSk,Connect all agents and test the complete workflow,5,Verify identity/context handoffs between all four components,Pending,,
+P-18,TC0kO6inN0uNkshS4O9n7MkAOPSk,Connect all agents and test the complete workflow,6,"Run complete multi-agent success, denial and failure scenarios",Pending,,
+P-18,TC0kO6inN0uNkshS4O9n7MkAOPSk,Connect all agents and test the complete workflow,7,Capture a complete integrated workflow trace and output evidence,Pending,,
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",1,Reject detected email/phone PII,Verified,"E-CONTENT: evidence/planner/checks/content-audit.json
+E-GUARDS: services/gateway/src/services/guardrails.js",
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",2,Require unsubscribe wording on saved drafts,Verified,"E-CONTENT: evidence/planner/checks/content-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",3,Reject spam phrases and excessive capitals,Verified,E-CONTENT: evidence/planner/checks/content-audit.json,
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",4,Measure offline offer/fact grounding on generated responses,Verified,"E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json",
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",5,Enforce runtime grounding against selected tenant facts before persistence,Pending,"E-CONTENT: evidence/planner/checks/content-audit.json
+E-SEQUENCE: services/gateway/src/services/workspace.js",
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",6,Enforce the 150-word body limit in the save validator,Pending,E-CONTENT: evidence/planner/checks/content-audit.json,
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",7,Verify recipient consent and process real opt-outs before delivery,Pending,E-PLATFORM: services/gateway/src/routes/platformRoutes.js,
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",8,Review factual relevance and tone manually on an independent test set,Pending,,
+P-20,A46wNzBeX02RvIyc_ZhTCckADxwD,Review the 50% checkpoint with the supervisor,1,"Prepare individual progress, results and known limitations",Pending,,
+P-20,A46wNzBeX02RvIyc_ZhTCckADxwD,Review the 50% checkpoint with the supervisor,2,Arrange and conduct the 50% supervisor checkpoint,Pending,,
+P-20,A46wNzBeX02RvIyc_ZhTCckADxwD,Review the 50% checkpoint with the supervisor,3,Record supervisor feedback and approval,Pending,,
+P-20,A46wNzBeX02RvIyc_ZhTCckADxwD,Review the 50% checkpoint with the supervisor,4,Assign and track follow-up actions,Pending,,
+P-21,6cEFQK5jl0Cg9BgNbRp55ckAM_50,Compare personalized emails with generic AI emails,1,Use identical held-out validation prompts for base and fine-tuned models,Verified,"E-FT-NOTEBOOK: ml/finetune/c4_finetune_mistral_qlora.ipynb
+E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json",
+P-21,6cEFQK5jl0Cg9BgNbRp55ckAM_50,Compare personalized emails with generic AI emails,2,"Save per-response checks, latency, comparison table and training loss",Verified,"E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json",
+P-21,6cEFQK5jl0Cg9BgNbRp55ckAM_50,Compare personalized emails with generic AI emails,3,"Recalculate all-checks pass rates: base 6/25, fine-tuned 19/25",Verified,E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json,
+P-21,6cEFQK5jl0Cg9BgNbRp55ckAM_50,Compare personalized emails with generic AI emails,4,Compare the same campaign briefs with and without personalization/context,Pending,,
+P-21,6cEFQK5jl0Cg9BgNbRp55ckAM_50,Compare personalized emails with generic AI emails,5,Evaluate all 171 validation prompts and a separate untouched test set,Pending,,
+P-21,6cEFQK5jl0Cg9BgNbRp55ckAM_50,Compare personalized emails with generic AI emails,6,"Use a blinded human rubric for relevance, factuality, tone and personalization",Pending,,
+P-21,6cEFQK5jl0Cg9BgNbRp55ckAM_50,Compare personalized emails with generic AI emails,7,Report uncertainty and grounding regressions; do not claim real CTR improvement,Pending,,
+P-22,3aMfr5fB2kmDcv995Gn_u8kAGu0i,"Add sequence timing, consent and suppression checks",1,"Validate three emails scheduled at offsets 0, 3 and 7 days",Verified,"E-SEQUENCE: services/gateway/src/services/workspace.js
+E-CONTENT: evidence/planner/checks/content-audit.json",
+P-22,3aMfr5fB2kmDcv995Gn_u8kAGu0i,"Add sequence timing, consent and suppression checks",2,Require unsubscribe wording before saving,Verified,"E-GUARDS: services/gateway/src/services/guardrails.js
+E-CONTENT: evidence/planner/checks/content-audit.json",
+P-22,3aMfr5fB2kmDcv995Gn_u8kAGu0i,"Add sequence timing, consent and suppression checks",3,Store recipient consent and auditable consent changes,Pending,,
+P-22,3aMfr5fB2kmDcv995Gn_u8kAGu0i,"Add sequence timing, consent and suppression checks",4,Maintain tenant-scoped suppression/unsubscribe records,Pending,,
+P-22,3aMfr5fB2kmDcv995Gn_u8kAGu0i,"Add sequence timing, consent and suppression checks",5,Check consent and suppression at the delivery boundary,Pending,,
+P-22,3aMfr5fB2kmDcv995Gn_u8kAGu0i,"Add sequence timing, consent and suppression checks",6,"Implement a scheduler with timezone, cancellation, retries and duplicate-send prevention",Pending,,
+P-22,3aMfr5fB2kmDcv995Gn_u8kAGu0i,"Add sequence timing, consent and suppression checks",7,Test opt-out processing and suppression before subsequent steps,Pending,,
+P-23,ng9K8ZXRykm5SWUSkhQJxckAIl44,"Add monitoring, traces and alerts",1,"Expose health, database latency and actual model availability",Verified,"E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-PLATFORM: services/gateway/src/routes/platformRoutes.js",
+P-23,ng9K8ZXRykm5SWUSkhQJxckAIl44,"Add monitoring, traces and alerts",2,Persist and display workspace activity,Verified,"E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+P-23,ng9K8ZXRykm5SWUSkhQJxckAIl44,"Add monitoring, traces and alerts",3,Show disconnected delivery and agent services explicitly,Verified,"E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-KB-UI: frontend/src/pages/Workspace.jsx",
+P-23,ng9K8ZXRykm5SWUSkhQJxckAIl44,"Add monitoring, traces and alerts",4,Add request/correlation IDs and traces across connected services,Pending,,
+P-23,ng9K8ZXRykm5SWUSkhQJxckAIl44,"Add monitoring, traces and alerts",5,Collect retained latency/error/throughput metrics,Pending,,
+P-23,ng9K8ZXRykm5SWUSkhQJxckAIl44,"Add monitoring, traces and alerts",6,Configure alert rules and notification delivery,Pending,,
+P-23,ng9K8ZXRykm5SWUSkhQJxckAIl44,"Add monitoring, traces and alerts",7,Trigger a failure and capture its alert and trace evidence,Pending,,
+P-24,oJdPS1cdFkK0oZ8vBSPr4MkACVWd,Build the engagement model and experiment store,1,Define genuine engagement labels and avoid synthetic CTR as measured outcomes,Pending,,
+P-24,oJdPS1cdFkK0oZ8vBSPr4MkACVWd,Build the engagement model and experiment store,2,Build leakage-controlled train/validation/test splits,Pending,,
+P-24,oJdPS1cdFkK0oZ8vBSPr4MkACVWd,Build the engagement model and experiment store,3,Train and evaluate an engagement predictor against a baseline,Pending,,
+P-24,oJdPS1cdFkK0oZ8vBSPr4MkACVWd,Build the engagement model and experiment store,4,Store tenant-scoped experiment variants and assignments,Pending,,
+P-24,oJdPS1cdFkK0oZ8vBSPr4MkACVWd,Build the engagement model and experiment store,5,Persist provider-confirmed delivery/open/click events with deduplication,Pending,,
+P-24,oJdPS1cdFkK0oZ8vBSPr4MkACVWd,Build the engagement model and experiment store,6,Expose prediction/experiment APIs and validate tenant isolation,Pending,,
+P-25,gq8so08bZECDFmScnMsw-ckAKti3,Deploy the system and test performance,1,"Provide a Compose stack for the frontend, gateway, database and migrations",Verified,"E-DEPLOY: docker-compose.yml
+E-DOCKER-DOC: docker/README.md",
+P-25,gq8so08bZECDFmScnMsw-ckAKti3,Deploy the system and test performance,2,Build the frontend and verify Nginx/gateway reachability,Verified,"E-BUILD: evidence/planner/checks/frontend-build.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+P-25,gq8so08bZECDFmScnMsw-ckAKti3,Deploy the system and test performance,3,Verify fresh and repeated migrations,Verified,E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt,
+P-25,gq8so08bZECDFmScnMsw-ckAKti3,Deploy the system and test performance,4,Run and save a local health load test,Verified,E-LOAD: evidence/planner/checks/health-load-summary.json,
+P-25,gq8so08bZECDFmScnMsw-ckAKti3,Deploy the system and test performance,5,Pass live AI generation under realistic concurrency and latency budgets,Pending,E-AI-FAIL: evidence/planner/checks/browser-tests.txt,
+P-25,gq8so08bZECDFmScnMsw-ckAKti3,Deploy the system and test performance,6,Test authenticated database workflows and connected agents under load,Pending,,
+P-25,gq8so08bZECDFmScnMsw-ckAKti3,Deploy the system and test performance,7,"Record target-environment deployment, recovery and full-workflow performance evidence",Pending,,
+P-26,TV31rvZfMES0EYG9QHzpLskAOqsB,Test the full workflow and isolation across three tenants,1,Verify own-record reads for all three sample tenants,Verified,E-RUNTIME: evidence/planner/checks/runtime-audit.json,
+P-26,TV31rvZfMES0EYG9QHzpLskAOqsB,Test the full workflow and isolation across three tenants,2,Reject cross-tenant reads and inserts in three isolated workspaces,Verified,E-ACCESS: evidence/planner/checks/access-audit.json,
+P-26,TV31rvZfMES0EYG9QHzpLskAOqsB,Test the full workflow and isolation across three tenants,3,Verify campaign/knowledge/sequence ownership and stale-write rejection,Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+P-26,TV31rvZfMES0EYG9QHzpLskAOqsB,Test the full workflow and isolation across three tenants,4,Run the C4 account/campaign/knowledge/manual-sequence browser journey,Verified,E-BROWSER: evidence/planner/checks/browser-ui-tests.txt,
+P-26,TV31rvZfMES0EYG9QHzpLskAOqsB,Test the full workflow and isolation across three tenants,5,Complete live AI generation for each tenant,Pending,E-AI-FAIL: evidence/planner/checks/browser-tests.txt,
+P-26,TV31rvZfMES0EYG9QHzpLskAOqsB,Test the full workflow and isolation across three tenants,6,Connect and verify the C1-C4 workflow across all three tenants,Pending,,
+P-26,TV31rvZfMES0EYG9QHzpLskAOqsB,Test the full workflow and isolation across three tenants,7,Capture complete multi-agent workflow and isolation evidence for the team,Pending,,
+P-27,gElqHoOhHEeeQD0cdwKmyMkAL141,Prepare each member’s PP1 slides,1,"Prepare the C4 problem, architecture and individual contribution slides",Pending,,
+P-27,gElqHoOhHEeeQD0cdwKmyMkAL141,Prepare each member’s PP1 slides,2,Include measured evaluation results and their limitations,Pending,,
+P-27,gElqHoOhHEeeQD0cdwKmyMkAL141,Prepare each member’s PP1 slides,3,"Add screenshots, demo sequence and remaining work",Pending,,
+P-27,gElqHoOhHEeeQD0cdwKmyMkAL141,Prepare each member’s PP1 slides,4,Review and combine each member's PP1 slides,Pending,,
+P-28,Q-ddELlELU2toTK8qtU_CckAO1Oz,Prepare each member’s evidence folder,1,"Create a C4 evidence index linking source, tests, screenshots and model results",Verified,"E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-ACCESS: evidence/planner/checks/access-audit.json",
+P-28,Q-ddELlELU2toTK8qtU_CckAO1Oz,Prepare each member’s evidence folder,2,"Retain successes, failures and unverified claims in the task audit",Verified,"E-AI-FAIL: evidence/planner/checks/browser-tests.txt
+E-FT-REBUILD: evidence/planner/checks/dataset-rebuild.txt
+E-CONTENT: evidence/planner/checks/content-audit.json",
+P-28,Q-ddELlELU2toTK8qtU_CckAO1Oz,Prepare each member’s evidence folder,3,Collect and review the other three members' evidence,Pending,,
+P-28,Q-ddELlELU2toTK8qtU_CckAO1Oz,Prepare each member’s evidence folder,4,Publish the agreed team evidence folder and record its final location,Pending,,
+P-29,ILbFBYC4Y0SXQp-mKqnfoMkAOT46,Run a timed rehearsal and practise Q&A,1,Agree the presentation/demo order and time budget,Pending,,
+P-29,ILbFBYC4Y0SXQp-mKqnfoMkAOT46,Run a timed rehearsal and practise Q&A,2,Run and time the full team rehearsal,Pending,,
+P-29,ILbFBYC4Y0SXQp-mKqnfoMkAOT46,Run a timed rehearsal and practise Q&A,3,Practise individual Q&A and record weak areas,Pending,,
+P-29,ILbFBYC4Y0SXQp-mKqnfoMkAOT46,Run a timed rehearsal and practise Q&A,4,Record feedback and assign corrective tasks,Pending,,
+P-30,0ZVT67QIWk-91Ea1EJ8NqskALWXL,Rehearse the presentation and demo with the supervisor,1,Schedule the supervisor rehearsal,Pending,,
+P-30,0ZVT67QIWk-91Ea1EJ8NqskALWXL,Rehearse the presentation and demo with the supervisor,2,Rehearse the actual presentation and live demo,Pending,,
+P-30,0ZVT67QIWk-91Ea1EJ8NqskALWXL,Rehearse the presentation and demo with the supervisor,3,Capture supervisor feedback and resulting actions,Pending,,
+P-31,lPSAySqwKk-L1aPo-MJSYckAJmri,Fix all rehearsal feedback items,1,Collect the actual rehearsal feedback register,Pending,,
+P-31,lPSAySqwKk-L1aPo-MJSYckAJmri,Fix all rehearsal feedback items,2,Assign and implement each correction,Pending,,
+P-31,lPSAySqwKk-L1aPo-MJSYckAJmri,Fix all rehearsal feedback items,3,Retest affected behavior and record acceptance,Pending,,
+P-32,wWEaSgOMrECdkylZWwcNZskAEP5Q,Practise individual questions and explanations,1,"Explain tenancy, RLS, session auth, roles and implementation ownership",Pending,,
+P-32,wWEaSgOMrECdkylZWwcNZskAEP5Q,Practise individual questions and explanations,2,"Explain QLoRA, dataset split, evaluation and grounding limitations",Pending,,
+P-32,wWEaSgOMrECdkylZWwcNZskAEP5Q,Practise individual questions and explanations,3,Practise individual questions and record completed practice,Pending,,
+P-33,WznWPEwGh0mf20UgYu20uMkANBrk,Freeze the code and test setup on a clean machine,1,Run production build and existing unit/integration/browser checks,Verified,"E-BUILD: evidence/planner/checks/frontend-build.txt
+E-UNIT: evidence/planner/checks/unit-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+P-33,WznWPEwGh0mf20UgYu20uMkANBrk,Freeze the code and test setup on a clean machine,2,Verify fresh-database setup and repeated migrations,Verified,E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt,
+P-33,WznWPEwGh0mf20UgYu20uMkANBrk,Freeze the code and test setup on a clean machine,3,Resolve and commit the intended staged/unstaged changes,Pending,E-GIT: evidence/planner/checks/repository-snapshot.json,
+P-33,WznWPEwGh0mf20UgYu20uMkANBrk,Freeze the code and test setup on a clean machine,4,Create and record the agreed release/freeze commit or tag,Pending,,
+P-33,WznWPEwGh0mf20UgYu20uMkANBrk,Freeze the code and test setup on a clean machine,5,Clone and validate startup on a separate clean environment,Pending,,
+P-33,WznWPEwGh0mf20UgYu20uMkANBrk,Freeze the code and test setup on a clean machine,6,Verify clean-machine AI/runtime dependencies and model setup,Pending,"E-FT-REBUILD: evidence/planner/checks/dataset-rebuild.txt
+E-AI-FAIL: evidence/planner/checks/browser-tests.txt",
+P-34,oQ8dzx9J8UiOPzofV54RE8kAAKML,"Finalize diaries, AI logs and PP1 submission evidence",1,"Package C4 source references, tests, screenshots and fine-tuning evidence",Verified,"E-ACCESS: evidence/planner/checks/access-audit.json
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json",
+P-34,oQ8dzx9J8UiOPzofV54RE8kAAKML,"Finalize diaries, AI logs and PP1 submission evidence",2,Complete each member's diary and AI-use log,Pending,,
+P-34,oQ8dzx9J8UiOPzofV54RE8kAAKML,"Finalize diaries, AI logs and PP1 submission evidence",3,"Attach approved reports, final slides and supervisor evidence",Pending,,
+P-34,oQ8dzx9J8UiOPzofV54RE8kAAKML,"Finalize diaries, AI logs and PP1 submission evidence",4,Check links and upload the final submission to the required team location,Pending,,
+P-34,oQ8dzx9J8UiOPzofV54RE8kAAKML,"Finalize diaries, AI logs and PP1 submission evidence",5,Record submission confirmation and final review,Pending,,
+P-35,-C0Kc5Jh7kWzxY9qKakYI8kAIf9m,"Add OAuth, webhooks, sync and recovery after PP1",1,"Implement Google ID-token verification, nonce challenges and explicit account linking",Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+P-35,-C0Kc5Jh7kWzxY9qKakYI8kAIf9m,"Add OAuth, webhooks, sync and recovery after PP1",2,"Test provider failures, replay rejection, email mismatch and unverified identities",Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+P-35,-C0Kc5Jh7kWzxY9qKakYI8kAIf9m,"Add OAuth, webhooks, sync and recovery after PP1",3,Complete a real Google account sign-in/link acceptance test,Pending,,
+P-35,-C0Kc5Jh7kWzxY9qKakYI8kAIf9m,"Add OAuth, webhooks, sync and recovery after PP1",4,Implement required external-service OAuth grants and credential refresh,Pending,,
+P-35,-C0Kc5Jh7kWzxY9qKakYI8kAIf9m,"Add OAuth, webhooks, sync and recovery after PP1",5,"Add authenticated, replay-safe, tenant-routed webhooks",Pending,,
+P-35,-C0Kc5Jh7kWzxY9qKakYI8kAIf9m,"Add OAuth, webhooks, sync and recovery after PP1",6,"Implement synchronization, retries, recovery and reconciliation",Pending,,
+P-36,NsSUAVg4VEChXYGsDLToDskAHv8Z,Optional: add tenant opt-in settings and API,1,"Define opt-in purposes, defaults and permission rules",Pending,,
+P-36,NsSUAVg4VEChXYGsDLToDskAHv8Z,Optional: add tenant opt-in settings and API,2,Persist tenant-scoped settings and changes,Pending,,
+P-36,NsSUAVg4VEChXYGsDLToDskAHv8Z,Optional: add tenant opt-in settings and API,3,Add authenticated settings APIs and an administrator UI,Pending,,
+P-36,NsSUAVg4VEChXYGsDLToDskAHv8Z,Optional: add tenant opt-in settings and API,4,Enforce opt-in decisions in integrations and delivery,Pending,,
+P-36,NsSUAVg4VEChXYGsDLToDskAHv8Z,Optional: add tenant opt-in settings and API,5,"Test authorization, isolation and opt-in/opt-out transitions",Pending,,
+NEW-C4-01,,Build the responsive authenticated C4 workspace interface,1,"Implement overview, campaigns, email builder, knowledge, integrations, team, monitoring and settings routes",Verified,"E-UI: frontend/src/components/AccountShell.jsx
+E-KB-UI: frontend/src/pages/Workspace.jsx",
+NEW-C4-01,,Build the responsive authenticated C4 workspace interface,2,Enforce route/action permissions and real account/session state,Verified,"E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-01,,Build the responsive authenticated C4 workspace interface,3,Support light/dark appearance and motion preferences,Verified,"E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-UNIT: evidence/planner/checks/unit-tests.txt",
+NEW-C4-01,,Build the responsive authenticated C4 workspace interface,4,"Validate authenticated/login/register layouts at 320, 390 and 768 pixels",Verified,"E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-SCREEN-MOBILE: evidence/planner/screenshots/register-mobile.png",
+NEW-C4-02,,Implement self-service account registration and database-backed sessions,1,Create a server-assigned administrator and new workspace on registration,Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-02,,Implement self-service account registration and database-backed sessions,2,Validate passwords and reject client-selected role/tenant identity,Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+NEW-C4-02,,Implement self-service account registration and database-backed sessions,3,Restore sessions through HTTP-only cookies with CSRF/origin checks,Verified,"E-SESSIONS: services/gateway/src/services/session.js
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+NEW-C4-02,,Implement self-service account registration and database-backed sessions,4,Persist profile changes and revoke sessions on logout/deactivation,Verified,"E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+NEW-C4-03,,Implement Google identity verification and account linking,1,Provide Google challenge and verified ID-token handlers,Verified,"E-AUTH: services/gateway/src/routes/authRoutes.js
+E-ACCOUNTS-SCHEMA: db/migrations/004_accounts_and_sessions.sql",
+NEW-C4-03,,Implement Google identity verification and account linking,2,"Enforce single-use nonce, verified email and configured audience checks",Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+NEW-C4-03,,Implement Google identity verification and account linking,3,Reject automatic email-only linking and require authenticated explicit linking,Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+NEW-C4-03,,Implement Google identity verification and account linking,4,"Test failure, replay, registration and linking paths with provider verification stubbed",Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+NEW-C4-04,,Add workspace invitations and live team membership controls,1,"Create single-use, expiring invitations bound to recipient/workspace/role",Verified,"E-TEAM: services/gateway/src/routes/teamRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-04,,Add workspace invitations and live team membership controls,2,Accept invitations without allowing tenant or role substitution,Verified,"E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+NEW-C4-04,,Add workspace invitations and live team membership controls,3,Implement role changes and deactivation with live permission refresh,Verified,"E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+NEW-C4-04,,Add workspace invitations and live team membership controls,4,Protect self-role changes and last active administrator in code,Verified,"E-TEAM: services/gateway/src/routes/teamRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-05,,"Persist campaign drafts, ownership and versioned changes",1,Store tenant-scoped campaign drafts and archive/restore updates,Verified,"E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-RECORDS-SCHEMA: db/migrations/005_workspace_records.sql",
+NEW-C4-05,,"Persist campaign drafts, ownership and versioned changes",2,Reject foreign workspace updates and stale versions,Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+NEW-C4-05,,"Persist campaign drafts, ownership and versioned changes",3,Keep delivery metrics unavailable until real provider events exist,Verified,"E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-API-DOC: frontend/PLATFORM_API.md",
+NEW-C4-05,,"Persist campaign drafts, ownership and versioned changes",4,Verify database persistence and cross-tab refresh,Verified,E-BROWSER: evidence/planner/checks/browser-ui-tests.txt,
+NEW-C4-06,,Build the persistent manual email-sequence editor and library,1,"Create, edit, reopen and delete saved three-email drafts",Verified,"E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-06,,Build the persistent manual email-sequence editor and library,2,"Validate sequence structure, guardrails, source ownership and optimistic versions",Verified,"E-SEQUENCE: services/gateway/src/services/workspace.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-06,,Build the persistent manual email-sequence editor and library,3,Retain saved work across page reload and new login,Verified,"E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-06,,Build the persistent manual email-sequence editor and library,4,Deny viewers and foreign tenants access to sequence content,Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+NEW-C4-07,,Build the tenant knowledge library and generation source controls,1,Add and remove actual workspace knowledge text with administrator permissions,Verified,"E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-07,,Build the tenant knowledge library and generation source controls,2,Provide text upload/source selection UI and saved knowledge,Verified,"E-KB-UI: frontend/src/pages/Workspace.jsx
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",
+NEW-C4-07,,Build the tenant knowledge library and generation source controls,3,Retrieve only the authenticated tenant's selected/recent text,Verified,"E-AGENT: services/gateway/src/services/emailAgent.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-07,,Build the tenant knowledge library and generation source controls,4,Reject foreign source IDs before contacting the model,Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+NEW-C4-08,,"Add workspace activity, database totals and automatic refresh",1,Commit activity alongside campaign/knowledge/sequence changes,Verified,"E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",
+NEW-C4-08,,"Add workspace activity, database totals and automatic refresh",2,Expose database totals and UTC daily aggregates without invented metrics,Verified,"E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-UNIT: evidence/planner/checks/unit-tests.txt",
+NEW-C4-08,,"Add workspace activity, database totals and automatic refresh",3,Refresh visible workspace data every five seconds and service status every fifteen seconds,Verified,"E-SYNC: frontend/src/hooks/useWorkspace.js
+E-KB-UI: frontend/src/pages/Workspace.jsx",
+NEW-C4-08,,"Add workspace activity, database totals and automatic refresh",4,Verify cross-tab updates and data reset for tenant/role changes,Verified,"E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-SYNC: frontend/src/hooks/useWorkspace.js",
+NEW-C4-09,,Containerize C4 and verify repeatable database migrations,1,"Package React/Nginx, gateway and pgvector PostgreSQL in Compose",Verified,"E-DEPLOY: docker-compose.yml
+E-RUNTIME: evidence/planner/checks/runtime-audit.json",
+NEW-C4-09,,Containerize C4 and verify repeatable database migrations,2,"Provide ordered startup, loopback ports, persistent volumes and healthchecks",Verified,"E-DEPLOY: docker-compose.yml
+E-DOCKER-DOC: docker/README.md",
+NEW-C4-09,,Containerize C4 and verify repeatable database migrations,3,Track migration checksums and validate restricted-role forced RLS,Verified,E-MIGRATOR: services/gateway/scripts/migrate.js,
+NEW-C4-09,,Containerize C4 and verify repeatable database migrations,4,Pass fresh-database and repeated-migration checks,Verified,E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt,
+NEW-C4-10,,Verify fine-tuning examples and the application prompt contract,1,Verify 715 training and 171 validation sequences,Verified,E-FT-DATA: evidence/planner/checks/dataset-verification.json,
+NEW-C4-10,,Verify fine-tuning examples and the application prompt contract,2,Check supplied reference answers and actual application guardrails,Verified,E-FT-DATA: evidence/planner/checks/dataset-verification.json,
+NEW-C4-10,,Verify fine-tuning examples and the application prompt contract,3,Confirm exact runtime prompt reconstruction and fixed personalization line,Verified,E-FT-DATA: evidence/planner/checks/dataset-verification.json,
+NEW-C4-10,,Verify fine-tuning examples and the application prompt contract,4,Confirm five validation products with no training-product overlap,Verified,E-FT-DATA: evidence/planner/checks/dataset-verification.json,
+NEW-C4-11,,Train and retain the Mistral 7B QLoRA email adapter,1,Retain the configured two-epoch QLoRA notebook and training log,Verified,"E-FT-NOTEBOOK: ml/finetune/c4_finetune_mistral_qlora.ipynb
+E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json",
+NEW-C4-11,,Train and retain the Mistral 7B QLoRA email adapter,2,Retain the trained LoRA adapter and tokenizer artifacts,Verified,E-FT-WEIGHTS: ml/finetune/models/c4-email-lora/adapter_model.safetensors,
+NEW-C4-11,,Train and retain the Mistral 7B QLoRA email adapter,3,Validate the adapter tensor offsets and compute a reproducible checksum,Verified,E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json,
+NEW-C4-11,,Train and retain the Mistral 7B QLoRA email adapter,4,Record training/validation loss and the observed validation-loss regression,Verified,E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json,
+NEW-C4-12,,Evaluate base and fine-tuned email generation on held-out prompts,1,Retain per-response results for the same 25 validation prompts,Verified,"E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-FT-NOTEBOOK: ml/finetune/c4_finetune_mistral_qlora.ipynb",
+NEW-C4-12,,Evaluate base and fine-tuned email generation on held-out prompts,2,Compare JSON/sequence/unsubscribe/grounding/offer/length/guardrail metrics,Verified,E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json,
+NEW-C4-12,,Evaluate base and fine-tuned email generation on held-out prompts,3,Recalculate all-seven-check pass rates as 24% base and 76% fine-tuned,Verified,E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json,
+NEW-C4-12,,Evaluate base and fine-tuned email generation on held-out prompts,4,Record grounding regression from 92% to 76% and small-sample limitations,Verified,"E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json",
+NEW-C4-13,,Implement safe lead-name and campaign-link template rendering,1,Preserve reusable first_name/cta_link tags in stored sequences,Verified,"E-RENDER: services/gateway/src/services/emailTemplates.js
+E-UNIT: evidence/planner/checks/unit-tests.txt",
+NEW-C4-13,,Implement safe lead-name and campaign-link template rendering,2,Replace tags in a rendered copy using actual provided lead/link values,Verified,E-UNIT: evidence/planner/checks/unit-tests.txt,
+NEW-C4-13,,Implement safe lead-name and campaign-link template rendering,3,"Reject missing values, header injection, unsafe URLs and unresolved tags",Verified,E-UNIT: evidence/planner/checks/unit-tests.txt,
+NEW-C4-13,,Implement safe lead-name and campaign-link template rendering,4,Handle dollar signs in lead names without replacement-string expansion,Verified,E-UNIT: evidence/planner/checks/unit-tests.txt,
+NEW-C4-14,,Automate isolated account/platform and responsive browser regression checks,1,Run 42 database-backed account/platform integration tests,Verified,E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt,
+NEW-C4-14,,Automate isolated account/platform and responsive browser regression checks,2,Run 12 frontend/template unit tests,Verified,E-UNIT: evidence/planner/checks/unit-tests.txt,
+NEW-C4-14,,Automate isolated account/platform and responsive browser regression checks,3,Run the isolated database-backed browser journey and save screenshots,Verified,"E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-SCREEN-OVERVIEW: evidence/planner/screenshots/authenticated-overview-light.png
+E-SCREEN-TEAM: evidence/planner/screenshots/live-team-access.png",
+NEW-C4-14,,Automate isolated account/platform and responsive browser regression checks,4,"Verify nine RBAC combinations, three-tenant write/read isolation and audit persistence",Verified,E-ACCESS: evidence/planner/checks/access-audit.json,
+NEW-C4-15,,Register and activate the fine-tuned Ollama model,1,"Provide the adapter, tokenizer and Ollama Modelfile",Verified,"E-FT-WEIGHTS: ml/finetune/models/c4-email-lora/adapter_model.safetensors
+E-FT-MODELFILE: ml/finetune/Modelfile",
+NEW-C4-15,,Register and activate the fine-tuned Ollama model,2,Verify adapter compatibility with the exact Ollama base version,Pending,,
+NEW-C4-15,,Register and activate the fine-tuned Ollama model,3,Create c4-email-ft and confirm it appears in the installed model list,Pending,E-RUNTIME: evidence/planner/checks/runtime-audit.json,
+NEW-C4-15,,Register and activate the fine-tuned Ollama model,4,Set the gateway model to the fine-tuned model and recreate/restart the gateway,Pending,E-RUNTIME: evidence/planner/checks/runtime-audit.json,
+NEW-C4-15,,Register and activate the fine-tuned Ollama model,5,"Pass tenant-context generation, guardrails and persistence using that model",Pending,E-AI-FAIL: evidence/planner/checks/browser-tests.txt,

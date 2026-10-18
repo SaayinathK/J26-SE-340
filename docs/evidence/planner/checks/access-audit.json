@@ -1,0 +1,97 @@
+{
+  "audit_date": "2026-10-21",
+  "isolated_database": true,
+  "rbac": [
+    {
+      "role": "agency_admin",
+      "route": "/api/admin/dashboard",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "role": "agency_admin",
+      "route": "/api/campaigns/manage",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "role": "agency_admin",
+      "route": "/api/campaigns/view",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "role": "marketer",
+      "route": "/api/admin/dashboard",
+      "expected": 403,
+      "actual": 403,
+      "passed": true
+    },
+    {
+      "role": "marketer",
+      "route": "/api/campaigns/manage",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "role": "marketer",
+      "route": "/api/campaigns/view",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "role": "viewer",
+      "route": "/api/admin/dashboard",
+      "expected": 403,
+      "actual": 403,
+      "passed": true
+    },
+    {
+      "role": "viewer",
+      "route": "/api/campaigns/manage",
+      "expected": 403,
+      "actual": 403,
+      "passed": true
+    },
+    {
+      "role": "viewer",
+      "route": "/api/campaigns/view",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    }
+  ],
+  "isolation": [
+    {
+      "tenant_number": 1,
+      "own_users_visible": 3,
+      "cross_tenant_reads_blocked": true,
+      "cross_tenant_inserts_blocked": true
+    },
+    {
+      "tenant_number": 2,
+      "own_users_visible": 1,
+      "cross_tenant_reads_blocked": true,
+      "cross_tenant_inserts_blocked": true
+    },
+    {
+      "tenant_number": 3,
+      "own_users_visible": 1,
+      "cross_tenant_reads_blocked": true,
+      "cross_tenant_inserts_blocked": true
+    }
+  ],
+  "audit_log": {
+    "verified_records": 9,
+    "allowed": 6,
+    "denied": 3,
+    "tenant_user_route_recorded": true
+  },
+  "cleaned_up": true,
+  "passed": true
+}

@@ -1,0 +1,68 @@
+{
+  "audit_date": "2026-10-21",
+  "guardrail_cases": [
+    {
+      "name": "safe template",
+      "expected_pass": true,
+      "actual_pass": true,
+      "flags": []
+    },
+    {
+      "name": "email PII",
+      "expected_pass": false,
+      "actual_pass": false,
+      "flags": [
+        "PII"
+      ]
+    },
+    {
+      "name": "phone PII",
+      "expected_pass": false,
+      "actual_pass": false,
+      "flags": [
+        "PII"
+      ]
+    },
+    {
+      "name": "missing unsubscribe",
+      "expected_pass": false,
+      "actual_pass": false,
+      "flags": [
+        "UNSUBSCRIBE"
+      ]
+    },
+    {
+      "name": "spam phrase",
+      "expected_pass": false,
+      "actual_pass": false,
+      "flags": [
+        "SPAM"
+      ]
+    },
+    {
+      "name": "excessive capitals",
+      "expected_pass": false,
+      "actual_pass": false,
+      "flags": [
+        "TONE"
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "name": "150-word body limit",
+      "body_words": 165,
+      "save_validator_error": null,
+      "enforced": false
+    },
+    {
+      "name": "source-grounded offer check",
+      "source": "none",
+      "save_validator_error": null,
+      "rejected_by_save_validator": false
+    }
+  ],
+  "sequence_timing_validation": {
+    "wrong_day_rejected": true
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "audit_date": "2026-10-21",
+  "model_inference_rerun": false,
+  "base": {
+    "prompts": 25,
+    "all_checks_passed": 6,
+    "all_checks_pass_percent": 24.0,
+    "per_check_passed": {
+      "json_valid": 25,
+      "three_emails": 25,
+      "unsubscribe_all": 8,
+      "grounded": 23,
+      "no_invented_offer": 25,
+      "under_150_words": 25,
+      "guardrails_pass": 6
+    },
+    "failed_rows": [
+      {
+        "i": "0",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "1",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "2",
+        "failed": [
+          "grounded",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "3",
+        "failed": [
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "4",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "6",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "7",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "8",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "11",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "12",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "13",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "14",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "15",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "16",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "17",
+        "failed": [
+          "unsubscribe_all",
+          "grounded",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "18",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "20",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "22",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "23",
+        "failed": [
+          "unsubscribe_all",
+          "guardrails_pass"
+        ]
+      }
+    ],
+    "sha256": "8e22e98592892575ecc2dc2018ff259ad7e9deb9831dd53d0cae07c20f866c69"
+  },
+  "fine-tuned": {
+    "prompts": 25,
+    "all_checks_passed": 19,
+    "all_checks_pass_percent": 76.0,
+    "per_check_passed": {
+      "json_valid": 24,
+      "three_emails": 24,
+      "unsubscribe_all": 24,
+      "grounded": 19,
+      "no_invented_offer": 20,
+      "under_150_words": 24,
+      "guardrails_pass": 19
+    },
+    "failed_rows": [
+      {
+        "i": "1",
+        "failed": [
+          "json_valid",
+          "three_emails",
+          "unsubscribe_all",
+          "grounded",
+          "no_invented_offer",
+          "under_150_words",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "5",
+        "failed": [
+          "grounded",
+          "no_invented_offer",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "11",
+        "failed": [
+          "grounded",
+          "no_invented_offer",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "12",
+        "failed": [
+          "grounded",
+          "no_invented_offer",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "14",
+        "failed": [
+          "grounded",
+          "guardrails_pass"
+        ]
+      },
+      {
+        "i": "15",
+        "failed": [
+          "grounded",
+          "no_invented_offer",
+          "guardrails_pass"
+        ]
+      }
+    ],
+    "sha256": "154ad675da82aba966cd95dca91d3ca68dfabb54a268416b806ef0fec271b59b"
+  },
+  "validation_loss": {
+    "first": {
+      "step": 20,
+      "eval_loss": 0.8792545199394226
+    },
+    "last": {
+      "step": 180,
+      "eval_loss": 0.9924343228340149
+    },
+    "best_recorded": {
+      "step": 40,
+      "eval_loss": 0.8709284067153931
+    }
+  },
+  "adapter": {
+    "bytes": 167832240,
+    "sha256": "d8e46c073ab2a16eedf828b0b2cb81ed91c16e9a516d0202257f54abde3cc530",
+    "tensors": 448,
+    "offsets_valid": true,
+    "loaded_for_inference": false
+  },
+  "dataset_reproduction": {
+    "exit_code": 1,
+    "original_script_present": true
+  }
+}

@@ -1,0 +1,527 @@
+﻿Audit key,Task ID (existing only),Task name,Bucket,Assigned to,Original status,Updated status,Verified checklist items,Checklist,Evidence references,Remaining / unverified,Audit assessment,Notes / evidence summary,Original due date,Audit date,Original completed date,Original completed by,Original notes,Parent task ID (new deliverables)
+P-01,s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj,Set up the tenant database and sample tenants,Sprint 1,SAAYINATH K it23304338,Completed,Completed,7/7,"[x] Create PostgreSQL database using Docker
+[x] Configure Row-Level Security policies
+[x] Create three sample tenants
+[x] Create restricted application database role
+[x] Enable pgvector and UUID extensions
+[x] Run tenant isolation tests
+[x] Create tenants, users, knowledge_base and audit_log tables","E-PLANNER: evidence/planner/source-export.xlsx
+E-SCHEMA: db/migrations/001_init.sql
+E-DBROLE: db/migrations/002_app_role.sql
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",,Verified,Database/RLS setup and sample tenants verified live; fresh migrations and isolated three-tenant negative tests pass.,2026-10-01,2026-10-21,2026-10-09,SAAYINATH K it23304338,"PostgreSQL database initialized with pgvector, three sample tenants, tenant-aware tables and RLS policies. Restricted application role configured. Initial tenant isolation tests passed. Development security hardening remains necessary before production deployment.",
+P-02,Tebj5Z6QvU-SkCkqfGl5_8kALvN6,Set up the team GitHub repository,Sprint 1,SAAYINATH K it23304338,Completed,Completed,2/5,"[x] Create Repository
+[?] Add Collabrators
+[?] Verify Team Repository Access
+[x] Create Branches
+[?] Protect Main Branch","E-PLANNER: evidence/planner/source-export.xlsx
+E-GIT: evidence/planner/checks/repository-snapshot.json","Add Collabrators (export completion only; attach supporting evidence)
+Verify Team Repository Access (export completion only; attach supporting evidence)
+Protect Main Branch (export completion only; attach supporting evidence)
+Attach remote collaborator/access and branch-protection evidence if required.",Export reported only,Git repository and local branches exist. Preserve reported completion; collaborator access and remote branch protection cannot be established from this checkout.,2026-10-01,2026-10-21,2026-10-08,SAAYINATH K it23304338,,
+P-03,K0IRlzBiPESovq7UxQO9RMkAPHa4,Meet the supervisor to approve scope and Finalize the Individual Report,Sprint 1,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Completed,Completed,0/3,"[?] Create Individual Reports
+[?] Discuss with the Supervisor
+[?] Get Supervisor Signature",E-PLANNER: evidence/planner/source-export.xlsx,"Create Individual Reports (export completion only; attach supporting evidence)
+Discuss with the Supervisor (export completion only; attach supporting evidence)
+Get Supervisor Signature (export completion only; attach supporting evidence)",Export reported only,Supervisor approval/signature and individual reports are reported complete in the export. Supporting meeting/report files are not in this workspace.,2026-09-15,2026-10-21,2026-10-09,SAAYINATH K it23304338,Completed on 14th September,
+P-04,dvN4Bp4-KkKQe7Aqo54-C8kAKMfB,Set up Planner and add Sprint 1 and 2 tasks,Sprint 1,SAAYINATH K it23304338,Completed,Completed,4/4,"[x] Create Planner
+[x] Assign People
+[x] Create Sprints
+[x] Add Tasks",E-PLANNER: evidence/planner/source-export.xlsx,,Verified,"The supplied export demonstrates an existing plan, assignees, sprint buckets and tasks.",2026-10-01,2026-10-21,2026-10-09,SAAYINATH K it23304338,,
+P-05,509o6p7yikitvlPbyR7PJskAM4z6,Create diary and AI-use log templates,Sprint 1,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Completed,Completed,0/4,"[?] Each member fills in their first entry
+[?] Create the weekly diary template (date, attendees, work done, issues, next steps)
+[?] Create the AI-use log template (date, tool, purpose, prompt summary, how the output was used, how it
+[?] Upload both templates to the team SharePoint folder",E-PLANNER: evidence/planner/source-export.xlsx,"Each member fills in their first entry (export completion only; attach supporting evidence)
+Create the weekly diary template (date, attendees, work done, issues, next steps) (export completion only; attach supporting evidence)
+Create the AI-use log template (date, tool, purpose, prompt summary, how the output was used, how it (export completion only; attach supporting evidence)
+Upload both templates to the team SharePoint folder (export completion only; attach supporting evidence)",Export reported only,Preserve reported completion. Export says Completed but 0/4 checklist items; named diary/AI-log/SharePoint evidence is not available locally.,2026-10-02,2026-10-21,2026-10-20,SHATHURSINI.J it23164062,"Evidence
+Diary_Template.docx
+AI_Use_Log_Template.xlsx
+SharePoint_Templates_Folder.png",
+P-06,CQQEW_of-0eHfsbhnzLXuMkAOfC6,Agree and record key project decisions,Sprint 1,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Completed,Completed,0/6,"[?] Agree on the multi-tenant approach (tenant identification, data isolation)
+[?] Agree on GitHub branching, commit and PR review rules
+[?] All members confirm the decisions
+[?] Record the decisions in a decision log
+[?] Agree on the tech stack and frameworks
+[?] Hold a team decision meeting",E-PLANNER: evidence/planner/source-export.xlsx,"Agree on the multi-tenant approach (tenant identification, data isolation) (export completion only; attach supporting evidence)
+Agree on GitHub branching, commit and PR review rules (export completion only; attach supporting evidence)
+All members confirm the decisions (export completion only; attach supporting evidence)
+Record the decisions in a decision log (export completion only; attach supporting evidence)
+Agree on the tech stack and frameworks (export completion only; attach supporting evidence)
+Hold a team decision meeting (export completion only; attach supporting evidence)",Export reported only,"Implementation reflects a stack and tenancy design, but team agreement, decision log and meeting attendance are not locally evidenced.",2026-10-02,2026-10-21,2026-10-10,SAAYINATH K it23304338,"Evidence
+Decision_Log.xlsx (decision, reason, date, agreed by)
+Decision_Meeting_Minutes.docx
+Teams_Meeting_Attendance.png",
+P-07,bRMfwq5CIEK8RBSyaDHxU8kALbNy,Define API contracts and sample responses,Sprint 1,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Completed,Completed,5/12,"[?] C3: I-05 contract + mock
+[x] Define the standard error format and status codes
+[x] Define request and response schemas
+[?] List the endpoints for each component
+[?] C3: I-05 lead-recommendation contract + mock (commit 89781CD
+[x] Define the auth and tenant ID headers
+[?] Commit the contracts to GitHub
+[?] C3 I-04 v1.1.0 + I-05 v1.1.0 with mocks
+[x] Add sample JSON responses for each endpoint
+[?] C3: I-04 lead-score contract + mock (commit 6ca606b)
+[?] Review the contracts with the team
+[x] Document the currently implemented C4 platform endpoints and integration limitations","E-PLANNER: evidence/planner/source-export.xlsx
+E-API-DOC: frontend/PLATFORM_API.md","C3: I-05 contract + mock (export completion only; attach supporting evidence)
+List the endpoints for each component (export completion only; attach supporting evidence)
+C3: I-05 lead-recommendation contract + mock (commit 89781CD (export completion only; attach supporting evidence)
+Commit the contracts to GitHub (export completion only; attach supporting evidence)
+C3 I-04 v1.1.0 + I-05 v1.1.0 with mocks (export completion only; attach supporting evidence)
+C3: I-04 lead-score contract + mock (commit 6ca606b) (export completion only; attach supporting evidence)
+Review the contracts with the team (export completion only; attach supporting evidence)
+Attach team-reviewed cross-component contracts, actual C1/C2/C3 mocks and the contract commit/review evidence.",Partial,"Implemented C4 API contract is documented with payloads, error codes, identity and permissions. Preserve team completion; referenced C3 YAML/mock files are absent from this checkout.",2026-10-04,2026-10-21,2026-10-20,SHATHURSINI.J it23164062,"Evidence
+openapi.yaml (or API_Contracts.docx)
+Postman_Collection.json
+GitHub_API_Contract_Commit.png
+12 Oct – C3 contracts done: contracts/v1/lead-score.yaml (I-04) and contracts/v1/lead-recommendation.yaml (I-05), with real mock responses in contracts/mocks/. Shared with Saayinath (C4 Email Agent consumer).",
+P-08,2G80Ovxsb0a9o6MtQHEGA8kAF9IF,Review Sprint 1 progress and risks,Sprint 1,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Completed,Completed,0/5,"[?] Record lessons learned
+[?] Check the completion status of every Sprint 1 task
+[?] Identify incomplete tasks and move them to Sprint 2
+[?] Confirm the Sprint 2 plan
+[?] Update the risk register with new risks and mitigations",E-PLANNER: evidence/planner/source-export.xlsx,"Record lessons learned (export completion only; attach supporting evidence)
+Check the completion status of every Sprint 1 task (export completion only; attach supporting evidence)
+Identify incomplete tasks and move them to Sprint 2 (export completion only; attach supporting evidence)
+Confirm the Sprint 2 plan (export completion only; attach supporting evidence)
+Update the risk register with new risks and mitigations (export completion only; attach supporting evidence)",Export reported only,Sprint review/lessons/risk updates are reported complete. The risk register and review minutes are not present locally.,2026-10-04,2026-10-21,2026-10-10,SAAYINATH K it23304338,,
+P-09,L3DNfb9RQEu-NHNd75u1BckAEBcJ,Add authentication and secure tenant identification,Sprint 2,SAAYINATH K it23304338,Completed,Completed,8/8,"[x] Create JWT login endpoint
+[x] Test missing and invalid JWT
+[x] Implement protected user and tenant endpoints
+[x] Test valid and invalid credentials
+[x] Implement bcrypt password verification
+[x] Create JWT verification middleware
+[x] Restore identity through HTTP-only cookies and revoke sessions on logout
+[x] Reject forged tenant/role registration and cross-origin/CSRF mutations","E-PLANNER: evidence/planner/source-export.xlsx
+E-AUTH: services/gateway/src/routes/authRoutes.js
+E-SESSIONS: services/gateway/src/services/session.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",,Verified,"Password login, session-bound tenant identity, bcrypt, JWT validation and protected routes are covered by fresh account/API tests.",2026-10-06,2026-10-21,2026-10-10,SAAYINATH K it23304338,,
+P-10,d15ir2Ejp0y8X0EVS5BJm8kAJyOT,Add role-based access permissions,Sprint 2,SAAYINATH K it23304338,Completed,Completed,7/7,"[x] Implement authorize middleware
+[x] Protect admin-only route
+[x] Test all nine role-route combinations
+[x] Protect campaign management route
+[x] Protect campaign viewing route
+[x] Define agency_admin, marketer and viewer permissions
+[x] Apply live role changes and account deactivation to existing sessions","E-PLANNER: evidence/planner/source-export.xlsx
+E-RBAC: services/gateway/src/policies/rbac.js
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",,Verified,All nine legacy role/route combinations were rerun and passed. Current database roles override stale JWT role claims.,2026-10-07,2026-10-21,2026-10-10,SAAYINATH K it23304338,,
+P-11,b1g6dPubUEqavE0O4L3aiskAJOrB,Connect agent services through the API gateway,Sprint 2,SAAYINATH K it23304338,In progress,In progress,3/11,"[ ] Define shared agent request and response contract
+[ ] Connect Component 1 API endpoint
+[ ] Connect Component 3 API endpoint
+[ ] Create mock agent for unavailable services
+[ ] Implement authenticated gateway proxy
+[x] Enforce roles and tenant context
+[ ] Connect Component 2 API endpoint
+[ ] Test successful, denied and unavailable-agent responses
+[ ] Configure internal service URLs and credentials
+[x] Expose implemented C4 workspace and email APIs with explicit disconnected statuses
+[x] Test C4 denied, unavailable-model and malformed-model responses","E-PLANNER: evidence/planner/source-export.xlsx
+E-RBAC: services/gateway/src/policies/rbac.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-API-DOC: frontend/PLATFORM_API.md","Define shared agent request and response contract
+Connect Component 1 API endpoint
+Connect Component 3 API endpoint
+Create mock agent for unavailable services
+Implement authenticated gateway proxy
+Connect Component 2 API endpoint
+Test successful, denied and unavailable-agent responses
+Configure internal service URLs and credentials
+C4 boundary documentation and provider test doubles do not prove the shared C1-C3 proxy contract, deployed mocks or connected agent services.",Partial,C4 has authenticated tenant/role-protected APIs and documented integration boundaries. C1/C2/C3 services and a gateway proxy for them are not implemented.,2026-10-08,2026-10-21,,,,
+P-12,tWW3Lz5eikqqko1AQ6-PhckAAchW,Record API actions in audit logs,Sprint 2,SAAYINATH K it23304338,In progress,Completed,5/5,"[x] Record tenant, user, action and route
+[x] Record successful API access
+[x] Verify audit records in PostgreSQL
+[x] Create audit logging middleware
+[x] Record denied API access","E-PLANNER: evidence/planner/source-export.xlsx
+E-AUDIT: services/gateway/src/middleware/audit.js
+E-ACCESS: evidence/planner/checks/access-audit.json",Scope: authenticated routes using the audit middleware. Missing/invalid JWT requests and all platform CRUD routes are not universally covered.,Verified,Authenticated allowed/denied audit logging is now independently verified: 6 allowed and 3 denied records with tenant/user/route/status in PostgreSQL.,2026-10-09,2026-10-21,,,,
+P-13,GUVHbCA7PkqbbEu18R3v7ckAM1L6,Show each first key function to the supervisor,Sprint 2,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,In progress,In progress,1/7,"[ ] Each member prepares a demo of their first key function
+[ ] Create follow-up tasks from the feedback
+[ ] Schedule the meeting with the supervisor
+[ ] Run the demos
+[ ] Prepare a short demo order or script
+[ ] Record the supervisor’s feedback
+[x] Collect C4 overview, account, membership and mobile demo screenshots","E-PLANNER: evidence/planner/source-export.xlsx
+E-SCREEN-OVERVIEW: evidence/planner/screenshots/authenticated-overview-light.png
+E-SCREEN-TEAM: evidence/planner/screenshots/live-team-access.png
+E-SCREEN-MOBILE: evidence/planner/screenshots/register-mobile.png","Each member prepares a demo of their first key function
+Create follow-up tasks from the feedback
+Schedule the meeting with the supervisor
+Run the demos
+Prepare a short demo order or script
+Record the supervisor’s feedback",Partial,"C4 implementation and fresh screenshots support demo preparation. No supervisor invitation, actual demo, feedback or follow-up record is available.",2026-10-09,2026-10-21,,,"Evidence
+Supervisor_Demo_Invite.png
+Demo_Screenshots.png (or the demo recording link)
+Supervisor_Feedback_Notes.docx",
+P-14,CAUKFn_9p0eQoa1HyoThaMkABDY5,Review Sprint 2 progress and GitHub contributions,Sprint 2,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Completed,Completed,0/5,"[?] Check that PRs were reviewed and merged
+[?] Move unfinished tasks and plan Sprint 3
+[?] Check commits per member on GitHub
+[?] Update the risk register
+[?] Review the Sprint 2 board status",E-PLANNER: evidence/planner/source-export.xlsx,"Check that PRs were reviewed and merged (export completion only; attach supporting evidence)
+Move unfinished tasks and plan Sprint 3 (export completion only; attach supporting evidence)
+Check commits per member on GitHub (export completion only; attach supporting evidence)
+Update the risk register (export completion only; attach supporting evidence)
+Review the Sprint 2 board status (export completion only; attach supporting evidence)",Export reported only,Preserve team-reported completion. Export says Completed but 0/5 checklist items; commits are visible locally but PR review/merge and team review records are not established.,2026-10-09,2026-10-21,2026-10-14,SHATHURSINI.J it23164062,,
+P-15,YusHog_KNEi38rVn5hM3h8kAJ6Gl,Arrange the user-feedback session,Sprint 3,SAAYINATH K it23304338;JASINTHAN U it23154544;SHATHURSINI.J it23164062,In progress,In progress,0/4,"[ ] Agree the user-feedback goals and participant criteria
+[ ] Invite participants and record the confirmed session
+[ ] Prepare a runnable user journey and feedback questions
+[ ] Collect feedback and link the findings and resulting tasks",E-PLANNER: evidence/planner/source-export.xlsx,"Agree the user-feedback goals and participant criteria
+Invite participants and record the confirmed session
+Prepare a runnable user journey and feedback questions
+Collect feedback and link the findings and resulting tasks",Unverified,"No user-feedback invitation, participant list, completed session or feedback analysis is available locally.",2026-10-10,2026-10-21,,,,
+P-16,35EcnmgUHkmORnMzFR-ltskALTIN,Test tenant isolation and access permissions,Sprint 3,SAAYINATH K it23304338,Completed,Completed,6/6,"[x] Verify Tenant B can read its own records
+[x] Verify Tenant C can read its own records
+[x] Verify Tenant A can read its own records
+[x] Run RBAC tests for all roles
+[x] Verify unauthorized writes are blocked
+[x] Verify cross-tenant reads are blocked","E-PLANNER: evidence/planner/source-export.xlsx
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",,Verified,Three real sample tenants pass read isolation; three isolated test tenants pass cross-tenant read/write rejection; all nine RBAC combinations pass.,2026-10-12,2026-10-21,2026-10-10,SAAYINATH K it23304338,,
+P-17,k4qM_z973kysiXs_hnYkOMkAFABB,Generate a personalized three-step email sequence,Sprint 3,SAAYINATH K it23304338,In progress,In progress,7/9,"[x] Generate personalized subject lines and messages
+[x] Prepare tenant-specific knowledge retrieval
+[x] Configure email agent and model
+[ ] Test tenant-specific generation
+[x] Save generated output and test evidence
+[x] Add safety and content checks
+[x] Define three-email sequence structure
+[ ] Pass a live tenant-context generation and persistence smoke test
+[x] Persist and reload manual email sequences without an AI dependency","E-PLANNER: evidence/planner/source-export.xlsx
+E-AGENT: services/gateway/src/services/emailAgent.js
+E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-RENDER: services/gateway/src/services/emailTemplates.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-GUARDS: services/gateway/src/services/guardrails.js
+E-CONTENT: evidence/planner/checks/content-audit.json
+E-SEQUENCE: services/gateway/src/services/workspace.js
+E-AI-FAIL: evidence/planner/checks/browser-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt","Test tenant-specific generation
+Pass a live tenant-context generation and persistence smoke test
+The trained adapter is separate from the configured base-model runtime. Live name/link rendering is a helper awaiting a delivery integration; context retrieval is recent/source-selected text, not vector similarity search.",Implemented; live test pending,"Three-step generation, tenant context, validation and persistence are implemented and integration-tested with model responses stubbed. Live Ollama generation returned HTTP 503 during this audit.",2026-10-13,2026-10-21,,,,
+P-18,TC0kO6inN0uNkshS4O9n7MkAOPSk,Connect all agents and test the complete workflow,Sprint 3,SAAYINATH K it23304338,Not started,In progress,1/7,"[x] Run C4 registration, campaign, knowledge and saved-sequence workflow against PostgreSQL
+[ ] Connect Component 1 strategy service
+[ ] Connect Component 2 content service
+[ ] Connect Component 3 lead-intelligence service
+[ ] Verify identity/context handoffs between all four components
+[ ] Run complete multi-agent success, denial and failure scenarios
+[ ] Capture a complete integrated workflow trace and output evidence","E-PLANNER: evidence/planner/source-export.xlsx
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-PLATFORM: services/gateway/src/routes/platformRoutes.js","Connect Component 1 strategy service
+Connect Component 2 content service
+Connect Component 3 lead-intelligence service
+Verify identity/context handoffs between all four components
+Run complete multi-agent success, denial and failure scenarios
+Capture a complete integrated workflow trace and output evidence",Partial,The C4 account-to-campaign/knowledge/manual-sequence workflow passes browser checks. No complete C1-C4 agent workflow exists in this checkout.,2026-10-14,2026-10-21,,,,
+P-19,NXPTfCPyvEq8vKZq-1PzMMkAB6ym,"Check email privacy, consent, facts and tone",Sprint 3,SAAYINATH K it23304338,Not started,In progress,4/8,"[x] Reject detected email/phone PII
+[x] Require unsubscribe wording on saved drafts
+[x] Reject spam phrases and excessive capitals
+[x] Measure offline offer/fact grounding on generated responses
+[ ] Enforce runtime grounding against selected tenant facts before persistence
+[ ] Enforce the 150-word body limit in the save validator
+[ ] Verify recipient consent and process real opt-outs before delivery
+[ ] Review factual relevance and tone manually on an independent test set","E-PLANNER: evidence/planner/source-export.xlsx
+E-CONTENT: evidence/planner/checks/content-audit.json
+E-GUARDS: services/gateway/src/services/guardrails.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json
+E-SEQUENCE: services/gateway/src/services/workspace.js
+E-PLATFORM: services/gateway/src/routes/platformRoutes.js","Enforce runtime grounding against selected tenant facts before persistence
+Enforce the 150-word body limit in the save validator
+Verify recipient consent and process real opt-outs before delivery
+Review factual relevance and tone manually on an independent test set",Partial,"PII, unsubscribe, spam and caps checks are implemented and verified. Factual offer grounding is measured offline but not enforced by the save validator; recipient consent is not implemented.",2026-10-14,2026-10-21,,,,
+P-20,A46wNzBeX02RvIyc_ZhTCckADxwD,Review the 50% checkpoint with the supervisor,Sprint 3,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,Not started,0/4,"[ ] Prepare individual progress, results and known limitations
+[ ] Arrange and conduct the 50% supervisor checkpoint
+[ ] Record supervisor feedback and approval
+[ ] Assign and track follow-up actions",E-PLANNER: evidence/planner/source-export.xlsx,"Prepare individual progress, results and known limitations
+Arrange and conduct the 50% supervisor checkpoint
+Record supervisor feedback and approval
+Assign and track follow-up actions",Unverified,A working C4 implementation is not evidence of a supervisor checkpoint meeting. No checkpoint approval or feedback is available.,2026-10-14,2026-10-21,,,,
+P-21,6cEFQK5jl0Cg9BgNbRp55ckAM_50,Compare personalized emails with generic AI emails,Sprint 4,SAAYINATH K it23304338,Not started,In progress,3/7,"[x] Use identical held-out validation prompts for base and fine-tuned models
+[x] Save per-response checks, latency, comparison table and training loss
+[x] Recalculate all-checks pass rates: base 6/25, fine-tuned 19/25
+[ ] Compare the same campaign briefs with and without personalization/context
+[ ] Evaluate all 171 validation prompts and a separate untouched test set
+[ ] Use a blinded human rubric for relevance, factuality, tone and personalization
+[ ] Report uncertainty and grounding regressions; do not claim real CTR improvement","E-PLANNER: evidence/planner/source-export.xlsx
+E-FT-NOTEBOOK: ml/finetune/c4_finetune_mistral_qlora.ipynb
+E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json","Compare the same campaign briefs with and without personalization/context
+Evaluate all 171 validation prompts and a separate untouched test set
+Use a blinded human rubric for relevance, factuality, tone and personalization
+Report uncertainty and grounding regressions; do not claim real CTR improvement",Partial,A reproducible baseline-versus-fine-tuned generation comparison exists for 25 shared validation prompts. This is not a personalized-versus-generic ablation or a measured CTR experiment.,2026-10-17,2026-10-21,,,,
+P-22,3aMfr5fB2kmDcv995Gn_u8kAGu0i,"Add sequence timing, consent and suppression checks",Sprint 4,SAAYINATH K it23304338,Not started,In progress,2/7,"[x] Validate three emails scheduled at offsets 0, 3 and 7 days
+[x] Require unsubscribe wording before saving
+[ ] Store recipient consent and auditable consent changes
+[ ] Maintain tenant-scoped suppression/unsubscribe records
+[ ] Check consent and suppression at the delivery boundary
+[ ] Implement a scheduler with timezone, cancellation, retries and duplicate-send prevention
+[ ] Test opt-out processing and suppression before subsequent steps","E-PLANNER: evidence/planner/source-export.xlsx
+E-SEQUENCE: services/gateway/src/services/workspace.js
+E-CONTENT: evidence/planner/checks/content-audit.json
+E-GUARDS: services/gateway/src/services/guardrails.js","Store recipient consent and auditable consent changes
+Maintain tenant-scoped suppression/unsubscribe records
+Check consent and suppression at the delivery boundary
+Implement a scheduler with timezone, cancellation, retries and duplicate-send prevention
+Test opt-out processing and suppression before subsequent steps",Partial,"Day 0/3/7 sequence metadata is enforced and unsubscribe text is checked. These do not implement scheduling, per-recipient consent or suppression.",2026-10-16,2026-10-21,,,,
+P-23,ng9K8ZXRykm5SWUSkhQJxckAIl44,"Add monitoring, traces and alerts",Sprint 4,SAAYINATH K it23304338,Not started,In progress,3/7,"[x] Expose health, database latency and actual model availability
+[x] Persist and display workspace activity
+[x] Show disconnected delivery and agent services explicitly
+[ ] Add request/correlation IDs and traces across connected services
+[ ] Collect retained latency/error/throughput metrics
+[ ] Configure alert rules and notification delivery
+[ ] Trigger a failure and capture its alert and trace evidence","E-PLANNER: evidence/planner/source-export.xlsx
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-KB-UI: frontend/src/pages/Workspace.jsx","Add request/correlation IDs and traces across connected services
+Collect retained latency/error/throughput metrics
+Configure alert rules and notification delivery
+Trigger a failure and capture its alert and trace evidence",Partial,"Health checks, database/model status, five-second workspace activity and 15-second service polling exist. Distributed request traces, metrics collection and alerts are not present.",2026-10-18,2026-10-21,,,,
+P-24,oJdPS1cdFkK0oZ8vBSPr4MkACVWd,Build the engagement model and experiment store,Sprint 4,SAAYINATH K it23304338,Not started,Not started,0/6,"[ ] Define genuine engagement labels and avoid synthetic CTR as measured outcomes
+[ ] Build leakage-controlled train/validation/test splits
+[ ] Train and evaluate an engagement predictor against a baseline
+[ ] Store tenant-scoped experiment variants and assignments
+[ ] Persist provider-confirmed delivery/open/click events with deduplication
+[ ] Expose prediction/experiment APIs and validate tenant isolation",E-PLANNER: evidence/planner/source-export.xlsx,"Define genuine engagement labels and avoid synthetic CTR as measured outcomes
+Build leakage-controlled train/validation/test splits
+Train and evaluate an engagement predictor against a baseline
+Store tenant-scoped experiment variants and assignments
+Persist provider-confirmed delivery/open/click events with deduplication
+Expose prediction/experiment APIs and validate tenant isolation",Not implemented,No engagement prediction training/inference service or experiment assignment/event store is present. Email language-model fine-tuning is a different deliverable.,2026-10-19,2026-10-21,,,,
+P-25,gq8so08bZECDFmScnMsw-ckAKti3,Deploy the system and test performance,Sprint 4,SAAYINATH K it23304338,Not started,In progress,4/7,"[x] Provide a Compose stack for the frontend, gateway, database and migrations
+[x] Build the frontend and verify Nginx/gateway reachability
+[x] Verify fresh and repeated migrations
+[x] Run and save a local health load test
+[ ] Pass live AI generation under realistic concurrency and latency budgets
+[ ] Test authenticated database workflows and connected agents under load
+[ ] Record target-environment deployment, recovery and full-workflow performance evidence","E-PLANNER: evidence/planner/source-export.xlsx
+E-DEPLOY: docker-compose.yml
+E-DOCKER-DOC: docker/README.md
+E-BUILD: evidence/planner/checks/frontend-build.txt
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt
+E-LOAD: evidence/planner/checks/health-load-summary.json
+E-AI-FAIL: evidence/planner/checks/browser-tests.txt","Pass live AI generation under realistic concurrency and latency budgets
+Test authenticated database workflows and connected agents under load
+Record target-environment deployment, recovery and full-workflow performance evidence",Partial,"A local Docker deployment is running and the health-only 5-VU/30-second workload passes. This does not establish email-generation or multi-agent performance, cloud deployment or production readiness.",2026-10-19,2026-10-21,,,,
+P-26,TV31rvZfMES0EYG9QHzpLskAOqsB,Test the full workflow and isolation across three tenants,Sprint 4,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,In progress,4/7,"[x] Verify own-record reads for all three sample tenants
+[x] Reject cross-tenant reads and inserts in three isolated workspaces
+[x] Verify campaign/knowledge/sequence ownership and stale-write rejection
+[x] Run the C4 account/campaign/knowledge/manual-sequence browser journey
+[ ] Complete live AI generation for each tenant
+[ ] Connect and verify the C1-C4 workflow across all three tenants
+[ ] Capture complete multi-agent workflow and isolation evidence for the team","E-PLANNER: evidence/planner/source-export.xlsx
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-AI-FAIL: evidence/planner/checks/browser-tests.txt","Complete live AI generation for each tenant
+Connect and verify the C1-C4 workflow across all three tenants
+Capture complete multi-agent workflow and isolation evidence for the team",Partial,C4 three-tenant isolation and the C4 browser workflow are verified. Full cross-component and live AI workflow checks remain incomplete.,2026-10-18,2026-10-21,,,,
+P-27,gElqHoOhHEeeQD0cdwKmyMkAL141,Prepare each member’s PP1 slides,Sprint 4,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,Not started,0/4,"[ ] Prepare the C4 problem, architecture and individual contribution slides
+[ ] Include measured evaluation results and their limitations
+[ ] Add screenshots, demo sequence and remaining work
+[ ] Review and combine each member's PP1 slides",E-PLANNER: evidence/planner/source-export.xlsx,"Prepare the C4 problem, architecture and individual contribution slides
+Include measured evaluation results and their limitations
+Add screenshots, demo sequence and remaining work
+Review and combine each member's PP1 slides",Unverified,No PP1 slide deck exists in this workspace. The report and screenshots can support a future C4 deck; they are not a completed presentation.,2026-10-19,2026-10-21,,,,
+P-28,Q-ddELlELU2toTK8qtU_CckAO1Oz,Prepare each member’s evidence folder,Sprint 4,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,In progress,2/4,"[x] Create a C4 evidence index linking source, tests, screenshots and model results
+[x] Retain successes, failures and unverified claims in the task audit
+[ ] Collect and review the other three members' evidence
+[ ] Publish the agreed team evidence folder and record its final location","E-PLANNER: evidence/planner/source-export.xlsx
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-AI-FAIL: evidence/planner/checks/browser-tests.txt
+E-FT-REBUILD: evidence/planner/checks/dataset-rebuild.txt
+E-CONTENT: evidence/planner/checks/content-audit.json","Collect and review the other three members' evidence
+Publish the agreed team evidence folder and record its final location",Partial,"This audit packages the C4 planner mapping, checklists, regression logs, screenshots and fine-tuning evidence. Other members' evidence and team submission location are not verified.",2026-10-19,2026-10-21,,,,
+P-29,ILbFBYC4Y0SXQp-mKqnfoMkAOT46,Run a timed rehearsal and practise Q&A,Sprint 4,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,Not started,0/4,"[ ] Agree the presentation/demo order and time budget
+[ ] Run and time the full team rehearsal
+[ ] Practise individual Q&A and record weak areas
+[ ] Record feedback and assign corrective tasks",E-PLANNER: evidence/planner/source-export.xlsx,"Agree the presentation/demo order and time budget
+Run and time the full team rehearsal
+Practise individual Q&A and record weak areas
+Record feedback and assign corrective tasks",Unverified,No timed rehearsal or Q&A attendance/recording is available.,2026-10-19,2026-10-21,,,,
+P-30,0ZVT67QIWk-91Ea1EJ8NqskALWXL,Rehearse the presentation and demo with the supervisor,Sprint 5,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,Not started,0/3,"[ ] Schedule the supervisor rehearsal
+[ ] Rehearse the actual presentation and live demo
+[ ] Capture supervisor feedback and resulting actions",E-PLANNER: evidence/planner/source-export.xlsx,"Schedule the supervisor rehearsal
+Rehearse the actual presentation and live demo
+Capture supervisor feedback and resulting actions",Unverified,"No supervisor rehearsal invitation, attendance or feedback is available.",2026-10-20,2026-10-21,,,,
+P-31,lPSAySqwKk-L1aPo-MJSYckAJmri,Fix all rehearsal feedback items,Sprint 5,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,Not started,0/3,"[ ] Collect the actual rehearsal feedback register
+[ ] Assign and implement each correction
+[ ] Retest affected behavior and record acceptance",E-PLANNER: evidence/planner/source-export.xlsx,"Collect the actual rehearsal feedback register
+Assign and implement each correction
+Retest affected behavior and record acceptance",Unverified,No rehearsal feedback register is present; audit findings must not be represented as supervisor feedback.,2026-10-21,2026-10-21,,,,
+P-32,wWEaSgOMrECdkylZWwcNZskAEP5Q,Practise individual questions and explanations,Sprint 5,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,Not started,0/3,"[ ] Explain tenancy, RLS, session auth, roles and implementation ownership
+[ ] Explain QLoRA, dataset split, evaluation and grounding limitations
+[ ] Practise individual questions and record completed practice",E-PLANNER: evidence/planner/source-export.xlsx,"Explain tenancy, RLS, session auth, roles and implementation ownership
+Explain QLoRA, dataset split, evaluation and grounding limitations
+Practise individual questions and record completed practice",Unverified,No individual Q&A practice record or completed explanation pack is available.,2026-10-21,2026-10-21,,,,
+P-33,WznWPEwGh0mf20UgYu20uMkANBrk,Freeze the code and test setup on a clean machine,Sprint 5,SAAYINATH K it23304338,Not started,In progress,2/6,"[x] Run production build and existing unit/integration/browser checks
+[x] Verify fresh-database setup and repeated migrations
+[ ] Resolve and commit the intended staged/unstaged changes
+[ ] Create and record the agreed release/freeze commit or tag
+[ ] Clone and validate startup on a separate clean environment
+[ ] Verify clean-machine AI/runtime dependencies and model setup","E-PLANNER: evidence/planner/source-export.xlsx
+E-BUILD: evidence/planner/checks/frontend-build.txt
+E-UNIT: evidence/planner/checks/unit-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt
+E-GIT: evidence/planner/checks/repository-snapshot.json
+E-FT-REBUILD: evidence/planner/checks/dataset-rebuild.txt
+E-AI-FAIL: evidence/planner/checks/browser-tests.txt","Resolve and commit the intended staged/unstaged changes
+Create and record the agreed release/freeze commit or tag
+Clone and validate startup on a separate clean environment
+Verify clean-machine AI/runtime dependencies and model setup",Partial,Fresh schema and local build/browser checks pass. The checkout has substantial staged/unstaged work; no frozen release or separate clean-machine validation is established.,2026-10-21,2026-10-21,,,,
+P-34,oQ8dzx9J8UiOPzofV54RE8kAAKML,"Finalize diaries, AI logs and PP1 submission evidence",Sprint 5,SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062,Not started,In progress,1/5,"[x] Package C4 source references, tests, screenshots and fine-tuning evidence
+[ ] Complete each member's diary and AI-use log
+[ ] Attach approved reports, final slides and supervisor evidence
+[ ] Check links and upload the final submission to the required team location
+[ ] Record submission confirmation and final review","E-PLANNER: evidence/planner/source-export.xlsx
+E-ACCESS: evidence/planner/checks/access-audit.json
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json","Complete each member's diary and AI-use log
+Attach approved reports, final slides and supervisor evidence
+Check links and upload the final submission to the required team location
+Record submission confirmation and final review",Partial,"C4 implementation/evaluation evidence is packaged by this audit. Diaries, AI logs, signed reports, slides and final team submission are not available locally.",2026-10-22,2026-10-21,,,,
+P-35,-C0Kc5Jh7kWzxY9qKakYI8kAIf9m,"Add OAuth, webhooks, sync and recovery after PP1",Backlog,SAAYINATH K it23304338,Not started,In progress,2/6,"[x] Implement Google ID-token verification, nonce challenges and explicit account linking
+[x] Test provider failures, replay rejection, email mismatch and unverified identities
+[ ] Complete a real Google account sign-in/link acceptance test
+[ ] Implement required external-service OAuth grants and credential refresh
+[ ] Add authenticated, replay-safe, tenant-routed webhooks
+[ ] Implement synchronization, retries, recovery and reconciliation","E-PLANNER: evidence/planner/source-export.xlsx
+E-AUTH: services/gateway/src/routes/authRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt","Complete a real Google account sign-in/link acceptance test
+Implement required external-service OAuth grants and credential refresh
+Add authenticated, replay-safe, tenant-routed webhooks
+Implement synchronization, retries, recovery and reconciliation",Partial,"Google identity sign-in and explicit linking are implemented and pass provider-boundary tests. External-service OAuth/token refresh, webhooks, synchronization and recovery remain unimplemented.",,2026-10-21,,,,
+P-36,NsSUAVg4VEChXYGsDLToDskAHv8Z,Optional: add tenant opt-in settings and API,Backlog,SAAYINATH K it23304338,Not started,Not started,0/5,"[ ] Define opt-in purposes, defaults and permission rules
+[ ] Persist tenant-scoped settings and changes
+[ ] Add authenticated settings APIs and an administrator UI
+[ ] Enforce opt-in decisions in integrations and delivery
+[ ] Test authorization, isolation and opt-in/opt-out transitions",E-PLANNER: evidence/planner/source-export.xlsx,"Define opt-in purposes, defaults and permission rules
+Persist tenant-scoped settings and changes
+Add authenticated settings APIs and an administrator UI
+Enforce opt-in decisions in integrations and delivery
+Test authorization, isolation and opt-in/opt-out transitions",Not implemented,No tenant opt-in preference table/API or enforcement path exists; visual theme/motion preferences are unrelated.,,2026-10-21,,,,
+NEW-C4-01,,Build the responsive authenticated C4 workspace interface,Sprint 3,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Implement overview, campaigns, email builder, knowledge, integrations, team, monitoring and settings routes
+[x] Enforce route/action permissions and real account/session state
+[x] Support light/dark appearance and motion preferences
+[x] Validate authenticated/login/register layouts at 320, 390 and 768 pixels","E-UI: frontend/src/components/AccountShell.jsx
+E-KB-UI: frontend/src/pages/Workspace.jsx
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-UNIT: evidence/planner/checks/unit-tests.txt
+E-SCREEN-MOBILE: evidence/planner/screenshots/register-mobile.png",,Verified,"Delivered UI work not explicitly named as a standalone task in the export; scope is the implemented C4 interface, with disconnected integrations shown honestly.",,2026-10-21,,,,k4qM_z973kysiXs_hnYkOMkAFABB
+NEW-C4-02,,Implement self-service account registration and database-backed sessions,Sprint 2,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Create a server-assigned administrator and new workspace on registration
+[x] Validate passwords and reject client-selected role/tenant identity
+[x] Restore sessions through HTTP-only cookies with CSRF/origin checks
+[x] Persist profile changes and revoke sessions on logout/deactivation","E-AUTH: services/gateway/src/routes/authRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-SESSIONS: services/gateway/src/services/session.js
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",,Verified,Extends the original login task with account lifecycle and browser-session behavior. No email verification/password-reset service is claimed.,,2026-10-21,,,,L3DNfb9RQEu-NHNd75u1BckAEBcJ
+NEW-C4-03,,Implement Google identity verification and account linking,Sprint 2,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Provide Google challenge and verified ID-token handlers
+[x] Enforce single-use nonce, verified email and configured audience checks
+[x] Reject automatic email-only linking and require authenticated explicit linking
+[x] Test failure, replay, registration and linking paths with provider verification stubbed","E-AUTH: services/gateway/src/routes/authRoutes.js
+E-ACCOUNTS-SCHEMA: db/migrations/004_accounts_and_sessions.sql
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt",,Verified,Implementation and automated provider-boundary tests are complete. No real Google-account acceptance test or general external-service OAuth flow is claimed; those remain on the parent backlog task.,,2026-10-21,,,,-C0Kc5Jh7kWzxY9qKakYI8kAIf9m
+NEW-C4-04,,Add workspace invitations and live team membership controls,Sprint 3,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Create single-use, expiring invitations bound to recipient/workspace/role
+[x] Accept invitations without allowing tenant or role substitution
+[x] Implement role changes and deactivation with live permission refresh
+[x] Protect self-role changes and last active administrator in code","E-TEAM: services/gateway/src/routes/teamRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",,Verified,Invitation links are shared manually; no invitation email delivery is connected. Last-admin protection is source-reviewed; the existing suite checks self-change rejection.,,2026-10-21,,,,d15ir2Ejp0y8X0EVS5BJm8kAJyOT
+NEW-C4-05,,"Persist campaign drafts, ownership and versioned changes",Sprint 3,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Store tenant-scoped campaign drafts and archive/restore updates
+[x] Reject foreign workspace updates and stale versions
+[x] Keep delivery metrics unavailable until real provider events exist
+[x] Verify database persistence and cross-tab refresh","E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-RECORDS-SCHEMA: db/migrations/005_workspace_records.sql
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-API-DOC: frontend/PLATFORM_API.md
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",,Verified,Campaign management now has persisted records rather than only role-demonstration routes; sending and Active state are intentionally unavailable.,,2026-10-21,,,,TC0kO6inN0uNkshS4O9n7MkAOPSk
+NEW-C4-06,,Build the persistent manual email-sequence editor and library,Sprint 3,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Create, edit, reopen and delete saved three-email drafts
+[x] Validate sequence structure, guardrails, source ownership and optimistic versions
+[x] Retain saved work across page reload and new login
+[x] Deny viewers and foreign tenants access to sequence content","E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-SEQUENCE: services/gateway/src/services/workspace.js",,Verified,Manual drafting works independently of model availability; live model generation remains a separate pending acceptance check.,,2026-10-21,,,,k4qM_z973kysiXs_hnYkOMkAFABB
+NEW-C4-07,,Build the tenant knowledge library and generation source controls,Sprint 3,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Add and remove actual workspace knowledge text with administrator permissions
+[x] Provide text upload/source selection UI and saved knowledge
+[x] Retrieve only the authenticated tenant's selected/recent text
+[x] Reject foreign source IDs before contacting the model","E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-KB-UI: frontend/src/pages/Workspace.jsx
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-AGENT: services/gateway/src/services/emailAgent.js",,Verified,"Current retrieval is source-selected/recent text, capped by source count and characters. pgvector availability and an embedding seed script do not establish semantic vector retrieval.",,2026-10-21,,,,k4qM_z973kysiXs_hnYkOMkAFABB
+NEW-C4-08,,"Add workspace activity, database totals and automatic refresh",Sprint 4,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Commit activity alongside campaign/knowledge/sequence changes
+[x] Expose database totals and UTC daily aggregates without invented metrics
+[x] Refresh visible workspace data every five seconds and service status every fifteen seconds
+[x] Verify cross-tab updates and data reset for tenant/role changes","E-PLATFORM: services/gateway/src/routes/platformRoutes.js
+E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-UNIT: evidence/planner/checks/unit-tests.txt
+E-SYNC: frontend/src/hooks/useWorkspace.js
+E-KB-UI: frontend/src/pages/Workspace.jsx
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt",,Verified,Delivered operational UI and polling are separate from distributed tracing or external alert delivery.,,2026-10-21,,,,ng9K8ZXRykm5SWUSkhQJxckAIl44
+NEW-C4-09,,Containerize C4 and verify repeatable database migrations,Sprint 4,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Package React/Nginx, gateway and pgvector PostgreSQL in Compose
+[x] Provide ordered startup, loopback ports, persistent volumes and healthchecks
+[x] Track migration checksums and validate restricted-role forced RLS
+[x] Pass fresh-database and repeated-migration checks","E-DEPLOY: docker-compose.yml
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-DOCKER-DOC: docker/README.md
+E-MIGRATOR: services/gateway/scripts/migrate.js
+E-MIGRATION-TEST: evidence/planner/checks/migration-tests.txt",,Verified,"Completed scope is local Docker deployment and migration verification. Cloud HTTPS, production operations and clean-machine release validation remain outside this completed item.",,2026-10-21,,,,gq8so08bZECDFmScnMsw-ckAKti3
+NEW-C4-10,,Verify fine-tuning examples and the application prompt contract,Sprint 3,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Verify 715 training and 171 validation sequences
+[x] Check supplied reference answers and actual application guardrails
+[x] Confirm exact runtime prompt reconstruction and fixed personalization line
+[x] Confirm five validation products with no training-product overlap",E-FT-DATA: evidence/planner/checks/dataset-verification.json,,Verified,Completed item is supplied-artifact verification. CSV regeneration could not run in this Python environment because pandas is missing; the old README's claim that the builder is absent is stale.,,2026-10-21,,,,k4qM_z973kysiXs_hnYkOMkAFABB
+NEW-C4-11,,Train and retain the Mistral 7B QLoRA email adapter,Sprint 3,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Retain the configured two-epoch QLoRA notebook and training log
+[x] Retain the trained LoRA adapter and tokenizer artifacts
+[x] Validate the adapter tensor offsets and compute a reproducible checksum
+[x] Record training/validation loss and the observed validation-loss regression","E-FT-NOTEBOOK: ml/finetune/c4_finetune_mistral_qlora.ipynb
+E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-FT-WEIGHTS: ml/finetune/models/c4-email-lora/adapter_model.safetensors
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json",,Verified,Training completion is supported by supplied logs/weights; this audit did not retrain or load the adapter. Final validation loss 0.9924 exceeds the best recorded 0.8709 at step 40.,,2026-10-21,,,,k4qM_z973kysiXs_hnYkOMkAFABB
+NEW-C4-12,,Evaluate base and fine-tuned email generation on held-out prompts,Sprint 4,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Retain per-response results for the same 25 validation prompts
+[x] Compare JSON/sequence/unsubscribe/grounding/offer/length/guardrail metrics
+[x] Recalculate all-seven-check pass rates as 24% base and 76% fine-tuned
+[x] Record grounding regression from 92% to 76% and small-sample limitations","E-FT-EVAL: evidence/c4-ft/c4-ft_finetune_summary.json
+E-FT-NOTEBOOK: ml/finetune/c4_finetune_mistral_qlora.ipynb
+E-FT-AUDIT: evidence/planner/checks/fine-tuning-audit.json",,Verified,"Completed scope is the existing 25-prompt base-versus-fine-tuned evaluation. It is not personalized-versus-generic ablation, independent final test accuracy, measured CTR or live deployment acceptance.",,2026-10-21,,,,6cEFQK5jl0Cg9BgNbRp55ckAM_50
+NEW-C4-13,,Implement safe lead-name and campaign-link template rendering,Sprint 3,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Preserve reusable first_name/cta_link tags in stored sequences
+[x] Replace tags in a rendered copy using actual provided lead/link values
+[x] Reject missing values, header injection, unsafe URLs and unresolved tags
+[x] Handle dollar signs in lead names without replacement-string expansion","E-RENDER: services/gateway/src/services/emailTemplates.js
+E-UNIT: evidence/planner/checks/unit-tests.txt",,Verified,The standalone renderer and tests are delivered. It has not been wired into a delivery provider and does not send messages.,,2026-10-21,,,,k4qM_z973kysiXs_hnYkOMkAFABB
+NEW-C4-14,,Automate isolated account/platform and responsive browser regression checks,Sprint 4,SAAYINATH K it23304338,Not in export,Completed,4/4,"[x] Run 42 database-backed account/platform integration tests
+[x] Run 12 frontend/template unit tests
+[x] Run the isolated database-backed browser journey and save screenshots
+[x] Verify nine RBAC combinations, three-tenant write/read isolation and audit persistence","E-INTEGRATION: evidence/planner/checks/accounts-platform-tests.txt
+E-UNIT: evidence/planner/checks/unit-tests.txt
+E-BROWSER: evidence/planner/checks/browser-ui-tests.txt
+E-SCREEN-OVERVIEW: evidence/planner/screenshots/authenticated-overview-light.png
+E-SCREEN-TEAM: evidence/planner/screenshots/live-team-access.png
+E-ACCESS: evidence/planner/checks/access-audit.json",,Verified,"The tested C4 regression scope passes. The separately executed real-AI check failed HTTP 503 and is retained as evidence, rather than included in this passed test scope.",,2026-10-21,,,,TV31rvZfMES0EYG9QHzpLskAOqsB
+NEW-C4-15,,Register and activate the fine-tuned Ollama model,Sprint 4,SAAYINATH K it23304338,Not in export,In progress,1/5,"[x] Provide the adapter, tokenizer and Ollama Modelfile
+[ ] Verify adapter compatibility with the exact Ollama base version
+[ ] Create c4-email-ft and confirm it appears in the installed model list
+[ ] Set the gateway model to the fine-tuned model and recreate/restart the gateway
+[ ] Pass tenant-context generation, guardrails and persistence using that model","E-FT-WEIGHTS: ml/finetune/models/c4-email-lora/adapter_model.safetensors
+E-FT-MODELFILE: ml/finetune/Modelfile
+E-RUNTIME: evidence/planner/checks/runtime-audit.json
+E-AI-FAIL: evidence/planner/checks/browser-tests.txt","Verify adapter compatibility with the exact Ollama base version
+Create c4-email-ft and confirm it appears in the installed model list
+Set the gateway model to the fine-tuned model and recreate/restart the gateway
+Pass tenant-context generation, guardrails and persistence using that model",Partial,"Artifacts are ready for deployment work, but the observed installed/configured generator is base mistral:7b-instruct-q4_K_M. No runtime switch was made during the audit.",,2026-10-21,,,,k4qM_z973kysiXs_hnYkOMkAFABB

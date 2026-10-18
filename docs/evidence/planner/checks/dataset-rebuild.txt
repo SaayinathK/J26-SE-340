@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Saayinath\SLIIT\Research Project\J26-SE-340_Development\ml\finetune\prepare_email_ft.py", line 34, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'

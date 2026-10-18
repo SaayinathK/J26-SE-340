@@ -1,0 +1,128 @@
+{
+  "audit_date": "2026-10-21",
+  "read_only": true,
+  "endpoints": [
+    {
+      "url": "http://127.0.0.1:4000/health",
+      "method": "GET",
+      "status": 200,
+      "server": null,
+      "body": {
+        "status": "ok",
+        "service": "c4-gateway"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4000/api/auth/me",
+      "method": "GET",
+      "status": 401,
+      "server": null
+    },
+    {
+      "url": "http://127.0.0.1:4000/api/tenant/context",
+      "method": "GET",
+      "status": 401,
+      "server": null
+    },
+    {
+      "url": "http://127.0.0.1:4000/api/platform/snapshot",
+      "method": "GET",
+      "status": 401,
+      "server": null
+    },
+    {
+      "url": "http://127.0.0.1:4000/api/email/sequence",
+      "method": "POST",
+      "status": 401,
+      "server": null
+    },
+    {
+      "url": "http://127.0.0.1:5173/",
+      "method": "GET",
+      "status": 200,
+      "server": "nginx"
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/auth/me",
+      "method": "GET",
+      "status": 401,
+      "server": "nginx"
+    }
+  ],
+  "configured_model_in_host_env": "mistral:7b-instruct-q4_K_M",
+  "ollama": {
+    "http_status": 200,
+    "models": [
+      "nomic-embed-text:latest",
+      "mistral:7b-instruct-q4_K_M"
+    ]
+  },
+  "application_role": {
+    "rolname": "c4_app",
+    "rolsuper": false,
+    "rolbypassrls": false
+  },
+  "rls": [
+    {
+      "relname": "auth_sessions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "campaigns",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "email_sequences",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "knowledge_base",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "users",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "workspace_events",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "workspace_invitations",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    }
+  ],
+  "unscoped_counts": {
+    "users": 0,
+    "knowledge_base": 0,
+    "campaigns": 0,
+    "email_sequences": 0
+  },
+  "sample_tenants": [
+    {
+      "slug": "tenant_a",
+      "own_users_visible": 3,
+      "only_own_users": true,
+      "foreign_users_visible": 0
+    },
+    {
+      "slug": "tenant_b",
+      "own_users_visible": 1,
+      "only_own_users": true,
+      "foreign_users_visible": 0
+    },
+    {
+      "slug": "tenant_c",
+      "own_users_visible": 1,
+      "only_own_users": true,
+      "foreign_users_visible": 0
+    }
+  ]
+}

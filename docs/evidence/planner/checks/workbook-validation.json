@@ -1,0 +1,29 @@
+{
+  "workbook": "J26-SE-340_updated_2026-10-21.xlsx",
+  "original_tasks": 36,
+  "new_tasks": 15,
+  "checklist_items": 272,
+  "evidence_files": 45,
+  "original_statuses": {
+    "Completed": 12,
+    "In progress": 5,
+    "Not started": 19
+  },
+  "updated_existing_statuses": {
+    "Completed": 13,
+    "In progress": 15,
+    "Not started": 8
+  },
+  "new_statuses": {
+    "Completed": 14,
+    "In progress": 1
+  },
+  "source_sha256": "36d82ba96337aa67833bbdd0e3390484f58eb39d860d39a6bf09ea5ab8e55d58",
+  "workbook_sha256": "e9bf1bd0f3d1a70d2c09d86a1ae4d699160988913224af5be159a001ef54d542",
+  "original_sheet_xml_preserved": true,
+  "all_xml_parsed": true,
+  "all_new_cell_values_round_tripped": true,
+  "evidence_paths_exist": true,
+  "original_task_ids_preserved": true,
+  "live_planner_updated": false
+}

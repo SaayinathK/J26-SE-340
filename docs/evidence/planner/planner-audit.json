@@ -1,0 +1,4321 @@
+{
+  "audit_date": "2026-10-21",
+  "timezone": "Asia/Colombo",
+  "owner": "SAAYINATH K it23304338",
+  "source_file": "source-export.xlsx",
+  "source_sha256": "36d82ba96337aa67833bbdd0e3390484f58eb39d860d39a6bf09ea5ab8e55d58",
+  "live_planner_updated": false,
+  "original_tasks": 36,
+  "proposed_new_tasks": 15,
+  "tasks": [
+    {
+      "audit_key": "P-01",
+      "task_id": "s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj",
+      "name": "Set up the tenant database and sample tenants",
+      "bucket": "Sprint 1",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 2,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Database/RLS setup and sample tenants verified live; fresh migrations and isolated three-tenant negative tests pass.",
+      "checklist": [
+        {
+          "text": "Create PostgreSQL database using Docker",
+          "state": "Verified",
+          "evidence": [
+            "E-SCHEMA",
+            "E-DBROLE",
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Configure Row-Level Security policies",
+          "state": "Verified",
+          "evidence": [
+            "E-SCHEMA",
+            "E-DBROLE",
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create three sample tenants",
+          "state": "Verified",
+          "evidence": [
+            "E-SCHEMA",
+            "E-DBROLE",
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create restricted application database role",
+          "state": "Verified",
+          "evidence": [
+            "E-SCHEMA",
+            "E-DBROLE",
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Enable pgvector and UUID extensions",
+          "state": "Verified",
+          "evidence": [
+            "E-SCHEMA",
+            "E-DBROLE",
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Run tenant isolation tests",
+          "state": "Verified",
+          "evidence": [
+            "E-SCHEMA",
+            "E-DBROLE",
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create tenants, users, knowledge_base and audit_log tables",
+          "state": "Verified",
+          "evidence": [
+            "E-SCHEMA",
+            "E-DBROLE",
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 2,
+        "Task ID": "s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj",
+        "Task Name": "Set up the tenant database and sample tenants",
+        "Bucket": "Sprint 1",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-01",
+        "Start date": "2026-10-01",
+        "Late": "false",
+        "Completed Date": "2026-10-09",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "7/7",
+        "Checklist Items": "Create PostgreSQL database using Docker;Configure Row-Level Security policies;Create three sample tenants;Create restricted application database role;Enable pgvector and UUID extensions;Run tenant isolation tests;Create tenants, users, knowledge_base and audit_log tables",
+        "Labels": "C4 Platform-Email",
+        "Notes": "PostgreSQL database initialized with pgvector, three sample tenants, tenant-aware tables and RLS policies. Restricted application role configured. Initial tenant isolation tests passed. Development security hardening remains necessary before production deployment."
+      }
+    },
+    {
+      "audit_key": "P-02",
+      "task_id": "Tebj5Z6QvU-SkCkqfGl5_8kALvN6",
+      "name": "Set up the team GitHub repository",
+      "bucket": "Sprint 1",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 3,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Export reported only",
+      "summary": "Git repository and local branches exist. Preserve reported completion; collaborator access and remote branch protection cannot be established from this checkout.",
+      "checklist": [
+        {
+          "text": "Create Repository",
+          "state": "Verified",
+          "evidence": [
+            "E-GIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Add Collabrators",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify Team Repository Access",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create Branches",
+          "state": "Verified",
+          "evidence": [
+            "E-GIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Protect Main Branch",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "Attach remote collaborator/access and branch-protection evidence if required.",
+      "parent": "",
+      "source": {
+        "_row": 3,
+        "Task ID": "Tebj5Z6QvU-SkCkqfGl5_8kALvN6",
+        "Task Name": "Set up the team GitHub repository",
+        "Bucket": "Sprint 1",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-01",
+        "Start date": "2026-10-01",
+        "Late": "false",
+        "Completed Date": "2026-10-08",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "5/5",
+        "Checklist Items": "Create Repository;Add Collabrators;Verify Team Repository Access;Create Branches;Protect Main Branch",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-03",
+      "task_id": "K0IRlzBiPESovq7UxQO9RMkAPHa4",
+      "name": "Meet the supervisor to approve scope and Finalize the Individual Report",
+      "bucket": "Sprint 1",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 4,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Export reported only",
+      "summary": "Supervisor approval/signature and individual reports are reported complete in the export. Supporting meeting/report files are not in this workspace.",
+      "checklist": [
+        {
+          "text": "Create Individual Reports",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Discuss with the Supervisor",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Get Supervisor Signature",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 4,
+        "Task ID": "K0IRlzBiPESovq7UxQO9RMkAPHa4",
+        "Task Name": "Meet the supervisor to approve scope and Finalize the Individual Report",
+        "Bucket": "Sprint 1",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-09-15",
+        "Start date": "2026-09-14",
+        "Late": "false",
+        "Completed Date": "2026-10-09",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "3/3",
+        "Checklist Items": "Create Individual Reports;Discuss with the Supervisor;Get Supervisor Signature",
+        "Labels": "Team",
+        "Notes": "Completed on 14th September"
+      }
+    },
+    {
+      "audit_key": "P-04",
+      "task_id": "dvN4Bp4-KkKQe7Aqo54-C8kAKMfB",
+      "name": "Set up Planner and add Sprint 1 and 2 tasks",
+      "bucket": "Sprint 1",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 5,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "The supplied export demonstrates an existing plan, assignees, sprint buckets and tasks.",
+      "checklist": [
+        {
+          "text": "Create Planner",
+          "state": "Verified",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Assign People",
+          "state": "Verified",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create Sprints",
+          "state": "Verified",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Add Tasks",
+          "state": "Verified",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 5,
+        "Task ID": "dvN4Bp4-KkKQe7Aqo54-C8kAKMfB",
+        "Task Name": "Set up Planner and add Sprint 1 and 2 tasks",
+        "Bucket": "Sprint 1",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-01",
+        "Start date": "2026-10-01",
+        "Late": "false",
+        "Completed Date": "2026-10-09",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "4/4",
+        "Checklist Items": "Create Planner;Assign People;Create Sprints;Add Tasks",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-05",
+      "task_id": "509o6p7yikitvlPbyR7PJskAM4z6",
+      "name": "Create diary and AI-use log templates",
+      "bucket": "Sprint 1",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 6,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Export reported only",
+      "summary": "Preserve reported completion. Export says Completed but 0/4 checklist items; named diary/AI-log/SharePoint evidence is not available locally.",
+      "checklist": [
+        {
+          "text": "Each member fills in their first entry",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create the weekly diary template (date, attendees, work done, issues, next steps)",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create the AI-use log template (date, tool, purpose, prompt summary, how the output was used, how it",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Upload both templates to the team SharePoint folder",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 6,
+        "Task ID": "509o6p7yikitvlPbyR7PJskAM4z6",
+        "Task Name": "Create diary and AI-use log templates",
+        "Bucket": "Sprint 1",
+        "Status": "Completed",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-02",
+        "Start date": "2026-10-01",
+        "Late": "false",
+        "Completed Date": "2026-10-20",
+        "Completed By": "SHATHURSINI.J it23164062",
+        "Completed Checklist Items": "0/4",
+        "Checklist Items": "Each member fills in their first entry;Create the weekly diary template (date, attendees, work done, issues, next steps);Create the AI-use log template (date, tool, purpose, prompt summary, how the output was used, how it;Upload both templates to the team SharePoint folder",
+        "Labels": "Team",
+        "Notes": "Evidence\nDiary_Template.docx\nAI_Use_Log_Template.xlsx\nSharePoint_Templates_Folder.png"
+      }
+    },
+    {
+      "audit_key": "P-06",
+      "task_id": "CQQEW_of-0eHfsbhnzLXuMkAOfC6",
+      "name": "Agree and record key project decisions",
+      "bucket": "Sprint 1",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 7,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Export reported only",
+      "summary": "Implementation reflects a stack and tenancy design, but team agreement, decision log and meeting attendance are not locally evidenced.",
+      "checklist": [
+        {
+          "text": "Agree on the multi-tenant approach (tenant identification, data isolation)",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Agree on GitHub branching, commit and PR review rules",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "All members confirm the decisions",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Record the decisions in a decision log",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Agree on the tech stack and frameworks",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Hold a team decision meeting",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 7,
+        "Task ID": "CQQEW_of-0eHfsbhnzLXuMkAOfC6",
+        "Task Name": "Agree and record key project decisions",
+        "Bucket": "Sprint 1",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-02",
+        "Start date": "2026-10-01",
+        "Late": "false",
+        "Completed Date": "2026-10-10",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "6/6",
+        "Checklist Items": "Agree on the multi-tenant approach (tenant identification, data isolation);Agree on GitHub branching, commit and PR review rules;All members confirm the decisions;Record the decisions in a decision log;Agree on the tech stack and frameworks;Hold a team decision meeting",
+        "Labels": "Team",
+        "Notes": "Evidence\nDecision_Log.xlsx (decision, reason, date, agreed by)\nDecision_Meeting_Minutes.docx\nTeams_Meeting_Attendance.png"
+      }
+    },
+    {
+      "audit_key": "P-07",
+      "task_id": "bRMfwq5CIEK8RBSyaDHxU8kALbNy",
+      "name": "Define API contracts and sample responses",
+      "bucket": "Sprint 1",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 8,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Partial",
+      "summary": "Implemented C4 API contract is documented with payloads, error codes, identity and permissions. Preserve team completion; referenced C3 YAML/mock files are absent from this checkout.",
+      "checklist": [
+        {
+          "text": "C3: I-05 contract + mock",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Define the standard error format and status codes",
+          "state": "Verified",
+          "evidence": [
+            "E-API-DOC"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Define request and response schemas",
+          "state": "Verified",
+          "evidence": [
+            "E-API-DOC"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "List the endpoints for each component",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "C3: I-05 lead-recommendation contract + mock (commit 89781CD",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Define the auth and tenant ID headers",
+          "state": "Verified",
+          "evidence": [
+            "E-API-DOC"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Commit the contracts to GitHub",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "C3 I-04 v1.1.0 + I-05 v1.1.0 with mocks",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Add sample JSON responses for each endpoint",
+          "state": "Verified",
+          "evidence": [
+            "E-API-DOC"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "C3: I-04 lead-score contract + mock (commit 6ca606b)",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Review the contracts with the team",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Document the currently implemented C4 platform endpoints and integration limitations",
+          "state": "Verified",
+          "evidence": [
+            "E-API-DOC"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "Attach team-reviewed cross-component contracts, actual C1/C2/C3 mocks and the contract commit/review evidence.",
+      "parent": "",
+      "source": {
+        "_row": 8,
+        "Task ID": "bRMfwq5CIEK8RBSyaDHxU8kALbNy",
+        "Task Name": "Define API contracts and sample responses",
+        "Bucket": "Sprint 1",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-04",
+        "Start date": "2026-10-02",
+        "Late": "false",
+        "Completed Date": "2026-10-20",
+        "Completed By": "SHATHURSINI.J it23164062",
+        "Completed Checklist Items": "4/11",
+        "Checklist Items": "C3: I-05 contract + mock;Define the standard error format and status codes;Define request and response schemas;List the endpoints for each component;C3: I-05 lead-recommendation contract + mock (commit 89781CD;Define the auth and tenant ID headers;Commit the contracts to GitHub;C3 I-04 v1.1.0 + I-05 v1.1.0 with mocks;Add sample JSON responses for each endpoint;C3: I-04 lead-score contract + mock (commit 6ca606b);Review the contracts with the team",
+        "Labels": "Team",
+        "Notes": "Evidence\nopenapi.yaml (or API_Contracts.docx)\nPostman_Collection.json\nGitHub_API_Contract_Commit.png\n12 Oct – C3 contracts done: contracts/v1/lead-score.yaml (I-04) and contracts/v1/lead-recommendation.yaml (I-05), with real mock responses in contracts/mocks/. Shared with Saayinath (C4 Email Agent consumer)."
+      }
+    },
+    {
+      "audit_key": "P-08",
+      "task_id": "2G80Ovxsb0a9o6MtQHEGA8kAF9IF",
+      "name": "Review Sprint 1 progress and risks",
+      "bucket": "Sprint 1",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 9,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Export reported only",
+      "summary": "Sprint review/lessons/risk updates are reported complete. The risk register and review minutes are not present locally.",
+      "checklist": [
+        {
+          "text": "Record lessons learned",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Check the completion status of every Sprint 1 task",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Identify incomplete tasks and move them to Sprint 2",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Confirm the Sprint 2 plan",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Update the risk register with new risks and mitigations",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 9,
+        "Task ID": "2G80Ovxsb0a9o6MtQHEGA8kAF9IF",
+        "Task Name": "Review Sprint 1 progress and risks",
+        "Bucket": "Sprint 1",
+        "Status": "Completed",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-04",
+        "Start date": "2026-10-04",
+        "Late": "false",
+        "Completed Date": "2026-10-10",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "5/5",
+        "Checklist Items": "Record lessons learned;Check the completion status of every Sprint 1 task;Identify incomplete tasks and move them to Sprint 2;Confirm the Sprint 2 plan;Update the risk register with new risks and mitigations",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-09",
+      "task_id": "L3DNfb9RQEu-NHNd75u1BckAEBcJ",
+      "name": "Add authentication and secure tenant identification",
+      "bucket": "Sprint 2",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 10,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Password login, session-bound tenant identity, bcrypt, JWT validation and protected routes are covered by fresh account/API tests.",
+      "checklist": [
+        {
+          "text": "Create JWT login endpoint",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-SESSIONS",
+            "E-INTEGRATION",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Test missing and invalid JWT",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-SESSIONS",
+            "E-INTEGRATION",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Implement protected user and tenant endpoints",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-SESSIONS",
+            "E-INTEGRATION",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Test valid and invalid credentials",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-SESSIONS",
+            "E-INTEGRATION",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Implement bcrypt password verification",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-SESSIONS",
+            "E-INTEGRATION",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create JWT verification middleware",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-SESSIONS",
+            "E-INTEGRATION",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Restore identity through HTTP-only cookies and revoke sessions on logout",
+          "state": "Verified",
+          "evidence": [
+            "E-SESSIONS",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Reject forged tenant/role registration and cross-origin/CSRF mutations",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 10,
+        "Task ID": "L3DNfb9RQEu-NHNd75u1BckAEBcJ",
+        "Task Name": "Add authentication and secure tenant identification",
+        "Bucket": "Sprint 2",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-06",
+        "Start date": "2026-10-05",
+        "Late": "false",
+        "Completed Date": "2026-10-10",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "6/6",
+        "Checklist Items": "Create JWT login endpoint;Test missing and invalid JWT;Implement protected user and tenant endpoints;Test valid and invalid credentials;Implement bcrypt password verification;Create JWT verification middleware",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-10",
+      "task_id": "d15ir2Ejp0y8X0EVS5BJm8kAJyOT",
+      "name": "Add role-based access permissions",
+      "bucket": "Sprint 2",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 11,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "All nine legacy role/route combinations were rerun and passed. Current database roles override stale JWT role claims.",
+      "checklist": [
+        {
+          "text": "Implement authorize middleware",
+          "state": "Verified",
+          "evidence": [
+            "E-RBAC",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Protect admin-only route",
+          "state": "Verified",
+          "evidence": [
+            "E-RBAC",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Test all nine role-route combinations",
+          "state": "Verified",
+          "evidence": [
+            "E-RBAC",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Protect campaign management route",
+          "state": "Verified",
+          "evidence": [
+            "E-RBAC",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Protect campaign viewing route",
+          "state": "Verified",
+          "evidence": [
+            "E-RBAC",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Define agency_admin, marketer and viewer permissions",
+          "state": "Verified",
+          "evidence": [
+            "E-RBAC",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Apply live role changes and account deactivation to existing sessions",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 11,
+        "Task ID": "d15ir2Ejp0y8X0EVS5BJm8kAJyOT",
+        "Task Name": "Add role-based access permissions",
+        "Bucket": "Sprint 2",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-07",
+        "Start date": "2026-10-06",
+        "Late": "false",
+        "Completed Date": "2026-10-10",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "6/6",
+        "Checklist Items": "Implement authorize middleware;Protect admin-only route;Test all nine role-route combinations;Protect campaign management route;Protect campaign viewing route;Define agency_admin, marketer and viewer permissions",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-11",
+      "task_id": "b1g6dPubUEqavE0O4L3aiskAJOrB",
+      "name": "Connect agent services through the API gateway",
+      "bucket": "Sprint 2",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 12,
+      "original_status": "In progress",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "C4 has authenticated tenant/role-protected APIs and documented integration boundaries. C1/C2/C3 services and a gateway proxy for them are not implemented.",
+      "checklist": [
+        {
+          "text": "Define shared agent request and response contract",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Connect Component 1 API endpoint",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Connect Component 3 API endpoint",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Create mock agent for unavailable services",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Implement authenticated gateway proxy",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Enforce roles and tenant context",
+          "state": "Verified",
+          "evidence": [
+            "E-RBAC",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Connect Component 2 API endpoint",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Test successful, denied and unavailable-agent responses",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Configure internal service URLs and credentials",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Expose implemented C4 workspace and email APIs with explicit disconnected statuses",
+          "state": "Verified",
+          "evidence": [
+            "E-PLATFORM",
+            "E-API-DOC"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Test C4 denied, unavailable-model and malformed-model responses",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "C4 boundary documentation and provider test doubles do not prove the shared C1-C3 proxy contract, deployed mocks or connected agent services.",
+      "parent": "",
+      "source": {
+        "_row": 12,
+        "Task ID": "b1g6dPubUEqavE0O4L3aiskAJOrB",
+        "Task Name": "Connect agent services through the API gateway",
+        "Bucket": "Sprint 2",
+        "Status": "In progress",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-07",
+        "Due date": "2026-10-08",
+        "Start date": "2026-10-07",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "0/9",
+        "Checklist Items": "Define shared agent request and response contract;Connect Component 1 API endpoint;Connect Component 3 API endpoint;Create mock agent for unavailable services;Implement authenticated gateway proxy;Enforce roles and tenant context;Connect Component 2 API endpoint;Test successful, denied and unavailable-agent responses;Configure internal service URLs and credentials",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-12",
+      "task_id": "tWW3Lz5eikqqko1AQ6-PhckAAchW",
+      "name": "Record API actions in audit logs",
+      "bucket": "Sprint 2",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 13,
+      "original_status": "In progress",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Authenticated allowed/denied audit logging is now independently verified: 6 allowed and 3 denied records with tenant/user/route/status in PostgreSQL.",
+      "checklist": [
+        {
+          "text": "Record tenant, user, action and route",
+          "state": "Verified",
+          "evidence": [
+            "E-AUDIT",
+            "E-ACCESS"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Record successful API access",
+          "state": "Verified",
+          "evidence": [
+            "E-AUDIT",
+            "E-ACCESS"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify audit records in PostgreSQL",
+          "state": "Verified",
+          "evidence": [
+            "E-AUDIT",
+            "E-ACCESS"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create audit logging middleware",
+          "state": "Verified",
+          "evidence": [
+            "E-AUDIT",
+            "E-ACCESS"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Record denied API access",
+          "state": "Verified",
+          "evidence": [
+            "E-AUDIT",
+            "E-ACCESS"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "Scope: authenticated routes using the audit middleware. Missing/invalid JWT requests and all platform CRUD routes are not universally covered.",
+      "parent": "",
+      "source": {
+        "_row": 13,
+        "Task ID": "tWW3Lz5eikqqko1AQ6-PhckAAchW",
+        "Task Name": "Record API actions in audit logs",
+        "Bucket": "Sprint 2",
+        "Status": "In progress",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-09",
+        "Start date": "2026-10-08",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "5/5",
+        "Checklist Items": "Record tenant, user, action and route;Record successful API access;Verify audit records in PostgreSQL;Create audit logging middleware;Record denied API access",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-13",
+      "task_id": "GUVHbCA7PkqbbEu18R3v7ckAM1L6",
+      "name": "Show each first key function to the supervisor",
+      "bucket": "Sprint 2",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 14,
+      "original_status": "In progress",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "C4 implementation and fresh screenshots support demo preparation. No supervisor invitation, actual demo, feedback or follow-up record is available.",
+      "checklist": [
+        {
+          "text": "Each member prepares a demo of their first key function",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Create follow-up tasks from the feedback",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Schedule the meeting with the supervisor",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Run the demos",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Prepare a short demo order or script",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Record the supervisor’s feedback",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Collect C4 overview, account, membership and mobile demo screenshots",
+          "state": "Verified",
+          "evidence": [
+            "E-SCREEN-OVERVIEW",
+            "E-SCREEN-TEAM",
+            "E-SCREEN-MOBILE"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 14,
+        "Task ID": "GUVHbCA7PkqbbEu18R3v7ckAM1L6",
+        "Task Name": "Show each first key function to the supervisor",
+        "Bucket": "Sprint 2",
+        "Status": "In progress",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-09",
+        "Start date": "2026-10-09",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "0/6",
+        "Checklist Items": "Each member prepares a demo of their first key function;Create follow-up tasks from the feedback;Schedule the meeting with the supervisor;Run the demos;Prepare a short demo order or script;Record the supervisor’s feedback",
+        "Labels": "Team",
+        "Notes": "Evidence\nSupervisor_Demo_Invite.png\nDemo_Screenshots.png (or the demo recording link)\nSupervisor_Feedback_Notes.docx"
+      }
+    },
+    {
+      "audit_key": "P-14",
+      "task_id": "CAUKFn_9p0eQoa1HyoThaMkABDY5",
+      "name": "Review Sprint 2 progress and GitHub contributions",
+      "bucket": "Sprint 2",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 15,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Export reported only",
+      "summary": "Preserve team-reported completion. Export says Completed but 0/5 checklist items; commits are visible locally but PR review/merge and team review records are not established.",
+      "checklist": [
+        {
+          "text": "Check that PRs were reviewed and merged",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Move unfinished tasks and plan Sprint 3",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Check commits per member on GitHub",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Update the risk register",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Review the Sprint 2 board status",
+          "state": "Export reported only",
+          "evidence": [
+            "E-PLANNER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 15,
+        "Task ID": "CAUKFn_9p0eQoa1HyoThaMkABDY5",
+        "Task Name": "Review Sprint 2 progress and GitHub contributions",
+        "Bucket": "Sprint 2",
+        "Status": "Completed",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-09",
+        "Start date": "2026-10-09",
+        "Late": "false",
+        "Completed Date": "2026-10-14",
+        "Completed By": "SHATHURSINI.J it23164062",
+        "Completed Checklist Items": "0/5",
+        "Checklist Items": "Check that PRs were reviewed and merged;Move unfinished tasks and plan Sprint 3;Check commits per member on GitHub;Update the risk register;Review the Sprint 2 board status",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-15",
+      "task_id": "YusHog_KNEi38rVn5hM3h8kAJ6Gl",
+      "name": "Arrange the user-feedback session",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SHATHURSINI.J it23164062",
+      "source_row": 16,
+      "original_status": "In progress",
+      "status": "In progress",
+      "assessment": "Unverified",
+      "summary": "No user-feedback invitation, participant list, completed session or feedback analysis is available locally.",
+      "checklist": [
+        {
+          "text": "Agree the user-feedback goals and participant criteria",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Invite participants and record the confirmed session",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Prepare a runnable user journey and feedback questions",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Collect feedback and link the findings and resulting tasks",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 16,
+        "Task ID": "YusHog_KNEi38rVn5hM3h8kAJ6Gl",
+        "Task Name": "Arrange the user-feedback session",
+        "Bucket": "Sprint 3",
+        "Status": "In progress",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-10",
+        "Start date": "2026-10-10",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C3 Lead-Intel",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-16",
+      "task_id": "35EcnmgUHkmORnMzFR-ltskALTIN",
+      "name": "Test tenant isolation and access permissions",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 17,
+      "original_status": "Completed",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Three real sample tenants pass read isolation; three isolated test tenants pass cross-tenant read/write rejection; all nine RBAC combinations pass.",
+      "checklist": [
+        {
+          "text": "Verify Tenant B can read its own records",
+          "state": "Verified",
+          "evidence": [
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify Tenant C can read its own records",
+          "state": "Verified",
+          "evidence": [
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify Tenant A can read its own records",
+          "state": "Verified",
+          "evidence": [
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Run RBAC tests for all roles",
+          "state": "Verified",
+          "evidence": [
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify unauthorized writes are blocked",
+          "state": "Verified",
+          "evidence": [
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify cross-tenant reads are blocked",
+          "state": "Verified",
+          "evidence": [
+            "E-RUNTIME",
+            "E-ACCESS",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 17,
+        "Task ID": "35EcnmgUHkmORnMzFR-ltskALTIN",
+        "Task Name": "Test tenant isolation and access permissions",
+        "Bucket": "Sprint 3",
+        "Status": "Completed",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-12",
+        "Start date": "2026-10-11",
+        "Late": "false",
+        "Completed Date": "2026-10-10",
+        "Completed By": "SAAYINATH K it23304338",
+        "Completed Checklist Items": "4/6",
+        "Checklist Items": "Verify Tenant B can read its own records;Verify Tenant C can read its own records;Verify Tenant A can read its own records;Run RBAC tests for all roles;Verify unauthorized writes are blocked;Verify cross-tenant reads are blocked",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-17",
+      "task_id": "k4qM_z973kysiXs_hnYkOMkAFABB",
+      "name": "Generate a personalized three-step email sequence",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 18,
+      "original_status": "In progress",
+      "status": "In progress",
+      "assessment": "Implemented; live test pending",
+      "summary": "Three-step generation, tenant context, validation and persistence are implemented and integration-tested with model responses stubbed. Live Ollama generation returned HTTP 503 during this audit.",
+      "checklist": [
+        {
+          "text": "Generate personalized subject lines and messages",
+          "state": "Verified",
+          "evidence": [
+            "E-AGENT",
+            "E-FT-EVAL",
+            "E-RENDER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Prepare tenant-specific knowledge retrieval",
+          "state": "Verified",
+          "evidence": [
+            "E-AGENT",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Configure email agent and model",
+          "state": "Verified",
+          "evidence": [
+            "E-AGENT",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Test tenant-specific generation",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Save generated output and test evidence",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-EVAL",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Add safety and content checks",
+          "state": "Verified",
+          "evidence": [
+            "E-GUARDS",
+            "E-CONTENT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Define three-email sequence structure",
+          "state": "Verified",
+          "evidence": [
+            "E-SEQUENCE",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Pass a live tenant-context generation and persistence smoke test",
+          "state": "Pending",
+          "evidence": [
+            "E-AI-FAIL"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Persist and reload manual email sequences without an AI dependency",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "The trained adapter is separate from the configured base-model runtime. Live name/link rendering is a helper awaiting a delivery integration; context retrieval is recent/source-selected text, not vector similarity search.",
+      "parent": "",
+      "source": {
+        "_row": 18,
+        "Task ID": "k4qM_z973kysiXs_hnYkOMkAFABB",
+        "Task Name": "Generate a personalized three-step email sequence",
+        "Bucket": "Sprint 3",
+        "Status": "In progress",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-13",
+        "Start date": "2026-10-11",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "0/7",
+        "Checklist Items": "Generate personalized subject lines and messages;Prepare tenant-specific knowledge retrieval;Configure email agent and model;Test tenant-specific generation;Save generated output and test evidence;Add safety and content checks;Define three-email sequence structure",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-18",
+      "task_id": "TC0kO6inN0uNkshS4O9n7MkAOPSk",
+      "name": "Connect all agents and test the complete workflow",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 19,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "The C4 account-to-campaign/knowledge/manual-sequence workflow passes browser checks. No complete C1-C4 agent workflow exists in this checkout.",
+      "checklist": [
+        {
+          "text": "Run C4 registration, campaign, knowledge and saved-sequence workflow against PostgreSQL",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Connect Component 1 strategy service",
+          "state": "Pending",
+          "evidence": [
+            "E-PLATFORM"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Connect Component 2 content service",
+          "state": "Pending",
+          "evidence": [
+            "E-PLATFORM"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Connect Component 3 lead-intelligence service",
+          "state": "Pending",
+          "evidence": [
+            "E-PLATFORM"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify identity/context handoffs between all four components",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Run complete multi-agent success, denial and failure scenarios",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Capture a complete integrated workflow trace and output evidence",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 19,
+        "Task ID": "TC0kO6inN0uNkshS4O9n7MkAOPSk",
+        "Task Name": "Connect all agents and test the complete workflow",
+        "Bucket": "Sprint 3",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-14",
+        "Start date": "2026-10-12",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-19",
+      "task_id": "NXPTfCPyvEq8vKZq-1PzMMkAB6ym",
+      "name": "Check email privacy, consent, facts and tone",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 20,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "PII, unsubscribe, spam and caps checks are implemented and verified. Factual offer grounding is measured offline but not enforced by the save validator; recipient consent is not implemented.",
+      "checklist": [
+        {
+          "text": "Reject detected email/phone PII",
+          "state": "Verified",
+          "evidence": [
+            "E-CONTENT",
+            "E-GUARDS"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Require unsubscribe wording on saved drafts",
+          "state": "Verified",
+          "evidence": [
+            "E-CONTENT",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Reject spam phrases and excessive capitals",
+          "state": "Verified",
+          "evidence": [
+            "E-CONTENT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Measure offline offer/fact grounding on generated responses",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-EVAL",
+            "E-FT-AUDIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Enforce runtime grounding against selected tenant facts before persistence",
+          "state": "Pending",
+          "evidence": [
+            "E-CONTENT",
+            "E-SEQUENCE"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Enforce the 150-word body limit in the save validator",
+          "state": "Pending",
+          "evidence": [
+            "E-CONTENT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify recipient consent and process real opt-outs before delivery",
+          "state": "Pending",
+          "evidence": [
+            "E-PLATFORM"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Review factual relevance and tone manually on an independent test set",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 20,
+        "Task ID": "NXPTfCPyvEq8vKZq-1PzMMkAB6ym",
+        "Task Name": "Check email privacy, consent, facts and tone",
+        "Bucket": "Sprint 3",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-14",
+        "Start date": "2026-10-13",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-20",
+      "task_id": "A46wNzBeX02RvIyc_ZhTCckADxwD",
+      "name": "Review the 50% checkpoint with the supervisor",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 21,
+      "original_status": "Not started",
+      "status": "Not started",
+      "assessment": "Unverified",
+      "summary": "A working C4 implementation is not evidence of a supervisor checkpoint meeting. No checkpoint approval or feedback is available.",
+      "checklist": [
+        {
+          "text": "Prepare individual progress, results and known limitations",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Arrange and conduct the 50% supervisor checkpoint",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Record supervisor feedback and approval",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Assign and track follow-up actions",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 21,
+        "Task ID": "A46wNzBeX02RvIyc_ZhTCckADxwD",
+        "Task Name": "Review the 50% checkpoint with the supervisor",
+        "Bucket": "Sprint 3",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-14",
+        "Start date": "2026-10-14",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-21",
+      "task_id": "6cEFQK5jl0Cg9BgNbRp55ckAM_50",
+      "name": "Compare personalized emails with generic AI emails",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 22,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "A reproducible baseline-versus-fine-tuned generation comparison exists for 25 shared validation prompts. This is not a personalized-versus-generic ablation or a measured CTR experiment.",
+      "checklist": [
+        {
+          "text": "Use identical held-out validation prompts for base and fine-tuned models",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-NOTEBOOK",
+            "E-FT-EVAL"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Save per-response checks, latency, comparison table and training loss",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-EVAL",
+            "E-FT-AUDIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Recalculate all-checks pass rates: base 6/25, fine-tuned 19/25",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-AUDIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Compare the same campaign briefs with and without personalization/context",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Evaluate all 171 validation prompts and a separate untouched test set",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Use a blinded human rubric for relevance, factuality, tone and personalization",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Report uncertainty and grounding regressions; do not claim real CTR improvement",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 22,
+        "Task ID": "6cEFQK5jl0Cg9BgNbRp55ckAM_50",
+        "Task Name": "Compare personalized emails with generic AI emails",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-17",
+        "Start date": "2026-10-15",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-22",
+      "task_id": "3aMfr5fB2kmDcv995Gn_u8kAGu0i",
+      "name": "Add sequence timing, consent and suppression checks",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 23,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "Day 0/3/7 sequence metadata is enforced and unsubscribe text is checked. These do not implement scheduling, per-recipient consent or suppression.",
+      "checklist": [
+        {
+          "text": "Validate three emails scheduled at offsets 0, 3 and 7 days",
+          "state": "Verified",
+          "evidence": [
+            "E-SEQUENCE",
+            "E-CONTENT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Require unsubscribe wording before saving",
+          "state": "Verified",
+          "evidence": [
+            "E-GUARDS",
+            "E-CONTENT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Store recipient consent and auditable consent changes",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Maintain tenant-scoped suppression/unsubscribe records",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Check consent and suppression at the delivery boundary",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Implement a scheduler with timezone, cancellation, retries and duplicate-send prevention",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Test opt-out processing and suppression before subsequent steps",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 23,
+        "Task ID": "3aMfr5fB2kmDcv995Gn_u8kAGu0i",
+        "Task Name": "Add sequence timing, consent and suppression checks",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-16",
+        "Start date": "2026-10-15",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-23",
+      "task_id": "ng9K8ZXRykm5SWUSkhQJxckAIl44",
+      "name": "Add monitoring, traces and alerts",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 24,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "Health checks, database/model status, five-second workspace activity and 15-second service polling exist. Distributed request traces, metrics collection and alerts are not present.",
+      "checklist": [
+        {
+          "text": "Expose health, database latency and actual model availability",
+          "state": "Verified",
+          "evidence": [
+            "E-RUNTIME",
+            "E-PLATFORM"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Persist and display workspace activity",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Show disconnected delivery and agent services explicitly",
+          "state": "Verified",
+          "evidence": [
+            "E-PLATFORM",
+            "E-KB-UI"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Add request/correlation IDs and traces across connected services",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Collect retained latency/error/throughput metrics",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Configure alert rules and notification delivery",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Trigger a failure and capture its alert and trace evidence",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 24,
+        "Task ID": "ng9K8ZXRykm5SWUSkhQJxckAIl44",
+        "Task Name": "Add monitoring, traces and alerts",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-18",
+        "Start date": "2026-10-16",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-24",
+      "task_id": "oJdPS1cdFkK0oZ8vBSPr4MkACVWd",
+      "name": "Build the engagement model and experiment store",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 25,
+      "original_status": "Not started",
+      "status": "Not started",
+      "assessment": "Not implemented",
+      "summary": "No engagement prediction training/inference service or experiment assignment/event store is present. Email language-model fine-tuning is a different deliverable.",
+      "checklist": [
+        {
+          "text": "Define genuine engagement labels and avoid synthetic CTR as measured outcomes",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Build leakage-controlled train/validation/test splits",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Train and evaluate an engagement predictor against a baseline",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Store tenant-scoped experiment variants and assignments",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Persist provider-confirmed delivery/open/click events with deduplication",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Expose prediction/experiment APIs and validate tenant isolation",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 25,
+        "Task ID": "oJdPS1cdFkK0oZ8vBSPr4MkACVWd",
+        "Task Name": "Build the engagement model and experiment store",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-19",
+        "Start date": "2026-10-16",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-25",
+      "task_id": "gq8so08bZECDFmScnMsw-ckAKti3",
+      "name": "Deploy the system and test performance",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 26,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "A local Docker deployment is running and the health-only 5-VU/30-second workload passes. This does not establish email-generation or multi-agent performance, cloud deployment or production readiness.",
+      "checklist": [
+        {
+          "text": "Provide a Compose stack for the frontend, gateway, database and migrations",
+          "state": "Verified",
+          "evidence": [
+            "E-DEPLOY",
+            "E-DOCKER-DOC"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Build the frontend and verify Nginx/gateway reachability",
+          "state": "Verified",
+          "evidence": [
+            "E-BUILD",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify fresh and repeated migrations",
+          "state": "Verified",
+          "evidence": [
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Run and save a local health load test",
+          "state": "Verified",
+          "evidence": [
+            "E-LOAD"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Pass live AI generation under realistic concurrency and latency budgets",
+          "state": "Pending",
+          "evidence": [
+            "E-AI-FAIL"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Test authenticated database workflows and connected agents under load",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Record target-environment deployment, recovery and full-workflow performance evidence",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 26,
+        "Task ID": "gq8so08bZECDFmScnMsw-ckAKti3",
+        "Task Name": "Deploy the system and test performance",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-19",
+        "Start date": "2026-10-17",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-26",
+      "task_id": "TV31rvZfMES0EYG9QHzpLskAOqsB",
+      "name": "Test the full workflow and isolation across three tenants",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 27,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "C4 three-tenant isolation and the C4 browser workflow are verified. Full cross-component and live AI workflow checks remain incomplete.",
+      "checklist": [
+        {
+          "text": "Verify own-record reads for all three sample tenants",
+          "state": "Verified",
+          "evidence": [
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Reject cross-tenant reads and inserts in three isolated workspaces",
+          "state": "Verified",
+          "evidence": [
+            "E-ACCESS"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify campaign/knowledge/sequence ownership and stale-write rejection",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Run the C4 account/campaign/knowledge/manual-sequence browser journey",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Complete live AI generation for each tenant",
+          "state": "Pending",
+          "evidence": [
+            "E-AI-FAIL"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Connect and verify the C1-C4 workflow across all three tenants",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Capture complete multi-agent workflow and isolation evidence for the team",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 27,
+        "Task ID": "TV31rvZfMES0EYG9QHzpLskAOqsB",
+        "Task Name": "Test the full workflow and isolation across three tenants",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-18",
+        "Start date": "2026-10-17",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-27",
+      "task_id": "gElqHoOhHEeeQD0cdwKmyMkAL141",
+      "name": "Prepare each member’s PP1 slides",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 28,
+      "original_status": "Not started",
+      "status": "Not started",
+      "assessment": "Unverified",
+      "summary": "No PP1 slide deck exists in this workspace. The report and screenshots can support a future C4 deck; they are not a completed presentation.",
+      "checklist": [
+        {
+          "text": "Prepare the C4 problem, architecture and individual contribution slides",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Include measured evaluation results and their limitations",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Add screenshots, demo sequence and remaining work",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Review and combine each member's PP1 slides",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 28,
+        "Task ID": "gElqHoOhHEeeQD0cdwKmyMkAL141",
+        "Task Name": "Prepare each member’s PP1 slides",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-19",
+        "Start date": "2026-10-17",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-28",
+      "task_id": "Q-ddELlELU2toTK8qtU_CckAO1Oz",
+      "name": "Prepare each member’s evidence folder",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 29,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "This audit packages the C4 planner mapping, checklists, regression logs, screenshots and fine-tuning evidence. Other members' evidence and team submission location are not verified.",
+      "checklist": [
+        {
+          "text": "Create a C4 evidence index linking source, tests, screenshots and model results",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-AUDIT",
+            "E-BROWSER",
+            "E-ACCESS"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Retain successes, failures and unverified claims in the task audit",
+          "state": "Verified",
+          "evidence": [
+            "E-AI-FAIL",
+            "E-FT-REBUILD",
+            "E-CONTENT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Collect and review the other three members' evidence",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Publish the agreed team evidence folder and record its final location",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 29,
+        "Task ID": "Q-ddELlELU2toTK8qtU_CckAO1Oz",
+        "Task Name": "Prepare each member’s evidence folder",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-19",
+        "Start date": "2026-10-18",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-29",
+      "task_id": "ILbFBYC4Y0SXQp-mKqnfoMkAOT46",
+      "name": "Run a timed rehearsal and practise Q&A",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 30,
+      "original_status": "Not started",
+      "status": "Not started",
+      "assessment": "Unverified",
+      "summary": "No timed rehearsal or Q&A attendance/recording is available.",
+      "checklist": [
+        {
+          "text": "Agree the presentation/demo order and time budget",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Run and time the full team rehearsal",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Practise individual Q&A and record weak areas",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Record feedback and assign corrective tasks",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 30,
+        "Task ID": "ILbFBYC4Y0SXQp-mKqnfoMkAOT46",
+        "Task Name": "Run a timed rehearsal and practise Q&A",
+        "Bucket": "Sprint 4",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-19",
+        "Start date": "2026-10-19",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-30",
+      "task_id": "0ZVT67QIWk-91Ea1EJ8NqskALWXL",
+      "name": "Rehearse the presentation and demo with the supervisor",
+      "bucket": "Sprint 5",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 31,
+      "original_status": "Not started",
+      "status": "Not started",
+      "assessment": "Unverified",
+      "summary": "No supervisor rehearsal invitation, attendance or feedback is available.",
+      "checklist": [
+        {
+          "text": "Schedule the supervisor rehearsal",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Rehearse the actual presentation and live demo",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Capture supervisor feedback and resulting actions",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 31,
+        "Task ID": "0ZVT67QIWk-91Ea1EJ8NqskALWXL",
+        "Task Name": "Rehearse the presentation and demo with the supervisor",
+        "Bucket": "Sprint 5",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-20",
+        "Start date": "2026-10-20",
+        "Late": "true",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-31",
+      "task_id": "lPSAySqwKk-L1aPo-MJSYckAJmri",
+      "name": "Fix all rehearsal feedback items",
+      "bucket": "Sprint 5",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 32,
+      "original_status": "Not started",
+      "status": "Not started",
+      "assessment": "Unverified",
+      "summary": "No rehearsal feedback register is present; audit findings must not be represented as supervisor feedback.",
+      "checklist": [
+        {
+          "text": "Collect the actual rehearsal feedback register",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Assign and implement each correction",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Retest affected behavior and record acceptance",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 32,
+        "Task ID": "lPSAySqwKk-L1aPo-MJSYckAJmri",
+        "Task Name": "Fix all rehearsal feedback items",
+        "Bucket": "Sprint 5",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-21",
+        "Start date": "2026-10-20",
+        "Late": "false",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-32",
+      "task_id": "wWEaSgOMrECdkylZWwcNZskAEP5Q",
+      "name": "Practise individual questions and explanations",
+      "bucket": "Sprint 5",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 33,
+      "original_status": "Not started",
+      "status": "Not started",
+      "assessment": "Unverified",
+      "summary": "No individual Q&A practice record or completed explanation pack is available.",
+      "checklist": [
+        {
+          "text": "Explain tenancy, RLS, session auth, roles and implementation ownership",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Explain QLoRA, dataset split, evaluation and grounding limitations",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Practise individual questions and record completed practice",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 33,
+        "Task ID": "wWEaSgOMrECdkylZWwcNZskAEP5Q",
+        "Task Name": "Practise individual questions and explanations",
+        "Bucket": "Sprint 5",
+        "Status": "Not started",
+        "Priority": "Important",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-21",
+        "Start date": "2026-10-20",
+        "Late": "false",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-33",
+      "task_id": "WznWPEwGh0mf20UgYu20uMkANBrk",
+      "name": "Freeze the code and test setup on a clean machine",
+      "bucket": "Sprint 5",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 34,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "Fresh schema and local build/browser checks pass. The checkout has substantial staged/unstaged work; no frozen release or separate clean-machine validation is established.",
+      "checklist": [
+        {
+          "text": "Run production build and existing unit/integration/browser checks",
+          "state": "Verified",
+          "evidence": [
+            "E-BUILD",
+            "E-UNIT",
+            "E-INTEGRATION",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify fresh-database setup and repeated migrations",
+          "state": "Verified",
+          "evidence": [
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Resolve and commit the intended staged/unstaged changes",
+          "state": "Pending",
+          "evidence": [
+            "E-GIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Create and record the agreed release/freeze commit or tag",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Clone and validate startup on a separate clean environment",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Verify clean-machine AI/runtime dependencies and model setup",
+          "state": "Pending",
+          "evidence": [
+            "E-FT-REBUILD",
+            "E-AI-FAIL"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 34,
+        "Task ID": "WznWPEwGh0mf20UgYu20uMkANBrk",
+        "Task Name": "Freeze the code and test setup on a clean machine",
+        "Bucket": "Sprint 5",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-21",
+        "Start date": "2026-10-21",
+        "Late": "false",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-34",
+      "task_id": "oQ8dzx9J8UiOPzofV54RE8kAAKML",
+      "name": "Finalize diaries, AI logs and PP1 submission evidence",
+      "bucket": "Sprint 5",
+      "assigned_to": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+      "source_row": 35,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "C4 implementation/evaluation evidence is packaged by this audit. Diaries, AI logs, signed reports, slides and final team submission are not available locally.",
+      "checklist": [
+        {
+          "text": "Package C4 source references, tests, screenshots and fine-tuning evidence",
+          "state": "Verified",
+          "evidence": [
+            "E-ACCESS",
+            "E-BROWSER",
+            "E-FT-AUDIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Complete each member's diary and AI-use log",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Attach approved reports, final slides and supervisor evidence",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Check links and upload the final submission to the required team location",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Record submission confirmation and final review",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 35,
+        "Task ID": "oQ8dzx9J8UiOPzofV54RE8kAAKML",
+        "Task Name": "Finalize diaries, AI logs and PP1 submission evidence",
+        "Bucket": "Sprint 5",
+        "Status": "Not started",
+        "Priority": "Urgent",
+        "Assigned To": "SAAYINATH K it23304338;JASINTHAN U it23154544;SRIRAMANA S it23136724;SHATHURSINI.J it23164062",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "2026-10-22",
+        "Start date": "2026-10-21",
+        "Late": "false",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "Team",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-35",
+      "task_id": "-C0Kc5Jh7kWzxY9qKakYI8kAIf9m",
+      "name": "Add OAuth, webhooks, sync and recovery after PP1",
+      "bucket": "Backlog",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 36,
+      "original_status": "Not started",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "Google identity sign-in and explicit linking are implemented and pass provider-boundary tests. External-service OAuth/token refresh, webhooks, synchronization and recovery remain unimplemented.",
+      "checklist": [
+        {
+          "text": "Implement Google ID-token verification, nonce challenges and explicit account linking",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Test provider failures, replay rejection, email mismatch and unverified identities",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Complete a real Google account sign-in/link acceptance test",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Implement required external-service OAuth grants and credential refresh",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Add authenticated, replay-safe, tenant-routed webhooks",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Implement synchronization, retries, recovery and reconciliation",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 36,
+        "Task ID": "-C0Kc5Jh7kWzxY9qKakYI8kAIf9m",
+        "Task Name": "Add OAuth, webhooks, sync and recovery after PP1",
+        "Bucket": "Backlog",
+        "Status": "Not started",
+        "Priority": "Low",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "",
+        "Start date": "",
+        "Late": "false",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "P-36",
+      "task_id": "NsSUAVg4VEChXYGsDLToDskAHv8Z",
+      "name": "Optional: add tenant opt-in settings and API",
+      "bucket": "Backlog",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": 37,
+      "original_status": "Not started",
+      "status": "Not started",
+      "assessment": "Not implemented",
+      "summary": "No tenant opt-in preference table/API or enforcement path exists; visual theme/motion preferences are unrelated.",
+      "checklist": [
+        {
+          "text": "Define opt-in purposes, defaults and permission rules",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Persist tenant-scoped settings and changes",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Add authenticated settings APIs and an administrator UI",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Enforce opt-in decisions in integrations and delivery",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Test authorization, isolation and opt-in/opt-out transitions",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "",
+      "source": {
+        "_row": 37,
+        "Task ID": "NsSUAVg4VEChXYGsDLToDskAHv8Z",
+        "Task Name": "Optional: add tenant opt-in settings and API",
+        "Bucket": "Backlog",
+        "Status": "Not started",
+        "Priority": "Low",
+        "Assigned To": "SAAYINATH K it23304338",
+        "Created By": "SAAYINATH K it23304338",
+        "Created Date": "2026-10-01",
+        "Due date": "",
+        "Start date": "",
+        "Late": "false",
+        "Completed Date": "",
+        "Completed By": "",
+        "Completed Checklist Items": "",
+        "Checklist Items": "",
+        "Labels": "C4 Platform-Email",
+        "Notes": ""
+      }
+    },
+    {
+      "audit_key": "NEW-C4-01",
+      "task_id": "",
+      "name": "Build the responsive authenticated C4 workspace interface",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Delivered UI work not explicitly named as a standalone task in the export; scope is the implemented C4 interface, with disconnected integrations shown honestly.",
+      "checklist": [
+        {
+          "text": "Implement overview, campaigns, email builder, knowledge, integrations, team, monitoring and settings routes",
+          "state": "Verified",
+          "evidence": [
+            "E-UI",
+            "E-KB-UI"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Enforce route/action permissions and real account/session state",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Support light/dark appearance and motion preferences",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER",
+            "E-UNIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Validate authenticated/login/register layouts at 320, 390 and 768 pixels",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER",
+            "E-SCREEN-MOBILE"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "k4qM_z973kysiXs_hnYkOMkAFABB",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-02",
+      "task_id": "",
+      "name": "Implement self-service account registration and database-backed sessions",
+      "bucket": "Sprint 2",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Extends the original login task with account lifecycle and browser-session behavior. No email verification/password-reset service is claimed.",
+      "checklist": [
+        {
+          "text": "Create a server-assigned administrator and new workspace on registration",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Validate passwords and reject client-selected role/tenant identity",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Restore sessions through HTTP-only cookies with CSRF/origin checks",
+          "state": "Verified",
+          "evidence": [
+            "E-SESSIONS",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Persist profile changes and revoke sessions on logout/deactivation",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "L3DNfb9RQEu-NHNd75u1BckAEBcJ",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-03",
+      "task_id": "",
+      "name": "Implement Google identity verification and account linking",
+      "bucket": "Sprint 2",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Implementation and automated provider-boundary tests are complete. No real Google-account acceptance test or general external-service OAuth flow is claimed; those remain on the parent backlog task.",
+      "checklist": [
+        {
+          "text": "Provide Google challenge and verified ID-token handlers",
+          "state": "Verified",
+          "evidence": [
+            "E-AUTH",
+            "E-ACCOUNTS-SCHEMA"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Enforce single-use nonce, verified email and configured audience checks",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Reject automatic email-only linking and require authenticated explicit linking",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Test failure, replay, registration and linking paths with provider verification stubbed",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "-C0Kc5Jh7kWzxY9qKakYI8kAIf9m",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-04",
+      "task_id": "",
+      "name": "Add workspace invitations and live team membership controls",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Invitation links are shared manually; no invitation email delivery is connected. Last-admin protection is source-reviewed; the existing suite checks self-change rejection.",
+      "checklist": [
+        {
+          "text": "Create single-use, expiring invitations bound to recipient/workspace/role",
+          "state": "Verified",
+          "evidence": [
+            "E-TEAM",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Accept invitations without allowing tenant or role substitution",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Implement role changes and deactivation with live permission refresh",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Protect self-role changes and last active administrator in code",
+          "state": "Verified",
+          "evidence": [
+            "E-TEAM",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "d15ir2Ejp0y8X0EVS5BJm8kAJyOT",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-05",
+      "task_id": "",
+      "name": "Persist campaign drafts, ownership and versioned changes",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Campaign management now has persisted records rather than only role-demonstration routes; sending and Active state are intentionally unavailable.",
+      "checklist": [
+        {
+          "text": "Store tenant-scoped campaign drafts and archive/restore updates",
+          "state": "Verified",
+          "evidence": [
+            "E-PLATFORM",
+            "E-RECORDS-SCHEMA"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Reject foreign workspace updates and stale versions",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Keep delivery metrics unavailable until real provider events exist",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION",
+            "E-API-DOC"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify database persistence and cross-tab refresh",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "TC0kO6inN0uNkshS4O9n7MkAOPSk",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-06",
+      "task_id": "",
+      "name": "Build the persistent manual email-sequence editor and library",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Manual drafting works independently of model availability; live model generation remains a separate pending acceptance check.",
+      "checklist": [
+        {
+          "text": "Create, edit, reopen and delete saved three-email drafts",
+          "state": "Verified",
+          "evidence": [
+            "E-PLATFORM",
+            "E-BROWSER",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Validate sequence structure, guardrails, source ownership and optimistic versions",
+          "state": "Verified",
+          "evidence": [
+            "E-SEQUENCE",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Retain saved work across page reload and new login",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Deny viewers and foreign tenants access to sequence content",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "k4qM_z973kysiXs_hnYkOMkAFABB",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-07",
+      "task_id": "",
+      "name": "Build the tenant knowledge library and generation source controls",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Current retrieval is source-selected/recent text, capped by source count and characters. pgvector availability and an embedding seed script do not establish semantic vector retrieval.",
+      "checklist": [
+        {
+          "text": "Add and remove actual workspace knowledge text with administrator permissions",
+          "state": "Verified",
+          "evidence": [
+            "E-PLATFORM",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Provide text upload/source selection UI and saved knowledge",
+          "state": "Verified",
+          "evidence": [
+            "E-KB-UI",
+            "E-BROWSER"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Retrieve only the authenticated tenant's selected/recent text",
+          "state": "Verified",
+          "evidence": [
+            "E-AGENT",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Reject foreign source IDs before contacting the model",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "k4qM_z973kysiXs_hnYkOMkAFABB",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-08",
+      "task_id": "",
+      "name": "Add workspace activity, database totals and automatic refresh",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Delivered operational UI and polling are separate from distributed tracing or external alert delivery.",
+      "checklist": [
+        {
+          "text": "Commit activity alongside campaign/knowledge/sequence changes",
+          "state": "Verified",
+          "evidence": [
+            "E-PLATFORM",
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Expose database totals and UTC daily aggregates without invented metrics",
+          "state": "Verified",
+          "evidence": [
+            "E-PLATFORM",
+            "E-UNIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Refresh visible workspace data every five seconds and service status every fifteen seconds",
+          "state": "Verified",
+          "evidence": [
+            "E-SYNC",
+            "E-KB-UI"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify cross-tab updates and data reset for tenant/role changes",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER",
+            "E-SYNC"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "ng9K8ZXRykm5SWUSkhQJxckAIl44",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-09",
+      "task_id": "",
+      "name": "Containerize C4 and verify repeatable database migrations",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Completed scope is local Docker deployment and migration verification. Cloud HTTPS, production operations and clean-machine release validation remain outside this completed item.",
+      "checklist": [
+        {
+          "text": "Package React/Nginx, gateway and pgvector PostgreSQL in Compose",
+          "state": "Verified",
+          "evidence": [
+            "E-DEPLOY",
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Provide ordered startup, loopback ports, persistent volumes and healthchecks",
+          "state": "Verified",
+          "evidence": [
+            "E-DEPLOY",
+            "E-DOCKER-DOC"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Track migration checksums and validate restricted-role forced RLS",
+          "state": "Verified",
+          "evidence": [
+            "E-MIGRATOR"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Pass fresh-database and repeated-migration checks",
+          "state": "Verified",
+          "evidence": [
+            "E-MIGRATION-TEST"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "gq8so08bZECDFmScnMsw-ckAKti3",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-10",
+      "task_id": "",
+      "name": "Verify fine-tuning examples and the application prompt contract",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Completed item is supplied-artifact verification. CSV regeneration could not run in this Python environment because pandas is missing; the old README's claim that the builder is absent is stale.",
+      "checklist": [
+        {
+          "text": "Verify 715 training and 171 validation sequences",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-DATA"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Check supplied reference answers and actual application guardrails",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-DATA"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Confirm exact runtime prompt reconstruction and fixed personalization line",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-DATA"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Confirm five validation products with no training-product overlap",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-DATA"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "k4qM_z973kysiXs_hnYkOMkAFABB",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-11",
+      "task_id": "",
+      "name": "Train and retain the Mistral 7B QLoRA email adapter",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Training completion is supported by supplied logs/weights; this audit did not retrain or load the adapter. Final validation loss 0.9924 exceeds the best recorded 0.8709 at step 40.",
+      "checklist": [
+        {
+          "text": "Retain the configured two-epoch QLoRA notebook and training log",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-NOTEBOOK",
+            "E-FT-EVAL"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Retain the trained LoRA adapter and tokenizer artifacts",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-WEIGHTS"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Validate the adapter tensor offsets and compute a reproducible checksum",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-AUDIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Record training/validation loss and the observed validation-loss regression",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-AUDIT"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "k4qM_z973kysiXs_hnYkOMkAFABB",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-12",
+      "task_id": "",
+      "name": "Evaluate base and fine-tuned email generation on held-out prompts",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "Completed scope is the existing 25-prompt base-versus-fine-tuned evaluation. It is not personalized-versus-generic ablation, independent final test accuracy, measured CTR or live deployment acceptance.",
+      "checklist": [
+        {
+          "text": "Retain per-response results for the same 25 validation prompts",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-EVAL",
+            "E-FT-NOTEBOOK"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Compare JSON/sequence/unsubscribe/grounding/offer/length/guardrail metrics",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-EVAL"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Recalculate all-seven-check pass rates as 24% base and 76% fine-tuned",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-AUDIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Record grounding regression from 92% to 76% and small-sample limitations",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-EVAL",
+            "E-FT-AUDIT"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "6cEFQK5jl0Cg9BgNbRp55ckAM_50",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-13",
+      "task_id": "",
+      "name": "Implement safe lead-name and campaign-link template rendering",
+      "bucket": "Sprint 3",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "The standalone renderer and tests are delivered. It has not been wired into a delivery provider and does not send messages.",
+      "checklist": [
+        {
+          "text": "Preserve reusable first_name/cta_link tags in stored sequences",
+          "state": "Verified",
+          "evidence": [
+            "E-RENDER",
+            "E-UNIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Replace tags in a rendered copy using actual provided lead/link values",
+          "state": "Verified",
+          "evidence": [
+            "E-UNIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Reject missing values, header injection, unsafe URLs and unresolved tags",
+          "state": "Verified",
+          "evidence": [
+            "E-UNIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Handle dollar signs in lead names without replacement-string expansion",
+          "state": "Verified",
+          "evidence": [
+            "E-UNIT"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "k4qM_z973kysiXs_hnYkOMkAFABB",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-14",
+      "task_id": "",
+      "name": "Automate isolated account/platform and responsive browser regression checks",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "Completed",
+      "assessment": "Verified",
+      "summary": "The tested C4 regression scope passes. The separately executed real-AI check failed HTTP 503 and is retained as evidence, rather than included in this passed test scope.",
+      "checklist": [
+        {
+          "text": "Run 42 database-backed account/platform integration tests",
+          "state": "Verified",
+          "evidence": [
+            "E-INTEGRATION"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Run 12 frontend/template unit tests",
+          "state": "Verified",
+          "evidence": [
+            "E-UNIT"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Run the isolated database-backed browser journey and save screenshots",
+          "state": "Verified",
+          "evidence": [
+            "E-BROWSER",
+            "E-SCREEN-OVERVIEW",
+            "E-SCREEN-TEAM"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify nine RBAC combinations, three-tenant write/read isolation and audit persistence",
+          "state": "Verified",
+          "evidence": [
+            "E-ACCESS"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "TV31rvZfMES0EYG9QHzpLskAOqsB",
+      "source": {}
+    },
+    {
+      "audit_key": "NEW-C4-15",
+      "task_id": "",
+      "name": "Register and activate the fine-tuned Ollama model",
+      "bucket": "Sprint 4",
+      "assigned_to": "SAAYINATH K it23304338",
+      "source_row": null,
+      "original_status": "Not in export",
+      "status": "In progress",
+      "assessment": "Partial",
+      "summary": "Artifacts are ready for deployment work, but the observed installed/configured generator is base mistral:7b-instruct-q4_K_M. No runtime switch was made during the audit.",
+      "checklist": [
+        {
+          "text": "Provide the adapter, tokenizer and Ollama Modelfile",
+          "state": "Verified",
+          "evidence": [
+            "E-FT-WEIGHTS",
+            "E-FT-MODELFILE"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Verify adapter compatibility with the exact Ollama base version",
+          "state": "Pending",
+          "evidence": [],
+          "detail": ""
+        },
+        {
+          "text": "Create c4-email-ft and confirm it appears in the installed model list",
+          "state": "Pending",
+          "evidence": [
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Set the gateway model to the fine-tuned model and recreate/restart the gateway",
+          "state": "Pending",
+          "evidence": [
+            "E-RUNTIME"
+          ],
+          "detail": ""
+        },
+        {
+          "text": "Pass tenant-context generation, guardrails and persistence using that model",
+          "state": "Pending",
+          "evidence": [
+            "E-AI-FAIL"
+          ],
+          "detail": ""
+        }
+      ],
+      "additional_remaining": "",
+      "parent": "k4qM_z973kysiXs_hnYkOMkAFABB",
+      "source": {}
+    }
+  ],
+  "evidence": {
+    "E-PLANNER": {
+      "path": "evidence/planner/source-export.xlsx",
+      "kind": "Supplied export",
+      "description": "Original 36 assigned tasks and reported statuses. Contains no item-level completion flags.",
+      "line": null,
+      "bytes": 21137,
+      "sha256": "36d82ba96337aa67833bbdd0e3390484f58eb39d860d39a6bf09ea5ab8e55d58"
+    },
+    "E-SCHEMA": {
+      "path": "db/migrations/001_init.sql",
+      "kind": "Source",
+      "description": "Tenant/user/knowledge/audit schema, pgvector, UUIDs, forced RLS.",
+      "line": 9,
+      "bytes": 2125,
+      "sha256": "fe25bd079888840beec1d425ae4c15b906ac0e629710ba12afc8b3d4ad8266ff"
+    },
+    "E-DBROLE": {
+      "path": "db/migrations/002_app_role.sql",
+      "kind": "Source",
+      "description": "Restricted c4_app role without RLS bypass.",
+      "line": 10,
+      "bytes": 598,
+      "sha256": "74b2d9db397521f493ff782dcad71d27511e066b4fc91d614cc17d79e3507391"
+    },
+    "E-AUTH": {
+      "path": "services/gateway/src/routes/authRoutes.js",
+      "kind": "Source",
+      "description": "Password login, registration, profile, logout, Google challenge and token verification.",
+      "line": 35,
+      "bytes": 10703,
+      "sha256": "52a4e4eba830a99013f460c7ae8166ec60ee7d57b62d2b43a85cc1ace5e5ebb4"
+    },
+    "E-SESSIONS": {
+      "path": "services/gateway/src/services/session.js",
+      "kind": "Source",
+      "description": "HTTP-only cookies, database sessions, tenant transactions and CSRF checks.",
+      "line": 42,
+      "bytes": 3959,
+      "sha256": "d23bd380204aaaa0313174cabab24292d51598ee1916087642017c1f4b907ed9"
+    },
+    "E-RBAC": {
+      "path": "services/gateway/src/policies/rbac.js",
+      "kind": "Source",
+      "description": "Administrator/marketer/viewer permission matrix.",
+      "line": 2,
+      "bytes": 786,
+      "sha256": "fc78196c7deadbed0bad7ac2f13f66b21798c3b879c122b7190c9fb4fa719341"
+    },
+    "E-AUDIT": {
+      "path": "services/gateway/src/middleware/audit.js",
+      "kind": "Source",
+      "description": "Authenticated request outcome, tenant, user, route, action and status audit inserts.",
+      "line": 4,
+      "bytes": 818,
+      "sha256": "295b845c3bcaa627a09bace8ca1af452b5a812c8da6a9d154ca2e3e37ac47754"
+    },
+    "E-TEAM": {
+      "path": "services/gateway/src/routes/teamRoutes.js",
+      "kind": "Source",
+      "description": "Single-use invitations, roles, deactivation, self-change and last-admin protections.",
+      "line": 19,
+      "bytes": 4609,
+      "sha256": "976eb6ded4784ee0609d02a0188e1652b289b9fa6c98846f8112d83340dc6e34"
+    },
+    "E-PLATFORM": {
+      "path": "services/gateway/src/routes/platformRoutes.js",
+      "kind": "Source",
+      "description": "Persistent campaigns, knowledge, drafts, activity, status, and explicit disconnected integrations.",
+      "line": 27,
+      "bytes": 9249,
+      "sha256": "8804eda85f65331643059160d08130fd4e825c32eb53b2aec714a63d30c2020d"
+    },
+    "E-AGENT": {
+      "path": "services/gateway/src/services/emailAgent.js",
+      "kind": "Source",
+      "description": "Tenant text context, reusable prompt, real Ollama generation, timeout handling and unsubscribe footer.",
+      "line": 37,
+      "bytes": 4954,
+      "sha256": "b2fc0d9038dfb323aaa66095cd2d6aaf75bb98bf4733d10010171d122866d548"
+    },
+    "E-GUARDS": {
+      "path": "services/gateway/src/services/guardrails.js",
+      "kind": "Source",
+      "description": "PII, unsubscribe, spam and capitalization checks.",
+      "line": 4,
+      "bytes": 1463,
+      "sha256": "08812879718d7d9aebc01a2945932f5fd6f95b39a2da41b71055b3aa07abdfb7"
+    },
+    "E-RENDER": {
+      "path": "services/gateway/src/services/emailTemplates.js",
+      "kind": "Source",
+      "description": "Delivery-boundary name/link replacement and unresolved-tag rejection; not wired to sending.",
+      "line": 4,
+      "bytes": 1347,
+      "sha256": "4952d4a4aa71c3a8111eb0b4097fc248c5a881538069a24a2307b0f634b6e6fe"
+    },
+    "E-SEQUENCE": {
+      "path": "services/gateway/src/services/workspace.js",
+      "kind": "Source",
+      "description": "Three-email day 0/3/7 validation and database persistence; no word-count or grounding validator.",
+      "line": 10,
+      "bytes": 2095,
+      "sha256": "8047ab4809ba0256a48bc7e6e6203939423fdd94a1e7a681ce758f8b495c03b0"
+    },
+    "E-RECORDS-SCHEMA": {
+      "path": "db/migrations/005_workspace_records.sql",
+      "kind": "Source",
+      "description": "RLS-backed campaigns, email sequences, activity and version columns.",
+      "line": 2,
+      "bytes": 2341,
+      "sha256": "74094c6548f016f28c30965f7ec25a0d8a236d832759277ad205485abe8fc98b"
+    },
+    "E-ACCOUNTS-SCHEMA": {
+      "path": "db/migrations/004_accounts_and_sessions.sql",
+      "kind": "Source",
+      "description": "Account registration, Google identities, session resolution and invitation database functions.",
+      "line": 10,
+      "bytes": 6861,
+      "sha256": "880928dd967d4af80416c844a5d8cc5e86cabd371255e3a08dd60d85030fceff"
+    },
+    "E-MIGRATOR": {
+      "path": "services/gateway/scripts/migrate.js",
+      "kind": "Source",
+      "description": "Migration checksums, existing-schema adoption, application-role and forced-RLS validation.",
+      "line": 19,
+      "bytes": 4951,
+      "sha256": "0ea4ac7aa1cb56318dabc17cfb0f5f6ef199574b29ab65c8a4424ffc6eff4d7e"
+    },
+    "E-DEPLOY": {
+      "path": "docker-compose.yml",
+      "kind": "Source",
+      "description": "Local PostgreSQL, migration, gateway, Nginx frontend, healthchecks, optional Ollama.",
+      "line": 2,
+      "bytes": 2862,
+      "sha256": "aae74bc8d012dfd964e8335a741ec06e57d0efe5e692127ca81d66ba3a0841d1"
+    },
+    "E-DOCKER-DOC": {
+      "path": "docker/README.md",
+      "kind": "Documentation",
+      "description": "Local startup, existing volumes, CPU/GPU options and local HTTP scope.",
+      "line": 1,
+      "bytes": 5388,
+      "sha256": "1ec27ac3a5259dc4524b55a5941d68058a654ce68d7319c2ebb5478c474b4a71"
+    },
+    "E-UI": {
+      "path": "frontend/src/components/AccountShell.jsx",
+      "kind": "Source",
+      "description": "Authenticated navigation and permission-based workspace pages.",
+      "line": 20,
+      "bytes": 11552,
+      "sha256": "d8c9fabd4de751b8f2359af5f12a7082e2f2d9153167ba1fb1154a0504d45fd2"
+    },
+    "E-KB-UI": {
+      "path": "frontend/src/pages/Workspace.jsx",
+      "kind": "Source",
+      "description": "Knowledge upload, integration scopes, monitoring and activity views.",
+      "line": 6,
+      "bytes": 13577,
+      "sha256": "168c2817697783858db64e3769bf3a20f4bf4106af9256b4c1f123908fefd6ce"
+    },
+    "E-SYNC": {
+      "path": "frontend/src/hooks/useWorkspace.js",
+      "kind": "Source",
+      "description": "Tenant/role-scoped state, five-second polling, focus refresh and stale-response protection.",
+      "line": 4,
+      "bytes": 1950,
+      "sha256": "0ab53f6195a345d4d5f1293d7d61b8d8f7db679f5613b0a205b3ea69bb12048d"
+    },
+    "E-API-DOC": {
+      "path": "frontend/PLATFORM_API.md",
+      "kind": "Documentation",
+      "description": "Implemented C4 endpoints, request/response fields, cookies/bearer/CSRF and error status codes.",
+      "line": 1,
+      "bytes": 4202,
+      "sha256": "01113fdc0a0cbaef089df298b953d7823ef0a8b221fc61682bccf860c8742b59"
+    },
+    "E-AUTH-DOC": {
+      "path": "frontend/AUTH_SETUP.md",
+      "kind": "Documentation",
+      "description": "Account setup, Google configuration and invitation flow.",
+      "line": 1,
+      "bytes": 9838,
+      "sha256": "8ef0464efa4d0745d0512bb40e29cd2fccb76acff8f81f9874b732b6758984ad"
+    },
+    "E-UNIT": {
+      "path": "evidence/planner/checks/unit-tests.txt",
+      "kind": "Fresh test",
+      "description": "12/12 frontend/API/CSV/preferences/template tests pass.",
+      "line": null,
+      "bytes": 4990,
+      "sha256": "c3196d1993d75bf186bf6245297d4043af26ece144c5324bf863a012e80fc2dd"
+    },
+    "E-INTEGRATION": {
+      "path": "evidence/planner/checks/accounts-platform-tests.txt",
+      "kind": "Fresh test",
+      "description": "42/42 account/platform tests pass against an isolated database; Google and Ollama responses are test doubles.",
+      "line": null,
+      "bytes": 2560,
+      "sha256": "8c3b0a85d5f10f06413bb025ddfcbed4ca36b2227bbf2504aa8fa44cbb38ade7"
+    },
+    "E-BROWSER": {
+      "path": "evidence/planner/checks/browser-ui-tests.txt",
+      "kind": "Fresh browser test",
+      "description": "Real browser/account/database flows pass, including responsive 320/390/768px routes. Optional live AI generation disabled in this run.",
+      "line": null,
+      "bytes": 2502,
+      "sha256": "f8a114b33bb6b99bc533dbe5b15b2aaea8d9e510c1f83d6392e68c56ee5c67a8"
+    },
+    "E-RUNTIME": {
+      "path": "evidence/planner/checks/runtime-audit.json",
+      "kind": "Fresh read-only check",
+      "description": "Nginx/gateway health, unauthenticated denial, c4_app/RLS, three sample tenants, installed models and configured base model.",
+      "line": null,
+      "bytes": 2697,
+      "sha256": "943389970e21e21496f20eab1e9760ad2bee14ab3b0913a3f9d7f44467945141"
+    },
+    "E-ACCESS": {
+      "path": "evidence/planner/checks/access-audit.json",
+      "kind": "Fresh isolated test",
+      "description": "Nine role/route combinations; three-tenant read/write isolation; nine persisted audit records; temporary database removed.",
+      "line": null,
+      "bytes": 2017,
+      "sha256": "26da8cc9f2463a8a32ad38e13e9d7b50e5279b2616fa2d48f3e1c0645dec93b8"
+    },
+    "E-CONTENT": {
+      "path": "evidence/planner/checks/content-audit.json",
+      "kind": "Fresh content check",
+      "description": "Six guardrail cases pass; incorrect sequence timing rejected; 165-word body and unsupported offer accepted by save validator.",
+      "line": null,
+      "bytes": 1282,
+      "sha256": "f6ba2a74fe0139388833db5fb57530bf3bb91194b5ca964488b1e064841691de"
+    },
+    "E-MIGRATION-TEST": {
+      "path": "evidence/planner/checks/migration-tests.txt",
+      "kind": "Fresh isolated test",
+      "description": "All five migrations apply to a fresh database and a repeated migration run passes.",
+      "line": null,
+      "bytes": 994,
+      "sha256": "7e59e6401ebd1cfb9179138cd19bfff20283838770917a4affbf1142fde8e554"
+    },
+    "E-BUILD": {
+      "path": "evidence/planner/checks/frontend-build.txt",
+      "kind": "Fresh build transcript",
+      "description": "Production frontend build succeeded; output transcribed from this audit session.",
+      "line": null,
+      "bytes": 505,
+      "sha256": "9d01f06bdd7f1b26fe73757d34ac0a44079d29054ae8c82b0b734930c15cd127"
+    },
+    "E-LOAD": {
+      "path": "evidence/planner/checks/health-load-summary.json",
+      "kind": "Fresh load test",
+      "description": "5 VUs / 30 seconds, 143 health requests, 286 checks, zero failures; health-only workload.",
+      "line": null,
+      "bytes": 3871,
+      "sha256": "d124a8e0ecd6e6e42cfa59bc60c9518ef91f3f7a9c07f405153db2bf64680f8a"
+    },
+    "E-FT-DATA": {
+      "path": "evidence/planner/checks/dataset-verification.json",
+      "kind": "Fresh artifact verification",
+      "description": "715 train + 171 validation examples; all supplied references and runtime prompt contracts pass; five disjoint validation products.",
+      "line": null,
+      "bytes": 2900,
+      "sha256": "64421824261226bd3b33454a78f56a9fde38b728b240d30a8dc8d357876baa7a"
+    },
+    "E-FT-SCRIPT": {
+      "path": "ml/finetune/prepare_email_ft.py",
+      "kind": "Source",
+      "description": "CSV cleaning, offer rewriting, three-step assembly and product-level split implementation; execution needs pandas.",
+      "line": 266,
+      "bytes": 19666,
+      "sha256": "318dccbcc8c2311390a8f5d36e027f579326e44b13b951ffdcdc99dc84044203"
+    },
+    "E-FT-NOTEBOOK": {
+      "path": "ml/finetune/c4_finetune_mistral_qlora.ipynb",
+      "kind": "Training artifact",
+      "description": "QLoRA configuration, answer-only loss, baseline generation, training/resume, post-training evaluation and packaging.",
+      "line": null,
+      "bytes": 334223,
+      "sha256": "da35ddfc6098252f8683470631e2300d331b24fc7f514cf0721e0eba0c995001"
+    },
+    "E-FT-EVAL": {
+      "path": "evidence/c4-ft/c4-ft_finetune_summary.json",
+      "kind": "Supplied training results",
+      "description": "715 training examples, 25 evaluated prompts, base/fine-tuned metrics and loss summaries.",
+      "line": null,
+      "bytes": 741,
+      "sha256": "bdc0152aeca84107af69a2ccf6deeb5234cd59c85a255745573a23daa95109c3"
+    },
+    "E-FT-WEIGHTS": {
+      "path": "ml/finetune/models/c4-email-lora/adapter_model.safetensors",
+      "kind": "Supplied model artifact",
+      "description": "167,832,240-byte adapter, 448 tensor entries and valid data offsets; not loaded or retrained in this audit.",
+      "line": null,
+      "bytes": 167832240,
+      "sha256": "d8e46c073ab2a16eedf828b0b2cb81ed91c16e9a516d0202257f54abde3cc530"
+    },
+    "E-FT-AUDIT": {
+      "path": "evidence/planner/checks/fine-tuning-audit.json",
+      "kind": "Fresh artifact audit",
+      "description": "Recomputed 6/25 versus 19/25 all-checks pass; best recorded validation loss at step 40; weights checksum; rebuild dependency failure.",
+      "line": null,
+      "bytes": 5018,
+      "sha256": "e40ebd678925fe92340745bdec693b6b227cdd1dcaf1d41b53eab07ddd2cbefd"
+    },
+    "E-FT-REBUILD": {
+      "path": "evidence/planner/checks/dataset-rebuild.txt",
+      "kind": "Failed environment check",
+      "description": "CSV rebuild could not start: ModuleNotFoundError for pandas in the current Python environment.",
+      "line": null,
+      "bytes": 231,
+      "sha256": "69d36bd8c8f0c1f1af4aef8ca0db0123d2520a1b297caac01b09de7b5f847dbf"
+    },
+    "E-FT-MODELFILE": {
+      "path": "ml/finetune/Modelfile",
+      "kind": "Source",
+      "description": "Prepared Ollama base/adapter definition for c4-email-ft; model is not installed in observed runtime.",
+      "line": null,
+      "bytes": 602,
+      "sha256": "5e4842517fcd6fffaede272e111418307a2f34ebddc1318cc047f81e88c09622"
+    },
+    "E-AI-FAIL": {
+      "path": "evidence/planner/checks/browser-tests.txt",
+      "kind": "Failed live inference check",
+      "description": "Isolated browser test with actual Ollama failed HTTP 503 (unavailable or timed out); database cleanup completed.",
+      "line": null,
+      "bytes": 3212,
+      "sha256": "4cf645c16adbcee05ba7e0423ca803390e52626c21e1cda6c1e68a0bef040a7d"
+    },
+    "E-SCREEN-OVERVIEW": {
+      "path": "evidence/planner/screenshots/authenticated-overview-light.png",
+      "kind": "Fresh screenshot",
+      "description": "Authenticated overview captured by the successful isolated browser test.",
+      "line": null,
+      "bytes": 360304,
+      "sha256": "85ed3b78fc1827c39dcccac95bcf52c3870200fbed810f854f43d05a7848f5f6"
+    },
+    "E-SCREEN-TEAM": {
+      "path": "evidence/planner/screenshots/live-team-access.png",
+      "kind": "Fresh screenshot",
+      "description": "Live team and role controls captured by the successful isolated browser test.",
+      "line": null,
+      "bytes": 167716,
+      "sha256": "17eb7e8fce6ff7be033862f71084ab3dfa2ae451e2961d60dedc8db47f18e833"
+    },
+    "E-SCREEN-MOBILE": {
+      "path": "evidence/planner/screenshots/register-mobile.png",
+      "kind": "Fresh screenshot",
+      "description": "390px registration screenshot; browser assertions also checked 320px and 768px.",
+      "line": null,
+      "bytes": 124495,
+      "sha256": "80001f697433f9c52394eab411823a2a05e766051830e917b5c46b26ce928b8c"
+    },
+    "E-GIT": {
+      "path": "evidence/planner/checks/repository-snapshot.json",
+      "kind": "Fresh metadata",
+      "description": "Current branch/HEAD, local branches, working-tree status and source hashes; local implementation is not proof of authorship or merged remote work.",
+      "line": null,
+      "bytes": 11812,
+      "sha256": "4ba60b128b3ebf93e10c158bf052c8bc5c088d2eb6e9c9668b72bd6cf256a814"
+    }
+  },
+  "findings": [
+    {
+      "key": "F01",
+      "severity": "High",
+      "title": "Live email generation failed",
+      "observation": "The optional real-Ollama browser test returned HTTP 503 (unavailable or timed out).",
+      "evidence": "E-AI-FAIL",
+      "related_tasks": "P-17; NEW-C4-15",
+      "action": "Diagnose local model availability/latency and rerun live generation before accepting the generation task."
+    },
+    {
+      "key": "F02",
+      "severity": "High",
+      "title": "Fine-tuned model not active",
+      "observation": "Host environment and installed model list show base Mistral; the trained adapter is a separate local artifact.",
+      "evidence": "E-RUNTIME; E-FT-WEIGHTS",
+      "related_tasks": "NEW-C4-15",
+      "action": "Validate compatibility, register the adapter model, select it deliberately and capture an authenticated smoke test."
+    },
+    {
+      "key": "F03",
+      "severity": "High",
+      "title": "Runtime offer grounding not enforced",
+      "observation": "A source=none sequence containing an unsupported 90% offer is accepted by validSequence; grounding is currently a prompt rule and offline check.",
+      "evidence": "E-CONTENT; E-SEQUENCE",
+      "related_tasks": "P-19",
+      "action": "Validate supported facts/offers against tenant context before persistence/delivery."
+    },
+    {
+      "key": "F04",
+      "severity": "Medium",
+      "title": "150-word limit not enforced on save",
+      "observation": "The save validator accepts the audit's 165-word body. The notebook separately measures the word limit.",
+      "evidence": "E-CONTENT; E-SEQUENCE",
+      "related_tasks": "P-19",
+      "action": "Add a body word-count rule and suitable negative checks before treating the runtime limit as enforced."
+    },
+    {
+      "key": "F05",
+      "severity": "High",
+      "title": "Consent, suppression and delivery missing",
+      "observation": "Day offsets and unsubscribe wording exist, but there is no recipient-consent/suppression store, sending provider or scheduler.",
+      "evidence": "E-PLATFORM; E-SEQUENCE",
+      "related_tasks": "P-22; P-24; P-36",
+      "action": "Implement auditable recipient consent, opt-outs, suppression, sending and event handling before claiming delivery functionality."
+    },
+    {
+      "key": "F06",
+      "severity": "High",
+      "title": "Other agents are not connected",
+      "observation": "C1 strategy, C2 content and C3 lead intelligence are explicitly reported not_connected; integrations UI describes future scope.",
+      "evidence": "E-PLATFORM; E-KB-UI",
+      "related_tasks": "P-11; P-18; P-26",
+      "action": "Obtain actual contracts/services, connect authenticated routes and test the full workflow."
+    },
+    {
+      "key": "F07",
+      "severity": "Medium",
+      "title": "Evaluation scope and regression",
+      "observation": "All-check pass rate improves 24% to 76% on 25 prompts, while grounding decreases 92% to 76%. Validation loss is best at step 40 and higher at the final step.",
+      "evidence": "E-FT-EVAL; E-FT-AUDIT",
+      "related_tasks": "P-21; NEW-C4-11; NEW-C4-12",
+      "action": "Compare available checkpoints; evaluate all validation prompts and an untouched test set; add human review and a real personalization ablation."
+    },
+    {
+      "key": "F08",
+      "severity": "Medium",
+      "title": "CSV rebuild blocked by environment",
+      "observation": "prepare_email_ft.py exists, but the current Python environment lacks pandas. Supplied-artifact verification passes; regeneration is not established.",
+      "evidence": "E-FT-REBUILD; E-FT-DATA",
+      "related_tasks": "NEW-C4-10",
+      "action": "Use the intended ML environment and compare rebuilt examples/reports without overwriting the supplied dataset."
+    },
+    {
+      "key": "F09",
+      "severity": "Medium",
+      "title": "Fine-tuning documentation is stale",
+      "observation": "README.md and the top-level verification report still say prepare_email_ft.py/Modelfile were not supplied, although both now exist. The report remains artifact verification, not model accuracy.",
+      "evidence": "E-FT-SCRIPT; E-FT-MODELFILE; E-FT-DATA",
+      "related_tasks": "NEW-C4-10",
+      "action": "Reconcile documentation after a successful CSV rebuild; retain the distinction between data quality and model output metrics."
+    },
+    {
+      "key": "F10",
+      "severity": "Medium",
+      "title": "Audit coverage is limited",
+      "observation": "Authenticated routes using audit middleware record allowed/denied outcomes. Authentication failures and platform CRUD operations are not all handled by that middleware; workspace events are a separate stream.",
+      "evidence": "E-AUDIT; E-PLATFORM; E-ACCESS",
+      "related_tasks": "P-12",
+      "action": "Define required audit coverage and add it to uncovered actions if full request auditing is required."
+    },
+    {
+      "key": "F11",
+      "severity": "Medium",
+      "title": "Monitoring and load scope",
+      "observation": "Health checks/activity/model status exist. No retained distributed traces or alert pipeline exists, and k6 exercises /health only.",
+      "evidence": "E-LOAD; E-PLATFORM; E-KB-UI",
+      "related_tasks": "P-23; P-25",
+      "action": "Add connected-service metrics, traces/alerts and authenticated/generation workload testing."
+    },
+    {
+      "key": "F12",
+      "severity": "Medium",
+      "title": "Team evidence remains external",
+      "observation": "Reports, signatures, meetings, diaries, slides, risk logs, remote branch protection and C3 contract/mock files named in the export are not present here.",
+      "evidence": "E-PLANNER; E-GIT",
+      "related_tasks": "Team/shared tasks",
+      "action": "Attach existing external evidence. Preserve reported completion without inventing local verification or claiming another member's work."
+    },
+    {
+      "key": "F13",
+      "severity": "Medium",
+      "title": "Release not frozen",
+      "observation": "The checkout includes extensive staged/unstaged work. Local source presence does not demonstrate a merged release or clean-machine installation.",
+      "evidence": "E-GIT; E-BUILD; E-MIGRATION-TEST",
+      "related_tasks": "P-33",
+      "action": "Review and commit the intended changes; identify a freeze commit and validate a fresh clone on a separate machine."
+    }
+  ],
+  "verification": [
+    {
+      "name": "Frontend/template unit tests",
+      "status": "Passed",
+      "result": "12/12 tests",
+      "evidence": [
+        "E-UNIT"
+      ]
+    },
+    {
+      "name": "Account/platform integration",
+      "status": "Passed",
+      "result": "42/42 tests; isolated PostgreSQL; external Google/Ollama responses stubbed",
+      "evidence": [
+        "E-INTEGRATION"
+      ]
+    },
+    {
+      "name": "RBAC and audit persistence",
+      "status": "Passed",
+      "result": "9/9 role/route combinations, 6 allowed + 3 denied audit records",
+      "evidence": [
+        "E-ACCESS"
+      ]
+    },
+    {
+      "name": "Three-tenant isolation",
+      "status": "Passed",
+      "result": "Own records visible; cross-tenant reads/inserts blocked; sample tenant A/B/C read checks pass",
+      "evidence": [
+        "E-ACCESS",
+        "E-RUNTIME"
+      ]
+    },
+    {
+      "name": "Fresh and repeated migrations",
+      "status": "Passed",
+      "result": "Five migrations and restricted-role forced-RLS checks",
+      "evidence": [
+        "E-MIGRATION-TEST"
+      ]
+    },
+    {
+      "name": "Frontend production build",
+      "status": "Passed",
+      "result": "1603 modules transformed; exit 0",
+      "evidence": [
+        "E-BUILD"
+      ]
+    },
+    {
+      "name": "Browser/database journey",
+      "status": "Passed",
+      "result": "Registration, profile, invite, roles, drafts, knowledge, cross-tab refresh, logout, themes; 320/390/768px",
+      "evidence": [
+        "E-BROWSER"
+      ]
+    },
+    {
+      "name": "Local runtime",
+      "status": "Passed",
+      "result": "Gateway 200, Nginx 200; protected unauthenticated routes 401; restricted c4_app and seven forced-RLS tables",
+      "evidence": [
+        "E-RUNTIME"
+      ]
+    },
+    {
+      "name": "Health load test",
+      "status": "Passed",
+      "result": "5 VUs / 30 seconds, 143 requests, 286 checks, zero failed requests; p95 390.47 ms; health only",
+      "evidence": [
+        "E-LOAD"
+      ]
+    },
+    {
+      "name": "Supplied dataset/prompt contract",
+      "status": "Passed",
+      "result": "715 train + 171 validation; all reference/application checks; 5 disjoint validation products",
+      "evidence": [
+        "E-FT-DATA"
+      ]
+    },
+    {
+      "name": "Adapter structure and saved results",
+      "status": "Passed",
+      "result": "448 tensor offsets valid; all-check pass 6/25 base vs 19/25 fine-tuned; no training rerun",
+      "evidence": [
+        "E-FT-AUDIT"
+      ]
+    },
+    {
+      "name": "Content guardrails",
+      "status": "Passed",
+      "result": "6/6 selected cases; incorrect day rejected; limited regex-based scope",
+      "evidence": [
+        "E-CONTENT"
+      ]
+    },
+    {
+      "name": "Live AI generation",
+      "status": "Failed",
+      "result": "Actual Ollama attempt returned HTTP 503; separate from passing provider-stubbed integration/UI tests",
+      "evidence": [
+        "E-AI-FAIL"
+      ]
+    },
+    {
+      "name": "Runtime grounding and 150-word limit",
+      "status": "Failed",
+      "result": "Unsupported offer and 165-word body both accepted by save validator",
+      "evidence": [
+        "E-CONTENT"
+      ]
+    },
+    {
+      "name": "CSV dataset regeneration",
+      "status": "Blocked",
+      "result": "Builder exists, but this Python environment lacks pandas; no regeneration claimed",
+      "evidence": [
+        "E-FT-REBUILD"
+      ]
+    }
+  ]
+}
