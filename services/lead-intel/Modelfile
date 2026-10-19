@@ -1,0 +1,8 @@
+# services/lead-intel/Modelfile — C3-14 run the fine-tuned Lead Intelligence model in Ollama
+# Base = Mistral 7B Instruct v0.3 (same base the LoRA adapter was trained on) + our QLoRA adapter.
+# 1. unzip c3-mistral-lora.zip (from Colab / Google Drive) into  models/c3-mistral-lora/
+#    (the folder must contain adapter_config.json and adapter_model.safetensors)
+# 2. ollama pull mistral:7b-instruct-v0.3-q4_K_M
+# 3. ollama create c3-mistral-ft -f Modelfile
+FROM mistral:7b-instruct-v0.3-q4_K_M
+ADAPTER ./models/c3-mistral-lora

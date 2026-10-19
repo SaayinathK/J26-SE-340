@@ -169,11 +169,8 @@ def attribute(out: dict, hits: list[dict]) -> dict:
             "sources": supported, "_attribution": [(lb, round(sm, 3)) for sm, lb in sims[:3]]}
 
 
-def recommend(tenant: str, lead: dict, scored: dict) -> dict:
-    t0 = time.perf_counter()
-    hits = retrieve(tenant, lead)
-    similar = [h for h in hits if h["type"] == "lead_profile"]
-    similar_rate = (f"{sum(h['converted'] for h in similar)} of {len(similar)}" if similar else "n/a")
+def build_prompt(lead: dict, scored: dict, hits: list[dict]):
+    """The exact prompt Mistral sees (also used to build the fine-tuning dataset, C3-14)."""
     rule, rule_label = segment_policy(scored["segment"], hits)
     prompt = PROMPT.format(
         rule=rule or "(no policy found - use the sources)", rule_label=rule_label or "-",
@@ -181,6 +178,15 @@ def recommend(tenant: str, lead: dict, scored: dict) -> dict:
         score=scored["score"], segment=scored["segment"],
         factors=", ".join(f["feature"] for f in scored["top_factors"]),
         context="\n".join(f"{h['label']}: ({h['type']}) {h['text']}" for h in hits))
+    return prompt, rule, rule_label
+
+
+def recommend(tenant: str, lead: dict, scored: dict) -> dict:
+    t0 = time.perf_counter()
+    hits = retrieve(tenant, lead)
+    similar = [h for h in hits if h["type"] == "lead_profile"]
+    similar_rate = (f"{sum(h['converted'] for h in similar)} of {len(similar)}" if similar else "n/a")
+    prompt, rule, rule_label = build_prompt(lead, scored, hits)
     raw = _generate(prompt)
     method = "model_citation"
     out = ground(raw, hits)
@@ -193,7 +199,7 @@ def recommend(tenant: str, lead: dict, scored: dict) -> dict:
             out["model_raw"] = raw
     out["policy_rule"] = rule
     out["policy_check"] = policy_check(out.get("next_best_action") or "", rule)
-    out.update({"citation_method": method, "retrieval_method": RETRIEVAL,
+    out.update({"citation_method": method, "retrieval_method": RETRIEVAL, "llm_model": LLM_MODEL,
                 "lead_id": lead["lead_id"], "score": scored["score"],
                 "segment": scored["segment"], "similar_leads_converted": similar_rate,
                 "latency_sec": round(time.perf_counter() - t0, 1)})
