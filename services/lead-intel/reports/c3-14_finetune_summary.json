@@ -1,0 +1,28 @@
+{
+  "base_model": "unsloth/mistral-7b-instruct-v0.3",
+  "method": "QLoRA 4-bit nf4, LoRA r=16 alpha=32, 2 epochs, lr 0.0002",
+  "train_examples": 324,
+  "eval_prompts": 30,
+  "before": {
+    "json_valid": 1.0,
+    "grounded": 1.0,
+    "policy_consistent": 1.0,
+    "cites_policy": 0.0,
+    "seconds": 7.72
+  },
+  "after": {
+    "json_valid": 1.0,
+    "grounded": 1.0,
+    "policy_consistent": 1.0,
+    "cites_policy": 1.0,
+    "seconds": 14.5
+  },
+  "train_loss_first_last": [
+    1.15,
+    0.0204
+  ],
+  "eval_loss_first_last": [
+    0.0366,
+    0.0201
+  ]
+}

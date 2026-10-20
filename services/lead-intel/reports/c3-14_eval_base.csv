@@ -1,0 +1,91 @@
+i,json_valid,grounded,policy_consistent,cites_policy,seconds,model,output
+0,True,True,True,False,8.66,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Add this lead to the monthly newsletter within 24 hours."",
+  ""message_draft"": ""Hello there, we noticed your interest in our Business Administration course. Stay updated with our latest insights, success stories, and upcoming offers by subscribing to our monthly newsletter. Best, [Your Name]""}"
+1,True,True,True,False,8.8,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""The sales team should call the lead from an admissions counsellor within 24 hours."",
+  ""message_draft"": ""Hello, we noticed your interest in our part-time online MBA programme. As a hot lead, we would like to offer you a call with an admissions counsellor within the next 24 hours. Looking forward to discussing how our programme can help you advance your career.""}"
+2,True,True,True,False,8.55,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""The sales team should call the lead from an admissions counsellor within 24 hours."",
+  ""message_draft"": ""Hello, we noticed your interest in our part-time online MBA programme. As a hot lead, we would like to offer you a call with an admissions counsellor within the next 24 hours to discuss further. Looking forward to speaking with you soon.""}"
+3,True,True,True,False,8.15,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a monthly programme update to the lead within the next business day."",
+  ""message_draft"": ""Hello, we noticed you recently visited our website. We'd like to share our part-time online MBA programme (18 months, weekend live classes) with you. If you're interested, we'll send you a monthly programme update. Best, [Your Name]""}"
+4,True,True,True,False,6.8,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Offer a free sample lesson to the lead today."",
+  ""message_draft"": ""Hello there! We noticed your interest in our services. As a warm lead, we'd like to offer you a free sample lesson to help you get started. Looking forward to hearing from you.""}"
+5,True,True,True,False,7.92,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Invite the lead to a free online information session within 24 hours."",
+  ""message_draft"": ""Hello, we noticed your recent interest in our part-time online MBA programme. We'd like to invite you to a free online information session to help you learn more about the programme and its accreditation. Looking forward to seeing you there!""}"
+6,True,True,True,False,6.5,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Add the lead to the monthly newsletter within the current month."",
+  ""message_draft"": ""Hello there, we noticed your interest in Operations Management. Stay updated with our latest insights and opportunities by subscribing to our monthly newsletter. Best, [Your Name]""}"
+7,True,True,True,False,7.25,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a monthly tips email to the lead as per the business policy."",
+  ""message_draft"": ""Hello there, We noticed your interest in our Marketing Management course. To help you stay updated on the latest trends, we'd like to invite you to our monthly tips email. Looking forward to your continued engagement!""}"
+8,True,True,True,False,6.77,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Offer a free sample lesson to the lead today."",
+  ""message_draft"": ""Hello there! We noticed you're a warm lead and we'd like to offer you a free sample lesson to help you explore our courses. Let us know if you're interested.""}"
+9,True,True,True,False,8.09,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a free sample lesson to the lead within 24 hours."",
+  ""message_draft"": ""Hi there, we noticed your interest in our Finance Management course. As a warm lead, we'd like to offer you a free sample lesson to help you decide if this course is right for you. Let us know if you'd like to proceed!""}"
+10,True,True,True,False,7.82,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Offer a free sample lesson to the lead today."",
+  ""message_draft"": ""Hi there, we noticed your interest in Business Administration. As a warm lead, we'd like to offer you a free sample lesson from our 8-week Digital Marketing certification. Let us help you kickstart your career! Regards, [Your Name]""}"
+11,True,True,True,False,8.01,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""The sales team should call the lead from an admissions counsellor within 24 hours."",
+  ""message_draft"": ""Hello, we noticed your recent interest in our part-time online MBA programme. We'd like to discuss further and answer any questions you may have. Can we arrange a call within the next 24 hours?""}"
+12,True,True,True,False,7.24,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a WhatsApp message and make a call to the lead today."",
+  ""message_draft"": ""Hi there! We noticed your interest in our 8-week Digital Marketing certification. Let's discuss how this course can help you achieve your career goals. Looking forward to speaking with you soon.""}"
+13,True,True,True,False,9.14,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a monthly tips email to nurture the lead and potentially increase interest in the 8-week Digital Marketing certification."",
+  ""message_draft"": ""Hi there, We noticed you recently visited our website and have an interest in Human Resource Management. To help you stay up-to-date with the latest trends and strategies, we'd like to invite you to receive our monthly tips email. Best, [Your Name]""}"
+14,True,True,True,False,7.65,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a monthly programme update to the lead within the next business day."",
+  ""message_draft"": ""Hello, we noticed you recently visited our website and showed interest in our part-time online MBA programme. We'd like to keep you updated on the latest developments and opportunities. Looking forward to welcoming you to our community.""}"
+15,True,True,True,False,7.4,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a monthly tips email to the lead as per the business policy."",
+  ""message_draft"": ""Hi there, Welcome to our community! We've noticed your interest in Finance Management. To help you stay updated, we'll send you a monthly email with tips and insights. Looking forward to your journey with us!""}"
+16,True,True,True,False,6.77,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Offer a free sample lesson to the lead today."",
+  ""message_draft"": ""Hello there! We noticed you're a warm lead and we'd like to offer you a free sample lesson to help you explore our courses. Let us know if you're interested.""}"
+17,True,True,True,False,7.81,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Admissions counsellor should call the lead within 24 hours."",
+  ""message_draft"": ""Hello, we noticed your interest in our part-time online MBA programme. As a hot lead, we'd like to discuss further details about the programme. Can we arrange a call within the next 24 hours?""}"
+18,True,True,True,False,7.0,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a WhatsApp message and make a call to the lead today."",
+  ""message_draft"": ""Hi there, we noticed your interest in our Digital Marketing course. Let's discuss how it can help you advance your career in Hospitality Management. Looking forward to speaking with you soon!""}"
+19,True,True,True,False,6.44,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a monthly tips email to the lead as per the business policy."",
+  ""message_draft"": ""Hi there, we've noticed your interest in marketing management. Stay tuned for our monthly tips on digital marketing strategies. Best, [Your Agency Name]""}"
+20,True,True,True,False,7.09,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Offer a free sample lesson to the lead today."",
+  ""message_draft"": ""Dear Lead, We noticed your interest in our Finance Management course. As a warm lead, we'd like to offer you a free sample lesson to help you get started. Looking forward to your response.""}"
+21,True,True,True,False,7.29,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Add the lead to the monthly newsletter within the policy timeframe."",
+  ""message_draft"": ""Hello there, we noticed you recently visited our site and opened an email. We'd love to keep you updated with our latest insights and opportunities in the field of Data Analytics. Stay tuned for our monthly newsletter!""}"
+22,True,True,True,False,8.07,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""The sales team should make a phone call to the lead within 24 hours."",
+  ""message_draft"": ""Hello, we noticed your interest in our Data Analytics course. As a hot lead, we'd like to discuss how this program can help you advance your career in Finance Management. Can we arrange a call within the next 24 hours?""}"
+23,True,True,True,False,10.03,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send an email with a student success story within 24 hours."",
+  ""message_draft"": ""Dear [Lead Name], We noticed you recently opened an email from us. We'd like to share a success story of someone who, like you, was unemployed but found a new career in Data Analytics through our 12-week online course. Let us know if you'd like to learn more about our evening and weekend batches with recorded sessions. Best, [Your Name]""}"
+24,True,True,True,False,7.03,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a monthly tips email to the lead as per the business policy."",
+  ""message_draft"": ""Hello there, We hope you're doing well. As a token of our support, we'd like to share some valuable digital marketing tips with you. Stay tuned for more insights!""}"
+25,True,True,True,False,7.14,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send a monthly tips email to the lead as per the business policy for cold leads."",
+  ""message_draft"": ""Hello there, we've noticed your recent activity and thought you might find our monthly career tips email useful. Stay tuned for practical advice and insights to help you in your job search.""}"
+26,True,True,True,False,8.04,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Send an email with a student success story within 24 hours."",
+  ""message_draft"": ""Dear Operations Management Professional, We've noticed your interest in our Data Analytics course. Here's a success story from someone in a similar field who found career growth through our program. Looking forward to helping you achieve your goals. Best, [Your Name]""}"
+27,True,True,True,False,7.94,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""The sales team should reach out to this lead with a WhatsApp message and a call the same day."",
+  ""message_draft"": ""Hi there, we noticed your interest in our Digital Marketing certification. As a hot lead, we'd like to offer you a call and WhatsApp message today to discuss how our program can help you achieve your career goals.""}"
+28,True,True,True,False,8.49,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""The sales team should send a WhatsApp message and make a call to this lead today."",
+  ""message_draft"": ""Hi there! We noticed your interest in Travel and Tourism and you've spent quite some time on our site. We'd love to discuss our 8-week Digital Marketing certification that could boost your career in this field. Let's connect today!""}"
+29,True,True,True,False,7.7,base,"{""sources"": [""S1"", ""S4""],
+  ""next_best_action"": ""Invite the lead to a free online information session within 24 hours."",
+  ""message_draft"": ""Dear Lead, we noticed your interest in our Human Resource Management programme. We invite you to join a free online information session to learn more about our part-time online MBA programme. Best, [Your Name]""}"

@@ -1,0 +1,19 @@
+{
+  "tenant": "tenant_a",
+  "llm_model": "c3-mistral-ft",
+  "leads": 30,
+  "errors_skipped": 0,
+  "retrieval_method": "hybrid",
+  "grounded_rate": 1.0,
+  "policy_consistent_rate_of_grounded": 1.0,
+  "model_citation_rate": 1.0,
+  "avg_sources": 3.0,
+  "latency_sec_median": 77.35,
+  "latency_sec_p95": 86.71999999999998,
+  "same_answer_on_repeat": "3 of 3",
+  "by_segment": {
+    "cold": 1.0,
+    "hot": 1.0,
+    "warm": 1.0
+  }
+}
