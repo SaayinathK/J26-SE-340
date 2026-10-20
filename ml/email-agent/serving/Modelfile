@@ -1,0 +1,9 @@
+# Register with ml/email-agent/serving/register-finetuned.ps1 from the repository root.
+# The pinned Docker CLI imports the adapter into Docker Ollama on port 11435.
+# Source: ml/models/email-agent/c4-email-lora (never copied into an application image).
+# Application activation is separate from registration and evaluation.
+FROM mistral:7b-instruct-v0.3-q4_K_M
+ADAPTER ../../models/email-agent/c4-email-lora
+PARAMETER temperature 0.3
+PARAMETER num_predict 700
+PARAMETER num_ctx 4096
