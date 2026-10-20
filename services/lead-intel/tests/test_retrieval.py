@@ -2,13 +2,14 @@
 import numpy as np
 import pytest
 import kb
-from retrieval_eval import precision_at_k, reciprocal_rank, make_queries
+from retrieval_eval import precision_at_k, recall_at_k, reciprocal_rank, make_queries
 from tests.fakes import use_fake_kb
 
 def test_metrics():
     assert precision_at_k(["a", "x", "b", "y", "z"], {"a", "b"}) == 0.4
     assert reciprocal_rank(["x", "y", "a"], {"a"}) == pytest.approx(1 / 3)
     assert reciprocal_rank(["x"], {"a"}) == 0.0
+    assert recall_at_k(["a", "x", "b", "y", "z"], {"a", "b", "c", "d"}) == 0.5
 
 def test_all_methods_score_every_document_and_stay_in_one_tenant(monkeypatch, tmp_path):
     use_fake_kb(monkeypatch, tmp_path, tenants=("tenant_a", "tenant_b"))
@@ -30,6 +31,7 @@ def test_query_set_has_50_labelled_queries(monkeypatch, tmp_path):
     assert len(qs) == 50 and all(q["relevant"] for q in qs)
     assert {q["type"] for q in qs} == {"lead_similarity", "pattern", "business_context"}
     assert all("Outcome" not in q["query"] for q in qs)
+    assert len(make_queries("tenant_a", 100)) == 100               # O3: >= 100 test queries
 
 def test_rag_retrieve_works_with_every_method(monkeypatch, tmp_path):
     import rag

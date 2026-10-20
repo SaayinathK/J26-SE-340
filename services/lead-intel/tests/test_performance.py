@@ -2,7 +2,8 @@
 import time
 import numpy as np
 from fastapi.testclient import TestClient
-from app import app, LEADS
+from app import app, B, LEADS
+from features import NUMERIC, CATEGORICAL
 
 client = TestClient(app)
 H = {"X-Tenant-Id": "tenant_a"}
@@ -37,3 +38,10 @@ def test_score_does_not_depend_on_tenant_header():
     s = {t: client.post("/leads/score", json=lead, headers={"X-Tenant-Id": t}).json()["score"]
          for t in ["tenant_a", "tenant_b", "tenant_c"]}
     assert len(set(s.values())) == 1              # same model for all tenants in v1
+
+def test_10000_leads_can_be_scored_quickly():              # NFR2
+    big = LEADS.sample(10_000, replace=True, random_state=42)[NUMERIC + CATEGORICAL]
+    t0 = time.perf_counter()
+    p = B["calibrated"].predict_proba(big)[:, 1]
+    assert len(p) == 10_000 and ((p >= 0) & (p <= 1)).all()
+    assert time.perf_counter() - t0 < 30
