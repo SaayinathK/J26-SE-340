@@ -1,0 +1,21 @@
+{
+  "examples": 360,
+  "train": 324,
+  "val": 36,
+  "skipped_no_policy": 0,
+  "by_tenant_segment": {
+    "tenant_a/hot": 40,
+    "tenant_a/warm": 40,
+    "tenant_a/cold": 40,
+    "tenant_b/hot": 40,
+    "tenant_b/warm": 40,
+    "tenant_b/cold": 40,
+    "tenant_c/hot": 40,
+    "tenant_c/warm": 40,
+    "tenant_c/cold": 40
+  },
+  "prompt_chars_median": 2681,
+  "prompt_chars_max": 2935,
+  "excluded": "test/val split leads and the 30 rag_eval.py leads",
+  "gold_answers": "rule-based from retrieved sources: policy + similar lead + pattern"
+}

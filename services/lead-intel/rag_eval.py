@@ -3,12 +3,16 @@
 # LLM latency, and repeatability (3 leads asked twice -> same action?).
 # Needs Ollama with Mistral + nomic and the KB.  Run:  python rag_eval.py   (about 15-45 min on CPU)
 import json
+import re
 import time
 import pandas as pd
 import requests
 
 from app import LEADS, score_lead
-from rag import RETRIEVAL, recommend
+from rag import LLM_MODEL, RETRIEVAL, recommend
+
+# base model keeps the original file names; a fine-tuned model gets its own files (C3-14 comparison)
+TAG = "" if LLM_MODEL == "mistral:7b-instruct-q4_K_M" else "_" + re.sub(r"[^a-z0-9]+", "-", LLM_MODEL.lower())
 
 TENANT, PER_SEGMENT = "tenant_a", 10
 picked = {"hot": [], "warm": [], "cold": []}
@@ -50,9 +54,9 @@ for lead, s in [picked[k][0] for k in picked]:                  # repeatability 
 df = pd.DataFrame(rows)
 errors = int(df["error"].notna().sum()) if "error" in df else 0
 df = df[df["error"].isna()] if "error" in df else df
-pd.DataFrame(rows).to_csv("reports/c3-13_rag_eval.csv", index=False)
+pd.DataFrame(rows).to_csv(f"reports/c3-13_rag_eval{TAG}.csv", index=False)
 summary = {
-    "tenant": TENANT, "leads": len(df), "errors_skipped": errors, "retrieval_method": RETRIEVAL,
+    "tenant": TENANT, "llm_model": LLM_MODEL, "leads": len(df), "errors_skipped": errors, "retrieval_method": RETRIEVAL,
     "grounded_rate": round(df.grounded.mean(), 3),
     "policy_consistent_rate_of_grounded": round((df[df.grounded].policy_check == "consistent").mean(), 3),
     "model_citation_rate": round((df.citation_method == "model_citation").mean(), 3),
@@ -61,5 +65,5 @@ summary = {
     "same_answer_on_repeat": f"{sum(repeat)} of {len(repeat)}",
     "by_segment": df.groupby("segment")[["grounded"]].mean().round(3)["grounded"].to_dict(),
 }
-json.dump(summary, open("reports/c3-13_rag_eval_summary.json", "w"), indent=2)
+json.dump(summary, open(f"reports/c3-13_rag_eval_summary{TAG}.json", "w"), indent=2)
 print(json.dumps(summary, indent=2))

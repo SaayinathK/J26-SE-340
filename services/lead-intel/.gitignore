@@ -4,3 +4,5 @@ models/
 __pycache__/
 data/processed/
 data/kb/
+data/finetune/
+.pytest_tmp/

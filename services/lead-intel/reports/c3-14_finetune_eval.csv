@@ -1,0 +1,3 @@
+model,json_valid,grounded,policy_consistent,cites_policy,seconds
+base,1.0,1.0,1.0,0.0,7.72
+fine-tuned,1.0,1.0,1.0,1.0,14.5
