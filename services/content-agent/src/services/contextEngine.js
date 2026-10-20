@@ -41,17 +41,102 @@ async function getChampionPrompt(tenantId, agentType, subType) {
     AND agent_type = $2 AND sub_type = $3 AND is_champion = true ORDER BY success_rate DESC, total_uses DESC LIMIT 1`, [tenantId, agentType, subType], tenantId);
   return rows[0]?.prompt_snapshot?.addition || '';
 }
+async function getBusinessProfile(tenantId) {
+  try {
+    const result = await db.query(
+      `SELECT business_name, offer_type, offer_name,
+              offer_date, offer_location, offer_price,
+              target_audience, value_propositions,
+              brand_voice, industry, website_url
+       FROM business_settings
+       WHERE tenant_id = $1`,
+      [tenantId], tenantId
+    );
+    if (result.rows.length === 0) return '';
+    const s = result.rows[0];
+    return `
+CLIENT BUSINESS PROFILE:
+Business: ${s.business_name || 'Not set'}
+Industry: ${s.industry || 'Not set'}
+Offer Type: ${s.offer_type || 'Not set'}
+Offer Name: ${s.offer_name || 'Not set'}
+Price: ${s.offer_price || 'Not set'}
+Date: ${s.offer_date || 'Not set'}
+Location: ${s.offer_location || 'Not set'}
+Target Audience: ${s.target_audience || 'Not set'}
+Value Propositions: ${s.value_propositions || 'Not set'}
+Brand Voice: ${s.brand_voice || 'Not set'}
+    `.trim();
+  } catch (err) {
+    console.error('getBusinessProfile error:', err.message);
+    return '';
+  }
+}
+async function getBestPastGenerations(tenantId, contentType, limit = 3) {
+  try {
+    const result = await db.query(
+      `SELECT output, input_params
+       FROM generations
+       WHERE tenant_id = $1
+         AND agent_type = $2
+         AND rating = 'positive'
+       ORDER BY created_at DESC
+       LIMIT $3`,
+      [tenantId, contentType, limit], tenantId
+    );
+    if (result.rows.length === 0) return '';
+    const examples = result.rows.map((row, i) => {
+      try {
+        const output = typeof row.output === 'string'
+          ? JSON.parse(row.output) : row.output;
+        const params = row.input_params || {};
+        return `EXAMPLE ${i + 1} (this client approved):
+Brief: ${params.brief || 'marketing content'}
+Output: ${JSON.stringify(output)}`;
+      } catch { return null; }
+    }).filter(Boolean);
+    if (!examples.length) return '';
+    return `\n\nPAST CONTENT THIS CLIENT APPROVED:\n${examples.join('\n\n')}`;
+  } catch (err) {
+    return '';
+  }
+}
 async function buildContext(tenantId, contentType, brief, brandVoiceId) {
   const intentPromise = classifyIntent(brief);
-  // Champion selection depends on the classified subtype; other work runs concurrently.
-  const [intent, kb_entries, brand_voice, champion] = await Promise.all([
-    intentPromise, retrieveTopK(tenantId, brief), getBrandVoice(tenantId, brandVoiceId),
-    intentPromise.then(i => getChampionPrompt(tenantId, contentType, i.sub_type))
+
+  const [intent, kb_entries, brand_voice, champion, businessProfile, pastExamples] = await Promise.all([
+    intentPromise,
+    retrieveTopK(tenantId, brief),
+    getBrandVoice(tenantId, brandVoiceId),
+    intentPromise.then(i => getChampionPrompt(tenantId, contentType, i.sub_type)),
+    getBusinessProfile(tenantId),
+    getBestPastGenerations(tenantId, contentType, 3),
   ]);
+
   const missing_fields = [];
-  if (brief.trim().length < 20) missing_fields.push('brief');
-  if (kb_entries.length < 2) missing_fields.push('knowledge_base');
-  if (!brand_voice) missing_fields.push('brand_voice');
-  return { intent: { ...intent, content_type: contentType }, funnel_stage: intent.funnel_stage, kb_entries, brand_voice, champion, missing_fields };
+  if (brief.trim().length < 20)  missing_fields.push('brief');
+  if (kb_entries.length < 2)     missing_fields.push('knowledge_base');
+  if (!brand_voice)              missing_fields.push('brand_voice');
+
+  return {
+    intent:           { ...intent, content_type: contentType },
+    funnel_stage:     intent.funnel_stage,
+    kb_entries,
+    brand_voice,
+    champion,
+    business_profile: businessProfile,
+    past_examples:    pastExamples,
+    missing_fields,
+  };
 }
-module.exports = { TYPES, CLASSIFIER_PROMPT, classifyIntent, retrieveTopK, getBrandVoice, getChampionPrompt, buildContext };
+module.exports = {
+  TYPES,
+  CLASSIFIER_PROMPT,
+  classifyIntent,
+  retrieveTopK,
+  getBrandVoice,
+  getChampionPrompt,
+  getBusinessProfile,
+  getBestPastGenerations,
+  buildContext,
+};

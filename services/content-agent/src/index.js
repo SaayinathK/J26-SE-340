@@ -10,6 +10,7 @@ app.post('/api/auth/login',auth.login);
 app.get('/api/auth/me',protect,auth.getMe);
 app.get('/health',(_req,res)=>res.json({ success:true,service:'content-agent' }));
 app.use('/context',require('./routes/context'));
+app.use('/settings', require('./routes/settings'));
 app.use('/content',require('./routes/content'));
 app.use((_req,res)=>res.status(404).json({ success:false,error:'Route not found' }));
 app.use((error,_req,res,_next)=>{

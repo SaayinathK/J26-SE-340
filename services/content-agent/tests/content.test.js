@@ -90,3 +90,17 @@ test('retry repairs invalid model output',async()=>{
   const result=await actual.generateWithRetry({kb_entries:[],intent:{}},body.brief,'meta_ad');
   expect(result.attempts).toBe(2); expect(result.tokensUsed).toBe(5); spy.mockRestore();
 });
+test.each(['get', 'post'])('settings %s requires authentication', async method => {
+  expect((await request(app)[method]('/settings').send({})).status).toBe(401);
+});
+test('settings saves and retrieves the authenticated tenant profile', async () => {
+  const profile = { business_name:'Acme', offer_price:'25', target_audience:'Founders' };
+  db.query.mockImplementation(async sql => ({ rows: sql.includes('FROM clients') ? [{id:tenant,is_active:true}] : [profile] }));
+  const saved = await request(app).post('/settings').set('Authorization',auth).send({...profile, tenant_id:generation});
+  expect(saved.status).toBe(200);
+  expect(saved.body).toEqual({success:true,settings:profile});
+  expect(db.query).toHaveBeenLastCalledWith(expect.stringContaining('ON CONFLICT (tenant_id)'), expect.arrayContaining([tenant, 'Acme']), tenant);
+  const fetched = await request(app).get('/settings').set('Authorization',auth);
+  expect(fetched.body).toEqual({success:true,settings:profile});
+  expect(db.query).toHaveBeenLastCalledWith(expect.stringContaining('WHERE tenant_id = $1'), [tenant], tenant);
+});
