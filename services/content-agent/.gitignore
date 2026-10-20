@@ -5,3 +5,5 @@ __pycache__/
 coverage/
 data/*.jsonl
 evidence/*.json
+models/*.gguf
+models/*.bin
