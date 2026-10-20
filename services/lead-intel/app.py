@@ -3,10 +3,12 @@
 # C3-08: GET  /leads/{lead_id}/recommendation  (I-05)  RAG + Mistral 7B, grounded only
 # C3-10: GET  /leads/analytics                         behavioural analytics
 # C3-12: GET  /leads/dashboard                         top-10 hottest leads + segment mix + weekly trend
+# FR7:   POST /leads/{lead_id}/outcome + GET /leads/monitoring   outcome tracking for continuous learning
 import json
 import os
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Literal
 
 import joblib
 import pandas as pd
@@ -15,6 +17,7 @@ import shap
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
+import monitoring
 from analytics import insights
 from features import add_features, NUMERIC, CATEGORICAL
 from rag import recommend
@@ -148,6 +151,32 @@ def analytics(x_tenant_id: str = Header(...)):
     if x_tenant_id not in TENANTS:
         raise HTTPException(404, "Unknown tenant")
     return insights(LEADS[LEADS.tenant == x_tenant_id])
+
+
+# ---------- FR7: outcome tracking (feeds continuous learning) ----------
+class Outcome(BaseModel):
+    outcome: Literal["won", "lost"]
+
+
+@app.post("/leads/{lead_id}/outcome")
+def record_outcome(lead_id: str, body: Outcome, x_tenant_id: str = Header(...)):
+    """Store the real result next to the score the model gave (same tenant only)."""
+    last = _load_history().get(f"{x_tenant_id}:{lead_id}")
+    if last:
+        score_, seg = last["score"], last["segment"]
+    else:                                            # never scored through the API: score the CRM record now
+        rows = LEADS[(LEADS.tenant == x_tenant_id) & (LEADS.contact_id == lead_id)]
+        if rows.empty:
+            raise HTTPException(404, "Lead not scored for this tenant - call /leads/score first")
+        s = score_lead({**rows.iloc[0].to_dict(), "lead_id": lead_id})
+        score_, seg = s["score"], s["segment"]
+    return monitoring.record(x_tenant_id, lead_id, body.outcome, score_, seg, B["model_version"])
+
+
+@app.get("/leads/monitoring")
+def model_monitoring(x_tenant_id: str = Header(...)):
+    """Is the model still accurate on real outcomes for this tenant? (AUC, Brier, per-segment win rate)"""
+    return monitoring.summary(x_tenant_id)
 
 
 # ---------- C3-12: dashboard data ----------
