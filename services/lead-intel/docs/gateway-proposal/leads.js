@@ -34,7 +34,7 @@ function forward(path, method = 'GET') {
         method,
         headers: { 'Content-Type': 'application/json', 'X-Tenant-Id': slug },
         body: method === 'POST' ? JSON.stringify(req.body || {}) : undefined,
-        signal: AbortSignal.timeout(180000)      // RAG on CPU can take up to ~2 minutes
+        signal: AbortSignal.timeout(300000)      // RAG on CPU: base model p95 192 s, so allow 5 minutes
       });
       res.status(r.status).type('application/json').send(await r.text());
     } catch {
@@ -54,5 +54,10 @@ router.get('/dashboard', authenticate, audit('c3_lead_dashboard'), authorize(...
   forward(() => '/leads/dashboard'));
 router.get('/:leadId/recommendation', authenticate, audit('c3_lead_recommendation'), authorize(...WRITE),
   forward(req => `/leads/${encodeURIComponent(req.params.leadId)}/recommendation`));
+// FR7: outcome tracking + model monitoring
+router.post('/:leadId/outcome', authenticate, audit('c3_lead_outcome'), authorize(...WRITE),
+  forward(req => `/leads/${encodeURIComponent(req.params.leadId)}/outcome`, 'POST'));
+router.get('/monitoring', authenticate, audit('c3_lead_monitoring'), authorize(...ALL),
+  forward(() => '/leads/monitoring'));
 
 module.exports = router;
