@@ -189,6 +189,26 @@ def scored_leads(tenant: str) -> pd.DataFrame:
     return DASH_CACHE[tenant]
 
 
+LIST_PER_SEGMENT = 50          # leads per segment sent to the UI lead list
+
+
+def _txt(v):
+    return None if pd.isna(v) else v
+
+
+def _num(v):
+    return None if pd.isna(v) else round(float(v), 1)
+
+
+def lead_row(r) -> dict:
+    """One lead for the UI list: profile fields only (no outcome, no sales tags)."""
+    return {"lead_id": r.contact_id, "score": int(r.score), "segment": r.segment,
+            "source": _txt(r.source), "lead_origin": _txt(r.lead_origin), "last_activity": _txt(r.last_activity),
+            "occupation": _txt(r.occupation), "specialization": _txt(r.specialization), "city": _txt(r.city),
+            "total_visits": _num(r.total_visits), "time_on_site_sec": _num(r.time_on_site_sec),
+            "pages_per_visit": _num(r.pages_per_visit)}
+
+
 @app.get("/leads/dashboard")
 def dashboard(x_tenant_id: str = Header(...)):
     if x_tenant_id not in TENANTS:
@@ -207,6 +227,10 @@ def dashboard(x_tenant_id: str = Header(...)):
                             "last_activity": r.last_activity if pd.notna(r.last_activity) else None}
                            for r in top.itertuples()],
         "weekly_trend": trend.reset_index(names="week_start").to_dict("records"),
+        # the highest-scored leads of EACH segment, so the UI can show hot, warm and cold leads
+        "leads": [lead_row(r) for s in ("hot", "warm", "cold")
+                  for r in t[t.segment == s].sort_values(["score", "contact_id"], ascending=[False, True])
+                  .head(LIST_PER_SEGMENT).itertuples()],
         "dates_are_synthetic": bool(t.date_is_synthetic.all()),
         "note": "Scores use the C3 model on the tenant's historical CRM leads. "
                 "Lead dates are synthetic (the dataset has none), so the trend shows the method, not real seasonality.",

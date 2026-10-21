@@ -104,6 +104,16 @@ services:
       timeout: 5s
       retries: 10
 
+  # C3 React front end (nginx) - talks to the gateway only
+  web:
+    build: ./services/lead-intel/web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5173:80"
+    depends_on:
+      gateway:
+        condition: service_healthy
+
 volumes:
   c4_pgdata:
   ollama_data:
