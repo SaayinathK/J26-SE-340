@@ -1,5 +1,11 @@
 # C3-06 — Calling C3 through the C4 gateway
 
+**Update (20 Oct 2026):** The proxy is now implemented in
+`services/gateway/src/routes/leads.js`, with JWT-derived tenant context, roles,
+audit, outcome and monitoring routes, and a 300-second upstream timeout.
+See [Docker setup](../../../docs/docker.md) for the integrated deployment.
+The proposal and results below describe the earlier integration work.
+
 **Status (14 Oct 2026):** C3 works on its own (port 3001). The C4 gateway (`feature/c4-platform-email`, last checked at `6968cfa`)
 has login, JWT, roles, audit and `/api/email/sequence`, but **no route to C3 yet**. This note is what C3 needs from C4.
 

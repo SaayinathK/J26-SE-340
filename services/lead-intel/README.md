@@ -19,15 +19,16 @@ uvicorn app:app --port 3001                             # API: http://127.0.0.1:
 python -m pytest -q                                     # 34 tests (no Ollama needed)
 ```
 
-## Run with Docker (API + dashboard)
+## Run with Docker (whole platform)
 
-Data and models are not in the image; they are mounted from this folder. Ollama runs on the host.
+From the repo root: `powershell -ExecutionPolicy Bypass -File .\scripts\start-docker.ps1` (details in `docs/docker.md`).
+It starts PostgreSQL, Ollama, C3 (Docker network only, no public port), the C4 gateway (`http://localhost:4000`) and
+this dashboard (`http://localhost:8501`, sign in through the gateway). Data and models are mounted read-only, never in the image.
+On a laptop with little Docker memory, set `C3_OLLAMA_URL=http://host.docker.internal:11434` in the root `.env` and
+run `docker compose stop ollama` so C3 uses Ollama on the host (`docs/docker-validation.md`).
 
 ```bash
-cd ../..                                                # repo root
-docker compose build lead-intel
-docker compose up -d lead-intel lead-dashboard          # API :3001, dashboard :8501
-docker compose run --rm lead-intel python -m pytest -q -p no:cacheprovider
+docker compose exec -T -e C3_HISTORY=/tmp/h.json -e C3_OUTCOMES=/tmp/o.json lead-intel python -m pytest -q -p no:cacheprovider
 ```
 
 ## Fine-tuned model (C3-14)
@@ -63,7 +64,7 @@ Contracts: `contracts/v1/lead-score.yaml` (I-04), `lead-recommendation.yaml` (I-
 | `perf_report.py` | C3-13, NFR1, NFR2 | `reports/c3-13_latency.csv` |
 | `rag_eval.py` | C3-13 | `reports/c3-13_rag_eval*.csv`, `reports/c3-13_rag_eval_summary*.json` |
 | `outcome_replay.py` | FR7 | `reports/c3-fr7_monitoring.json` |
-| `streamlit run dashboard.py` | C3-12 | dashboard UI on port 8501 (API must be running) |
+| `streamlit run dashboard.py` | C3-12 | dashboard UI on port 8501 (dark theme, `.streamlit/config.toml`; API must be running) |
 
 ## Results (tenant_a, 20 Oct 2026)
 
@@ -77,6 +78,7 @@ Contracts: `contracts/v1/lead-score.yaml` (I-04), `lead-recommendation.yaml` (I-
 | RAG quality, base vs fine-tuned (30 leads) | grounded 100% / 100%; policy-consistent 93.3% / 100%; sources 2 / 3; repeat 2/3 / 3/3 | `reports/c3-13_rag_eval_summary*.json` |
 | Fine-tuning (30 validation prompts) | cites the policy source 0% -> 100%; loss 1.15 -> 0.020 | `reports/c3-14_finetune_summary.json` |
 | Outcome monitoring (FR7), 481 held-out leads | AUC 0.892, Brier 0.124, no retrain needed | `reports/c3-fr7_monitoring.json` |
+| Docker + gateway (C3-06), 21 Oct | smoke 5/5 PASS; recommendation via gateway 91 s, grounded, policy-consistent, c3-mistral-ft | `docs/docker-validation.md` (repo root) |
 
 LLM generation on a laptop CPU takes about 77 s (fine-tuned) to 134 s (base) per answer; answers are cached.
 Design decisions: `docs/adr/C3-ADR-001` to `005`. Requirements traceability: `docs/c3-traceability.md`.
@@ -85,9 +87,11 @@ Design decisions: `docs/adr/C3-ADR-001` to `005`. Requirements traceability: `do
 
 | Variable | Default | Use |
 | --- | --- | --- |
-| `OLLAMA_URL` | `http://127.0.0.1:11434` | Ollama host (use 127.0.0.1, not localhost, on Windows; `host.docker.internal` in Docker) |
+| `OLLAMA_URL` | `http://127.0.0.1:11434` | Ollama host (use 127.0.0.1, not localhost, on Windows; in Docker it is set from `C3_OLLAMA_URL`) |
 | `C3_LLM_MODEL` | `mistral:7b-instruct-q4_K_M` | LLM for recommendations (`c3-mistral-ft` = fine-tuned; Docker default) |
 | `C3_RETRIEVAL` | `hybrid` | `bm25`, `embedding`, `hybrid` or `rrf` (hybrid 0.7 won in C3-09) |
 | `C3_HISTORY` | `data/processed/score_history.json` | last score per lead, for alerts |
 | `C3_OUTCOMES` | `data/processed/outcomes.json` | recorded outcomes, for monitoring (FR7) |
 | `C3_API` | `http://127.0.0.1:3001` | API address used by the dashboard |
+| `C3_GATEWAY` | (not set) | dashboard signs in and calls the gateway instead of C3 directly (Docker) |
+| `C3_OLLAMA_URL` | `http://ollama:11434` | Docker only: Ollama used by the C3 container (`http://host.docker.internal:11434` = host) |
