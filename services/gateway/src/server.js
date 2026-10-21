@@ -13,6 +13,7 @@ const authorize = require('./middleware/authorize');
 const audit = require('./middleware/audit');
 
 const emailRoutes = require('./routes/emailRoutes');
+const leadRoutes = require('./routes/leads');
 
 // Validate environment variables
 if (!process.env.JWT_SECRET || !process.env.DB_PASSWORD) {
@@ -24,6 +25,7 @@ const app = express();
 // Global middleware
 app.use(helmet());
 app.use(express.json({ limit: '16kb' }));
+app.use('/api/leads', leadRoutes);
 
 app.use('/api/email',
   authenticate,
@@ -233,7 +235,7 @@ const PORT = Number(process.env.PORT || 4000);
 
 // Only bind to port when run directly (not when required by tests)
 if (require.main === module) {
-  app.listen(PORT, '127.0.0.1', () => {
+  app.listen(PORT, process.env.HOST || '127.0.0.1', () => {
     console.log(`C4 Gateway running on http://localhost:${PORT}`);
   });
 }

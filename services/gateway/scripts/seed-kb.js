@@ -54,7 +54,10 @@ const tenant_id = rows[0].tenant_id;
       await client.query(`SELECT set_config('app.current_tenant', $1, true)`, [tenant_id]);
       await client.query(
         `INSERT INTO knowledge_base (tenant_id, text, embedding)
-         VALUES ($1, $2, $3::vector)
+         SELECT $1, $2, $3::vector
+         WHERE NOT EXISTS (
+           SELECT 1 FROM knowledge_base WHERE tenant_id = $1 AND text = $2
+         )
          ON CONFLICT DO NOTHING`,
         [tenant_id, entry.text, JSON.stringify(embedding)],
       );

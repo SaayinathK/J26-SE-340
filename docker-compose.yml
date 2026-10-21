@@ -1,4 +1,3 @@
-
 services:
   db:
     image: pgvector/pgvector:pg16
@@ -12,6 +11,100 @@ services:
       - "127.0.0.1:5433:5432"
     volumes:
       - c4_pgdata:/var/lib/postgresql/data
+      - ./db/migrations/001_init.sql:/docker-entrypoint-initdb.d/001_init.sql:ro
+      - ./db/migrations/002_app_role.sql:/docker-entrypoint-initdb.d/002_app_role.sql:ro
+      - ./db/migrations/003_auth_lookup.sql:/docker-entrypoint-initdb.d/003_auth_lookup.sql:ro
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/004_seed.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U admin -d saas_platform"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    volumes:
+      - ${OLLAMA_MODELS_SOURCE:-ollama_data}:/root/.ollama/models:${OLLAMA_MODELS_ACCESS:-rw}
+      - ./services/lead-intel/models:/models:ro
+      - ./services/lead-intel/Modelfile:/Modelfile:ro
+    working_dir: /
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  lead-intel:
+    build: ./services/lead-intel
+    restart: unless-stopped
+    environment:
+      # default: the Ollama container. On laptops with little Docker memory, set
+      # C3_OLLAMA_URL=http://host.docker.internal:11434 in .env to use Ollama on the host instead.
+      OLLAMA_URL: ${C3_OLLAMA_URL:-http://ollama:11434}
+      C3_LLM_MODEL: ${C3_LLM_MODEL:-c3-mistral-ft}
+      C3_HISTORY: /state/score_history.json
+      C3_OUTCOMES: /state/outcomes.json
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./services/lead-intel/models:/app/models:ro
+      - ./services/lead-intel/data/processed:/app/data/processed:ro
+      - ./services/lead-intel/data/kb:/app/data/kb:ro
+      - lead_state:/state
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:3001/health')"]
+      interval: 10s
+      timeout: 5s
+      start_period: 60s
+      retries: 20
+
+  gateway:
+    build: ./services/gateway
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: saas_platform
+      DB_USER: c4_app
+      DB_PASSWORD: c4_local_dev_only_2026
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in the root .env file}
+      C3_URL: http://lead-intel:3001
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-mistral:7b-instruct-q4_K_M}
+    ports:
+      - "127.0.0.1:4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+      lead-intel:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  dashboard:
+    build: ./services/lead-intel
+    restart: unless-stopped
+    command: ["streamlit", "run", "dashboard.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    environment:
+      C3_GATEWAY: http://gateway:4000
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
 volumes:
   c4_pgdata:
+  ollama_data:
+  lead_state:
