@@ -2,15 +2,7 @@
 require('dotenv').config();
 
 const bcrypt = require('bcryptjs');
-const { Pool } = require('pg');
-
-const pool = new Pool({
-  host: 'localhost',
-  port: 5433,
-  database: 'saas_platform',
-  user: 'c4_app',
-  password: 'c4_local_dev_only_2026'
-});
+const pool = require('../src/db');
 
 async function seedUsers() {
   const passwordHash = await bcrypt.hash('Test@12345', 12);
@@ -20,6 +12,7 @@ async function seedUsers() {
     ['tenant_a', 'marketer@tenant-a.com', 'marketer'],
     ['tenant_a', 'viewer@tenant-a.com', 'viewer'],
     ['tenant_b', 'admin@tenant-b.com', 'agency_admin'],
+    ['tenant_b', 'marketer@tenant-b.com', 'marketer'],
     ['tenant_c', 'admin@tenant-c.com', 'agency_admin']
   ];
 
@@ -67,5 +60,5 @@ async function seedUsers() {
 
 seedUsers()
   .then(() => console.log('User seeding completed'))
-  .catch(console.error)
+  .catch(error => { console.error(error); process.exitCode = 1; })
   .finally(() => pool.end());

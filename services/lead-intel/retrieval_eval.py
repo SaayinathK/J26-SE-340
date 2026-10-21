@@ -1,7 +1,7 @@
 # services/lead-intel/retrieval_eval.py  — C3-09 Retrieval optimisation
 # Compares 4 ways of ranking a tenant's knowledge base on 50 labelled queries:
 #   bm25 (keyword) | embedding (nomic, current C3-08) | hybrid (0.5 BM25 + 0.5 embedding) | rrf
-# plus the hybrid weight at 0.3 and 0.7. Metrics: P@5, Hit@5, MRR, median latency.
+# plus the hybrid weight at 0.3 and 0.7. Metrics: P@5, Recall@5, Hit@5, MRR, median latency.
 #
 # Relevance labels are made by rules from the data (silver labels), not by hand:
 #   lead_similarity (~30): a past lead is relevant if it has the same source, lead origin,
@@ -10,7 +10,7 @@
 #   business_context (8): the business paragraph that answers the question
 # Each query is searched only among documents of its own type, as rag.retrieve() does.
 #
-# Run (Ollama running, KB built with kb.py):   python retrieval_eval.py [tenant_a]
+# Run (Ollama running, KB built with kb.py):   python retrieval_eval.py [tenant_a] [100]
 import json
 import re
 import sys
@@ -50,6 +50,10 @@ def hit_at_k(ranked: list, relevant: set, k: int = K) -> float:
     return float(any(d in relevant for d in ranked[:k]))
 
 
+def recall_at_k(ranked: list, relevant: set, k: int = K) -> float:
+    return sum(d in relevant for d in ranked[:k]) / len(relevant)
+
+
 def reciprocal_rank(ranked: list, relevant: set) -> float:
     for i, d in enumerate(ranked, 1):
         if d in relevant:
@@ -62,7 +66,7 @@ def _key(r) -> tuple:
     return tuple("unknown" if pd.isna(r[c]) else r[c] for c in MATCH_ON)
 
 
-def make_queries(tenant: str) -> list[dict]:
+def make_queries(tenant: str, total: int = N_TOTAL) -> list[dict]:
     docs, _ = kb._open(tenant)
     rng = np.random.default_rng(SEED)
     leads = kb.load()
@@ -77,7 +81,7 @@ def make_queries(tenant: str) -> list[dict]:
     biz_q = [(q, [d["id"] for d in biz if d["text"].startswith(start)]) for q, start in BUSINESS_QUESTIONS]
     biz_q = [(q, rel) for q, rel in biz_q if rel]
     n_pattern = min(N_PATTERN, len(pats))
-    n_lead = N_TOTAL - n_pattern - len(biz_q)                 # always 50 queries in total
+    n_lead = total - n_pattern - len(biz_q)                   # 50 by default; 100 for the O3 run
 
     queries = []
     for i in rng.permutation(len(in_kb)):                      # 1) similar past leads
@@ -102,11 +106,11 @@ def make_queries(tenant: str) -> list[dict]:
 
 
 # ---------------- evaluation ----------------
-def evaluate(tenant: str):
+def evaluate(tenant: str, total: int = N_TOTAL):
     docs, _ = kb._open(tenant)
     ids = np.array([d["id"] for d in docs])
     types = np.array([d["type"] for d in docs])
-    queries = make_queries(tenant)
+    queries = make_queries(tenant, total)
     print(f"{tenant}: {len(queries)} queries over {len(docs)} documents")
     kb._bm25(tenant)                                            # build the keyword index once
     rows, log = [], []
@@ -125,7 +129,8 @@ def evaluate(tenant: str):
             ranked = list(ids[mask][np.argsort(-s[mask], kind="stable")])
             ms = (time.perf_counter() - t1) * 1000 + (0 if method == "bm25" else embed_ms)
             rows.append({"tenant": tenant, "query_type": q["type"], "method": name,
-                         "p_at_5": precision_at_k(ranked, rel), "hit_at_5": hit_at_k(ranked, rel),
+                         "p_at_5": precision_at_k(ranked, rel), "recall_at_5": recall_at_k(ranked, rel),
+                         "hit_at_5": hit_at_k(ranked, rel),
                          "rr": reciprocal_rank(ranked, rel), "latency_ms": ms})
             entry["top5"][name] = ranked[:K]
         log.append(entry)
@@ -134,20 +139,24 @@ def evaluate(tenant: str):
 
 
 def summarise(df: pd.DataFrame) -> pd.DataFrame:
-    agg = dict(queries=("rr", "size"), p_at_5=("p_at_5", "mean"), hit_at_5=("hit_at_5", "mean"),
+    agg = dict(queries=("rr", "size"), p_at_5=("p_at_5", "mean"), recall_at_5=("recall_at_5", "mean"),
+               hit_at_5=("hit_at_5", "mean"),
                mrr=("rr", "mean"), median_latency_ms=("latency_ms", "median"))
     overall = df.groupby("method").agg(**agg).assign(query_type="ALL")
     by_type = df.groupby(["query_type", "method"]).agg(**agg).reset_index("query_type")
     return pd.concat([overall, by_type]).reset_index()[
-        ["query_type", "method", "queries", "p_at_5", "hit_at_5", "mrr", "median_latency_ms"]].round(3)
+        ["query_type", "method", "queries", "p_at_5", "recall_at_5", "hit_at_5", "mrr", "median_latency_ms"]].round(3)
 
 
 if __name__ == "__main__":
+    # python retrieval_eval.py [tenant] [number_of_queries]   e.g.  python retrieval_eval.py tenant_a 100
     tenant = sys.argv[1] if len(sys.argv) > 1 else "tenant_a"
-    raw, log = evaluate(tenant)
+    total = int(sys.argv[2]) if len(sys.argv) > 2 else N_TOTAL
+    suffix = "" if total == N_TOTAL else f"_{total}q"
+    raw, log = evaluate(tenant, total)
     table = summarise(raw)
-    table.to_csv("reports/c3-09_retrieval_comparison.csv", index=False)
-    with open("reports/c3-09_queries.json", "w", encoding="utf-8") as f:
+    table.to_csv(f"reports/c3-09_retrieval_comparison{suffix}.csv", index=False)
+    with open(f"reports/c3-09_queries{suffix}.json", "w", encoding="utf-8") as f:
         json.dump(log, f, indent=1)
     print("\n", table.to_string(index=False))
 
@@ -158,4 +167,4 @@ if __name__ == "__main__":
     base = best.split("_")[0]
     print(f"To use it in RAG: set C3_RETRIEVAL={base}"
           + (f" and kb.HYBRID_ALPHA={best.split('_')[1]}" if base == "hybrid" else ""))
-    print("Saved reports/c3-09_retrieval_comparison.csv and reports/c3-09_queries.json")
+    print(f"Saved reports/c3-09_retrieval_comparison{suffix}.csv and reports/c3-09_queries{suffix}.json")

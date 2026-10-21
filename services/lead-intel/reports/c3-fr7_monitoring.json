@@ -1,0 +1,26 @@
+{
+  "tenant_outcomes": 481,
+  "won_rate": 0.364,
+  "segments": {
+    "hot": {
+      "leads": 120,
+      "avg_score": 86.5,
+      "won_rate": 0.842
+    },
+    "warm": {
+      "leads": 77,
+      "avg_score": 58.7,
+      "won_rate": 0.545
+    },
+    "cold": {
+      "leads": 284,
+      "avg_score": 12.1,
+      "won_rate": 0.113
+    }
+  },
+  "brier": 0.1236,
+  "auc": 0.892,
+  "retrain_recommended": false,
+  "reasons": [],
+  "note": "tenant_a test-split leads (held out from training), real outcomes replayed through the API"
+}

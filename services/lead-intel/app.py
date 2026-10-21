@@ -3,10 +3,12 @@
 # C3-08: GET  /leads/{lead_id}/recommendation  (I-05)  RAG + Mistral 7B, grounded only
 # C3-10: GET  /leads/analytics                         behavioural analytics
 # C3-12: GET  /leads/dashboard                         top-10 hottest leads + segment mix + weekly trend
+# FR7:   POST /leads/{lead_id}/outcome + GET /leads/monitoring   outcome tracking for continuous learning
 import json
 import os
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Literal
 
 import joblib
 import pandas as pd
@@ -15,6 +17,7 @@ import shap
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
+import monitoring
 from analytics import insights
 from features import add_features, NUMERIC, CATEGORICAL
 from rag import recommend
@@ -150,6 +153,32 @@ def analytics(x_tenant_id: str = Header(...)):
     return insights(LEADS[LEADS.tenant == x_tenant_id])
 
 
+# ---------- FR7: outcome tracking (feeds continuous learning) ----------
+class Outcome(BaseModel):
+    outcome: Literal["won", "lost"]
+
+
+@app.post("/leads/{lead_id}/outcome")
+def record_outcome(lead_id: str, body: Outcome, x_tenant_id: str = Header(...)):
+    """Store the real result next to the score the model gave (same tenant only)."""
+    last = _load_history().get(f"{x_tenant_id}:{lead_id}")
+    if last:
+        score_, seg = last["score"], last["segment"]
+    else:                                            # never scored through the API: score the CRM record now
+        rows = LEADS[(LEADS.tenant == x_tenant_id) & (LEADS.contact_id == lead_id)]
+        if rows.empty:
+            raise HTTPException(404, "Lead not scored for this tenant - call /leads/score first")
+        s = score_lead({**rows.iloc[0].to_dict(), "lead_id": lead_id})
+        score_, seg = s["score"], s["segment"]
+    return monitoring.record(x_tenant_id, lead_id, body.outcome, score_, seg, B["model_version"])
+
+
+@app.get("/leads/monitoring")
+def model_monitoring(x_tenant_id: str = Header(...)):
+    """Is the model still accurate on real outcomes for this tenant? (AUC, Brier, per-segment win rate)"""
+    return monitoring.summary(x_tenant_id)
+
+
 # ---------- C3-12: dashboard data ----------
 def scored_leads(tenant: str) -> pd.DataFrame:
     if tenant not in DASH_CACHE:
@@ -158,6 +187,26 @@ def scored_leads(tenant: str) -> pd.DataFrame:
         t["segment"] = t.score.map(segment)
         DASH_CACHE[tenant] = t
     return DASH_CACHE[tenant]
+
+
+LIST_PER_SEGMENT = 50          # leads per segment sent to the UI lead list
+
+
+def _txt(v):
+    return None if pd.isna(v) else v
+
+
+def _num(v):
+    return None if pd.isna(v) else round(float(v), 1)
+
+
+def lead_row(r) -> dict:
+    """One lead for the UI list: profile fields only (no outcome, no sales tags)."""
+    return {"lead_id": r.contact_id, "score": int(r.score), "segment": r.segment,
+            "source": _txt(r.source), "lead_origin": _txt(r.lead_origin), "last_activity": _txt(r.last_activity),
+            "occupation": _txt(r.occupation), "specialization": _txt(r.specialization), "city": _txt(r.city),
+            "total_visits": _num(r.total_visits), "time_on_site_sec": _num(r.time_on_site_sec),
+            "pages_per_visit": _num(r.pages_per_visit)}
 
 
 @app.get("/leads/dashboard")
@@ -178,6 +227,10 @@ def dashboard(x_tenant_id: str = Header(...)):
                             "last_activity": r.last_activity if pd.notna(r.last_activity) else None}
                            for r in top.itertuples()],
         "weekly_trend": trend.reset_index(names="week_start").to_dict("records"),
+        # the highest-scored leads of EACH segment, so the UI can show hot, warm and cold leads
+        "leads": [lead_row(r) for s in ("hot", "warm", "cold")
+                  for r in t[t.segment == s].sort_values(["score", "contact_id"], ascending=[False, True])
+                  .head(LIST_PER_SEGMENT).itertuples()],
         "dates_are_synthetic": bool(t.date_is_synthetic.all()),
         "note": "Scores use the C3 model on the tenant's historical CRM leads. "
                 "Lead dates are synthetic (the dataset has none), so the trend shows the method, not real seasonality.",

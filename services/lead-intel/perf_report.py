@@ -8,7 +8,8 @@ import requests
 from fastapi.testclient import TestClient
 
 import kb
-from app import app, LEADS
+from app import app, B, LEADS
+from features import NUMERIC, CATEGORICAL
 
 client = TestClient(app)
 H = {"X-Tenant-Id": "tenant_a"}
@@ -38,6 +39,10 @@ payload = [{"lead_id": r.contact_id, "source": r.source if pd.notna(r.source) el
 measure("POST /leads/score", lambda i: client.post("/leads/score", json=payload[i], headers=H), 100)
 measure("GET /leads/analytics", lambda i: client.get("/leads/analytics", headers=H), 20)
 measure("GET /leads/dashboard", lambda i: client.get("/leads/dashboard", headers=H), 20)
+
+# NFR2: at least 10,000 lead records without significant degradation
+big = LEADS.sample(10_000, replace=True, random_state=42)[NUMERIC + CATEGORICAL]
+measure("score 10,000 leads in one batch (NFR2)", lambda i: B["calibrated"].predict_proba(big), 3)
 
 queries = [kb.lead_text(r, with_outcome=False) for r in leads.head(50).to_dict("records")]
 if (kb.KB_DIR / "tenant_a_docs.jsonl").exists():

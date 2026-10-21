@@ -33,17 +33,25 @@ async function getEmbedding(text) {
 }
 
 async function buildRAGContext(tenant_id, campaignGoal) {
+  let client;
   try {
     const embedding = await getEmbedding(campaignGoal);
-    const { rows } = await pool.query(
+    client = await pool.connect();
+    await client.query('BEGIN');
+    await client.query("SELECT set_config('app.current_tenant', $1, true)", [tenant_id]);
+    const { rows } = await client.query(
       'SELECT text FROM knowledge_base WHERE tenant_id = $1 ORDER BY embedding <=> $2::vector LIMIT 5',
       [tenant_id, JSON.stringify(embedding)],
     );
+    await client.query('COMMIT');
     if (!rows.length) return null;
     return rows.map(function(r) { return r.text; }).join('\n---\n');
   } catch (e) {
+    if (client) await client.query('ROLLBACK').catch(() => {});
     console.warn('[emailAgent] RAG retrieval failed:', e.message);
     return null;
+  } finally {
+    if (client) client.release();
   }
 }
 

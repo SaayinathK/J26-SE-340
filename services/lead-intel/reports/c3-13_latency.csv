@@ -1,7 +1,8 @@
 operation,runs,p50_ms,p95_ms,max_ms
-POST /leads/score,100,65.1,96.5,144.1
-GET /leads/analytics,20,76.1,92.1,93.8
-GET /leads/dashboard,20,42.5,76.0,314.8
-KB search bm25,50,32.2,52.4,149.5
-KB search embedding (incl. query embedding),50,112.0,131.5,1215.7
-KB search hybrid (incl. query embedding),50,157.8,213.8,376.1
+POST /leads/score,100,64.9,85.2,186.4
+GET /leads/analytics,20,79.5,96.8,105.9
+GET /leads/dashboard,20,44.1,63.8,213.7
+"score 10,000 leads in one batch (NFR2)",3,271.5,288.9,290.8
+KB search bm25,50,41.9,71.4,150.3
+KB search embedding (incl. query embedding),50,113.5,137.4,148.8
+KB search hybrid (incl. query embedding),50,155.7,175.1,196.7
