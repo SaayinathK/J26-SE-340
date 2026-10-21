@@ -12,6 +12,12 @@ router.post(
   validateRequest,
   checkLimit,
   async (req, res, next) => {
+    const streaming = req.body.content_type === 'meta_ad' && req.get('accept')?.includes('application/x-ndjson');
+    const controller = new AbortController();
+    let heartbeat;
+    const disconnect = () => { if (!res.writableEnded) controller.abort(); };
+    const send = event => { if (!res.destroyed && !res.writableEnded) res.write(JSON.stringify(event) + '\n'); };
+    res.on('close', disconnect);
     try {
       const { content_type, brief, brand_voice_id } = req.body,
         tenantId = req.tenant_id;
@@ -25,11 +31,20 @@ router.post(
         return res
           .status(400)
           .json({ success: false, missing: ctx.missing_fields });
-      const result = await generator.generateWithRetry(
-        ctx,
-        brief,
-        content_type
-      );
+      const effectiveBrief = ctx.brief || brief;
+      controller.signal.throwIfAborted();
+      if (streaming) {
+        res.setHeader('Content-Type', 'application/x-ndjson; charset=utf-8');
+        res.setHeader('Cache-Control', 'no-cache, no-transform');
+        res.setHeader('X-Accel-Buffering', 'no');
+        res.flushHeaders();
+        send({type:'status', message:'Preparing your campaign…'});
+        heartbeat = setInterval(() => send({type:'heartbeat'}), 15000);
+      }
+      const result = streaming
+        ? await generator.generateWithRetry(ctx, effectiveBrief, content_type, 3, {onProgress:send,signal:controller.signal})
+        : await generator.generateWithRetry(ctx, effectiveBrief, content_type);
+      controller.signal.throwIfAborted();
       const id = randomUUID(),
         promptHash = learning.hashPrompt('content', content_type);
       await db.transaction(tenantId, async (run) => {
@@ -51,7 +66,9 @@ router.post(
             ctx.intent.sub_type,
             JSON.stringify({
               content_type,
-              brief,
+              brief: effectiveBrief,
+              user_brief: brief,
+              brief_source: ctx.brief_source || 'custom',
               brand_voice_id,
               context_ids: ctx.kb_entries.map((e) => e.entry_id),
             }),
@@ -75,15 +92,24 @@ router.post(
           }
         );
       });
-      res.json({
+      const response = {
         success: true,
         content_id: id,
         ...result.output,
         attempts: result.attempts,
         context_ids: ctx.kb_entries.map((e) => e.entry_id),
-      });
+      };
+      if (streaming) { send({type:'complete', data:response}); res.end(); }
+      else res.json(response);
     } catch (error) {
-      next(error);
+      if (res.destroyed || controller.signal.aborted) return;
+      if (res.headersSent) {
+        send({type:'error', status:error.status || 500, error:error.status ? error.message : 'Campaign could not be saved. Please check history before trying again.'});
+        res.end();
+      } else next(error);
+    } finally {
+      clearInterval(heartbeat);
+      res.off('close', disconnect);
     }
   }
 );

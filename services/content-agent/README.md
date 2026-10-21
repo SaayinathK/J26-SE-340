@@ -25,13 +25,13 @@ Register with `POST /api/auth/register` using `{ "name":"Demo", "email":"demo@ex
 
 | Method | Path | Body / response |
 | --- | --- | --- |
-| POST | /context/build | `{content_type, brief, brand_voice_id?}` → `{success, context}` |
+| POST | /context/build | `{content_type, brief?, brand_voice_id?}` → `{success, context}` |
 | POST | /content/generate | Same body → `{success, content_id, ...generatedFields, attempts, context_ids}` |
 | POST | /content/feedback | `{generation_id, feedback:"positive"\|"negative"}` → `{success, performance}` |
 | GET | /content/history | `{success, history:[]}`; latest 20 |
 | GET | /health | Process liveness; does not assert dependency readiness |
 
-Formats: meta_ad, funnel_page, email, social_post, vsl. Briefs under 20 characters, fewer than two KB matches, or missing brand voice block generation with a 400 `missing` array. Invalid model JSON or format violations are retried three times, then return 502. Quota exhaustion returns 429. No quota is consumed on failed generation/persistence.
+Formats: meta_ad, funnel_page, email, social_post, vsl. The brief is optional (up to 10,000 characters). With no brief, the context engine prepares instructions for the selected format using the saved business profile. A saved profile is sufficient; knowledge entries and approved examples enrich it. Accounts without a profile need at least two KB matches and a brand voice, otherwise generation returns a 400 `missing` array directing the client to setup. History stores the effective brief, original user brief, and automatic/custom source. Invalid model JSON or format violations are retried three times, then return 502. Quota exhaustion returns 429. No quota is consumed on failed generation/persistence.
 
 ## Seed and evidence
 

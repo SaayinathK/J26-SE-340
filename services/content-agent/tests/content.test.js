@@ -85,9 +85,10 @@ test('validator rejects missing or oversized copy',()=>{
 });
 test('retry repairs invalid model output',async()=>{
   const llm=require('../src/services/llmService');
-  const spy=jest.spyOn(llm,'callLLM').mockResolvedValueOnce({output:'not json',tokensUsed:2}).mockResolvedValueOnce({output:JSON.stringify(output),tokensUsed:3});
+  const email = {subject:'Workshop',preview_text:'Learn more',body:'Explore the workshop.',cta:'Learn more'};
+  const spy=jest.spyOn(llm,'callLLM').mockResolvedValueOnce({output:'not json',tokensUsed:2}).mockResolvedValueOnce({output:JSON.stringify(email),tokensUsed:3});
   const actual=jest.requireActual('../src/services/contentGenerator');
-  const result=await actual.generateWithRetry({kb_entries:[],intent:{}},body.brief,'meta_ad');
+  const result=await actual.generateWithRetry({kb_entries:[],intent:{}},body.brief,'email');
   expect(result.attempts).toBe(2); expect(result.tokensUsed).toBe(5); spy.mockRestore();
 });
 test.each(['get', 'post'])('settings %s requires authentication', async method => {
@@ -103,4 +104,64 @@ test('settings saves and retrieves the authenticated tenant profile', async () =
   const fetched = await request(app).get('/settings').set('Authorization',auth);
   expect(fetched.body).toEqual({success:true,settings:profile});
   expect(db.query).toHaveBeenLastCalledWith(expect.stringContaining('WHERE tenant_id = $1'), [tenant], tenant);
+});
+test.each([undefined, '', '   ', null, 'Be funny'])('generation accepts optional brief %p and persists the effective brief', async brief => {
+  const effectiveBrief = 'Create a Facebook ad for the saved client business.';
+  const ctx = {intent:{content_type:'meta_ad',sub_type:'awareness'},kb_entries:[],business_profile:'Business: Acme',brief:effectiveBrief,brief_source:'automatic',missing_fields:[]};
+  engine.buildContext.mockResolvedValue(ctx);
+  const res = await request(app).post('/content/generate').set('Authorization',auth).send({content_type:'meta_ad',brief});
+  expect(res.status).toBe(200);
+  expect(engine.buildContext).toHaveBeenCalledWith(tenant,'meta_ad',typeof brief === 'string' ? brief.trim() : '',undefined);
+  expect(generator.generateWithRetry).toHaveBeenCalledWith(ctx,effectiveBrief,'meta_ad');
+  const params = JSON.parse(run.mock.calls.find(([sql])=>sql.includes('INSERT INTO generations'))[1][4]);
+  expect(params.brief).toBe(effectiveBrief);
+  expect(params.brief_source).toBe('automatic');
+});
+test.each([42, {}, [], 'x'.repeat(10001)])('invalid optional brief is rejected', async brief => {
+  const res = await request(app).post('/content/generate').set('Authorization',auth).send({content_type:'meta_ad',brief});
+  expect(res.status).toBe(400);
+  expect(engine.buildContext).not.toHaveBeenCalled();
+});
+test('context can be built without a user prompt',async()=>{
+  const res=await request(app).post('/context/build').set('Authorization',auth).send({content_type:'meta_ad'});
+  expect(res.status).toBe(200);
+  expect(engine.buildContext).toHaveBeenCalledWith(tenant,'meta_ad','',undefined);
+});
+test('campaign response and history persistence retain the nested persona output',async()=>{
+ const campaign={schema_version:2,personas:[{name:'Founders',pain_points:['Planning campaigns'],hooks:['Where do you begin?'],body_copies:[{body:'Plan with purpose',primary_text:'Start planning.',headline:'Campaign planning',cta:'LEARN MORE'}]}]};
+ generator.generateWithRetry.mockResolvedValue({output:campaign,attempts:4,tokensUsed:500,systemPrompt:'Campaign system',userPrompt:'Business context'});
+ const res=await request(app).post('/content/generate').set('Authorization',auth).send({content_type:'meta_ad'});
+ expect(res.status).toBe(200);expect(res.body.personas).toEqual(campaign.personas);
+ const insert=run.mock.calls.find(([sql])=>sql.includes('INSERT INTO generations'));
+ expect(JSON.parse(insert[1][5])).toEqual(campaign);
+ expect(learning.recordPromptUse).toHaveBeenCalledTimes(1);
+});
+test('streaming emits persona previews before the final persisted response',async()=>{
+ generator.generateWithRetry.mockImplementation(async(ctx,brief,type,attempts,{onProgress})=>{
+  onProgress({type:'plan',personas:[{name:'Founders'}],cached:true});
+  onProgress({type:'persona',index:0,total:3,persona:{name:'Founders',hooks:['Hook'],body_copies:[]}});
+  expect(db.transaction).not.toHaveBeenCalled();
+  return {output:{schema_version:2,personas:[]},attempts:3,tokensUsed:20,systemPrompt:'System',userPrompt:'User'};
+ });
+ const res=await request(app).post('/content/generate').set('Authorization',auth).set('Accept','application/x-ndjson').send({content_type:'meta_ad'});
+ expect(res.status).toBe(200);expect(res.headers['content-type']).toContain('application/x-ndjson');
+ const events=res.text.trim().split('\n').map(JSON.parse);
+ expect(events.map(e=>e.type)).toEqual(['status','plan','persona','complete']);
+ expect(events.at(-1).data.content_id).toBeTruthy();
+ expect(db.transaction).toHaveBeenCalledTimes(1);
+});
+test('streaming generation failure emits an error without persisting partial output',async()=>{
+ generator.generateWithRetry.mockRejectedValue(Object.assign(new Error('Model failed'),{status:502}));
+ const res=await request(app).post('/content/generate').set('Authorization',auth).set('Accept','application/x-ndjson').send({content_type:'meta_ad'});
+ const events=res.text.trim().split('\n').map(JSON.parse);
+ expect(events.at(-1)).toMatchObject({type:'error',status:502,error:'Model failed'});
+ expect(events.some(e=>e.type==='complete')).toBe(false);
+ expect(db.transaction).not.toHaveBeenCalled();
+});
+test('streaming quota failure does not send a saved completion',async()=>{
+ generator.generateWithRetry.mockResolvedValue({output:{personas:[]},attempts:3,tokensUsed:10});
+ run.mockResolvedValue({rows:[]});
+ const res=await request(app).post('/content/generate').set('Authorization',auth).set('Accept','application/x-ndjson').send({content_type:'meta_ad'});
+ expect(res.text).toContain('Generation limit reached');
+ expect(res.text).not.toContain('"type":"complete"');
 });

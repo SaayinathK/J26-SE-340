@@ -54,6 +54,7 @@ async function getBusinessProfile(tenantId) {
     );
     if (result.rows.length === 0) return '';
     const s = result.rows[0];
+    if (!['business_name', 'industry', 'offer_name', 'target_audience', 'value_propositions'].some(key => String(s[key] || '').trim())) return '';
     return `
 CLIENT BUSINESS PROFILE:
 Business: ${s.business_name || 'Not set'}
@@ -89,10 +90,20 @@ async function getBestPastGenerations(tenantId, contentType, limit = 3) {
       try {
         const output = typeof row.output === 'string'
           ? JSON.parse(row.output) : row.output;
+        // Campaigns are much larger than a single ad. Keep reference examples
+        // representative so approved history does not overwhelm local models.
+        const example = Array.isArray(output?.personas) ? {
+          personas: output.personas.map(persona => ({
+            name: persona.name,
+            pain_points: persona.pain_points,
+            hooks: persona.hooks?.slice(0, 2),
+            body_copies: persona.body_copies?.slice(0, 1),
+          })),
+        } : output;
         const params = row.input_params || {};
         return `EXAMPLE ${i + 1} (this client approved):
 Brief: ${params.brief || 'marketing content'}
-Output: ${JSON.stringify(output)}`;
+Output: ${JSON.stringify(example)}`;
       } catch { return null; }
     }).filter(Boolean);
     if (!examples.length) return '';
@@ -101,31 +112,44 @@ Output: ${JSON.stringify(output)}`;
     return '';
   }
 }
-async function buildContext(tenantId, contentType, brief, brandVoiceId) {
-  const intentPromise = classifyIntent(brief);
-
-  const [intent, kb_entries, brand_voice, champion, businessProfile, pastExamples] = await Promise.all([
+async function buildContext(tenantId, contentType, brief = '', brandVoiceId) {
+  const businessProfile = await getBusinessProfile(tenantId);
+  const customBrief = typeof brief === 'string' ? brief.trim() : '';
+  const labels = { meta_ad: 'Facebook and Instagram campaign with suggested personas, pain points, 10 hooks and 3 body-copy options per persona', funnel_page: 'landing page', vsl: 'video sales letter', social_post: 'social media post', email: 'marketing email' };
+  const effectiveBrief = customBrief || `Create a ${labels[contentType] || contentType} for this client's business. Promote their saved offer to their target audience, highlight their value propositions, and follow their brand voice. Choose a suitable call to action using only supported business facts.`;
+  const retrievalQuery = [effectiveBrief, businessProfile].filter(Boolean).join('\n\n');
+  const intentPromise = !customBrief && contentType === 'meta_ad'
+    ? Promise.resolve({ content_type: 'meta_ad', sub_type: 'awareness', funnel_stage: 'tofu' })
+    : classifyIntent(retrievalQuery);
+  const [intent, kb_entries, brand_voice, champion, pastExamples, knowledgeRevision] = await Promise.all([
     intentPromise,
-    retrieveTopK(tenantId, brief),
+    retrieveTopK(tenantId, retrievalQuery),
     getBrandVoice(tenantId, brandVoiceId),
     intentPromise.then(i => getChampionPrompt(tenantId, contentType, i.sub_type)),
-    getBusinessProfile(tenantId),
     getBestPastGenerations(tenantId, contentType, 3),
+    contentType === 'meta_ad' ? db.query(`SELECT md5(COALESCE(string_agg(
+      entry_id::text || ':' || type || ':' || text, '|' ORDER BY entry_id), '')) AS revision
+      FROM knowledge_base WHERE tenant_id = $1`, [tenantId], tenantId).then(result => result.rows[0]?.revision) : null,
   ]);
 
+  // A saved profile is enough to start. Knowledge and past feedback enrich it.
+  // Existing clients can still generate from their established knowledge base.
   const missing_fields = [];
-  if (brief.trim().length < 20)  missing_fields.push('brief');
-  if (kb_entries.length < 2)     missing_fields.push('knowledge_base');
-  if (!brand_voice)              missing_fields.push('brand_voice');
+  if (!businessProfile && kb_entries.length < 2) missing_fields.push('business_profile');
+  if (!businessProfile && kb_entries.length >= 2 && !brand_voice) missing_fields.push('brand_voice');
 
   return {
-    intent:           { ...intent, content_type: contentType },
-    funnel_stage:     intent.funnel_stage,
+    tenant_id: tenantId,
+    knowledge_revision: knowledgeRevision,
+    intent: { ...intent, content_type: contentType },
+    funnel_stage: intent.funnel_stage,
     kb_entries,
     brand_voice,
     champion,
     business_profile: businessProfile,
-    past_examples:    pastExamples,
+    past_examples: pastExamples,
+    brief: effectiveBrief,
+    brief_source: customBrief ? 'custom' : 'automatic',
     missing_fields,
   };
 }

@@ -17,6 +17,13 @@ def response(status, body):
     return result
 
 class EvaluationTests(unittest.TestCase):
+    def test_campaign_uses_fixed_first_variant_and_supports_legacy_ads(self):
+        campaign = {'personas': [{'hooks': [AD['hook'], 'Another hook'], 'body_copies': [AD, {**AD, 'headline': 'Another headline'}]}]}
+        self.assertEqual(evaluation.evaluation_ad(campaign), AD)
+        self.assertEqual(evaluation.evaluation_ad(AD), AD)
+        with self.assertRaises(evaluation.EvaluationError):
+            evaluation.evaluation_ad({'personas': []})
+
     def test_retries_502_and_reports_detail(self):
         with patch.object(evaluation.requests, 'post', side_effect=[response(502, {'error':'headline exceeds 40 characters'}), response(200, AD)]) as post, patch.object(evaluation.time, 'sleep'), contextlib.redirect_stdout(io.StringIO()) as output:
             self.assertEqual(evaluation.post_json('http://test'), AD)

@@ -8,13 +8,25 @@ import time
 import tempfile
 from pathlib import Path
 import requests
-from ingest_kb import ROOT
+ROOT = Path(__file__).resolve().parents[1]
 
 PROMPTS = [f'Write a Meta ad for the Campaign Foundations workshop focusing on {focus}. Invite readers to learn more.' for focus in [
  'clear offers','audience research','campaign planning','message testing','founder confidence','plain language','practical worksheets','first-time marketers','independent consultants','limited time','avoiding vague copy','defining a call to action','reviewing a message','learning through exercises','small-business needs','one campaign at a time','offer clarity','actionable learning','campaign foundations','a repeatable planning process']]
 
 class EvaluationError(Exception):
     pass
+
+
+def evaluation_ad(result):
+    """Select a fixed first variant, never cherry-pick the best campaign ad."""
+    if 'personas' in result:
+        try:
+            persona = result['personas'][0]
+            copy = persona['body_copies'][0]
+            return {'hook': persona['hooks'][0], **{key: copy[key] for key in ('primary_text', 'headline', 'cta')}}
+        except (IndexError, KeyError, TypeError):
+            raise EvaluationError('Campaign is missing its first persona, hook, or body copy') from None
+    return {key: result[key] for key in ('hook', 'primary_text', 'headline', 'cta')}
 
 
 def save_json(path, value):
@@ -112,11 +124,11 @@ def main():
                 save_json(checkpoint, state)
             contextual = post_json(args.api_url.rstrip('/')+'/content/generate', attempts=args.attempts,
                 headers={'Authorization':'Bearer '+args.token},json={'content_type':'meta_ad','brief':brief},timeout=600)
-            outputs = [('baseline',state['pending_baseline']),('context',{k:contextual[k] for k in ['hook','primary_text','headline','cta']})]
+            outputs = [('baseline',state['pending_baseline']),('context',evaluation_ad(contextual))]
             random.SystemRandom().shuffle(outputs)
             pair_id = f"{state['run_id']}-{index+1:02d}"
             state['public'].append({'id':pair_id,'brief':brief,**{label:value for label,(_,value) in zip(('A','B'),outputs)}})
-            state['private'].append({'id':pair_id,'labels':{label:name for label,(name,_) in zip(('A','B'),outputs)}})
+            state['private'].append({'id':pair_id,'labels':{label:name for label,(name,_) in zip(('A','B'),outputs)},'context_selection':'first persona / first hook / first body copy' if 'personas' in contextual else 'single ad'})
             state['pending_baseline'] = None
             save_json(checkpoint, state)
             publish(state)
