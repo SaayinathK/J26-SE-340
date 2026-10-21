@@ -1,0 +1,143 @@
+{
+  "tenant": "tenant_a",
+  "part_a_all_pass": true,
+  "part_a": [
+    {
+      "check": "All leads",
+      "recomputed": 3146,
+      "api": 3146,
+      "result": "PASS"
+    },
+    {
+      "check": "Became customers (rate)",
+      "recomputed": 0.377,
+      "api": 0.377,
+      "result": "PASS"
+    },
+    {
+      "check": "hot leads (count)",
+      "recomputed": 811,
+      "api": 811,
+      "result": "PASS"
+    },
+    {
+      "check": "hot leads bought (rate)",
+      "recomputed": 0.872,
+      "api": 0.872,
+      "result": "PASS"
+    },
+    {
+      "check": "warm leads (count)",
+      "recomputed": 485,
+      "api": 485,
+      "result": "PASS"
+    },
+    {
+      "check": "warm leads bought (rate)",
+      "recomputed": 0.573,
+      "api": 0.573,
+      "result": "PASS"
+    },
+    {
+      "check": "cold leads (count)",
+      "recomputed": 1850,
+      "api": 1850,
+      "result": "PASS"
+    },
+    {
+      "check": "cold leads bought (rate)",
+      "recomputed": 0.109,
+      "api": 0.109,
+      "result": "PASS"
+    },
+    {
+      "check": "Best source Welingak Website",
+      "recomputed": 0.981,
+      "api": 0.981,
+      "result": "PASS"
+    },
+    {
+      "check": "Best source Reference",
+      "recomputed": 0.921,
+      "api": 0.921,
+      "result": "PASS"
+    },
+    {
+      "check": "Best source Google",
+      "recomputed": 0.401,
+      "api": 0.401,
+      "result": "PASS"
+    },
+    {
+      "check": "Top-10 hottest leads (same IDs, same order)",
+      "recomputed": "10 of 10",
+      "api": "10 of 10",
+      "result": "PASS"
+    }
+  ],
+  "part_b_test_all_tenants": {
+    "leads": 1386,
+    "auc": 0.892,
+    "accuracy_at_50": 0.815,
+    "precision_at_50": 0.763,
+    "recall_at_50": 0.755,
+    "confusion_at_50": {
+      "bought_and_predicted": 403,
+      "bought_but_missed": 131,
+      "not_bought_but_predicted": 125,
+      "not_bought_and_not_predicted": 727
+    },
+    "brier": 0.1278,
+    "hot_leads_that_bought": 0.841,
+    "calibration": {
+      "hot": {
+        "leads": 364,
+        "average_score": 86.2,
+        "really_bought": 0.841
+      },
+      "warm": {
+        "leads": 208,
+        "average_score": 58.8,
+        "really_bought": 0.577
+      },
+      "cold": {
+        "leads": 814,
+        "average_score": 11.3,
+        "really_bought": 0.133
+      }
+    }
+  },
+  "part_b_test_tenant_a": {
+    "leads": 481,
+    "auc": 0.892,
+    "accuracy_at_50": 0.821,
+    "precision_at_50": 0.741,
+    "recall_at_50": 0.783,
+    "confusion_at_50": {
+      "bought_and_predicted": 137,
+      "bought_but_missed": 38,
+      "not_bought_but_predicted": 48,
+      "not_bought_and_not_predicted": 258
+    },
+    "brier": 0.1237,
+    "hot_leads_that_bought": 0.842,
+    "calibration": {
+      "hot": {
+        "leads": 120,
+        "average_score": 86.5,
+        "really_bought": 0.842
+      },
+      "warm": {
+        "leads": 77,
+        "average_score": 58.7,
+        "really_bought": 0.545
+      },
+      "cold": {
+        "leads": 284,
+        "average_score": 12.1,
+        "really_bought": 0.113
+      }
+    }
+  },
+  "note": "Part B uses only test-split leads (never used for training). Dashboard rates use ALL historical leads, including training leads, so they are slightly optimistic."
+}
