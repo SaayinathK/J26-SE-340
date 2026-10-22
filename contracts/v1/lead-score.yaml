@@ -1,7 +1,7 @@
 # I-04  Lead score  — producer: C3 Lead Intelligence (Shathursini J)
 openapi: 3.0.3
 info: { title: "C3 Lead score (I-04)", version: "1.1.0" }   # 1.1.0: + confidence, alert (additive, C3-11)
-servers: [ { url: "http://localhost:3001" } ]
+servers: [ { url: "http://localhost:4003" } ]
 paths:
   /leads/score:
     post:

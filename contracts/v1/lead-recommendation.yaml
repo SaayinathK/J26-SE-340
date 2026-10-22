@@ -1,7 +1,7 @@
 # I-05  Lead recommendation  — producer: C3 Lead Intelligence (Shathursini J)
 openapi: 3.0.3
 info: { title: "C3 Lead recommendation (I-05)", version: "1.2.0" }   # 1.1.0: + retrieval_method, cached (C3-09); 1.2.0: + llm_model (C3-14) - additive
-servers: [ { url: "http://localhost:3001" } ]
+servers: [ { url: "http://localhost:4003" } ]
 paths:
   /leads/{lead_id}/recommendation:
     get:

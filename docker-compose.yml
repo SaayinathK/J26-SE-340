@@ -26,8 +26,6 @@ services:
     restart: unless-stopped
     volumes:
       - ${OLLAMA_MODELS_SOURCE:-ollama_data}:/root/.ollama/models:${OLLAMA_MODELS_ACCESS:-rw}
-      - ./services/lead-intel/models:/models:ro
-      - ./services/lead-intel/Modelfile:/Modelfile:ro
     working_dir: /
     healthcheck:
       test: ["CMD", "ollama", "list"]
@@ -35,25 +33,64 @@ services:
       timeout: 5s
       retries: 20
 
+  # ---------- C3 Lead Intelligence (Shathursini J) ----------
+  # C3 database: history of scores, recommendations and outcomes (database per service)
+  lead-intel-database:
+    image: pgvector/pgvector:pg16
+    container_name: lead-intel-database
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: lead_intel
+      POSTGRES_USER: c3_admin
+      POSTGRES_PASSWORD: ${C3_DB_ADMIN_PASSWORD:-localdev}
+    ports:
+      - "127.0.0.1:5436:5432"
+    volumes:
+      - lead_intel_pgdata:/var/lib/postgresql/data
+      - ./services/lead-intel/db/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U c3_admin -d lead_intel"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # C3 model server: Ollama with nomic-embed-text + the fine-tuned c3-mistral-ft (from ml/models/lead-intel)
+  lead-intel-model:
+    build: ./ml/lead-intel/serving
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11437:11434"
+    volumes:
+      - lead_intel_model_data:/root/.ollama
+      - ./ml/models/lead-intel:/models:ro
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  # C3 API (port 4003)
   lead-intel:
     build: ./services/lead-intel
     restart: unless-stopped
     environment:
-      # default: the Ollama container. On laptops with little Docker memory, set
+      # default: the C3 model container. On laptops with little Docker memory, set
       # C3_OLLAMA_URL=http://host.docker.internal:11434 in .env to use Ollama on the host instead.
-      OLLAMA_URL: ${C3_OLLAMA_URL:-http://ollama:11434}
+      OLLAMA_URL: ${C3_OLLAMA_URL:-http://lead-intel-model:11434}
       C3_LLM_MODEL: ${C3_LLM_MODEL:-c3-mistral-ft}
-      C3_HISTORY: /state/score_history.json
-      C3_OUTCOMES: /state/outcomes.json
+      C3_DATABASE_URL: postgresql://lead_intel_app:c3_local_dev_only_2026@lead-intel-database:5432/lead_intel
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:4003:4003"
     volumes:
-      - ./services/lead-intel/models:/app/models:ro
-      - ./services/lead-intel/data/processed:/app/data/processed:ro
-      - ./services/lead-intel/data/kb:/app/data/kb:ro
+      - ./ml:/app/ml:ro                  # model, CRM data, knowledge base and reports (same paths as the repo)
       - lead_state:/state
+    depends_on:
+      lead-intel-database:
+        condition: service_healthy
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:3001/health')"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:4003/health')"]
       interval: 10s
       timeout: 5s
       start_period: 60s
@@ -71,7 +108,7 @@ services:
       DB_USER: c4_app
       DB_PASSWORD: c4_local_dev_only_2026
       JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in the root .env file}
-      C3_URL: http://lead-intel:3001
+      C3_URL: http://lead-intel:4003
       OLLAMA_HOST: http://ollama:11434
       OLLAMA_MODEL: ${OLLAMA_MODEL:-mistral:7b-instruct-q4_K_M}
     ports:
@@ -90,7 +127,7 @@ services:
   dashboard:
     build: ./services/lead-intel
     restart: unless-stopped
-    command: ["streamlit", "run", "dashboard.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    command: ["streamlit", "run", "streamlit/dashboard.py", "--server.address=0.0.0.0", "--server.port=8501"]
     environment:
       C3_GATEWAY: http://gateway:4000
     ports:
@@ -104,12 +141,12 @@ services:
       timeout: 5s
       retries: 10
 
-  # C3 React front end (nginx) - talks to the gateway only
-  web:
-    build: ./services/lead-intel/web
+  # Platform web app (React + nginx, port 3000) - talks to the gateway only
+  frontend:
+    build: ./frontend
     restart: unless-stopped
     ports:
-      - "127.0.0.1:5173:80"
+      - "127.0.0.1:3000:80"
     depends_on:
       gateway:
         condition: service_healthy
@@ -118,3 +155,5 @@ volumes:
   c4_pgdata:
   ollama_data:
   lead_state:
+  lead_intel_pgdata:
+  lead_intel_model_data:

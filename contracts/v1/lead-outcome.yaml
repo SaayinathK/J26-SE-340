@@ -1,7 +1,7 @@
 # Lead outcome + model monitoring (FR7) — producer: C3 Lead Intelligence (Shathursini J)
 openapi: 3.0.3
 info: { title: "C3 Lead outcome and model monitoring (FR7)", version: "1.0.0" }
-servers: [ { url: "http://localhost:3001" } ]
+servers: [ { url: "http://localhost:4003" } ]
 paths:
   /leads/{lead_id}/outcome:
     post:

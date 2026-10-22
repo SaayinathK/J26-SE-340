@@ -6,3 +6,16 @@ node_modules/
 .venv/
 __pycache__/
 *.pyc
+# ML data and model files (team folder structure)
+ml/models/
+ml/*/data/raw/
+ml/*/data/processed/
+ml/*/data/kb/
+ml/*/data/finetune/
+
+# build output and local state
+dist/
+.pytest_cache/
+.pytest_tmp/
+services/lead-intel/state/
+.vite/

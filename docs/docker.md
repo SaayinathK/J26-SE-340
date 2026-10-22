@@ -7,16 +7,19 @@ Run commands from the repository root. Docker Desktop must use Linux containers.
 | Container service | Address | Purpose |
 | --- | --- | --- |
 | gateway | http://localhost:4000 | JWT authentication, roles, audit, email API, lead API proxy |
-| dashboard | http://localhost:8501 | Streamlit UI; authenticates and calls the gateway |
-| lead-intel | http://lead-intel:3001 (Docker network only) | Scoring, analytics, recommendations, monitoring |
-| ollama | http://ollama:11434 (Docker network only) | Embeddings and language models |
+| frontend | http://localhost:3000 | Platform web app (React + nginx); calls the gateway only |
+| dashboard | http://localhost:8501 | Older Streamlit UI; authenticates and calls the gateway |
+| lead-intel | http://localhost:4003 | C3: scoring, analytics, recommendations, monitoring, lead history |
+| lead-intel-database | localhost:5436 | C3 PostgreSQL `lead_intel` (lead history, row-level security) |
+| lead-intel-model | http://localhost:11437 | C3 Ollama: nomic-embed-text + c3-mistral-ft |
+| ollama | http://ollama:11434 (Docker network only) | Embeddings and language models for the email agent |
 | db | localhost:5433 | PostgreSQL 16 with pgvector and row-level security |
 
 Each service runs in its own container. Compose provides DNS between them.
 The `content-agent`, `email-agent` and `strategy-fl` directories contain only
 `.gitkeep` placeholders, so they have no standalone applications to launch.
 The implemented email agent currently runs inside the gateway process.
-Only the gateway, dashboard and loopback database port are published.
+Only loopback (127.0.0.1) ports are published.
 Lead requests use `/api/leads/...`; the gateway maps the JWT tenant UUID to
 the C3 tenant slug and overwrites the upstream tenant header.
 
@@ -24,9 +27,9 @@ the C3 tenant slug and overwrites the upstream tenant header.
 
 The existing local data and trained artifacts are mounted read-only, never baked
 into images. These files are excluded from Git. A fresh clone needs the preparation
-steps in `services/lead-intel/README.md` and the fine-tuned GGUF described in its
-`Modelfile`. Required assets are the scorer, processed CRM data, per-tenant KB
-documents/vectors, and `models/c3-mistral-ft-Q4_K_M.gguf`.
+steps in `ml/lead-intel/README.md` and the fine-tuned GGUF described in
+`ml/lead-intel/serving/Modelfile`. Required assets are the scorer, processed CRM data, per-tenant KB
+documents/vectors (all under `ml/`), and `ml/models/lead-intel/c3-mistral-ft-Q4_K_M.gguf`.
 
 ```powershell
 ./scripts/start-docker.ps1
@@ -73,7 +76,7 @@ receive the migrations separately. Never remove database volumes to apply update
 
 ```powershell
 docker compose exec -T gateway npm test -- --runInBand
-docker compose exec -T -e C3_HISTORY=/tmp/test-history.json -e C3_OUTCOMES=/tmp/test-outcomes.json lead-intel python -m pytest -q -p no:cacheprovider
+docker compose exec -T lead-intel python -m pytest -q -p no:cacheprovider
 ```
 
 The gateway tests include tenant header spoofing, role enforcement and upstream
