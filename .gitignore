@@ -1,0 +1,3 @@
+
+# Local CRM encryption key (never commit)
+services/content-agent/.local-secrets/

@@ -8,8 +8,8 @@ async function ollama(path, body, signal) {
   if (data.error) throw Object.assign(new Error(data.error), { status: 502 });
   return data;
 }
-async function callLLM({ model, prompt, maxTokens = 1024, signal }) {
-  const data = await ollama('/api/generate', { model, prompt, format: 'json', options: { num_predict: maxTokens, temperature: 0.2 } }, signal);
+async function callLLM({ model, prompt, maxTokens = 1024, signal, schema }) {
+  const data = await ollama('/api/generate', { model, prompt, format: schema || 'json', keep_alive: '15m', options: { num_predict: maxTokens, temperature: 0.2 } }, signal);
   if (typeof data.response !== 'string') throw new Error('Ollama returned no text');
   return { output: data.response, tokensUsed: (data.eval_count || 0) + (data.prompt_eval_count || 0) };
 }

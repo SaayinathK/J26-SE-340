@@ -1,32 +1,22 @@
-const mockClient = {query:jest.fn(),release:jest.fn()};
-jest.mock('../src/config/db',()=>({pool:{connect:jest.fn(async()=>mockClient)}}));
+jest.mock('../src/config/db',()=>({transaction:jest.fn()}));
+const db=require('../src/config/db');
 const {hashPrompt,recordPromptUse,recordFeedback}=require('../src/services/learningService');
 const tenant='11111111-1111-4111-8111-111111111111';
-beforeEach(()=>{jest.clearAllMocks();mockClient.query.mockResolvedValue({rows:[{total_uses:5,positive_ratings:5,is_champion:true}]});});
-test('hash groups the same content type and separates different types',()=>{
- expect(hashPrompt('content','meta_ad')).toBe(hashPrompt('content','meta_ad'));
- expect(hashPrompt('content','meta_ad')).not.toBe(hashPrompt('content','funnel_page'));
- expect(hashPrompt('ab','c')).not.toBe(hashPrompt('a','bc'));
- expect(hashPrompt('content','meta_ad')).toMatch(/^[a-f0-9]{64}$/);
+let run;
+beforeEach(()=>{jest.clearAllMocks();run=jest.fn().mockResolvedValue({rows:[{total_uses:5,positive_ratings:5,is_champion:true}]});db.transaction.mockImplementation((tenant,fn)=>fn(run));});
+test('hash identifies prompt variants without depending on each user brief',()=>{
+ expect(hashPrompt('meta_ad','awareness',{system:'base',guidance:'A'})).toBe(hashPrompt('meta_ad','awareness',{system:'base',guidance:'A'}));
+ expect(hashPrompt('meta_ad','awareness',{system:'base',guidance:'A'})).not.toBe(hashPrompt('meta_ad','awareness',{system:'base',guidance:'B'}));
 });
-test('prompt use upserts the tenant/content group and releases the connection',async()=>{
- const snapshot={addition:'Use clear wording'};
- await recordPromptUse({tenantId:tenant,agentType:'meta_ad',subType:'awareness',promptHash:'hash',promptSnapshot:snapshot});
- expect(mockClient.query).toHaveBeenLastCalledWith(expect.stringContaining('ON CONFLICT (tenant_id, prompt_hash, agent_type)'),[tenant,'meta_ad','awareness','hash',JSON.stringify(snapshot)]);
- expect(mockClient.release).toHaveBeenCalledTimes(1);
+test('usage uses the callers transaction and does not disable RLS',async()=>{
+ await recordPromptUse({tenantId:tenant,agentType:'meta_ad',subType:'awareness',promptHash:'hash',promptSnapshot:{}},run);
+ expect(db.transaction).not.toHaveBeenCalled();expect(run).toHaveBeenCalledTimes(1);expect(run.mock.calls[0][0]).not.toContain('row_security');
 });
-test.each([['positive',1],['negative',0]])('feedback %s applies the current increment %s',async(feedback,increment)=>{
- const row=await recordFeedback({tenantId:tenant,promptHash:'hash',agentType:'meta_ad',feedback});
- expect(mockClient.query).toHaveBeenLastCalledWith(expect.stringContaining('WHERE tenant_id = $2'),[increment,tenant,'hash','meta_ad']);
- expect(row).toMatchObject({total_uses:5,is_champion:true});
- expect(mockClient.release).toHaveBeenCalledTimes(1);
+test.each([['positive',null,1,0],['positive','positive',0,0],['negative','positive',-1,1],['positive','negative',1,-1],['negative','negative',0,0]])('rating %s after %s applies exact deltas',async(feedback,previousRating,pos,neg)=>{
+ await recordFeedback({tenantId:tenant,promptHash:'hash',agentType:'meta_ad',feedback,previousRating},run);
+ expect(run.mock.calls[0][1]).toEqual([pos,neg,tenant,'hash','meta_ad']);
 });
-test.each([recordPromptUse,recordFeedback])('query errors are logged and checked-out connections released',async operation=>{
- const log=jest.spyOn(console,'error').mockImplementation(()=>{});
- mockClient.query.mockRejectedValueOnce(new Error('Database unavailable'));
- try {
-  await operation({tenantId:tenant,promptHash:'hash',agentType:'meta_ad',feedback:'positive'});
-  expect(log).toHaveBeenCalledWith(expect.any(String),'Database unavailable');
-  expect(mockClient.release).toHaveBeenCalledTimes(1);
- } finally {log.mockRestore();}
+test('storage failures propagate for rollback instead of pretending learning succeeded',async()=>{
+ run.mockRejectedValue(new Error('Database unavailable'));
+ await expect(recordPromptUse({tenantId:tenant},run)).rejects.toThrow('Database unavailable');
 });

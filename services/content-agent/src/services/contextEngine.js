@@ -41,20 +41,9 @@ async function getChampionPrompt(tenantId, agentType, subType) {
     AND agent_type = $2 AND sub_type = $3 AND is_champion = true ORDER BY success_rate DESC, total_uses DESC LIMIT 1`, [tenantId, agentType, subType], tenantId);
   return rows[0]?.prompt_snapshot?.addition || '';
 }
-async function getBusinessProfile(tenantId) {
-  try {
-    const result = await db.query(
-      `SELECT business_name, offer_type, offer_name,
-              offer_date, offer_location, offer_price,
-              target_audience, value_propositions,
-              brand_voice, industry, website_url
-       FROM business_settings
-       WHERE tenant_id = $1`,
-      [tenantId], tenantId
-    );
-    if (result.rows.length === 0) return '';
-    const s = result.rows[0];
-    if (!['business_name', 'industry', 'offer_name', 'target_audience', 'value_propositions'].some(key => String(s[key] || '').trim())) return '';
+function formatBusinessProfile(s) {
+  if (!s) return '';
+  if (!['business_name', 'industry', 'offer_name', 'target_audience', 'value_propositions'].some(key => String(s[key] || '').trim())) return '';
     return `
 CLIENT BUSINESS PROFILE:
 Business: ${s.business_name || 'Not set'}
@@ -68,12 +57,25 @@ Target Audience: ${s.target_audience || 'Not set'}
 Value Propositions: ${s.value_propositions || 'Not set'}
 Brand Voice: ${s.brand_voice || 'Not set'}
     `.trim();
+}
+async function getBusinessProfile(tenantId) {
+  try {
+    const result = await db.query(
+      `SELECT business_name, offer_type, offer_name,
+              offer_date, offer_location, offer_price,
+              target_audience, value_propositions,
+              brand_voice, industry, website_url
+       FROM business_settings
+       WHERE tenant_id = $1`,
+      [tenantId], tenantId
+    );
+    return formatBusinessProfile(result.rows[0]);
   } catch (err) {
     console.error('getBusinessProfile error:', err.message);
     return '';
   }
 }
-async function getBestPastGenerations(tenantId, contentType, limit = 3) {
+async function getBestPastGenerations(tenantId, contentType, limit = 3, campaignId) {
   try {
     const result = await db.query(
       `SELECT output, input_params
@@ -81,9 +83,10 @@ async function getBestPastGenerations(tenantId, contentType, limit = 3) {
        WHERE tenant_id = $1
          AND agent_type = $2
          AND rating = 'positive'
+         ${campaignId ? "AND input_params->>'campaign_id' = $4" : ''}
        ORDER BY created_at DESC
        LIMIT $3`,
-      [tenantId, contentType, limit], tenantId
+      [tenantId, contentType, limit, ...(campaignId ? [campaignId] : [])], tenantId
     );
     if (result.rows.length === 0) return '';
     const examples = result.rows.map((row, i) => {
@@ -112,8 +115,9 @@ Output: ${JSON.stringify(example)}`;
     return '';
   }
 }
-async function buildContext(tenantId, contentType, brief = '', brandVoiceId) {
-  const businessProfile = await getBusinessProfile(tenantId);
+async function buildContext(tenantId, contentType, brief = '', brandVoiceId, campaign) {
+  const crm = campaign ? await require('./crmService').context(tenantId,campaign.id) : null;
+  const businessProfile = campaign ? formatBusinessProfile({...crm?.summary?.business,...Object.fromEntries(Object.entries(campaign.profile).filter(([,v])=>v))}) : await getBusinessProfile(tenantId);
   const customBrief = typeof brief === 'string' ? brief.trim() : '';
   const labels = { meta_ad: 'Facebook and Instagram campaign with suggested personas, pain points, 10 hooks and 3 body-copy options per persona', funnel_page: 'landing page', vsl: 'video sales letter', social_post: 'social media post', email: 'marketing email' };
   const effectiveBrief = customBrief || `Create a ${labels[contentType] || contentType} for this client's business. Promote their saved offer to their target audience, highlight their value propositions, and follow their brand voice. Choose a suitable call to action using only supported business facts.`;
@@ -124,14 +128,16 @@ async function buildContext(tenantId, contentType, brief = '', brandVoiceId) {
   const [intent, kb_entries, brand_voice, champion, pastExamples, knowledgeRevision] = await Promise.all([
     intentPromise,
     retrieveTopK(tenantId, retrievalQuery),
-    getBrandVoice(tenantId, brandVoiceId),
-    intentPromise.then(i => getChampionPrompt(tenantId, contentType, i.sub_type)),
-    getBestPastGenerations(tenantId, contentType, 3),
+    campaign ? Promise.resolve(campaign.profile.brand_voice || '') : getBrandVoice(tenantId, brandVoiceId),
+    campaign ? Promise.resolve('') : intentPromise.then(i => getChampionPrompt(tenantId, contentType, i.sub_type)),
+    getBestPastGenerations(tenantId, contentType, 3, campaign?.id),
     contentType === 'meta_ad' ? db.query(`SELECT md5(COALESCE(string_agg(
       entry_id::text || ':' || type || ':' || text, '|' ORDER BY entry_id), '')) AS revision
       FROM knowledge_base WHERE tenant_id = $1`, [tenantId], tenantId).then(result => result.rows[0]?.revision) : null,
   ]);
 
+  const research = campaign ? await require('./personaResearch').getResearch(tenantId,campaign) : {evidence:[],personas:[]};
+  const researchEvidence = research.evidence.filter(e=>!e.withdrawn_at).slice(0,12).map(e=>({id:e.id,source_type:e.source_type,source_reference:e.source_reference,collected_on:e.collected_on,sample_size:e.sample_size,audience:e.audience.slice(0,500),finding:e.finding.slice(0,1200),limitations:e.limitations.slice(0,500)}));
   // A saved profile is enough to start. Knowledge and past feedback enrich it.
   // Existing clients can still generate from their established knowledge base.
   const missing_fields = [];
@@ -140,6 +146,9 @@ async function buildContext(tenantId, contentType, brief = '', brandVoiceId) {
 
   return {
     tenant_id: tenantId,
+    crm_context: crm,
+    research_evidence:researchEvidence,
+    research_personas:research.personas,
     knowledge_revision: knowledgeRevision,
     intent: { ...intent, content_type: contentType },
     funnel_stage: intent.funnel_stage,
@@ -147,6 +156,7 @@ async function buildContext(tenantId, contentType, brief = '', brandVoiceId) {
     brand_voice,
     champion,
     business_profile: businessProfile,
+    learning_guidance: campaign?.auto_learning ? campaign.learning_guidance : null,
     past_examples: pastExamples,
     brief: effectiveBrief,
     brief_source: customBrief ? 'custom' : 'automatic',

@@ -82,6 +82,7 @@ Use the saved business profile and supplied knowledge as your source of business
   const userPrompt = JSON.stringify({
     brief,
     business_profile:  ctx.business_profile,
+    crm_customer_observations: ctx.crm_context,
     brand_voice:       ctx.brand_voice,
     knowledge:         ctx.kb_entries,
     champion_addition: ctx.champion,

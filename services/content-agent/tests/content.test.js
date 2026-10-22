@@ -111,8 +111,8 @@ test.each([undefined, '', '   ', null, 'Be funny'])('generation accepts optional
   engine.buildContext.mockResolvedValue(ctx);
   const res = await request(app).post('/content/generate').set('Authorization',auth).send({content_type:'meta_ad',brief});
   expect(res.status).toBe(200);
-  expect(engine.buildContext).toHaveBeenCalledWith(tenant,'meta_ad',typeof brief === 'string' ? brief.trim() : '',undefined);
-  expect(generator.generateWithRetry).toHaveBeenCalledWith(ctx,effectiveBrief,'meta_ad');
+  expect(engine.buildContext).toHaveBeenCalledWith(tenant,'meta_ad',typeof brief === 'string' ? brief.trim() : '',undefined,undefined);
+  expect(generator.generateWithRetry).toHaveBeenCalledWith(ctx,effectiveBrief,'meta_ad',3,expect.objectContaining({signal:expect.any(AbortSignal)}));
   const params = JSON.parse(run.mock.calls.find(([sql])=>sql.includes('INSERT INTO generations'))[1][4]);
   expect(params.brief).toBe(effectiveBrief);
   expect(params.brief_source).toBe('automatic');
@@ -125,7 +125,7 @@ test.each([42, {}, [], 'x'.repeat(10001)])('invalid optional brief is rejected',
 test('context can be built without a user prompt',async()=>{
   const res=await request(app).post('/context/build').set('Authorization',auth).send({content_type:'meta_ad'});
   expect(res.status).toBe(200);
-  expect(engine.buildContext).toHaveBeenCalledWith(tenant,'meta_ad','',undefined);
+  expect(engine.buildContext).toHaveBeenCalledWith(tenant,'meta_ad','',undefined,undefined);
 });
 test('campaign response and history persistence retain the nested persona output',async()=>{
  const campaign={schema_version:2,personas:[{name:'Founders',pain_points:['Planning campaigns'],hooks:['Where do you begin?'],body_copies:[{body:'Plan with purpose',primary_text:'Start planning.',headline:'Campaign planning',cta:'LEARN MORE'}]}]};

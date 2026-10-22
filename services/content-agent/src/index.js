@@ -11,6 +11,10 @@ app.get('/api/auth/me',protect,auth.getMe);
 app.get('/health',(_req,res)=>res.json({ success:true,service:'content-agent' }));
 app.use('/context',require('./routes/context'));
 app.use('/knowledge', require('./routes/knowledge'));
+app.use('/crm', require('./routes/crm'));
+app.use('/research', require('./routes/research'));
+app.use('/learning', require('./routes/learning'));
+app.use('/campaigns', require('./routes/campaigns'));
 app.use('/settings', require('./routes/settings'));
 app.use('/content',require('./routes/content'));
 app.use((_req,res)=>res.status(404).json({ success:false,error:'Route not found' }));
@@ -23,7 +27,9 @@ if (require.main === module) {
   if (!process.env.JWT_SECRET || !process.env.DATABASE_URL) throw new Error('Set JWT_SECRET and DATABASE_URL in .env');
   if (process.env.NODE_ENV === 'production' && (process.env.JWT_SECRET.length < 32 || process.env.JWT_SECRET === 'ai-marketing-secret-key-2025')) throw new Error('Set a strong production JWT_SECRET');
   const server = app.listen(process.env.PORT || 5001,()=>console.log(`Server running on port ${process.env.PORT || 5001}`));
-  const stop = () => server.close(()=>require('./config/db').pool.end().then(()=>process.exit(0)));
+  const stopCRM = require('./services/crmWorker').start();
+  const stopLearning = require('./services/learningWorker').start();
+  const stop = () => { stopLearning(); stopCRM(); server.close(()=>require('./config/db').pool.end().then(()=>process.exit(0))); };
   process.on('SIGTERM',stop); process.on('SIGINT',stop);
 }
 module.exports = app;

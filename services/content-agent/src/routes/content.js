@@ -6,6 +6,7 @@ const { validateRequest } = require("./context");
 const engine = require("../services/contextEngine");
 const generator = require("../services/contentGenerator");
 const learning = require("../services/learningService");
+const campaigns = require('../services/campaignService');
 router.use(protect);
 router.post(
   "/generate",
@@ -14,23 +15,38 @@ router.post(
   async (req, res, next) => {
     const streaming = req.body.content_type === 'meta_ad' && req.get('accept')?.includes('application/x-ndjson');
     const controller = new AbortController();
-    let heartbeat;
+    let heartbeat, unlock;
     const disconnect = () => { if (!res.writableEnded) controller.abort(); };
     const send = event => { if (!res.destroyed && !res.writableEnded) res.write(JSON.stringify(event) + '\n'); };
     res.on('close', disconnect);
     try {
-      const { content_type, brief, brand_voice_id } = req.body,
+      const { content_type, brief, brand_voice_id, campaign_id, generation_mode = 'initial' } = req.body,
         tenantId = req.tenant_id;
+      let campaign;
+      if (campaign_id) {
+        await campaigns.getCampaign(tenantId,campaign_id);
+        unlock = await campaigns.lockCampaign(tenantId,campaign_id);
+        campaign = await campaigns.getCampaign(tenantId,campaign_id);
+        if (campaign.auto_learning) {
+          await db.transaction(tenantId,run=>require('../services/performanceLearning').evaluateAndSave(tenantId,campaign,run));
+          campaign = await campaigns.getCampaign(tenantId,campaign_id);
+        }
+      }
+      if (generation_mode === 'winner' && (content_type !== 'meta_ad' || !campaign?.personas?.[campaign.winner_index])) {
+        throw Object.assign(new Error('Complete the initial campaign and select a winning persona first'),{status:400});
+      }
       const ctx = await engine.buildContext(
         tenantId,
         content_type,
         brief,
-        brand_voice_id
+        brand_voice_id,
+        campaign
       );
       if (ctx.missing_fields.length)
         return res
           .status(400)
           .json({ success: false, missing: ctx.missing_fields });
+      if (generation_mode === 'initial') { ctx.learning_guidance = null; ctx.research_personas = []; }
       const effectiveBrief = ctx.brief || brief;
       controller.signal.throwIfAborted();
       if (streaming) {
@@ -41,12 +57,25 @@ router.post(
         send({type:'status', message:'Preparing your campaign…'});
         heartbeat = setInterval(() => send({type:'heartbeat'}), 15000);
       }
-      const result = streaming
-        ? await generator.generateWithRetry(ctx, effectiveBrief, content_type, 3, {onProgress:send,signal:controller.signal})
-        : await generator.generateWithRetry(ctx, effectiveBrief, content_type);
+      const selectedPersona = generation_mode === 'winner' ? campaign.personas[campaign.winner_index] : undefined;
+      const key = campaigns.fingerprint(ctx,effectiveBrief,generation_mode,selectedPersona);
+      let draft = campaign?.draft?.key === key ? campaign.draft : {key,plan:null,completed:[]};
+      const onProgress = async event => {
+        if (campaign && content_type === 'meta_ad' && (event.type === 'plan' || event.type === 'persona')) {
+          if (event.type === 'plan') draft.plan = {personas:event.personas};
+          else draft.completed[event.index] = event.persona;
+          await db.query('UPDATE content_campaigns SET draft=$3, updated_at=now() WHERE tenant_id=$1 AND id=$2',[tenantId,campaign.id,JSON.stringify(draft)],tenantId);
+        }
+        if (streaming) send(event);
+      };
+      const result = await generator.generateWithRetry(ctx, effectiveBrief, content_type, 3, {
+        onProgress,signal:controller.signal,selectedPersona,
+        savedPlan:draft.plan,completedPersonas:draft.completed,
+      });
       controller.signal.throwIfAborted();
       const id = randomUUID(),
-        promptHash = learning.hashPrompt('content', content_type);
+        promptHash = learning.hashPrompt(content_type, ctx.intent.sub_type, {template_version:3,system:result.systemPrompt, mode:generation_mode, guidance:ctx.learning_guidance || null, model:process.env.CONTENT_MODEL || 'mistral:7b-instruct-q4_K_M'});
+      const personaSetId = generation_mode === 'initial' ? id : campaign?.persona_set_id;
       await db.transaction(tenantId, async (run) => {
         const limit = await run(
           "UPDATE clients SET generations_used = generations_used + 1 WHERE id = $1 AND is_active = true AND generations_used < generations_limit RETURNING id",
@@ -66,6 +95,10 @@ router.post(
             ctx.intent.sub_type,
             JSON.stringify({
               content_type,
+              campaign_id,
+              generation_mode,
+              persona_set_id: personaSetId,
+              learning_revision: ctx.learning_guidance ? campaign.learning_revision : 0,
               brief: effectiveBrief,
               user_brief: brief,
               brief_source: ctx.brief_source || 'custom',
@@ -78,6 +111,12 @@ router.post(
             process.env.CONTENT_MODEL || "mistral:7b-instruct-q4_K_M",
           ]
         );
+        if (campaign && content_type === 'meta_ad') {
+          await run(generation_mode === 'initial'
+            ? "UPDATE content_campaigns SET personas=$3, winner_index=NULL, winner_source=NULL, persona_set_id=$4, learning_guidance=NULL, learning_evidence=NULL, draft=NULL, version=version+1, updated_at=now() WHERE tenant_id=$1 AND id=$2"
+            : "UPDATE content_campaigns SET draft=NULL, updated_at=now() WHERE tenant_id=$1 AND id=$2",
+            generation_mode === 'initial' ? [tenantId,campaign.id,JSON.stringify(result.output.personas.map(({name,description,pain_points})=>({name,description,pain_points}))),personaSetId] : [tenantId,campaign.id]);
+        }
         await learning.recordPromptUse(
           {
             tenantId,
@@ -85,16 +124,19 @@ router.post(
             subType: ctx.intent.sub_type,
             promptHash,
             promptSnapshot: {
+              template_version:3,
               system: result.systemPrompt,
               user: result.userPrompt,
               addition: ctx.champion || "",
             },
-          }
+          }, run
         );
       });
       const response = {
         success: true,
         content_id: id,
+        campaign_id,
+        generation_mode,
         ...result.output,
         attempts: result.attempts,
         context_ids: ctx.kb_entries.map((e) => e.entry_id),
@@ -110,6 +152,7 @@ router.post(
     } finally {
       clearInterval(heartbeat);
       res.off('close', disconnect);
+      if (unlock) await unlock();
     }
   }
 );
@@ -144,7 +187,8 @@ router.post("/feedback", async (req, res, next) => {
           promptHash: generation.prompt_hash,
           agentType: generation.agent_type,
           feedback,
-        }
+          previousRating:generation.rating,
+        }, run
       );
     });
     res.json({ success: true, performance });
@@ -154,9 +198,10 @@ router.post("/feedback", async (req, res, next) => {
 });
 router.get("/history", async (req, res, next) => {
   try {
+    if (req.query.campaign_id && !db.validTenant(req.query.campaign_id)) return res.status(400).json({success:false,error:'Invalid campaign ID'});
     const { rows } = await db.query(
-      "SELECT * FROM generations WHERE tenant_id = $1 ORDER BY created_at DESC, id DESC LIMIT 20",
-      [req.tenant_id],
+      `SELECT * FROM generations WHERE tenant_id = $1 ${req.query.campaign_id ? "AND input_params->>'campaign_id' = $2" : ''} ORDER BY created_at DESC, id DESC LIMIT 20`,
+      req.query.campaign_id ? [req.tenant_id,req.query.campaign_id] : [req.tenant_id],
       req.tenant_id
     );
     res.json({ success: true, history: rows });

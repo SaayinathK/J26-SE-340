@@ -1,0 +1,13 @@
+const router=require('express').Router();
+const {protect}=require('../middleware/auth');
+const crm=require('../services/crmService');
+router.use(protect);
+const wrap=fn=>(req,res,next)=>Promise.resolve(fn(req,res)).catch(next);
+const kick=()=>setImmediate(()=>void require('../services/crmWorker').tick());
+router.get('/leads',wrap(async(req,res)=>res.set('Cache-Control','no-store').json({success:true,...await require('../services/crmLeads').list(req.tenant_id,req.query)})));
+router.get('/',wrap(async(req,res)=>res.json({success:true,...await crm.status(req.tenant_id)})));
+router.post('/connect',wrap(async(req,res)=>{const result=await crm.connect(req.tenant_id,req.body);kick();res.json({success:true,...result});}));
+router.post('/sync',wrap(async(req,res)=>{await crm.queue(req.tenant_id);kick();res.status(202).json({success:true});}));
+router.post('/disconnect',wrap(async(req,res)=>{await crm.disconnect(req.tenant_id);res.json({success:true});}));
+router.put('/campaigns/:id',wrap(async(req,res)=>{const result=await crm.mapCampaign(req.tenant_id,req.params.id,req.body);kick();res.json({success:true,...result});}));
+module.exports=router;

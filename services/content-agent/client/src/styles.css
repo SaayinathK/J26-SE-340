@@ -204,3 +204,8 @@ footer {display:flex;justify-content:space-between;border-top:1px solid #e7eaf0;
 .campaign-plan>div { border-top:1px solid #ede9f4; padding-top:18px; margin-top:18px; }
 .campaign-plan h3 { font-weight:600; color:#756789; }
 .campaign-plan ul { list-style:disc; padding-left:20px; margin-top:9px; font-size:12px; line-height:1.9; color:#8c849d; }
+
+.learning-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.875rem; }
+.learning-table th,.learning-table td { padding:.8rem; text-align:left; border-bottom:1px solid #e2e8f0; min-width:95px; vertical-align:top; }
+.learning-table th { color:#475569; background:#f8fafc; font-weight:600; }
+.learning-table td:first-child { max-width:320px; }

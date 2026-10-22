@@ -99,3 +99,39 @@ test('aborted streaming request stops before generating more personas',async()=>
  await expect(generateWithRetry({},'','meta_ad',3,{signal:controller.signal,onProgress:event=>{if(event.type==='persona')controller.abort();}})).rejects.toHaveProperty('name','AbortError');
  expect(llm.callLLM).toHaveBeenCalledTimes(2);
 });
+test('repairs only missing hooks and duplicate body options while retaining valid work',async()=>{
+ const broken=creative(0);broken.hooks=broken.hooks.slice(0,9);broken.body_copies[0].cta='learn_more';broken.body_copies[2]={...broken.body_copies[1]};
+ llm.callLLM.mockResolvedValueOnce(response({personas})).mockResolvedValueOnce(response(broken))
+ .mockResolvedValueOnce(response({hooks:['A new tenth angle?'],body_copies:[creative(0).body_copies[2]]}))
+ .mockResolvedValueOnce(response(creative(1))).mockResolvedValueOnce(response(creative(2)));
+ const result=await generateWithRetry({},'', 'meta_ad');
+ expect(validateMetaCampaign(result.output)).toEqual([]);
+ expect(result.output.personas[0].hooks.slice(0,9)).toEqual(broken.hooks);
+ expect(result.output.personas[0].body_copies[0].cta).toBe('LEARN MORE');
+ const repair=llm.callLLM.mock.calls[2][0];
+ expect(repair.schema.properties.hooks.minItems).toBe(1);
+ expect(repair.schema.properties.body_copies.maxItems).toBe(1);
+ expect(repair.prompt).toContain('repair_counts');
+});
+test('winner-only generation makes one creative call for the saved persona',async()=>{
+ llm.callLLM.mockResolvedValueOnce(response(creative(1)));
+ const result=await generateWithRetry({},'','meta_ad',3,{selectedPersona:personas[1]});
+ expect(result.output.personas).toHaveLength(1);
+ expect(result.output.personas[0].name).toBe(personas[1].name);
+ expect(validateMetaCampaign(result.output,1)).toEqual([]);
+ expect(llm.callLLM).toHaveBeenCalledTimes(1);
+});
+test('resuming a draft skips two completed personas and preserves their copy',async()=>{
+ const completed=personas.slice(0,2).map((p,i)=>({...p,...creative(i),inferred:true}));
+ llm.callLLM.mockResolvedValueOnce(response(creative(2)));
+ const events=[];
+ const result=await generateWithRetry({},'','meta_ad',3,{savedPlan:{personas},completedPersonas:completed,onProgress:async event=>events.push(event)});
+ expect(llm.callLLM).toHaveBeenCalledTimes(1);
+ expect(result.output.personas.slice(0,2)).toEqual(completed);
+ expect(events.filter(e=>e.resumed)).toHaveLength(2);
+});
+test('awaits checkpoint persistence before starting the next persona',async()=>{
+ queueCampaign();
+ await expect(generateWithRetry({},'','meta_ad',3,{onProgress:async e=>{if(e.type==='persona')throw new Error('checkpoint failed');}})).rejects.toThrow('checkpoint failed');
+ expect(llm.callLLM).toHaveBeenCalledTimes(2);
+});

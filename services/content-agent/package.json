@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest --runInBand --testTimeout=30000"
+    "test": "jest --runInBand --testTimeout=30000",
+    "migrate:campaigns": "node scripts/migrate_campaigns.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

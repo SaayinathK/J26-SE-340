@@ -21,7 +21,7 @@ async function transaction(tenantId, work) {
 }
 async function query(text, params = [], tenantId) {
   if (tenantId) return transaction(tenantId, run => run(text, params));
-  if (/\b(knowledge_base|generations|prompt_performance|business_settings)\b/i.test(text)) {
+  if (/\b(knowledge_base|generations|prompt_performance|business_settings|content_campaigns|creative_variants|creative_metrics|learning_revisions|meta_connections|persona_evidence|persona_research_reviews|crm_connections|crm_campaign_context|crm_sync_runs|crm_leads)\b/i.test(text)) {
     throw new Error('Tenant scope is required');
   }
   const client = await pool.connect();
