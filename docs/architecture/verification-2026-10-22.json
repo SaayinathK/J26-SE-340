@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-22",
+  "architecture": "single frontend -> gateway -> service APIs -> owned databases/models",
+  "frontend_url": "http://127.0.0.1:5173",
+  "compose_services": 15,
+  "tests": {
+    "gateway_integration": 35,
+    "email_integration": 38,
+    "gateway_unit": 5,
+    "email_unit": 7,
+    "frontend_unit": 8,
+    "browser_flow": "passed; no CSP violations"
+  },
+  "ml_artifacts": {
+    "train_examples": 715,
+    "validation_examples": 171,
+    "app_prompt_and_guardrail_contract": "passed",
+    "training_run_performed": false,
+    "adapter_sha256": "d8e46c073ab2a16eedf828b0b2cb81ed91c16e9a516d0202257f54abde3cc530"
+  },
+  "preserved_data": {
+    "gateway": {
+      "tenants": 5,
+      "users": 7,
+      "knowledge_sources": 15,
+      "sequences": 0
+    },
+    "email_agent": {
+      "tenants": 5,
+      "users": 7,
+      "knowledge_sources": 15,
+      "sequences": 0
+    }
+  },
+  "pending_implementations": [
+    "content-agent API/model",
+    "lead-intel API/model",
+    "strategy-fl API/model/federated learning"
+  ],
+  "runtime_model_inference": "Not revalidated by this folder migration; saved fine-tuned adapter is not activated.",
+  "local_logs": [
+    ".local/restructure-gateway-tests.log",
+    ".local/restructure-email-tests.log",
+    ".local/e2e-verification.log",
+    ".local/relocated-email-artifacts.json"
+  ]
+}

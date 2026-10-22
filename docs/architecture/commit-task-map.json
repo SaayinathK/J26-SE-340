@@ -1,0 +1,1023 @@
+{
+  "schema_version": 1,
+  "prepared_on": "2026-10-23",
+  "timezone": "Asia/Colombo",
+  "source_workbook": "docs/evidence/planner/J26-SE-340_updated_2026-10-22.xlsx",
+  "source_workbook_sha256": "4f3ceb421488a4d8f681c2534b929fd8b96f09934f2509fce054385d0de0408d",
+  "original_head": "727a0c098d3b269e90e785da537eecd15a147e86",
+  "date_policy": "Retrospective grouping requested by the repository owner. Both Git author and committer timestamps use related task allocation dates within the corresponding sprint, with explicit +05:30 offset. Undated child tasks inherit a related parent allocation when that date is in the child sprint; otherwise use the child sprint start. Undated Google identity work follows the related Sprint 2 authentication task. Final documentation uses the Sprint 5 evidence due date. These timestamps are organizational metadata, not evidence that implementation, training or tests occurred on those dates.",
+  "sprint_windows": {
+    "Sprint 1": [
+      "2026-10-01",
+      "2026-10-04"
+    ],
+    "Sprint 2": [
+      "2026-10-05",
+      "2026-10-09"
+    ],
+    "Sprint 3": [
+      "2026-10-10",
+      "2026-10-14"
+    ],
+    "Sprint 4": [
+      "2026-10-15",
+      "2026-10-19"
+    ],
+    "Sprint 5": [
+      "2026-10-20",
+      "2026-10-22"
+    ]
+  },
+  "shared_file_policy": "Shared source files stay intact in their primary implementation group. Later groups add related UI, tests, runtime and evidence files; no unavailable historical file versions are fabricated.",
+  "preservation": {
+    "existing_history_rewritten": false,
+    "push_requested": false,
+    "weights_data_env_logs_included": false,
+    "source_files_discarded": false,
+    "staged_patch_and_index_backup": ".local/commit-preparation/"
+  },
+  "groups": [
+    {
+      "key": "tenant-db",
+      "date": "2026-10-01",
+      "sprint": "Sprint 1",
+      "tasks": [
+        {
+          "key": "P-01",
+          "task_id": "s6C-ZlJ_EEmKKIxjtc9IQMkAHxjj",
+          "name": "Set up the tenant database and sample tenants",
+          "bucket": "Sprint 1",
+          "start": "2026-10-01",
+          "due": "2026-10-01",
+          "status": "Completed"
+        }
+      ],
+      "subject": "refactor(db): move tenant schema and seed into gateway ownership",
+      "description": "Retain the existing tenant schema, restricted-role migration and seed bytes in the service-owned database layout. Ignore local credentials, model weights and generated data.",
+      "paths": [
+        ".gitignore",
+        "db/.gitkeep",
+        "db/migrations/001_init.sql",
+        "db/migrations/002_app_role.sql",
+        "db/seed.sql",
+        "services/gateway/db/.env.example",
+        "services/gateway/db/.gitkeep",
+        "services/gateway/db/README.md",
+        "services/gateway/db/migrations/001_init.sql",
+        "services/gateway/db/migrations/002_app_role.sql",
+        "services/gateway/db/seed/seed.sql",
+        "services/gateway/src/config/db.js",
+        "services/gateway/src/db.js"
+      ],
+      "timestamp": "2026-10-01T10:00:00+05:30"
+    },
+    {
+      "key": "contracts",
+      "date": "2026-10-02",
+      "sprint": "Sprint 1",
+      "tasks": [
+        {
+          "key": "P-07",
+          "task_id": "bRMfwq5CIEK8RBSyaDHxU8kALbNy",
+          "name": "Define API contracts and sample responses",
+          "bucket": "Sprint 1",
+          "start": "2026-10-02",
+          "due": "2026-10-04",
+          "status": "Completed"
+        }
+      ],
+      "subject": "docs(api): document gateway and agent contracts with pending responses",
+      "description": "Describe the current JSON API surface and explicit unavailable states. These contracts do not claim that pending agents are implemented.",
+      "paths": [
+        "contracts/mocks/.gitkeep",
+        "contracts/v1/.gitkeep",
+        "docs/api/README.md",
+        "docs/api/content-agent.openapi.json",
+        "docs/api/email-agent.openapi.json",
+        "docs/api/gateway.openapi.json",
+        "docs/api/lead-intel.openapi.json",
+        "docs/api/strategy-fl.openapi.json"
+      ],
+      "timestamp": "2026-10-02T10:05:00+05:30"
+    },
+    {
+      "key": "accounts",
+      "date": "2026-10-05",
+      "sprint": "Sprint 2",
+      "tasks": [
+        {
+          "key": "P-09",
+          "task_id": "L3DNfb9RQEu-NHNd75u1BckAEBcJ",
+          "name": "Add authentication and secure tenant identification",
+          "bucket": "Sprint 2",
+          "start": "2026-10-05",
+          "due": "2026-10-06",
+          "status": "Completed"
+        },
+        {
+          "key": "P-35",
+          "task_id": "-C0Kc5Jh7kWzxY9qKakYI8kAIf9m",
+          "name": "Add OAuth, webhooks, sync and recovery after PP1",
+          "bucket": "Backlog",
+          "start": "",
+          "due": "",
+          "status": "In progress"
+        },
+        {
+          "key": "NEW-C4-02",
+          "task_id": "NEW-C4-02 (new)",
+          "name": "Implement self-service account registration and database-backed sessions",
+          "bucket": "Sprint 2",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        },
+        {
+          "key": "NEW-C4-03",
+          "task_id": "NEW-C4-03 (new)",
+          "name": "Implement Google identity verification and account linking",
+          "bucket": "Backlog",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(auth): add registration, revocable sessions and Google account linking",
+      "description": "Use database-resolved identity, HTTP-only cookies, CSRF protection and verified Google challenges. The undated OAuth work is mapped to its related authentication allocation; no webhook or sync implementation is claimed.",
+      "paths": [
+        "db/migrations/003_auth_lookup.sql",
+        "frontend/AUTH_SETUP.md",
+        "frontend/src/components/GoogleSignIn.jsx",
+        "services/gateway/.env.example",
+        "services/gateway/db/migrations/003_auth_lookup.sql",
+        "services/gateway/db/migrations/004_accounts_and_sessions.sql",
+        "services/gateway/package-lock.json",
+        "services/gateway/package.json",
+        "services/gateway/scripts/seed-users.js",
+        "services/gateway/src/middleware/auth.js",
+        "services/gateway/src/routes/authRoutes.js",
+        "services/gateway/src/services/session.js"
+      ],
+      "timestamp": "2026-10-05T10:10:00+05:30"
+    },
+    {
+      "key": "team",
+      "date": "2026-10-06",
+      "sprint": "Sprint 2",
+      "tasks": [
+        {
+          "key": "P-10",
+          "task_id": "d15ir2Ejp0y8X0EVS5BJm8kAJyOT",
+          "name": "Add role-based access permissions",
+          "bucket": "Sprint 2",
+          "start": "2026-10-06",
+          "due": "2026-10-07",
+          "status": "Completed"
+        },
+        {
+          "key": "NEW-C4-04",
+          "task_id": "NEW-C4-04 (new)",
+          "name": "Add workspace invitations and live team membership controls",
+          "bucket": "Sprint 2",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(team): add invitations and current-role membership controls",
+      "description": "Keep workspace roles and invitation-based access under server authorization, with a matching team management page.",
+      "paths": [
+        "frontend/src/pages/TeamAccess.jsx",
+        "services/gateway/src/policies/rbac.js",
+        "services/gateway/src/routes/teamRoutes.js"
+      ],
+      "timestamp": "2026-10-06T10:15:00+05:30"
+    },
+    {
+      "key": "routing",
+      "date": "2026-10-07",
+      "sprint": "Sprint 2",
+      "tasks": [
+        {
+          "key": "P-11",
+          "task_id": "b1g6dPubUEqavE0O4L3aiskAJOrB",
+          "name": "Connect agent services through the API gateway",
+          "bucket": "Sprint 2",
+          "start": "2026-10-07",
+          "due": "2026-10-08",
+          "status": "In progress"
+        }
+      ],
+      "subject": "feat(gateway): route agent APIs using signed workspace identity",
+      "description": "Proxy only configured service origins, bind internal identity to each request, enforce roles and expose availability without private service addresses. Pending agents remain unavailable.",
+      "paths": [
+        "services/gateway/docs/service-connections.md",
+        "services/gateway/src/main.js",
+        "services/gateway/src/routes/agentRoutes.js",
+        "services/gateway/src/routes/serviceRoutes.js",
+        "services/gateway/src/server.js",
+        "services/gateway/src/services/serviceDirectory.js",
+        "services/gateway/tests/unit/service-directory.test.cjs"
+      ],
+      "timestamp": "2026-10-07T10:20:00+05:30"
+    },
+    {
+      "key": "audit",
+      "date": "2026-10-08",
+      "sprint": "Sprint 2",
+      "tasks": [
+        {
+          "key": "P-12",
+          "task_id": "tWW3Lz5eikqqko1AQ6-PhckAAchW",
+          "name": "Record API actions in audit logs",
+          "bucket": "Sprint 2",
+          "start": "2026-10-08",
+          "due": "2026-10-09",
+          "status": "Completed"
+        }
+      ],
+      "subject": "refactor(audit): retain protected-action logging in service-owned layout",
+      "description": "Update the audit middleware database import for the gateway layout and preserve the equivalent middleware in the email service.",
+      "paths": [
+        "services/email-agent/src/middleware/audit.js",
+        "services/gateway/src/middleware/audit.js"
+      ],
+      "timestamp": "2026-10-08T10:25:00+05:30"
+    },
+    {
+      "key": "email",
+      "date": "2026-10-11",
+      "sprint": "Sprint 3",
+      "tasks": [
+        {
+          "key": "P-17",
+          "task_id": "k4qM_z973kysiXs_hnYkOMkAFABB",
+          "name": "Generate a personalized three-step email sequence",
+          "bucket": "Sprint 3",
+          "start": "2026-10-11",
+          "due": "2026-10-13",
+          "status": "In progress"
+        },
+        {
+          "key": "NEW-C4-06",
+          "task_id": "NEW-C4-06 (new)",
+          "name": "Build the persistent manual email-sequence editor and library",
+          "bucket": "Sprint 3",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        },
+        {
+          "key": "NEW-C4-07",
+          "task_id": "NEW-C4-07 (new)",
+          "name": "Build the tenant knowledge library and generation source controls",
+          "bucket": "Sprint 3",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(email): separate sequence API, knowledge and model client into email agent",
+      "description": "Own email persistence, generation logic, model requests and signed gateway identity in the email service. Preserve manual editing and saved sequences; successful live model generation is not established.",
+      "paths": [
+        "services/email-agent/.env.example",
+        "services/email-agent/.gitkeep",
+        "services/email-agent/db/.env.example",
+        "services/email-agent/db/migrations/001_init.sql",
+        "services/email-agent/db/migrations/002_app_role.sql",
+        "services/email-agent/db/migrations/003_auth_lookup.sql",
+        "services/email-agent/db/migrations/004_accounts_and_sessions.sql",
+        "services/email-agent/db/migrations/005_workspace_records.sql",
+        "services/email-agent/db/migrations/006_gateway_identity.sql",
+        "services/email-agent/package-lock.json",
+        "services/email-agent/package.json",
+        "services/email-agent/scripts/migrate.js",
+        "services/email-agent/scripts/seed-kb.js",
+        "services/email-agent/scripts/test-ollama.js",
+        "services/email-agent/src/agent/generation.js",
+        "services/email-agent/src/agent/prompts/emailPrompt.js",
+        "services/email-agent/src/api/authRoutes.js",
+        "services/email-agent/src/api/generationRoutes.js",
+        "services/email-agent/src/api/sequenceRoutes.js",
+        "services/email-agent/src/api/teamRoutes.js",
+        "services/email-agent/src/api/workspaceRoutes.js",
+        "services/email-agent/src/clients/model_client.js",
+        "services/email-agent/src/config/db.js",
+        "services/email-agent/src/lib/tenant.js",
+        "services/email-agent/src/lib/validation.js",
+        "services/email-agent/src/main.js",
+        "services/email-agent/src/middleware/auth.js",
+        "services/email-agent/src/middleware/authorize.js",
+        "services/email-agent/src/middleware/gatewayIdentity.js",
+        "services/email-agent/src/policies/rbac.js",
+        "services/email-agent/src/repositories/sequenceStore.js",
+        "services/email-agent/src/services/session.js",
+        "services/gateway/scripts/seed-kb.js",
+        "services/gateway/src/routes/emailRoutes.js",
+        "services/gateway/src/services/emailAgent.js",
+        "services/gateway/test-ollama.js"
+      ],
+      "timestamp": "2026-10-11T10:30:00+05:30"
+    },
+    {
+      "key": "web",
+      "date": "2026-10-11",
+      "sprint": "Sprint 3",
+      "tasks": [
+        {
+          "key": "P-17",
+          "task_id": "k4qM_z973kysiXs_hnYkOMkAFABB",
+          "name": "Generate a personalized three-step email sequence",
+          "bucket": "Sprint 3",
+          "start": "2026-10-11",
+          "due": "2026-10-13",
+          "status": "In progress"
+        },
+        {
+          "key": "NEW-C4-01",
+          "task_id": "NEW-C4-01 (new)",
+          "name": "Build the responsive authenticated C4 workspace interface",
+          "bucket": "Sprint 3",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        },
+        {
+          "key": "NEW-C4-06",
+          "task_id": "NEW-C4-06 (new)",
+          "name": "Build the persistent manual email-sequence editor and library",
+          "bucket": "Sprint 3",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        },
+        {
+          "key": "NEW-C4-07",
+          "task_id": "NEW-C4-07 (new)",
+          "name": "Build the tenant knowledge library and generation source controls",
+          "bucket": "Sprint 3",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(frontend): add one authenticated workspace with direct email agent screens",
+      "description": "Use a single React application and gateway-only API client. Open email sequences directly from the sidebar and keep shared responsive layouts, themes and account screens.",
+      "paths": [
+        "frontend/.env.example",
+        "frontend/.gitignore",
+        "frontend/README.md",
+        "frontend/index.html",
+        "frontend/package-lock.json",
+        "frontend/package.json",
+        "frontend/public/favicon.svg",
+        "frontend/scripts/dev.mjs",
+        "frontend/src/App.jsx",
+        "frontend/src/components/AccountShell.jsx",
+        "frontend/src/components/AnimatedValue.jsx",
+        "frontend/src/components/MotionSettings.jsx",
+        "frontend/src/components/ui.jsx",
+        "frontend/src/data/navigation.js",
+        "frontend/src/features/email/EmailWorkspace.jsx",
+        "frontend/src/features/email/api.js",
+        "frontend/src/features/email/components/EmailAgent.jsx",
+        "frontend/src/features/email/components/Knowledge.jsx",
+        "frontend/src/features/email/email.css",
+        "frontend/src/features/email/hooks/useEmailWorkspace.js",
+        "frontend/src/features/email/hooks/useServiceStatus.js",
+        "frontend/src/hooks/useAuth.jsx",
+        "frontend/src/hooks/useMotion.js",
+        "frontend/src/lib/api-client.js",
+        "frontend/src/lib/preferences.js",
+        "frontend/src/main.jsx",
+        "frontend/src/pages/AccountSettings.jsx",
+        "frontend/src/pages/AuthPage.jsx",
+        "frontend/src/pages/Register.jsx",
+        "frontend/src/pages/SignIn.jsx",
+        "frontend/src/styles/auth.css",
+        "frontend/src/styles/brand.css",
+        "frontend/src/styles/styles.css",
+        "frontend/vite.config.js"
+      ],
+      "timestamp": "2026-10-11T10:35:00+05:30"
+    },
+    {
+      "key": "agents",
+      "date": "2026-10-12",
+      "sprint": "Sprint 3",
+      "tasks": [
+        {
+          "key": "P-18",
+          "task_id": "TC0kO6inN0uNkshS4O9n7MkAOPSk",
+          "name": "Connect all agents and test the complete workflow",
+          "bucket": "Sprint 3",
+          "start": "2026-10-12",
+          "due": "2026-10-14",
+          "status": "In progress"
+        }
+      ],
+      "subject": "feat(services): scaffold agent boundaries and unavailable page flow",
+      "description": "Connect service navigation and add content, lead intelligence and strategy API/model scaffolds. Placeholder services return explicit not_implemented responses; no business model or federated-learning completion is claimed.",
+      "paths": [
+        "frontend/src/components/NotAvailable.jsx",
+        "frontend/src/features/content/api.js",
+        "frontend/src/features/content/components/Workspace.jsx",
+        "frontend/src/features/content/hooks/README.md",
+        "frontend/src/features/lead-intel/api.js",
+        "frontend/src/features/lead-intel/components/Workspace.jsx",
+        "frontend/src/features/lead-intel/hooks/README.md",
+        "frontend/src/features/strategy/api.js",
+        "frontend/src/features/strategy/components/Workspace.jsx",
+        "frontend/src/features/strategy/hooks/README.md",
+        "frontend/src/hooks/useServices.jsx",
+        "frontend/src/pages/ServiceWorkspace.jsx",
+        "frontend/src/pages/Services.jsx",
+        "frontend/src/styles/services.css",
+        "frontend/src/types/service.js",
+        "ml/README.md",
+        "ml/content-agent/README.md",
+        "ml/content-agent/notebooks/README.md",
+        "ml/content-agent/requirements.txt",
+        "ml/content-agent/serving/README.md",
+        "ml/content-agent/serving/pending.cjs",
+        "ml/content-agent/training/configs/README.md",
+        "ml/content-agent/training/evaluate.py",
+        "ml/content-agent/training/prepare_data.py",
+        "ml/content-agent/training/train.py",
+        "ml/lead-intel/README.md",
+        "ml/lead-intel/notebooks/README.md",
+        "ml/lead-intel/requirements.txt",
+        "ml/lead-intel/serving/README.md",
+        "ml/lead-intel/serving/pending.cjs",
+        "ml/lead-intel/training/configs/README.md",
+        "ml/lead-intel/training/evaluate.py",
+        "ml/lead-intel/training/prepare_data.py",
+        "ml/lead-intel/training/train.py",
+        "ml/strategy-fl/README.md",
+        "ml/strategy-fl/fl/aggregation.py",
+        "ml/strategy-fl/fl/client.py",
+        "ml/strategy-fl/fl/server.py",
+        "ml/strategy-fl/notebooks/README.md",
+        "ml/strategy-fl/requirements.txt",
+        "ml/strategy-fl/serving/README.md",
+        "ml/strategy-fl/serving/pending.cjs",
+        "ml/strategy-fl/training/configs/README.md",
+        "ml/strategy-fl/training/evaluate.py",
+        "ml/strategy-fl/training/prepare_data.py",
+        "ml/strategy-fl/training/train.py",
+        "services/content-agent/README.md",
+        "services/content-agent/db/README.md",
+        "services/content-agent/db/seed/README.md",
+        "services/content-agent/src/agent/prompts/README.md",
+        "services/content-agent/src/agent/tools/README.md",
+        "services/content-agent/src/api/README.md",
+        "services/content-agent/src/clients/README.md",
+        "services/content-agent/src/clients/model_client.js",
+        "services/content-agent/src/config/README.md",
+        "services/content-agent/src/main.cjs",
+        "services/content-agent/src/models/README.md",
+        "services/content-agent/src/repositories/README.md",
+        "services/content-agent/src/services/README.md",
+        "services/lead-intel/README.md",
+        "services/lead-intel/db/README.md",
+        "services/lead-intel/db/seed/README.md",
+        "services/lead-intel/src/agent/prompts/README.md",
+        "services/lead-intel/src/agent/tools/README.md",
+        "services/lead-intel/src/api/README.md",
+        "services/lead-intel/src/clients/README.md",
+        "services/lead-intel/src/clients/model_client.js",
+        "services/lead-intel/src/config/README.md",
+        "services/lead-intel/src/main.cjs",
+        "services/lead-intel/src/models/README.md",
+        "services/lead-intel/src/repositories/README.md",
+        "services/lead-intel/src/services/README.md",
+        "services/strategy-fl/README.md",
+        "services/strategy-fl/db/README.md",
+        "services/strategy-fl/db/seed/README.md",
+        "services/strategy-fl/src/agent/prompts/README.md",
+        "services/strategy-fl/src/agent/tools/README.md",
+        "services/strategy-fl/src/api/README.md",
+        "services/strategy-fl/src/clients/README.md",
+        "services/strategy-fl/src/clients/model_client.js",
+        "services/strategy-fl/src/config/README.md",
+        "services/strategy-fl/src/main.cjs",
+        "services/strategy-fl/src/models/README.md",
+        "services/strategy-fl/src/repositories/README.md",
+        "services/strategy-fl/src/services/README.md"
+      ],
+      "timestamp": "2026-10-12T10:40:00+05:30"
+    },
+    {
+      "key": "campaigns",
+      "date": "2026-10-12",
+      "sprint": "Sprint 3",
+      "tasks": [
+        {
+          "key": "P-18",
+          "task_id": "TC0kO6inN0uNkshS4O9n7MkAOPSk",
+          "name": "Connect all agents and test the complete workflow",
+          "bucket": "Sprint 3",
+          "start": "2026-10-12",
+          "due": "2026-10-14",
+          "status": "In progress"
+        },
+        {
+          "key": "NEW-C4-05",
+          "task_id": "NEW-C4-05 (new)",
+          "name": "Persist campaign drafts, ownership and versioned changes",
+          "bucket": "Sprint 3",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(platform): persist campaign drafts and versioned workspace changes",
+      "description": "Add tenant-owned campaign and workspace records, optimistic version checks, knowledge CRUD and the campaign interface.",
+      "paths": [
+        "frontend/PLATFORM_API.md",
+        "frontend/src/pages/Campaigns.jsx",
+        "services/gateway/db/migrations/005_workspace_records.sql",
+        "services/gateway/src/routes/platformRoutes.js",
+        "services/gateway/src/services/workspace.js"
+      ],
+      "timestamp": "2026-10-12T10:45:00+05:30"
+    },
+    {
+      "key": "guardrails",
+      "date": "2026-10-13",
+      "sprint": "Sprint 3",
+      "tasks": [
+        {
+          "key": "P-19",
+          "task_id": "NXPTfCPyvEq8vKZq-1PzMMkAB6ym",
+          "name": "Check email privacy, consent, facts and tone",
+          "bucket": "Sprint 3",
+          "start": "2026-10-13",
+          "due": "2026-10-14",
+          "status": "In progress"
+        }
+      ],
+      "subject": "refactor(email): move existing content guardrails into agent tools",
+      "description": "Preserve the existing privacy, timing and content checks at the agent boundary. Regex checks remain limited and do not establish complete consent or factual verification.",
+      "paths": [
+        "services/email-agent/src/agent/tools/guardrails.js",
+        "services/gateway/src/services/guardrails.js"
+      ],
+      "timestamp": "2026-10-13T10:50:00+05:30"
+    },
+    {
+      "key": "training",
+      "date": "2026-10-15",
+      "sprint": "Sprint 4",
+      "tasks": [
+        {
+          "key": "NEW-C4-10",
+          "task_id": "NEW-C4-10 (new)",
+          "name": "Verify fine-tuning examples and the application prompt contract",
+          "bucket": "Sprint 4",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        },
+        {
+          "key": "NEW-C4-11",
+          "task_id": "NEW-C4-11 (new)",
+          "name": "Train and retain the Mistral 7B QLoRA email adapter",
+          "bucket": "Sprint 4",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(ml): organize Mistral QLoRA preparation, training and artifact verification",
+      "description": "Relocate the reviewed notebook and preparation workflow, record training settings and add shared utilities. Existing recorded training artifacts are preserved; no new training run or committed weights are claimed.",
+      "paths": [
+        "docs/evidence/c4-ft/c4-ft_loss.png",
+        "docs/evidence/c4-ft/c4-ft_training_log.csv",
+        "ml/email-agent/notebooks/c4_finetune_mistral_qlora.ipynb",
+        "ml/email-agent/requirements.txt",
+        "ml/email-agent/training/build_report.json",
+        "ml/email-agent/training/configs/README.md",
+        "ml/email-agent/training/configs/lora.json",
+        "ml/email-agent/training/prepare_data.py",
+        "ml/email-agent/training/prompt_contract.cjs",
+        "ml/email-agent/training/train.py",
+        "ml/email-agent/training/verify_artifacts.py",
+        "ml/finetune/build_report.json",
+        "ml/finetune/c4_finetune_mistral_qlora.ipynb",
+        "ml/finetune/prepare_email_ft.py",
+        "ml/shared/base_trainer.py",
+        "ml/shared/data_utils.py"
+      ],
+      "timestamp": "2026-10-15T10:55:00+05:30"
+    },
+    {
+      "key": "evaluation",
+      "date": "2026-10-15",
+      "sprint": "Sprint 4",
+      "tasks": [
+        {
+          "key": "P-21",
+          "task_id": "6cEFQK5jl0Cg9BgNbRp55ckAM_50",
+          "name": "Compare personalized emails with generic AI emails",
+          "bucket": "Sprint 4",
+          "start": "2026-10-15",
+          "due": "2026-10-17",
+          "status": "In progress"
+        },
+        {
+          "key": "NEW-C4-12",
+          "task_id": "NEW-C4-12 (new)",
+          "name": "Evaluate base and fine-tuned email generation on held-out prompts",
+          "bucket": "Sprint 4",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(eval): compare recorded checks and evaluate fresh held-out generations",
+      "description": "Add strict model selection, training-overlap rejection, raw prediction reports and failure accounting. Keep historical base/fine-tuned results separate from fresh inference. Local HTTP fixture tests pass; fresh model accuracy is not available.",
+      "paths": [
+        "docs/evidence/c4-ft/c4-ft_eval_base.csv",
+        "docs/evidence/c4-ft/c4-ft_eval_fine-tuned.csv",
+        "docs/evidence/c4-ft/c4-ft_finetune_eval.csv",
+        "docs/evidence/c4-ft/c4-ft_finetune_summary.json",
+        "ml/email-agent/tests/test_evaluate_live.py",
+        "ml/email-agent/training/evaluate.py",
+        "ml/email-agent/training/evaluate_live.py",
+        "ml/shared/eval_utils.py"
+      ],
+      "timestamp": "2026-10-15T11:00:00+05:30"
+    },
+    {
+      "key": "templates",
+      "date": "2026-10-15",
+      "sprint": "Sprint 4",
+      "tasks": [
+        {
+          "key": "NEW-C4-13",
+          "task_id": "NEW-C4-13 (new)",
+          "name": "Implement safe lead-name and campaign-link template rendering",
+          "bucket": "Sprint 4",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(email): safely render lead names and campaign links",
+      "description": "Validate required template values and links, preserve reusable templates and test literal replacements and injection rejection.",
+      "paths": [
+        "services/email-agent/src/services/templates.js",
+        "services/email-agent/tests/unit/templates.test.cjs"
+      ],
+      "timestamp": "2026-10-15T11:05:00+05:30"
+    },
+    {
+      "key": "monitoring",
+      "date": "2026-10-16",
+      "sprint": "Sprint 4",
+      "tasks": [
+        {
+          "key": "P-23",
+          "task_id": "ng9K8ZXRykm5SWUSkhQJxckAIl44",
+          "name": "Add monitoring, traces and alerts",
+          "bucket": "Sprint 4",
+          "start": "2026-10-16",
+          "due": "2026-10-18",
+          "status": "In progress"
+        },
+        {
+          "key": "NEW-C4-08",
+          "task_id": "NEW-C4-08 (new)",
+          "name": "Add workspace activity, database totals and automatic refresh",
+          "bucket": "Sprint 4",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "feat(monitoring): show database totals, activity and service availability",
+      "description": "Use actual database records for workspace activity, totals and charts with automatic refresh. Sending metrics and unavailable services are represented explicitly; distributed tracing and alerts are still pending.",
+      "paths": [
+        "frontend/src/hooks/useServiceStatus.js",
+        "frontend/src/hooks/useWorkspace.js",
+        "frontend/src/lib/records.js",
+        "frontend/src/pages/Overview.jsx",
+        "frontend/src/pages/Workspace.jsx",
+        "frontend/tests/records.test.js"
+      ],
+      "timestamp": "2026-10-16T11:10:00+05:30"
+    },
+    {
+      "key": "docker",
+      "date": "2026-10-17",
+      "sprint": "Sprint 4",
+      "tasks": [
+        {
+          "key": "P-25",
+          "task_id": "gq8so08bZECDFmScnMsw-ckAKti3",
+          "name": "Deploy the system and test performance",
+          "bucket": "Sprint 4",
+          "start": "2026-10-17",
+          "due": "2026-10-19",
+          "status": "In progress"
+        },
+        {
+          "key": "NEW-C4-09",
+          "task_id": "NEW-C4-09 (new)",
+          "name": "Containerize C4 and verify repeatable database migrations",
+          "bucket": "Sprint 4",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "build(docker): compose one frontend, five APIs, four models and five databases",
+      "description": "Add standard/prebuilt images, owned database/model volumes, repeatable migration tooling and setup scripts. Retain existing database volume names and require explicit model training and demo seeding.",
+      "paths": [
+        ".dockerignore",
+        ".env.example",
+        "README.md",
+        "docker-compose.prebuilt.yml",
+        "docker-compose.yml",
+        "docker/README.md",
+        "docker/db-init/01-enable-pgvector.sql",
+        "docker/nginx/README.md",
+        "docker/start.ps1",
+        "frontend/.dockerignore",
+        "frontend/Dockerfile",
+        "frontend/Dockerfile.prebuilt",
+        "frontend/Dockerfile.prebuilt.dockerignore",
+        "frontend/compose.yml",
+        "frontend/scripts/serve.cjs",
+        "ml/content-agent/serving/.dockerignore",
+        "ml/content-agent/serving/Dockerfile",
+        "ml/content-agent/serving/compose.yml",
+        "ml/email-agent/serving/.dockerignore",
+        "ml/email-agent/serving/Dockerfile",
+        "ml/lead-intel/serving/.dockerignore",
+        "ml/lead-intel/serving/Dockerfile",
+        "ml/lead-intel/serving/compose.yml",
+        "ml/strategy-fl/serving/.dockerignore",
+        "ml/strategy-fl/serving/Dockerfile",
+        "ml/strategy-fl/serving/compose.yml",
+        "scripts/migrate-all.cjs",
+        "scripts/migrate-all.sh",
+        "scripts/seed-all.cjs",
+        "scripts/seed-all.sh",
+        "scripts/setup.cjs",
+        "scripts/setup.sh",
+        "scripts/start.ps1",
+        "services/README.md",
+        "services/content-agent/.dockerignore",
+        "services/content-agent/.env.example",
+        "services/content-agent/.gitignore",
+        "services/content-agent/Dockerfile",
+        "services/content-agent/compose.yml",
+        "services/content-agent/db/.env.example",
+        "services/content-agent/start.ps1",
+        "services/email-agent/.dockerignore",
+        "services/email-agent/.gitignore",
+        "services/email-agent/Dockerfile",
+        "services/email-agent/Dockerfile.prebuilt",
+        "services/email-agent/Dockerfile.prebuilt.dockerignore",
+        "services/email-agent/README.md",
+        "services/email-agent/compose.yml",
+        "services/email-agent/db/README.md",
+        "services/email-agent/db/seed/README.md",
+        "services/email-agent/scripts/prepare-runtime.cjs",
+        "services/email-agent/src/models/README.md",
+        "services/email-agent/start.ps1",
+        "services/gateway/.dockerignore",
+        "services/gateway/.gitignore",
+        "services/gateway/Dockerfile",
+        "services/gateway/Dockerfile.prebuilt",
+        "services/gateway/Dockerfile.prebuilt.dockerignore",
+        "services/gateway/README.md",
+        "services/gateway/compose.yml",
+        "services/gateway/scripts/migrate.js",
+        "services/gateway/scripts/prepare-runtime.cjs",
+        "services/gateway/start.ps1",
+        "services/lead-intel/.dockerignore",
+        "services/lead-intel/.env.example",
+        "services/lead-intel/.gitignore",
+        "services/lead-intel/Dockerfile",
+        "services/lead-intel/compose.yml",
+        "services/lead-intel/db/.env.example",
+        "services/lead-intel/start.ps1",
+        "services/strategy-fl/.dockerignore",
+        "services/strategy-fl/.env.example",
+        "services/strategy-fl/.gitignore",
+        "services/strategy-fl/Dockerfile",
+        "services/strategy-fl/compose.yml",
+        "services/strategy-fl/db/.env.example",
+        "services/strategy-fl/start.ps1"
+      ],
+      "timestamp": "2026-10-17T11:15:00+05:30"
+    },
+    {
+      "key": "regression",
+      "date": "2026-10-17",
+      "sprint": "Sprint 4",
+      "tasks": [
+        {
+          "key": "P-16",
+          "task_id": "35EcnmgUHkmORnMzFR-ltskALTIN",
+          "name": "Test tenant isolation and access permissions",
+          "bucket": "Sprint 3",
+          "start": "2026-10-11",
+          "due": "2026-10-12",
+          "status": "Completed"
+        },
+        {
+          "key": "P-26",
+          "task_id": "TV31rvZfMES0EYG9QHzpLskAOqsB",
+          "name": "Test the full workflow and isolation across three tenants",
+          "bucket": "Sprint 4",
+          "start": "2026-10-17",
+          "due": "2026-10-18",
+          "status": "In progress"
+        },
+        {
+          "key": "NEW-C4-14",
+          "task_id": "NEW-C4-14 (new)",
+          "name": "Automate isolated account/platform and responsive browser regression checks",
+          "bucket": "Sprint 4",
+          "start": "",
+          "due": "",
+          "status": "Completed"
+        }
+      ],
+      "subject": "test(system): organize isolated account, tenancy and browser regression checks",
+      "description": "Keep service integration tests in their owning packages and cross-service browser/load checks at the root. Tests use isolated databases; saved health-load evidence is not a full AI performance benchmark.",
+      "paths": [
+        "frontend/scripts/browser-check.cjs",
+        "frontend/scripts/verify-auth.ps1",
+        "frontend/tests/api.test.js",
+        "k6/load.js",
+        "services/content-agent/tests/integration/README.md",
+        "services/content-agent/tests/unit/README.md",
+        "services/email-agent/scripts/verify-accounts.ps1",
+        "services/email-agent/tests/integration/accounts.test.js",
+        "services/email-agent/tests/integration/email.test.js",
+        "services/email-agent/tests/unit/gateway-identity.test.cjs",
+        "services/gateway/__tests__/isolation.test.js",
+        "services/gateway/scripts/test-database.js",
+        "services/gateway/scripts/verify-accounts.ps1",
+        "services/gateway/scripts/verify-migrations.ps1",
+        "services/gateway/tests/integration/accounts.test.js",
+        "services/gateway/tests/integration/check-tenant-isolation.cjs",
+        "services/gateway/tests/integration/isolation.test.js",
+        "services/gateway/tests/integration/platform.test.js",
+        "services/lead-intel/tests/integration/README.md",
+        "services/lead-intel/tests/unit/README.md",
+        "services/strategy-fl/tests/integration/README.md",
+        "services/strategy-fl/tests/unit/README.md",
+        "tests/e2e/verify-service-flow.cjs",
+        "tests/integration/README.md",
+        "tests/load/load.js",
+        "tests/test-tenant-isolation.js"
+      ],
+      "timestamp": "2026-10-17T11:20:00+05:30"
+    },
+    {
+      "key": "evidence",
+      "date": "2026-10-18",
+      "sprint": "Sprint 4",
+      "tasks": [
+        {
+          "key": "P-28",
+          "task_id": "Q-ddELlELU2toTK8qtU_CckAO1Oz",
+          "name": "Prepare each member\u2019s evidence folder",
+          "bucket": "Sprint 4",
+          "start": "2026-10-18",
+          "due": "2026-10-19",
+          "status": "In progress"
+        }
+      ],
+      "subject": "docs(evidence): retain planner audit, checklists and verification snapshots",
+      "description": "Move historical evidence into docs/evidence, retain the original audit dates and failures, and include the supplied 22 October planner workbook as the task-date source. Historical paths and statuses are not rewritten to imply a fresh audit.",
+      "paths": [
+        "docs/evidence/README.md",
+        "docs/evidence/c4-13/health-load-summary.json",
+        "docs/evidence/planner/J26-SE-340_updated_2026-10-21.xlsx",
+        "docs/evidence/planner/J26-SE-340_updated_2026-10-22.xlsx",
+        "docs/evidence/planner/README.md",
+        "docs/evidence/planner/audit_artifacts.py",
+        "docs/evidence/planner/audit_content.cjs",
+        "docs/evidence/planner/audit_runtime.cjs",
+        "docs/evidence/planner/build_planner.py",
+        "docs/evidence/planner/checklists-for-planner.csv",
+        "docs/evidence/planner/checks/access-audit.json",
+        "docs/evidence/planner/checks/access-audit.txt",
+        "docs/evidence/planner/checks/accounts-platform-tests.txt",
+        "docs/evidence/planner/checks/browser-tests.txt",
+        "docs/evidence/planner/checks/browser-ui-tests.txt",
+        "docs/evidence/planner/checks/content-audit.json",
+        "docs/evidence/planner/checks/dataset-rebuild.txt",
+        "docs/evidence/planner/checks/dataset-verification.json",
+        "docs/evidence/planner/checks/dataset-verification.txt",
+        "docs/evidence/planner/checks/fine-tuning-audit.json",
+        "docs/evidence/planner/checks/frontend-build.txt",
+        "docs/evidence/planner/checks/health-load-summary.json",
+        "docs/evidence/planner/checks/health-load-test.txt",
+        "docs/evidence/planner/checks/migration-tests.txt",
+        "docs/evidence/planner/checks/real-ai-browser-failure.png",
+        "docs/evidence/planner/checks/repository-snapshot.json",
+        "docs/evidence/planner/checks/runtime-audit.json",
+        "docs/evidence/planner/checks/unit-tests.txt",
+        "docs/evidence/planner/checks/workbook-validation.json",
+        "docs/evidence/planner/planner-audit.json",
+        "docs/evidence/planner/screenshots/authenticated-overview-dark.png",
+        "docs/evidence/planner/screenshots/authenticated-overview-light.png",
+        "docs/evidence/planner/screenshots/live-team-access.png",
+        "docs/evidence/planner/screenshots/register-light.png",
+        "docs/evidence/planner/screenshots/register-mobile.png",
+        "docs/evidence/planner/screenshots/sign-in-dark.png",
+        "docs/evidence/planner/screenshots/sign-in-light.png",
+        "docs/evidence/planner/screenshots/sign-in-mobile.png",
+        "docs/evidence/planner/source-export.xlsx",
+        "docs/evidence/planner/source-tasks.json",
+        "docs/evidence/planner/tasks-for-planner.csv",
+        "docs/evidence/planner/verify_access.cjs",
+        "docs/evidence/planner/workbook_io.py",
+        "evidence/.gitkeep",
+        "evidence/c4-13/health-load-summary.json"
+      ],
+      "timestamp": "2026-10-18T11:25:00+05:30"
+    },
+    {
+      "key": "registration",
+      "date": "2026-10-20",
+      "sprint": "Sprint 5",
+      "tasks": [
+        {
+          "key": "NEW-C4-15",
+          "task_id": "NEW-C4-15 (new)",
+          "name": "Register and activate the fine-tuned Ollama model",
+          "bucket": "Sprint 5",
+          "start": "",
+          "due": "",
+          "status": "In progress"
+        }
+      ],
+      "subject": "fix(ml): register the fine-tuned adapter with its matching Mistral base",
+      "description": "Use the pinned Docker Ollama CLI, verify the adapter/base pairing and record local provenance. Registration succeeded, but base and adapter generation probes timed out; inference and fresh accuracy remain unverified and application model selection is unchanged.",
+      "paths": [
+        "ml/email-agent/README.md",
+        "ml/email-agent/serving/Modelfile",
+        "ml/email-agent/serving/README.md",
+        "ml/email-agent/serving/copy-model-blob.cjs",
+        "ml/email-agent/serving/import-model-cache.ps1",
+        "ml/email-agent/serving/register-finetuned.ps1",
+        "ml/finetune/Modelfile"
+      ],
+      "timestamp": "2026-10-20T11:30:00+05:30"
+    },
+    {
+      "key": "handoff",
+      "date": "2026-10-22",
+      "sprint": "Sprint 5",
+      "tasks": [
+        {
+          "key": "P-33",
+          "task_id": "WznWPEwGh0mf20UgYu20uMkANBrk",
+          "name": "Freeze the code and test setup on a clean machine",
+          "bucket": "Sprint 5",
+          "start": "2026-10-21",
+          "due": "2026-10-21",
+          "status": "In progress"
+        },
+        {
+          "key": "P-34",
+          "task_id": "oQ8dzx9J8UiOPzofV54RE8kAAKML",
+          "name": "Finalize diaries, AI logs and PP1 submission evidence",
+          "bucket": "Sprint 5",
+          "start": "2026-10-21",
+          "due": "2026-10-22",
+          "status": "In progress"
+        }
+      ],
+      "subject": "docs(setup): record architecture verification and sprint commit provenance",
+      "description": "Document the consolidated folder structure, setup and current verification, add source CI and record this retrospectively organized task-date mapping. No clean-machine acceptance test or pending agent implementation is claimed.",
+      "paths": [
+        ".github/workflows/ci.yml",
+        "docs/adr/.gitkeep",
+        "docs/ai-log/.gitkeep",
+        "docs/architecture/README.md",
+        "docs/architecture/commit-task-map.json",
+        "docs/architecture/structure-migration.json",
+        "docs/architecture/verification-2026-10-22.json",
+        "docs/diary/.gitkeep",
+        "docs/setup.md"
+      ],
+      "timestamp": "2026-10-22T11:35:00+05:30"
+    }
+  ],
+  "excluded": [
+    {
+      "path": "debug.log",
+      "reason": "local debug log; preserved on disk and excluded from Git"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "moves": [
+    {
+      "from": "services/email-agent/model",
+      "to": "ml/email-agent/serving"
+    },
+    {
+      "from": "services/strategy-fl/model",
+      "to": "ml/strategy-fl/serving"
+    },
+    {
+      "from": "services/gateway/frontend",
+      "to": "frontend"
+    },
+    {
+      "from": "services/gateway/database",
+      "to": "services/gateway/db"
+    },
+    {
+      "from": "services/lead-intel/model",
+      "to": "ml/lead-intel/serving"
+    },
+    {
+      "from": "evidence",
+      "to": "docs/evidence"
+    }
+  ],
+  "adapter_sha256": "d8e46c073ab2a16eedf828b0b2cb81ed91c16e9a516d0202257f54abde3cc530",
+  "database_volumes": "Preserved; folder moves do not move Docker volumes.",
+  "major_moves": {
+    "services/gateway/frontend": "frontend",
+    "services/email-agent/frontend/src/pages": "frontend/src/features/email/components",
+    "services/*/database": "services/*/db",
+    "services/email-agent/ml/finetune": "ml/email-agent/{training,data,notebooks,serving}",
+    "services/*/model": "ml/*/serving",
+    "services/email-agent/ml/finetune/models": "ml/models/email-agent",
+    "evidence": "docs/evidence",
+    "service __tests__": "service tests/integration",
+    "service load tests": "tests/load"
+  }
+}
