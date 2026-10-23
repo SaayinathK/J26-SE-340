@@ -44,9 +44,10 @@ Model caches and training data are ignored. No model pull, training run, databas
 node scripts/migrate-all.cjs
 # Optional demonstration tenants only; do not run merely to start an existing stack:
 node scripts/seed-all.cjs
+node scripts/seed-all.cjs --apply
 ```
 
-Migrations use per-service owner credentials locally, while application connections use the restricted `c4_app` role. Existing SQL migrations retain their content; Email Agent adds migration 006 for a minimal gateway identity projection. Empty pending schemas have no application migrations. Seed helpers apply service-owned SQL files only. They do not populate model results or fake delivery metrics.
+Migrations use per-service owner credentials locally, while application connections use the restricted `c4_app` role. Existing SQL migrations retain their content. Empty pending schemas have no application migrations. The system seeder previews by default; `--apply` adds labelled samples to the three demo tenants while preserving existing records and passwords. Synthetic engagement is shown separately from measured results and excluded from continuous learning. See [database seeding](database-seeding.md) for coverage, generated credentials and verification.
 
 `docker/db-init/01-enable-pgvector.sql` runs only for a newly initialized database volume. Existing volumes gain extensions through migrations. Do not use `docker compose down -v` to update the application.
 

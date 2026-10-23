@@ -28,6 +28,8 @@ python ml/email-agent/training/train.py --help
 
 Training is explicit, requires CUDA/PyTorch and component requirements, and is never run by Docker startup. The CLI uses the notebook's fixed reviewed hyperparameters; configs/lora.json records them. Notebook outputs and original Colab paths are preserved for provenance.
 
+The email service has two independent opt-in loops. Aggregate results train a tenant-specific Beta-binomial engagement ranker; that loop does not change Mistral weights. The Learning center also provides a separate reviewed-text QLoRA queue and connected Colab worker that trains real workspace adapter weights, evaluates raw outputs and gates activation. See [Colab setup and limitations](../../docs/colab-qlora-automation.md). A public app/API origin and a live compatible GPU runtime are required; neither is provisioned automatically.
+
 ## Test fresh generation quality
 
 `training/evaluate.py` reads saved outputs or recorded checks. `training/evaluate_live.py` makes fresh requests to the specified installed Ollama model without training, changing application settings, or repairing its output. It requires only Python's standard library and the repository's evaluation helpers.

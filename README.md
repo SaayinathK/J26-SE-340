@@ -1,6 +1,8 @@
 # Ciftron research platform
 
-One React web application connects to five service APIs through the gateway. Authentication, sessions, CSRF protection and platform roles belong to the gateway. Each agent owns its application database and calls its own model runtime. Unimplemented agents show **Not available**.
+One React web application connects to five service APIs through the gateway. Authentication, sessions, CSRF protection and platform roles belong to the gateway. Each agent owns its application database and calls its own model runtime. Content, Lead Intelligence and Strategy have native workspaces with honest connection states; see [agent UI integration](docs/agent-workspace-integration.md) for the teammate API adapters and pending backend setup.
+
+The Email Agent Learning center includes optional [Colab QLoRA automation](docs/colab-qlora-automation.md): reviewed tenant writing can train actual Mistral adapter weights with evaluated activation and rollback. A public app/API origin and connected GPU runtime are required; training consent defaults to off.
 
 ```text
 frontend/              Single web app: pages, shared UI, agent features
@@ -23,6 +25,6 @@ powershell -NoProfile -File scripts/start.ps1
 
 On a fresh checkout, install dependencies first. See [setup](docs/setup.md) for Linux/macOS, container builds, migrations and local development. Existing database volume names are retained; startup never deletes volumes or seeds accounts automatically.
 
-The Compose stack defines **15 containers**: one frontend, five APIs, four model runtimes and five databases. The content, lead and strategy API/model implementations are placeholders returning 503; their frontend pages explicitly report unavailable. Email Agent supports knowledge, generation through Ollama, and persisted manual drafts. Email delivery and scheduling are not connected.
+The Compose stack defines **15 containers**: one frontend, five APIs, four model runtimes and five databases. The content, lead and strategy API/model implementations in this checkout are placeholders returning 503; their native workspaces show connection status and supported manual actions while those backends are pending. Email Agent includes a responsive studio with knowledge, Ollama generation, persisted drafts, personalized previews, reviews, manually recorded aggregate outcomes, and opt-in evaluated engagement guidance. GoHighLevel and Meta account references can be saved for future integration. Email delivery, scheduling, and external CRM/data synchronization are not connected yet.
 
 See [service map](services/README.md), [architecture](docs/architecture/README.md), [ML assets and evaluation](ml/README.md), and [historical evidence](docs/evidence/README.md).

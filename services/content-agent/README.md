@@ -1,5 +1,7 @@
 # content-agent
 
+The shared frontend now contains the professional Content studio UI. This directory still runs the existing placeholder service. See [teammate service connection requirements](../../docs/agent-workspace-integration.md) before connecting the actual Content backend; UI availability does not imply live model inference.
+
 Service-owned API, agent logic and persistence. UI code belongs in the single root frontend; training, notebooks and serving assets belong under ../../ml/content-agent. The implementation is pending; all API requests return 503 / not_implemented.
 
 `src/main.cjs` is the entrypoint. `db/migrations` owns schema changes; `db/seed` holds optional explicit seeds. `tests` holds component tests. No frontend or model binaries belong in this folder.

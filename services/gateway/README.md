@@ -5,3 +5,7 @@ Platform authentication, sessions, RBAC, API routing and rate limiting. The shar
 `src/main.js` is the entrypoint. `db/migrations` owns schema changes; `db/seed` holds optional explicit seeds. `tests` holds component tests. No frontend or model binaries belong in this folder.
 
 See [service map](../README.md) and [setup](../../docs/setup.md).
+
+Workspace invitations support SMTP email and shareable links. See [invitation setup and behavior](../../docs/team-invitations.md). Verify configured mail with `node scripts/verify-invitation-mail.cjs` from this directory.
+
+For OAuth origins, existing Gmail account linking and browser diagnostics, see [Google sign-in](../../docs/google-sign-in.md).
