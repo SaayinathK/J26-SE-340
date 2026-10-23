@@ -16,6 +16,7 @@ app.use('/api', requestProtection);
 app.use('/api/auth', require('./api/authRoutes'));
 app.use('/api/team', require('./api/teamRoutes'));
 app.use('/api/email', require('./middleware/gatewayIdentity'));
+app.use('/api/email', authenticate, require('./api/learningRoutes'));
 app.use('/api/email/sequence', authenticate, requirePermission('email:generate'), require('./api/generationRoutes'));
 app.use('/api/email/sequences', authenticate, requirePermission('email:generate'), require('./api/sequenceRoutes'));
 app.use('/api/email', authenticate, require('./api/workspaceRoutes'));

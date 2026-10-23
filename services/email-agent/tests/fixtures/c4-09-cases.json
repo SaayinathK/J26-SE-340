@@ -1,0 +1,226 @@
+{
+  "provenance": "Manually authored evaluation fixtures, not a held-out model benchmark.",
+  "context": "First month free. Refer a friend, earn $20 credit. No joining fee. Starter $29/mo. Growth $79/mo. Save 15% with promo code GROW15.",
+  "cases": [
+    {
+      "id": "invented-code",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Use code FIRSTMONTH to get started.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "invented-percent",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Save 10% off all services.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "invented-amount",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Get $99 credit for joining.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "invented-multiplier",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Get 2x more rewards.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "invented-deadline",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Join until tomorrow at midnight.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "invented-scarcity",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Available to the first 10 sign-ups only.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "personal-email",
+      "label": "planted",
+      "expected_checks": [
+        "PII"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Contact alex@example.com for details.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "missing-unsubscribe",
+      "label": "planted",
+      "expected_checks": [
+        "UNSUBSCRIBE"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Explore our services at {{cta_link}}."
+      }
+    },
+    {
+      "id": "spam",
+      "label": "planted",
+      "expected_checks": [
+        "SPAM"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "A guaranteed income awaits you.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "all-caps",
+      "label": "planted",
+      "expected_checks": [
+        "TONE"
+      ],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "EXPLORE AMAZING EXCLUSIVE INCREDIBLE SERVICES.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "session-length",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Book a 45-minute session.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "support-hours",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Explore our 24/7 support.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "calendar-year",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Plan your goals for 2026.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "numbered-guidance",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Our top 3 tips. Step 1: explore your goals.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "approved-pricing",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Choose Starter at $29/mo or Growth at $79/mo.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "approved-promo",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Use code GROW15 for 15% savings.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "approved-referral",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "Refer a friend, earn $20 credit.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "approved-introduction",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "First month free. No joining fee.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "uppercase-heading",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "WELCOME FRIENDS. Explore our services.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    },
+    {
+      "id": "neutral-follow-up",
+      "label": "clean",
+      "expected_checks": [],
+      "email": {
+        "email_index": 1,
+        "subject": "A useful introduction",
+        "body": "We will follow up within 3 days. No promo code required.\n\nTo unsubscribe from these emails, reply STOP or click here."
+      }
+    }
+  ]
+}

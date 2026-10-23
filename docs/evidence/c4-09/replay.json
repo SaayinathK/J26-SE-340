@@ -1,0 +1,173 @@
+{
+  "provenance": "Reconstructed from user-reported claims. Local model HTTP fixture; not an archived raw inference response.",
+  "knowledge": "First month free. Refer a friend, earn $20 credit. No joining fee.",
+  "input_emails": [
+    {
+      "email_index": 1,
+      "send_at_days": 0,
+      "subject": "A useful introduction",
+      "body": "Hello {{first_name}},\n\nFirst month free. Refer a friend, earn $20 credit. No joining fee.\n\nUse code FIRSTMONTH or YOUNGPRO26. Save 10% off all services, first 10 sign-ups only, until tomorrow at midnight.\n\nTo unsubscribe from these emails, reply STOP or click here."
+    },
+    {
+      "email_index": 2,
+      "send_at_days": 3,
+      "subject": "A useful introduction",
+      "body": "Hello {{first_name}}, explore our services at {{cta_link}}.\n\nTo unsubscribe from these emails, reply STOP or click here."
+    },
+    {
+      "email_index": 3,
+      "send_at_days": 7,
+      "subject": "A useful introduction",
+      "body": "Hello {{first_name}}, explore our services at {{cta_link}}.\n\nTo unsubscribe from these emails, reply STOP or click here."
+    }
+  ],
+  "generation_http_status": 200,
+  "attempts": 2,
+  "review_status": "Needs review",
+  "guardrail_flags": [
+    {
+      "email_index": 1,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: 10%",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 131,
+          "end": 134,
+          "text": "10%"
+        }
+      ]
+    },
+    {
+      "email_index": 1,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: YOUNGPRO26",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 114,
+          "end": 124,
+          "text": "YOUNGPRO26"
+        }
+      ]
+    },
+    {
+      "email_index": 1,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: FIRSTMONTH",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 100,
+          "end": 110,
+          "text": "FIRSTMONTH"
+        }
+      ]
+    },
+    {
+      "email_index": 1,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: first 10 sign-ups only",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 153,
+          "end": 175,
+          "text": "first 10 sign-ups only"
+        }
+      ]
+    },
+    {
+      "email_index": 1,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: until tomorrow at midnight",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 177,
+          "end": 203,
+          "text": "until tomorrow at midnight"
+        }
+      ]
+    }
+  ],
+  "approval_before_correction": {
+    "http_status": 422,
+    "guardrail_flags": [
+      {
+        "email_index": 1,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: 10%",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 131,
+            "end": 134,
+            "text": "10%"
+          }
+        ]
+      },
+      {
+        "email_index": 1,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: YOUNGPRO26",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 114,
+            "end": 124,
+            "text": "YOUNGPRO26"
+          }
+        ]
+      },
+      {
+        "email_index": 1,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: FIRSTMONTH",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 100,
+            "end": 110,
+            "text": "FIRSTMONTH"
+          }
+        ]
+      },
+      {
+        "email_index": 1,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: first 10 sign-ups only",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 153,
+            "end": 175,
+            "text": "first 10 sign-ups only"
+          }
+        ]
+      },
+      {
+        "email_index": 1,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: until tomorrow at midnight",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 177,
+            "end": 203,
+            "text": "until tomorrow at midnight"
+          }
+        ]
+      }
+    ]
+  },
+  "flagged_edit": {
+    "http_status": 200,
+    "flags": 4
+  },
+  "corrected_edit": {
+    "http_status": 200,
+    "flags": 0
+  },
+  "approval_after_correction_http_status": 200
+}

@@ -50,6 +50,7 @@ test('knowledge writes enforce administrator policy and persist actual content',
   expect(data.documents[0]).toMatchObject(body);
   expect((await request(app).get('/api/email/snapshot').set(headers('viewer'))).body.documents).toEqual([]);
   expect((await request(app).delete('/api/email/knowledge/' + result.body.id).set(headers('other')).send({})).status).toBe(404);
+  expect((await request(app).patch('/api/email/knowledge/' + result.body.id).set(headers('marketer')).send({archived:true})).status).toBe(403);
 });
 test('manual sequence saves, survives a new login, and cannot leak to viewers or another workspace', async () => {
   const result = await request(app).post('/api/email/sequences').set(headers('marketer')).send(sequenceBody());
@@ -61,10 +62,13 @@ test('manual sequence saves, survives a new login, and cannot leak to viewers or
   expect((await request(app).get('/api/email/snapshot').set(headers('viewer'))).body.sequences).toEqual([]);
   expect((await request(app).get('/api/email/snapshot').set(headers('other'))).body.sequences).toEqual([]);
 });
-test('saving sequences rejects malformed content, unsafe copy, and foreign knowledge sources', async () => {
+test('saving flagged drafts is allowed; malformed content and foreign sources are rejected', async () => {
   const unsafe = sequenceBody();
   unsafe.emails[0].body = 'A message without a preference footer.';
-  expect((await request(app).post('/api/email/sequences').set(headers('admin')).send(unsafe)).status).toBe(422);
+  const flagged = await request(app).post('/api/email/sequences').set(headers('admin')).send(unsafe);
+  expect(flagged.status).toBe(201); expect(flagged.body.review_status).toBe('Needs review');
+  expect(flagged.body.guardrail_flags.map(flag => flag.check)).toContain('UNSUBSCRIBE');
+  expect((await request(app).delete('/api/email/sequences/' + flagged.body.id).set(headers('admin')).send({version:flagged.body.version})).status).toBe(200);
   expect((await request(app).post('/api/email/sequences').set(headers('admin')).send({ ...sequenceBody(), emails: [null, null, null] })).status).toBe(422);
   expect((await request(app).post('/api/email/sequences').set(headers('viewer')).send(sequenceBody())).status).toBe(403);
   expect((await request(app).post('/api/email/sequences').set(headers('other')).send({ ...sequenceBody(), source: saved.document.id })).status).toBe(409);

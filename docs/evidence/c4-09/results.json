@@ -1,0 +1,354 @@
+{
+  "provenance": "Manually authored evaluation fixtures, not a held-out model benchmark.",
+  "scope": "20 manually authored emails; recall requires every planted check type in each problem email to be detected. Clean cases fail if any check flags them.",
+  "metrics": {
+    "total": 20,
+    "planted": 10,
+    "clean": 10,
+    "caught": 10,
+    "missed": 0,
+    "recall": 1,
+    "false_positives": 0,
+    "false_positive_rate": 0
+  },
+  "limitation": "pattern-based; numeric, code, scarcity and deadline claims are verified against tenant knowledge; qualitative claims (e.g. ‘certified coaches’) are not verified and are covered by human review before approval.",
+  "cases": [
+    {
+      "id": "invented-code",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "detected_checks": [
+        "HALLUCINATION"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "HALLUCINATION",
+          "detail": "Ungrounded: FIRSTMONTH",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 9,
+              "end": 19,
+              "text": "FIRSTMONTH"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "invented-percent",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "detected_checks": [
+        "HALLUCINATION"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "HALLUCINATION",
+          "detail": "Ungrounded: 10%",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 5,
+              "end": 8,
+              "text": "10%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "invented-amount",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "detected_checks": [
+        "HALLUCINATION"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "HALLUCINATION",
+          "detail": "Ungrounded: $99",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 4,
+              "end": 7,
+              "text": "$99"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "invented-multiplier",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "detected_checks": [
+        "HALLUCINATION"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "HALLUCINATION",
+          "detail": "Ungrounded: 2x",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 4,
+              "end": 6,
+              "text": "2x"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "invented-deadline",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "detected_checks": [
+        "HALLUCINATION"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "HALLUCINATION",
+          "detail": "Ungrounded: until tomorrow at midnight",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 5,
+              "end": 31,
+              "text": "until tomorrow at midnight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "invented-scarcity",
+      "label": "planted",
+      "expected_checks": [
+        "HALLUCINATION"
+      ],
+      "detected_checks": [
+        "HALLUCINATION"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "HALLUCINATION",
+          "detail": "Ungrounded: first 10 sign-ups only",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 17,
+              "end": 39,
+              "text": "first 10 sign-ups only"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "personal-email",
+      "label": "planted",
+      "expected_checks": [
+        "PII"
+      ],
+      "detected_checks": [
+        "PII"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "PII",
+          "detail": "Personal info detected in email",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 8,
+              "end": 24,
+              "text": "alex@example.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-unsubscribe",
+      "label": "planted",
+      "expected_checks": [
+        "UNSUBSCRIBE"
+      ],
+      "detected_checks": [
+        "UNSUBSCRIBE"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "UNSUBSCRIBE",
+          "detail": "No unsubscribe option found",
+          "occurrences": []
+        }
+      ]
+    },
+    {
+      "id": "spam",
+      "label": "planted",
+      "expected_checks": [
+        "SPAM"
+      ],
+      "detected_checks": [
+        "SPAM"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "SPAM",
+          "detail": "Spam phrase detected: \"guaranteed income\"",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 2,
+              "end": 19,
+              "text": "guaranteed income"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "all-caps",
+      "label": "planted",
+      "expected_checks": [
+        "TONE"
+      ],
+      "detected_checks": [
+        "TONE"
+      ],
+      "flags": [
+        {
+          "email_index": 1,
+          "check": "TONE",
+          "detail": "5 all-caps words detected",
+          "occurrences": [
+            {
+              "field": "body",
+              "start": 0,
+              "end": 7,
+              "text": "EXPLORE"
+            },
+            {
+              "field": "body",
+              "start": 8,
+              "end": 15,
+              "text": "AMAZING"
+            },
+            {
+              "field": "body",
+              "start": 16,
+              "end": 25,
+              "text": "EXCLUSIVE"
+            },
+            {
+              "field": "body",
+              "start": 26,
+              "end": 36,
+              "text": "INCREDIBLE"
+            },
+            {
+              "field": "body",
+              "start": 37,
+              "end": 45,
+              "text": "SERVICES"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "session-length",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "support-hours",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "calendar-year",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "numbered-guidance",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "approved-pricing",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "approved-promo",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "approved-referral",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "approved-introduction",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "uppercase-heading",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    },
+    {
+      "id": "neutral-follow-up",
+      "label": "clean",
+      "expected_checks": [],
+      "detected_checks": [],
+      "flags": []
+    }
+  ]
+}

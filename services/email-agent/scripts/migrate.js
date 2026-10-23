@@ -48,8 +48,8 @@ async function main() {
     try {
       const role = (await application.query('SELECT rolsuper, rolbypassrls FROM pg_roles WHERE rolname=current_user')).rows[0];
       if (role.rolsuper || role.rolbypassrls) throw new Error('Application database role must enforce row-level security.');
-      const isolated = await application.query("SELECT relrowsecurity, relforcerowsecurity FROM pg_class WHERE oid = ANY(ARRAY['users'::regclass,'knowledge_base'::regclass,'auth_sessions'::regclass,'workspace_invitations'::regclass,'campaigns'::regclass,'email_sequences'::regclass,'workspace_events'::regclass])");
-      if (isolated.rows.length !== 7 || isolated.rows.some(table => !table.relrowsecurity || !table.relforcerowsecurity)) throw new Error('Tenant tables must enforce row-level security.');
+      const isolated = await application.query("SELECT relrowsecurity, relforcerowsecurity FROM pg_class WHERE oid = ANY(ARRAY['users'::regclass,'knowledge_base'::regclass,'auth_sessions'::regclass,'workspace_invitations'::regclass,'campaigns'::regclass,'email_sequences'::regclass,'workspace_events'::regclass,'email_outcomes'::regclass,'email_reviews'::regclass,'email_learning_runs'::regclass,'email_learning_settings'::regclass,'email_integration_preferences'::regclass])");
+      if (isolated.rows.length !== 12 || isolated.rows.some(table => !table.relrowsecurity || !table.relforcerowsecurity)) throw new Error('Tenant tables must enforce row-level security.');
       await application.query('SELECT 1 FROM campaigns LIMIT 1');
       console.log('Application connection verified with tenant isolation.');
     } finally { await application.end(); }

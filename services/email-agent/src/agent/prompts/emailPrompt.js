@@ -13,7 +13,9 @@ function buildEmailPrompt(campaignGoal, audienceSegment, brandContext) {
     + '   To unsubscribe from these emails, reply STOP or click here.\n'
     + '4. Do NOT omit the unsubscribe line from any email - it is legally required.\n'
     + '5. send_at_days: email 1 = 0, email 2 = 3, email 3 = 7.\n'
-    + '6. Use ONLY prices, discounts and promo codes that appear in the brand context. If the context has no offer, do not invent one.\n\n'
+    + '6. Use ONLY offers, free services, prices, discounts and promo codes that appear in the brand context. If the context has no offer, do not invent one.\n'
+    + '7. Do not invent gifts, limited spots or expiry times. Respect statements that no promo code or end date exists.\n'
+    + '8. Include {{first_name}} and an action link {{cta_link}} in EVERY email body. Keep subjects to 60 characters or fewer.\n\n'
     + 'Return ONLY valid JSON with no markdown:\n'
     + '{"emails":[{"email_index":1,"subject":"...","body":"...","send_at_days":0},{"email_index":2,"subject":"...","body":"...","send_at_days":3},{"email_index":3,"subject":"...","body":"...","send_at_days":7}]}';
 }
