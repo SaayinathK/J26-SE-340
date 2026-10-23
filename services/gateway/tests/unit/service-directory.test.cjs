@@ -29,6 +29,10 @@ test('healthy APIs do not need to serve a separate UI', async t => {
   await fixture(t, 200, { status: 'ok' }, 404);
   assert.ok((await directory({ role: 'agency_admin' })).every(service => service.available));
 });
+test('the teammate FastAPI health contract reports availability with ok=true',async t=>{
+ await fixture(t,200,{ok:true,model_version:'fixture-only'});
+ assert.ok((await directory({role:'agency_admin'})).every(service=>service.available));
+});
 test('a healthy service with an HTML page is available without disclosing private addresses', async t => {
   await fixture(t, 200, { status: 'ok' });
   const services = await directory({ role: 'agency_admin' });

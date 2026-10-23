@@ -28,7 +28,8 @@ const server = http.createServer((req, res) => {
     const upstream = (gateway.protocol === 'https:' ? https : http).request({ protocol: gateway.protocol, hostname: gateway.hostname, port: gateway.port, method: req.method, path: req.url, headers }, response => {
       res.writeHead(response.statusCode, response.headers); response.pipe(res);
     });
-    upstream.setTimeout(115000, () => upstream.destroy());
+    const slowAgentRequest=/^\/api\/(?:content\/generate|lead-intel\/[A-Za-z0-9_.:%-]+\/recommendation)(?:\?|$)/.test(req.url);
+    upstream.setTimeout(slowAgentRequest?350000:115000, () => upstream.destroy());
     upstream.on('error', () => { if (!res.headersSent) res.writeHead(503, { 'Content-Type': 'application/json' }); res.end('{"error":"The gateway is not available. Please try again."}'); });
     req.on('aborted', () => upstream.destroy()); req.pipe(upstream); return;
   }

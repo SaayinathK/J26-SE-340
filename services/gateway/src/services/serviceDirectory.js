@@ -30,7 +30,7 @@ async function probe(service) {
       const health = await fetch(config.internal + '/health', { signal: AbortSignal.timeout(2500), redirect: 'error' });
       const body = await health.json();
       if (body.ready === false || body.status === 'not_implemented') return { available: false, state: 'not_available', reason: 'not_implemented' };
-      if (!health.ok || !['ok', 'ready', 'healthy'].includes(body.status)) return { available: false, state: 'not_available', reason: 'offline' };
+      if (!health.ok || !(body.ok===true || ['ok', 'ready', 'healthy'].includes(body.status))) return { available: false, state: 'not_available', reason: 'offline' };
       return { available: true, state: 'available', reason: null };
     } catch { return { available: false, state: 'not_available', reason: 'offline' }; }
   })();
