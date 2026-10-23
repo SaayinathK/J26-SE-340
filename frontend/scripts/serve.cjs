@@ -14,7 +14,8 @@ const policy = "default-src 'self'; script-src 'self' https://accounts.google.co
 const types = { '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
 const server = http.createServer((req, res) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Referrer-Policy', 'no-referrer');
+  // GIS needs the app origin on cross-origin requests; never expose invitation hashes.
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
   res.setHeader('Content-Security-Policy', policy);
   res.setHeader('Cache-Control', 'no-store');

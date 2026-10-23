@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ApiError, authConfig } from '../src/lib/api-client.js';
+import { ApiError, authConfig, api } from '../src/lib/api-client.js';
 
 test('empty proxy errors produce an actionable gateway error instead of a JSON parsing failure', async t => {
   const original = globalThis.fetch;
@@ -24,4 +24,19 @@ test('successful HTTP responses must actually contain authentication configurati
   t.after(() => { globalThis.fetch = original; });
   globalThis.fetch = async () => Response.json({ message: 'A different service' });
   await assert.rejects(authConfig(true), error => error instanceof ApiError && error.status === 502);
+});
+
+test('permission rejection refreshes authorization without signing the user out',async t=>{
+  const originalFetch=globalThis.fetch,originalWindow=globalThis.window,events=[];
+  t.after(()=>{globalThis.fetch=originalFetch;if(originalWindow===undefined)delete globalThis.window;else globalThis.window=originalWindow;});
+  globalThis.window={dispatchEvent:event=>events.push(event.type)};
+  globalThis.fetch=async()=>Response.json({error:'Permission denied'},{status:403});
+  await assert.rejects(api('/email/learning'),error=>error.status===403);
+  assert.deepEqual(events,['ciftron-permissions-changed']);
+  events.length=0;
+  globalThis.fetch=async()=>Response.json({error:'No session'},{status:401});
+  await assert.rejects(api('/auth/me'),error=>error.status===401);
+  assert.deepEqual(events,[]);
+  await assert.rejects(api('/platform/snapshot'),error=>error.status===401);
+  assert.deepEqual(events,['ciftron-session-expired']);
 });

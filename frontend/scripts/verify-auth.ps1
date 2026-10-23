@@ -10,7 +10,7 @@ $taskGatewayProcess = $null
 $taskFrontendProcess = $null
 $taskExit = 1
 $taskEnvironment = @{}
-foreach ($taskName in @('DB_NAME', 'PORT', 'CLIENT_ORIGINS', 'GOOGLE_CLIENT_ID', 'GATEWAY_URL', 'CIFTRON_BASE_URL', 'CIFTRON_AUTH_TEST_DATABASE')) { $taskEnvironment[$taskName] = [Environment]::GetEnvironmentVariable($taskName, 'Process') }
+foreach ($taskName in @('DB_NAME', 'PORT', 'CLIENT_ORIGINS', 'GOOGLE_CLIENT_ID', 'INVITATION_MAIL_DISABLED', 'GATEWAY_URL', 'CIFTRON_BASE_URL', 'CIFTRON_AUTH_TEST_DATABASE')) { $taskEnvironment[$taskName] = [Environment]::GetEnvironmentVariable($taskName, 'Process') }
 try {
     if ($DirectDatabase) {
         node (Join-Path $taskGateway 'scripts/test-database.js') create $taskDatabase
@@ -20,7 +20,7 @@ try {
         docker exec $Container psql -U admin -d postgres -v ON_ERROR_STOP=1 -c "CREATE DATABASE $taskDatabase"
         if ($LASTEXITCODE -ne 0) { throw 'Could not create isolated browser test database' }
         $taskCreated = $true
-        foreach ($taskMigration in @('001_init.sql', '002_app_role.sql', '003_auth_lookup.sql', '004_accounts_and_sessions.sql', '005_workspace_records.sql')) {
+        foreach ($taskMigration in @('001_init.sql', '002_app_role.sql', '003_auth_lookup.sql', '004_accounts_and_sessions.sql', '005_workspace_records.sql', '006_team_invitations.sql')) {
             Get-Content -Raw -LiteralPath (Join-Path $taskRoot ('services/gateway/db/migrations/' + $taskMigration)) | docker exec -i $Container psql -U admin -d $taskDatabase -v ON_ERROR_STOP=1
             if ($LASTEXITCODE -ne 0) { throw "Test migration failed: $taskMigration" }
         }
@@ -30,6 +30,7 @@ try {
         $env:CLIENT_ORIGINS = 'http://127.0.0.1:5175,http://localhost:5175'
     # Provider verification is covered separately; automated UI tests never use a real Google account.
     $env:GOOGLE_CLIENT_ID = 'disabled-for-isolated-browser-tests'
+    $env:INVITATION_MAIL_DISABLED = 'true'
     $env:GATEWAY_URL = 'http://127.0.0.1:4010'
     $env:CIFTRON_BASE_URL = 'http://127.0.0.1:5175'
     $env:CIFTRON_AUTH_TEST_DATABASE = 'isolated'

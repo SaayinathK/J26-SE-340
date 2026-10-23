@@ -5,6 +5,7 @@ import AccountShell from './components/AccountShell.jsx';
 import SignIn from './pages/SignIn.jsx';
 import Register from './pages/Register.jsx';
 import Home from './pages/Home.jsx';
+import Invitation from './pages/Invitation.jsx';
 import { navigation } from './data/navigation.js';
 import { Badge, Field, Modal } from './components/ui.jsx';
 import { campaignCSV, downloadFile } from './lib/records.js';
@@ -23,6 +24,8 @@ export default function App() {
   }, [auth.loading, auth.user, page]);
   if (page === 'home') return <Home user={auth.user} />;
   if (auth.loading) return <div className="auth-loading-screen" role="status"><Icon name="loader" size={28} /><strong>Opening your workspace…</strong><span>Checking your secure session.</span></div>;
+  const invitation=new URLSearchParams(route.split('?')[1] || '').get('invite');
+  if(invitation && ['register','sign-in'].includes(page)) return <Invitation key={route} token={invitation} mode={page==='sign-in'?'sign-in':'register'} navigate={navigate} theme={theme} setTheme={setTheme}/>;
   if (!auth.user) return page === 'register' ? <Register key={location.hash} navigate={navigate} theme={theme} setTheme={setTheme} /> : <SignIn key={location.hash} navigate={navigate} theme={theme} setTheme={setTheme} />;
   return <AccountShell page={['sign-in', 'register'].includes(page) ? 'overview' : page} navigate={navigate} theme={theme} setTheme={setTheme} NewCampaign={NewCampaign} CampaignDetail={CampaignDetail} />;
 }

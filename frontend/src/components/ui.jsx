@@ -26,6 +26,8 @@ export function Field({ label, hint, children }) {
 }
 export function Modal({ title, description, children, onClose, wide = false }) {
   const ref = useRef(null);
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
   useEffect(() => {
     const previous = document.activeElement;
     const dialog = ref.current;
@@ -33,7 +35,7 @@ export function Modal({ title, description, children, onClose, wide = false }) {
     document.body.style.overflow = 'hidden';
     dialog.focus();
     const handler = event => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === 'Escape') closeRef.current();
       if (event.key === 'Tab') {
         const focusable = [...dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex="0"]')].filter(el => !el.disabled);
         const first = focusable[0]; const last = focusable.at(-1);
@@ -43,6 +45,6 @@ export function Modal({ title, description, children, onClose, wide = false }) {
     };
     document.addEventListener('keydown', handler);
     return () => { document.body.style.overflow = originalOverflow; document.removeEventListener('keydown', handler); previous?.focus(); };
-  }, [onClose]);
+  }, []);
   return <div className="modal-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) onClose(); }}><section ref={ref} className={`modal ${wide ? 'wide' : ''}`} role="dialog" aria-modal="true" aria-labelledby="modal-title" tabIndex={-1}><div className="modal-heading"><div><h2 id="modal-title">{title}</h2>{description && <p>{description}</p>}</div><button className="icon-button" onClick={onClose} aria-label="Close dialog"><Icon name="close" /></button></div>{children}</section></div>;
 }

@@ -6,12 +6,15 @@ const { OAuth2Client } = require('google-auth-library');
 const rateLimit = require('express-rate-limit');
 const pool = require('../config/db');
 const authenticate = require('../middleware/auth');
+const googleLink = require('../services/googleLink');
+const {googleOrigin} = require('../services/googleOrigin');
 const audit = require('../middleware/audit');
 const { cookies, cookieName, cookieOptions, equal, hash, withTenant, createSession, identity } = require('../services/session');
 const google = new OAuth2Client();
-const googleClientId = () => (process.env.GOOGLE_CLIENT_ID || '').endsWith('.apps.googleusercontent.com') ? process.env.GOOGLE_CLIENT_ID.trim() : '';
+const googleClientId = () => {const value=(process.env.GOOGLE_CLIENT_ID || '').trim();return value.endsWith('.apps.googleusercontent.com') ? value : '';};
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: 'draft-8', legacyHeaders: false, message: { error: 'Too many sign-in attempts. Please wait 15 minutes and try again.' } });
 const registrationLimiter = rateLimit({ windowMs: 60 * 60 * 1000, limit: 10, standardHeaders: 'draft-8', legacyHeaders: false, message: { error: 'Too many account creation attempts. Please try again later.' } });
+const invitationLookupLimiter = rateLimit({windowMs:60000,limit:60,standardHeaders:'draft-8',legacyHeaders:false,message:{error:'Too many invitation checks. Please try again in a minute.'}});
 const validEmail = value => typeof value === 'string' && value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 const validPassword = value => typeof value === 'string' && value.length >= 12 && Buffer.byteLength(value, 'utf8') <= 72 && /[a-z]/.test(value) && /[A-Z]/.test(value) && /[0-9]/.test(value);
 const validName = value => typeof value === 'string' && value.trim().length >= 2 && value.trim().length <= 80;
@@ -29,7 +32,13 @@ router.get('/config', (req, res) => {
   const csrf = /^[a-f0-9]{64}$/.test(existing || '') ? existing : crypto.randomBytes(32).toString('hex');
   res.cookie(cookieName('csrf'), csrf, { ...cookieOptions(), maxAge: 24 * 60 * 60 * 1000 });
   const clientId = googleClientId();
-  res.json({ csrf_token: csrf, google_client_id: clientId, google_enabled: Boolean(clientId), password_min_length: 12 });
+  res.json({ csrf_token: csrf, google_client_id: clientId, google_enabled: Boolean(clientId), google_signin_origin:clientId ? googleOrigin() : '', password_min_length: 12 });
+});
+router.get('/invitations/:token',invitationLookupLimiter,async(req,res)=>{
+  if(!/^[a-f0-9]{64}$/.test(req.params.token)) return res.status(400).json({error:'This invitation link is invalid.'});
+  const result=await pool.query('SELECT * FROM auth_private.describe_invitation($1)',[hash(req.params.token)]);
+  if(!result.rows[0]) return res.status(410).json({code:'INVITATION_UNAVAILABLE',error:'This invitation has expired, was revoked, or has already been used. Ask your workspace administrator for a new link.'});
+  res.json(result.rows[0]);
 });
 
 router.post('/login', limiter, async (req, res) => {
@@ -41,6 +50,10 @@ router.post('/login', limiter, async (req, res) => {
     const fallback = '$2a$12$6Y1JxkrnPlfZ4uBtbH/tuOaNqITMe4g.RAK0XACjiqjWiQ6FfcywK';
     const valid = await bcrypt.compare(password, rows[0]?.password_hash || fallback);
     if (!valid || !rows[0]?.password_hash) return res.status(401).json({ error: 'Email or password is incorrect.' });
+    if(req.body.link_google===true){
+      const failure=await googleLink.complete(req,res,rows[0]);
+      if(failure){const {status,...details}=failure;return res.status(status).json(details);}
+    }
     const result = await createSession(res, rows[0]);
     req.user = { user_id: result.user.user_id, tenant_id: result.user.tenant_id };
     return res.json(result);
@@ -115,7 +128,12 @@ router.post('/google', limiter, (req, res, next) => req.body?.intent === 'link' 
       if (intent === 'register') return res.status(409).json({ error: 'This Google account is already registered. Use Sign in.', code: 'GOOGLE_ACCOUNT_ALREADY_REGISTERED' });
       return res.json(await createSession(res, existing.rows[0]));
     }
-    if (intent === 'login') return res.status(401).json({ error: 'No linked Google account was found. Create an account, or sign in with your password and link Google in Settings.', code: 'GOOGLE_ACCOUNT_NOT_LINKED' });
+    const passwordAccount=(await pool.query('SELECT user_id,tenant_id,email,password_hash,role FROM auth_private.lookup_login_user($1)',[payload.email.toLowerCase()])).rows[0];
+    if(passwordAccount?.password_hash){
+      await googleLink.prepare(res,passwordAccount,payload);
+      return res.status(409).json({code:'GOOGLE_LINK_REQUIRED',password_confirmation_required:true,email:passwordAccount.email,error:'Your Google identity is verified. Confirm your existing password once to connect Google and open your workspace.'});
+    }
+    if (intent === 'login') return res.status(401).json({ error: 'This Google account is not registered yet. Create an account or choose the Google account linked to your workspace.', code: 'GOOGLE_ACCOUNT_NOT_LINKED' });
     if (req.body.role || req.body.tenant_id || (!invitation_token && !validName(workspace_name)) || (invitation_token != null && !/^[a-f0-9]{64}$/.test(invitation_token))) return res.status(400).json({ error: 'Enter your workspace name or use a valid invitation.' });
     const name = validName(req.body.name) ? req.body.name.trim() : validName(payload.name) ? payload.name.trim() : payload.email.split('@')[0].padEnd(2, '_').slice(0, 80);
     const result = await pool.query('SELECT * FROM auth_private.register_account($1, $2, $3, $4, $5, $6)', [name, payload.email.toLowerCase(), null, payload.sub, workspace_name?.trim() || null, invitation_token ? hash(invitation_token) : null]);

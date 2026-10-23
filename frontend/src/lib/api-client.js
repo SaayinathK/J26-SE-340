@@ -2,7 +2,7 @@ let configPromise;
 let csrfToken;
 
 export class ApiError extends Error {
-  constructor(message, status, code) { super(message); this.status = status; this.code = code; }
+  constructor(message, status, code, data) { super(message); this.status = status; this.code = code; this.details = data; this.guardrail_flags = data?.guardrail_flags; }
 }
 
 const unavailable = 'Cannot reach the account gateway. Run npm run dev in frontend to start both services, then refresh this page.';
@@ -42,9 +42,10 @@ export async function api(path, { method = 'GET', body, signal } = {}) {
   }
   const data = await responseData(response);
   if (!response.ok) {
-    if (response.status === 401 && !['/auth/login', '/auth/register', '/auth/google'].includes(path)) window.dispatchEvent(new Event('ciftron-session-expired'));
+    if (response.status === 401 && !['/auth/login', '/auth/register', '/auth/google', '/auth/me'].includes(path)) window.dispatchEvent(new Event('ciftron-session-expired'));
+    if(response.status===403 && path!=='/auth/me')window.dispatchEvent(new Event('ciftron-permissions-changed'));
     if (data?.code === 'CSRF_INVALID') { configPromise = null; csrfToken = null; }
-    throw new ApiError(data?.error || unavailable, response.status, data?.code);
+    throw new ApiError(data?.error || unavailable, response.status, data?.code, data);
   }
   if (!data) throw new ApiError('The gateway returned an invalid response. Restart the gateway and refresh this page.', 502);
   return data;

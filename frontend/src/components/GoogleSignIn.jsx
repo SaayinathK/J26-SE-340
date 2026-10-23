@@ -23,6 +23,7 @@ export default function GoogleSignIn({ intent, onCredential, onError, theme, dis
   const errorCallback = useRef(onError);
   callback.current = onCredential; errorCallback.current = onError;
   const [status, setStatus] = useState('loading');
+  const [signInOrigin,setSignInOrigin] = useState('');
   const disabledRef = useRef(disabled);
   disabledRef.current = disabled;
   useEffect(() => {
@@ -33,6 +34,9 @@ export default function GoogleSignIn({ intent, onCredential, onError, theme, dis
     (async () => {
       const config = await authConfig();
       if (!config.google_enabled) { if (active) setStatus('unconfigured'); return; }
+      if(config.google_signin_origin && config.google_signin_origin !== window.location.origin){
+        if(active){setSignInOrigin(config.google_signin_origin);setStatus('alternate-origin');}return;
+      }
       await loadGoogle();
       if (!active) return;
       // GIS supports one initialization per document. Changing auth purpose or
@@ -41,7 +45,7 @@ export default function GoogleSignIn({ intent, onCredential, onError, theme, dis
       const { nonce } = await api(`/auth/google/challenge?intent=${intent}`);
       if (!active || !container.current) return;
       initialized = true;
-      window.google.accounts.id.initialize({ client_id: config.google_client_id, nonce, auto_select: false,
+      window.google.accounts.id.initialize({ client_id: config.google_client_id, nonce, auto_select: false, use_fedcm_for_button:true,
         callback: async response => {
           if (!active || submitted || disabledRef.current) return;
           submitted = true;
@@ -62,6 +66,7 @@ export default function GoogleSignIn({ intent, onCredential, onError, theme, dis
   return <div className="google-signin-wrapper" aria-busy={status === 'loading'}>
     {status === 'loading' && <div className="google-status"><Icon name="loader" size={16} />Preparing Google sign-in…</div>}
     {status === 'unconfigured' && <p className="google-status"><Icon name="globe" size={16} />Google sign-in is not available yet. Use email and password.</p>}
+    {status === 'alternate-origin' && <><a className="button secondary full-width" href={`${signInOrigin}/${intent === 'link' ? '#sign-in' : window.location.search + window.location.hash}`}><Icon name="globe" size={18}/>Continue with Google</a><small className="muted">Google sign-in opens on {new URL(signInOrigin).host}. Use the same registered email to keep your workspace.</small></>}
     {['failed', 'retry'].includes(status) && <button type="button" className="button secondary full-width" disabled={disabled} onClick={() => window.location.reload()}>Retry Google sign-in</button>}
     <div ref={container} hidden={status !== 'ready'} className={`google-button-container ${disabled ? 'is-disabled' : ''}`} inert={disabled ? true : undefined} />
   </div>;
