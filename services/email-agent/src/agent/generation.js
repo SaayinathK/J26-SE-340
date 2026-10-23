@@ -6,10 +6,11 @@ const { buildEmailPrompt, BRAND_CONTEXT_LINE } = require('./prompts/emailPrompt'
 const { retrieveKnowledge } = require('../repositories/knowledgeContext');
 const { runGuardrails } = require('./tools/guardrails');
 const { sequenceStructureError } = require('../repositories/sequenceStore');
+const {selectedModel}=require('../repositories/fineTuneStore');
 let statusCache;
 let statusExpiry = 0;
 async function modelStatus(tenantId) {
-  const selection={model:GEN_MODEL,busy:false};
+  const selection=tenantId?await withTenant(tenantId,async client=>({model:await selectedModel(client),busy:(await client.query('SELECT auth_private.finetune_gpu_busy() AS busy')).rows[0].busy})):{model:GEN_MODEL,busy:false};
   if(selection.busy)return {status:'training',model:selection.model};
   const selected=selection.model;
   if (Date.now() < statusExpiry && statusCache?.model===selected) return statusCache;
@@ -26,7 +27,8 @@ async function modelStatus(tenantId) {
 async function generateSequence(tenantId, campaignGoal, audienceSegment, options = {}) {
   const { learningContext } = require('../repositories/learningStore');
   const context = await withTenant(tenantId, async client => {
-    const model=GEN_MODEL;
+    if((await client.query('SELECT auth_private.finetune_gpu_busy() AS busy')).rows[0].busy){const error=new Error('The connected GPU is training a language-model candidate. Manual drafting remains available. Try AI generation after training finishes.');error.status=503;throw error;}
+    const model=await selectedModel(client);
     const business = (await client.query('SELECT name FROM tenants WHERE tenant_id=$1', [tenantId])).rows[0]?.name;
     const { facts, count } = await retrieveKnowledge(client, tenantId, options.source);
     const learned = await learningContext(client);

@@ -10,12 +10,15 @@ if (!process.env.DB_PASSWORD || Buffer.byteLength(process.env.JWT_SECRET || '') 
 }
 const app = express();
 app.use(helmet());
+app.use('/api/training-worker',express.json({limit:'2mb'}));
 app.use(express.json({ limit: '300kb' }));
 app.get('/health', (_req, res) => res.json({ status: 'ok', service: 'c4-email-agent' }));
 app.use('/api', requestProtection);
+app.use('/api/training-worker',require('./middleware/gatewayIdentity'),authenticate,require('./api/fineTuneWorkerRoutes'));
 app.use('/api/auth', require('./api/authRoutes'));
 app.use('/api/team', require('./api/teamRoutes'));
 app.use('/api/email', require('./middleware/gatewayIdentity'));
+app.use('/api/email/finetuning',authenticate,require('./api/fineTuneRoutes').router);
 app.use('/api/email', authenticate, require('./api/learningRoutes'));
 app.use('/api/email/sequence', authenticate, requirePermission('email:generate'), require('./api/generationRoutes'));
 app.use('/api/email/sequences', authenticate, requirePermission('email:generate'), require('./api/sequenceRoutes'));

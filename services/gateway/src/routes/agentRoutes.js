@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('node:crypto');
 const { requirePermission } = require('../policies/rbac');
 
-module.exports = function agentRoutes({ id, setting, port }) {
+module.exports = function agentRoutes({ id, setting, port, forwardAuthorization=false }) {
   const router = express.Router();
   router.use(async (req, res, next) => {
     {
@@ -26,7 +26,7 @@ module.exports = function agentRoutes({ id, setting, port }) {
         body_hash: crypto.createHash('sha256').update(body || '').digest('hex'),
       }, secret, { algorithm: 'HS256', issuer: 'ciftron-gateway', audience: id, expiresIn: '30s', jwtid: crypto.randomUUID() });
       const upstream = await fetch(new URL(req.originalUrl, origin), {
-        method: req.method, headers: { 'Content-Type': 'application/json', 'X-Gateway-Identity': token },
+        method: req.method, headers: { 'Content-Type': 'application/json', 'X-Gateway-Identity': token, ...(forwardAuthorization && req.headers.authorization ? {Authorization:req.headers.authorization} : {}) },
         ...(body === undefined ? {} : { body }), redirect: 'error', signal: AbortSignal.timeout(100000),
       });
       const content = await upstream.text();

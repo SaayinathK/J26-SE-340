@@ -1,0 +1,6 @@
+# Deliberately bounded to the existing PEFT adapter and Mistral v0.3 runtime.
+# Keep the CUDA-enabled torch provided by Colab.
+transformers==4.56.2
+peft==0.17.1
+accelerate==1.10.1
+bitsandbytes==0.47.0
