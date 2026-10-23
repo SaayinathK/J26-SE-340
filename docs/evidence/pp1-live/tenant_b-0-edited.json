@@ -1,0 +1,63 @@
+{
+  "workspace": "Prime Realty Group",
+  "brief": "Free property valuation",
+  "saved_sequence_id": "f89ec8d5-2ff8-49ec-9d78-9bdc2ba24ccb",
+  "version": 2,
+  "review_status": "Draft",
+  "approved": false,
+  "original_inference_file": "tenant_b-0.json",
+  "original_flags_rechecked_with_updated_guardrails": [
+    {
+      "email_index": 2,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: FREE professional appraisal",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 192,
+          "end": 219,
+          "text": "FREE professional appraisal"
+        }
+      ]
+    },
+    {
+      "email_index": 2,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: expire in 48 hours",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 283,
+          "end": 301,
+          "text": "expire in 48 hours"
+        }
+      ]
+    }
+  ],
+  "editorial_changes": [
+    "Added missing action links; replaced unsupported appraisal wording with the authorized home valuation; removed the invented 48-hour expiry and reserved-cart reference."
+  ],
+  "emails": [
+    {
+      "email_index": 1,
+      "subject": "{{first_name}}, Free Home Valuation Inside!",
+      "body": "Hi {{first_name}},\n\nAre you a homeowner in Colombo considering selling your property? Our team at Prime Realty Group is here to help. We're excited to offer you a free, no-obligation home valuation.\n\nDon't miss out on this valuable opportunity to understand the current market value of your home. Simply click the button below to schedule your free valuation now.\n\nClaim Your Free Valuation Now!\n\nRequest your free home valuation: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 0
+    },
+    {
+      "email_index": 2,
+      "subject": "{{first_name}}, Free Home Valuation Inside!",
+      "body": "Hi {{first_name}},\n\n🚀 Unlock Your Home's Hidden Value Today! 💡\n\nAre you thinking about selling your home? Our expert team at Prime Realty Group can help you understand its true value with a free home valuation. Request your valuation when you are ready.\n\nClaim Your Free Home Valuation Now!\n\nRequest your free home valuation: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 3
+    },
+    {
+      "email_index": 3,
+      "subject": "{{first_name}}, Free Home Valuation Inside!",
+      "body": "Hi {{first_name}},\n\n🚀 Unlock Your Home's Full Potential with Prime Realty Group!\n\nAre you ready to sell your home and take the next step in your real estate journey? Our team at Prime Realty Group is here to help every step of the way.\n\nStart by requesting a free, no-obligation home valuation from us today. This will give you a clear understanding of your property's current market value and help you set an accurate asking price.\n\nDon’t miss out on this valuable opportunity to gain insights into your home’s worth. Request your free valuation now and let’s start the selling process together!\n\nRequest your free home valuation: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 7
+    }
+  ],
+  "guardrail_flags": [],
+  "preflight_passed": 5,
+  "preflight_total": 5
+}

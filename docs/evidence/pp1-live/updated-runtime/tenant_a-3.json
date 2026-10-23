@@ -1,0 +1,107 @@
+{
+  "provenance": "Fresh c4-email-ft inference via the configured Colab tunnel; real tenant-scoped service functions and database. No model mock, no automatic approval or sending.",
+  "workspace": "Green Leaf Coaching",
+  "brief": "No-offer guardrail test",
+  "campaign_goal": "Introduce our evening online coaching sessions to busy managers.",
+  "audience": "Mid-career managers with long working hours",
+  "tone": "Formal",
+  "generated_at": "2026-10-23T14:06:54.732Z",
+  "duration_ms": 29452,
+  "active_sources": 4,
+  "grounding_context": "Sessions are 45 minutes, online or at our Colombo studio, before or after work hours.\n---\nProgrammes: Starter (4 sessions), Growth (8 sessions) and Leadership (12 sessions).\n---\nOur coaches are certified and focus on confidence, sustainable habits and work-life balance.\n---\nGreen Leaf Coaching offers one-to-one life and career coaching for young professionals in Colombo.",
+  "model": "c4-email-ft",
+  "generation_attempts": 2,
+  "retry_status": "completed",
+  "emails": [
+    {
+      "email_index": 1,
+      "subject": "{{first_name}}, Reserve Your Spot Now!",
+      "body": "Hi {{first_name}},\n\nUnlock your full potential with our exclusive evening coaching sessions designed for busy managers like yourself. Join us every Wednesday from 6 pm to 7:30 pm and transform your career.\n\nDon’t miss out on this valuable opportunity to grow! Reserve your spot now by clicking the button below:\n\nClaim Your Free Session Now!\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 0
+    },
+    {
+      "email_index": 2,
+      "subject": "{{first_name}}, Transform Your Evenings with Exclusive Coaching!",
+      "body": "Hi {{first_name}},\n\nAre you a busy manager looking to make the most of your evenings? Our exclusive coaching sessions are designed just for you. Join us online every Tuesday and Thursday at 6 PM to elevate your skills and achieve greater success.\n\nClaim Your Free Session Now!\n\nExperience the benefits firsthand with our complimentary session. Limited spots available, reserve yours today!\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 3
+    },
+    {
+      "email_index": 3,
+      "subject": "{{first_name}}, Reserve Your Spot: Exclusive Coaching Offer Ends Soon!",
+      "body": "Hi {{first_name}},\n\nAre you a busy manager looking to elevate your skills and make the most of your evenings? Our exclusive coaching sessions are designed just for you. Join us online every Wednesday at 6 PM for our next session.\n\nDon't miss out on this opportunity! Limited spots available, reserve yours now:\n\nClaim Your Free Session Now!\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 7
+    }
+  ],
+  "guardrail_flags": [
+    {
+      "email_index": 1,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Free Session",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 324,
+          "end": 336,
+          "text": "Free Session"
+        }
+      ]
+    },
+    {
+      "email_index": 2,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Free Session",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 259,
+          "end": 271,
+          "text": "Free Session"
+        }
+      ]
+    },
+    {
+      "email_index": 2,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Limited spots available",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 344,
+          "end": 367,
+          "text": "Limited spots available"
+        }
+      ]
+    },
+    {
+      "email_index": 3,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Free Session",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 323,
+          "end": 335,
+          "text": "Free Session"
+        }
+      ]
+    },
+    {
+      "email_index": 3,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Limited spots available",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 267,
+          "end": 290,
+          "text": "Limited spots available"
+        }
+      ]
+    }
+  ],
+  "review_status": "Needs review",
+  "saved_sequence_id": null,
+  "preflight_passed": 3,
+  "preflight_total": 5,
+  "cross_tenant_terms_found": []
+}

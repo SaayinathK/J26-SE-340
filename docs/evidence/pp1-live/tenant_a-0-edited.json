@@ -1,0 +1,50 @@
+{
+  "workspace": "Green Leaf Coaching",
+  "brief": "Welcome / first session",
+  "saved_sequence_id": "f257a786-0674-4ca2-a040-01ae771fbc70",
+  "version": 2,
+  "review_status": "Draft",
+  "approved": false,
+  "original_inference_file": "tenant_a-0.json",
+  "original_flags_rechecked_with_updated_guardrails": [
+    {
+      "email_index": 3,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Limited spots available",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 343,
+          "end": 366,
+          "text": "Limited spots available"
+        }
+      ]
+    }
+  ],
+  "editorial_changes": [
+    "Added missing action links; removed the unsupported welcome gift, ungrounded limited-spots claim and implied immediate-success promise; clarified first-session wording."
+  ],
+  "emails": [
+    {
+      "email_index": 1,
+      "subject": "{{first_name}}, Book Your Free Coaching Session Now!",
+      "body": "Hi {{first_name}},\n\nAre you ready to take your career to the next level? 🚀 Your free first coaching session is designed specifically for young professionals like yourself. Dive into a comprehensive discussion with our certified coach, exploring strategies and insights tailored to boost your confidence and achieve success in your professional journey.\n\nDon’t miss out on this exclusive opportunity! Book now and start reaping the rewards of expert guidance.\n\nClaim Your Free Session Now!\n\nBook your first coaching session: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 0
+    },
+    {
+      "email_index": 2,
+      "subject": "{{first_name}}, Upgrade Your Skills - Free Coaching Session",
+      "body": "Hi {{first_name}},\n\n✨ Unlock Your Potential with Green Leaf Coaching! 🚀\n\nAre you ready to take your career to the next level? Our expert coaches are here to help you grow and succeed. Start now with a free first coaching session that’s tailored just for you.\n\nBook your session today and discover how Green Leaf Coaching can transform your life and career!\n\nClaim Your Free Session Now!\n\nBook your first coaching session: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 3
+    },
+    {
+      "email_index": 3,
+      "subject": "{{first_name}}, Book Your Free Coaching Session Now!",
+      "body": "Hi {{first_name}},\n\n🚀 Are you ready to take your career to the next level? 🌟 Our free coaching session is designed specifically for young professionals like yourself. Explore career confidence and sustainable habits in a 45-minute session.\n\nBook your free first session when you are ready.\n\nDon’t miss out on this exclusive opportunity. Choose a time before or after work.\n\n🔗 Click here to book your free session: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 7
+    }
+  ],
+  "guardrail_flags": [],
+  "preflight_passed": 5,
+  "preflight_total": 5
+}

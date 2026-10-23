@@ -1,0 +1,76 @@
+{
+  "workspace": "Green Leaf Coaching",
+  "brief": "No-offer guardrail test",
+  "saved_sequence_id": "f81b7480-52ec-4b73-950e-cda257ec25ea",
+  "version": 2,
+  "review_status": "Draft",
+  "approved": false,
+  "original_inference_file": "tenant_a-3.json",
+  "original_flags_rechecked_with_updated_guardrails": [
+    {
+      "email_index": 1,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Free Session",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 278,
+          "end": 290,
+          "text": "Free Session"
+        }
+      ]
+    },
+    {
+      "email_index": 3,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Free Session",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 306,
+          "end": 318,
+          "text": "Free Session"
+        }
+      ]
+    },
+    {
+      "email_index": 3,
+      "check": "HALLUCINATION",
+      "detail": "Ungrounded: Limited spots available",
+      "occurrences": [
+        {
+          "field": "body",
+          "start": 269,
+          "end": 292,
+          "text": "Limited spots available"
+        }
+      ]
+    }
+  ],
+  "editorial_changes": [
+    "Editorial rewrite in formal tone using only the four no-offer knowledge sources; removed free-session and limited-spots claims, shortened subjects and added action links."
+  ],
+  "emails": [
+    {
+      "email_index": 1,
+      "subject": "Evening coaching for busy managers",
+      "body": "Hello {{first_name}},\n\nGreen Leaf Coaching offers one-to-one life and career coaching. Our 45-minute sessions are available online, before or after work hours, to fit around a demanding schedule.\n\nExplore how coaching could support your career confidence, sustainable habits and work-life balance.\n\nLearn about our sessions: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 0
+    },
+    {
+      "email_index": 2,
+      "subject": "Choose a coaching programme for your goals",
+      "body": "Hello {{first_name}},\n\nOur certified coaches focus on confidence, sustainable habits and work-life balance. We offer Starter with 4 sessions, Growth with 8 sessions and Leadership with 12 sessions.\n\nConsider which programme aligns with your goals and availability. Sessions are 45 minutes and can take place online or at our Colombo studio.\n\nExplore the programmes: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 3
+    },
+    {
+      "email_index": 3,
+      "subject": "Find time for your next step",
+      "body": "Hello {{first_name}},\n\nIf you are considering coaching, Green Leaf Coaching provides online sessions before or after work hours, as well as sessions at our Colombo studio.\n\nOur one-to-one approach focuses on career confidence, sustainable habits and work-life balance. Choose a convenient time to explore your goals with a coach.\n\nLearn more about coaching: {{cta_link}}\n\nTo unsubscribe from these emails, reply STOP or click here.",
+      "send_at_days": 7
+    }
+  ],
+  "guardrail_flags": [],
+  "preflight_passed": 5,
+  "preflight_total": 5
+}

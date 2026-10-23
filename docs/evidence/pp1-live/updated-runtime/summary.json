@@ -1,0 +1,81 @@
+[
+  {
+    "workspace": "Green Leaf Coaching",
+    "brief": "No-offer guardrail test",
+    "active_sources": 4,
+    "model": "c4-email-ft",
+    "generation_attempts": 2,
+    "guardrail_flags": [
+      {
+        "email_index": 1,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: Free Session",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 324,
+            "end": 336,
+            "text": "Free Session"
+          }
+        ]
+      },
+      {
+        "email_index": 2,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: Free Session",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 259,
+            "end": 271,
+            "text": "Free Session"
+          }
+        ]
+      },
+      {
+        "email_index": 2,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: Limited spots available",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 344,
+            "end": 367,
+            "text": "Limited spots available"
+          }
+        ]
+      },
+      {
+        "email_index": 3,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: Free Session",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 323,
+            "end": 335,
+            "text": "Free Session"
+          }
+        ]
+      },
+      {
+        "email_index": 3,
+        "check": "HALLUCINATION",
+        "detail": "Ungrounded: Limited spots available",
+        "occurrences": [
+          {
+            "field": "body",
+            "start": 267,
+            "end": 290,
+            "text": "Limited spots available"
+          }
+        ]
+      }
+    ],
+    "review_status": "Needs review",
+    "saved_sequence_id": null,
+    "preflight_passed": 3,
+    "preflight_total": 5,
+    "cross_tenant_terms_found": []
+  }
+]

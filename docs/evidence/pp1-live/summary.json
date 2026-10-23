@@ -1,0 +1,41 @@
+[
+  {
+    "workspace": "Green Leaf Coaching",
+    "brief": "Welcome / first session",
+    "active_sources": 6,
+    "model": "c4-email-ft",
+    "generation_attempts": 1,
+    "guardrail_flags": [],
+    "review_status": "Draft",
+    "saved_sequence_id": "f257a786-0674-4ca2-a040-01ae771fbc70",
+    "preflight_passed": 4,
+    "preflight_total": 5,
+    "cross_tenant_terms_found": []
+  },
+  {
+    "workspace": "Prime Realty Group",
+    "brief": "Free property valuation",
+    "active_sources": 3,
+    "model": "c4-email-ft",
+    "generation_attempts": 1,
+    "guardrail_flags": [],
+    "review_status": "Draft",
+    "saved_sequence_id": "f89ec8d5-2ff8-49ec-9d78-9bdc2ba24ccb",
+    "preflight_passed": 4,
+    "preflight_total": 5,
+    "cross_tenant_terms_found": []
+  },
+  {
+    "workspace": "Green Leaf Coaching",
+    "brief": "No-offer guardrail test",
+    "active_sources": 4,
+    "model": "c4-email-ft",
+    "generation_attempts": 2,
+    "guardrail_flags": [],
+    "review_status": "Draft",
+    "saved_sequence_id": "f81b7480-52ec-4b73-950e-cda257ec25ea",
+    "preflight_passed": 3,
+    "preflight_total": 5,
+    "cross_tenant_terms_found": []
+  }
+]

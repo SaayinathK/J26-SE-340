@@ -15,7 +15,7 @@ services:
       DB_NAME: email_agent
       NODE_ENV: development
       CLIENT_ORIGINS: http://localhost:4001,http://127.0.0.1:4001
-      OLLAMA_HOST: http://email-agent-model:11434
+      #OLLAMA_HOST: http://email-agent-model:11434
     ports: ["127.0.0.1:4001:4001"]
     depends_on:
       email-agent-database:

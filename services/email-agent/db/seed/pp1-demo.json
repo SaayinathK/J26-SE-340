@@ -1,0 +1,44 @@
+{
+  "version": "pp1-coaching-v1",
+  "tenants": [
+    {
+      "slug": "tenant_a",
+      "name": "Green Leaf Coaching",
+      "account": "admin@tenant-a.com",
+      "sources": [
+        {"key": "business", "name": "Coaching: our business", "text": "Green Leaf Coaching offers one-to-one life and career coaching for young professionals in Colombo."},
+        {"key": "sessions", "name": "Coaching: session arrangements", "text": "Sessions are 45 minutes, online or at our Colombo studio, before or after work hours."},
+        {"key": "coaches", "name": "Coaching: coaches and focus", "text": "Our coaches are certified and focus on confidence, sustainable habits and work-life balance."},
+        {"key": "programmes", "name": "Coaching: programmes", "text": "Programmes: Starter (4 sessions), Growth (8 sessions) and Leadership (12 sessions)."},
+        {"key": "offer", "name": "Coaching: current offer", "text": "Current offer: Your first session is free for new clients. No promo code is needed. There is no end date."},
+        {"key": "referral", "name": "Coaching: referral", "text": "Refer a friend and you both get one free session."}
+      ],
+      "briefs": [
+        {"name": "Welcome / first session", "goal": "Invite young professionals to book their free first coaching session and explain how coaching can help with career confidence.", "audience": "Young professionals aged 25-35 in Colombo", "tone": "Friendly"},
+        {"name": "Re-engage past clients", "goal": "Re-engage past clients who have not booked a session in three months and invite them back to the Growth programme.", "audience": "Past clients who completed the Starter programme", "tone": "Professional"},
+        {"name": "Referral", "goal": "Encourage current clients to refer a friend so both get one free session.", "audience": "Active clients in the Growth programme", "tone": "Friendly"},
+        {"name": "No-offer guardrail test", "goal": "Introduce our evening online coaching sessions to busy managers.", "audience": "Mid-career managers with long working hours", "tone": "Formal", "archive_sources_first": ["offer", "referral"]}
+      ]
+    },
+    {
+      "slug": "tenant_b",
+      "name": "Prime Realty Group",
+      "account": "admin@tenant-b.com",
+      "sources": [
+        {"key": "business", "name": "Realty: our business", "text": "Prime Realty Group helps first-time buyers and families buy, sell and rent homes in Colombo and Gampaha."},
+        {"key": "service", "name": "Realty: client service", "text": "Every client gets a dedicated agent and help with bank loan paperwork."},
+        {"key": "offer", "name": "Realty: current offer", "text": "Current offer: Free home valuation for sellers. No promo code is needed. There is no end date."}
+      ],
+      "briefs": [
+        {"name": "Free property valuation", "goal": "Encourage homeowners to request a free property valuation.", "audience": "Homeowners in Colombo thinking of selling", "tone": "Professional"}
+      ]
+    }
+  ],
+  "legacy_gym_sources": [
+    "Green Leaf Coaching uses an encouraging, science-backed tone. We emphasise sustainable habits, community, and evidence-based wellness.",
+    "Membership tiers: Basic $29/mo (gym floor weekdays), Premium $59/mo (adds classes + app), Elite $99/mo (adds personal training).",
+    "Target audience: Young professionals aged 25-35 who want efficient 45-minute workouts before or after work. They value convenience, results, and community.",
+    "Key benefits: State-of-the-art equipment refreshed yearly, certified trainers, flexible freeze options, guest passes, towel service, parking.",
+    "October 2026 promotions: First month free for new members. Refer a friend and earn $20 credit. No joining fee this month."
+  ]
+}

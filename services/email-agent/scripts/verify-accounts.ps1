@@ -12,7 +12,7 @@ try {
     docker exec $Container psql -U admin -d postgres -v ON_ERROR_STOP=1 -c "CREATE DATABASE $taskDatabase"
     if ($LASTEXITCODE -ne 0) { throw 'Could not create isolated test database' }
     $taskCreated = $true
-    foreach ($taskMigration in @('001_init.sql', '002_app_role.sql', '003_auth_lookup.sql', '004_accounts_and_sessions.sql', '005_workspace_records.sql', '006_gateway_identity.sql', '007_email_learning.sql', '008_guardrail_drafts.sql')) {
+    foreach ($taskMigration in @('001_init.sql', '002_app_role.sql', '003_auth_lookup.sql', '004_accounts_and_sessions.sql', '005_workspace_records.sql', '006_gateway_identity.sql', '007_email_learning.sql', '008_guardrail_drafts.sql', '009_sample_outcomes.sql')) {
         $taskMigrationPath = Join-Path $taskRoot ('services/email-agent/db/migrations/' + $taskMigration)
         Get-Content -Raw -LiteralPath $taskMigrationPath | docker exec -i $Container psql -U admin -d $taskDatabase -v ON_ERROR_STOP=1
         if ($LASTEXITCODE -ne 0) { throw "Test migration failed: $taskMigration" }
