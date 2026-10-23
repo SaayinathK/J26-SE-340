@@ -23,7 +23,7 @@ router.get('/snapshot', requirePermission('campaigns:read'), async (req, res) =>
   });
   res.json({ ...snapshot, synced_at: new Date().toISOString(), delivery_connected: false, refresh_interval_ms: 5000 });
 });
-router.get('/status', requirePermission('email:generate'), async (_req, res) => {
+router.get('/status', requirePermission('monitoring:read'), async (_req, res) => {
   const started = Date.now();
   await withTenant(_req.user.tenant_id, client => client.query('SELECT 1'));
   const database = { status: 'connected', latency_ms: Date.now() - started };

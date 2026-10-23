@@ -51,6 +51,11 @@ test('snapshot requires a real session and starts with no seeded marketing recor
   for (const key of ['campaigns', 'documents', 'sequences', 'activities']) expect(result.body[key]).toEqual([]);
   expect(result.body.delivery_connected).toBe(false);
 });
+
+test('monitoring status follows the administrator-only monitoring permission',async()=>{
+  expect((await request(app).get('/api/platform/status').set(headers('admin'))).status).toBe(200);
+  for(const role of ['marketer','viewer'])expect((await request(app).get('/api/platform/status').set(headers(role))).status).toBe(403);
+});
 test('campaign creates a persistent tenant record, real activity, and no fabricated metrics', async () => {
   const result = await request(app).post('/api/platform/campaigns').set(headers('admin')).send({ name: 'First campaign', audience: 'Our subscribers', tenant_id: accounts.other.user.tenant_id, sent: 9000 });
   expect(result.status).toBe(201); saved.campaign = result.body;

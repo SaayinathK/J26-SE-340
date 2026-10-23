@@ -3,6 +3,7 @@ import { Badge, Button, Field, Icon, PageHeading } from '../components/ui.jsx';
 import GoogleSignIn from '../components/GoogleSignIn.jsx';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api-client.js';
+import {assertPermission} from '../lib/access.js';
 
 export default function AccountSettings({ theme, setTheme, notify }) {
   const auth = useAuth();
@@ -14,6 +15,7 @@ export default function AccountSettings({ theme, setTheme, notify }) {
   async function save(event, workspace = false) {
     event.preventDefault(); setBusy(true); setError('');
     try {
+      if(workspace)assertPermission(auth.can,'workspace:manage');
       await api(workspace ? '/tenant/profile' : '/auth/profile', { method: 'PATCH', body: workspace ? { name: workspaceName.trim(), domain: domain.trim() } : { name: name.trim() } });
       await auth.refresh(); notify(workspace ? 'Workspace profile saved to the database.' : 'Your account profile has been updated.');
     } catch (failure) { setError(failure.message); } finally { setBusy(false); }
