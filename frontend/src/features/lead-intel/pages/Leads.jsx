@@ -4,6 +4,7 @@ import { BarChart3, BookOpen, Check, ChevronLeft, ChevronRight, Copy, Mail, Mess
   ThumbsDown, ThumbsUp, UserCheck, UserX, X } from 'lucide-react';
 import { canWrite } from '../../../lib/api-client.js';
 import { api } from '../api.js';
+import './lead-extras.css';
 import { SEGMENT, activity, explainSource, leadName, minutes, origin, simpleAction, source, strength } from '../lang.js';
 import { Avatar, Card, ErrorBox, LeadName, PageHeader, ScoreBar, Seg, SEG_COLOURS, Skeleton, useLoad, useToast } from '../../../components/ui.jsx';
 
@@ -133,7 +134,7 @@ export default function Leads({ session, onAuthError }) {
         </form>
       </Card>
 
-      {open && <LeadDrawer lead={open} session={session} onClose={() => setOpen(null)} onAuthError={onAuthError} />}
+      {open && <LeadDrawer key={open.lead_id} lead={open} session={session} onClose={() => setOpen(null)} onAuthError={onAuthError} />}
     </div>
   );
 }
@@ -272,8 +273,15 @@ function LeadDrawer({ lead, session, onClose, onAuthError }) {
                 <div>
                   <h4>Do this</h4>
                   <p>{simpleAction(rec)}</p>
+                  <span className="todo-note">This step is your company rule for {SEGMENT[segment]?.label.toLowerCase()} leads, so it is the same for every {SEGMENT[segment]?.label.toLowerCase()} lead.</span>
                 </div>
               </div>
+              {rec.talking_points?.length > 0 && (
+                <div className="personal">
+                  <div className="muted" style={{ marginBottom: 8 }}>Make it personal: about {name.split(' ')[0]} only</div>
+                  <ul>{rec.talking_points.map((p) => <li key={p}><UserCheck size={14} /><span>{p}</span></li>)}</ul>
+                </div>
+              )}
               <div className="row" style={{ marginBottom: 12 }}>
                 <span className={`pill ${rec.policy_check === 'consistent' ? '' : 'warn'}`}>
                   {rec.policy_check === 'consistent' ? <><Check size={13} /> Matches your company rule</> : 'Please check with your rule'}

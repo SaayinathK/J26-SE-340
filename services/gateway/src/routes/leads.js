@@ -29,13 +29,16 @@ const readers = ['agency_admin', 'marketer', 'viewer'];
 const writers = ['agency_admin', 'marketer'];
 
 router.post('/score', audit('c3_lead_score'), authorize(...writers), forward(() => '/leads/score', 'POST'));
-for (const endpoint of ['analytics', 'dashboard', 'monitoring', 'history']) {
+for (const endpoint of ['analytics', 'dashboard', 'monitoring', 'history', 'model-quality']) {
   router.get('/' + endpoint, audit('c3_lead_' + endpoint), authorize(...readers), forward(() => '/leads/' + endpoint));
 }
 router.get('/:leadId/recommendation', audit('c3_lead_recommendation'), authorize(...writers),
   forward(req => '/leads/' + encodeURIComponent(req.params.leadId) + '/recommendation'));
 router.post('/:leadId/outcome', audit('c3_lead_outcome'), authorize(...writers),
   forward(req => '/leads/' + encodeURIComponent(req.params.leadId) + '/outcome', 'POST'));
+// C3: the CRM record of one lead (fills the "Check a lead" form) - read-only
+router.get('/:leadId/profile', audit('c3_lead_profile'), authorize(...readers),
+  forward(req => '/leads/' + encodeURIComponent(req.params.leadId) + '/profile'));
 // C3 FR10: output history of one lead (scores, advice, outcomes) - read-only
 router.get('/:leadId/history', audit('c3_lead_history'), authorize(...readers),
   forward(req => '/leads/' + encodeURIComponent(req.params.leadId) + '/history'));

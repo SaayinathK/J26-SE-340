@@ -22,7 +22,10 @@ def test_dashboard_lead_list_has_every_segment_and_no_outcome():
     d = client.get("/leads/dashboard", headers={"X-Tenant-Id": "tenant_b"}).json()
     segs = {x["segment"] for x in d["leads"]}
     assert segs == {"hot", "warm", "cold"}
-    assert all(sum(x["segment"] == s for x in d["leads"]) <= 50 for s in segs)
+    # every lead is in the list, so the Hot / Warm / Cold tabs show the real group sizes
+    real = {s["segment"]: s["leads"] for s in d["segments"]}
+    assert {s: sum(x["segment"] == s for x in d["leads"]) for s in segs} == real
+    assert len(d["leads"]) == d["tenant_leads"]
     own = set(LEADS[LEADS.tenant == "tenant_b"].contact_id)
     assert all(x["lead_id"] in own for x in d["leads"])
     assert not any(k in d["leads"][0] for k in ("converted", "tags", "opportunity_status"))

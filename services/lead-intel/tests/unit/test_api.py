@@ -11,7 +11,7 @@ LEAD = {"lead_id": "L-test000001", "source": "Google", "lead_origin": "Landing P
 def test_contract_fields():
     body = client.post("/leads/score", json=LEAD, headers=H).json()
     assert set(body) == {"lead_id", "score", "segment", "top_factors", "model_version",
-                         "confidence", "alert"}                       # C3-11 fields are additive
+                         "confidence", "alert", "crm", "what_if"}    # C3-11 and CRM-match fields are additive
     assert 0 <= body["score"] <= 100 and body["segment"] in {"hot", "warm", "cold"}
 
 def test_same_input_gives_same_output():

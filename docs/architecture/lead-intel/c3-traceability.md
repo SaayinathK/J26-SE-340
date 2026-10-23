@@ -1,7 +1,7 @@
 # C3 — Requirements traceability (proposal → code → test → evidence)
 
 Owner: Shathursini J (IT23164062). Requirements from the proposal (Section 5, from the stakeholder interview).
-Status as of 22 Oct 2026. 40 automated tests pass (`cd services/lead-intel ; python -m pytest -q`), plus 4 database tests.
+Status as of 22 Oct 2026. 97 automated tests pass (`cd services/lead-intel ; python -m pytest -q`), plus 4 database tests.
 Paths: service code in `services/lead-intel/src/`, ML code in `ml/lead-intel/training/`, results in `ml/lead-intel/reports/`.
 
 ## Objectives
@@ -19,10 +19,10 @@ Paths: service code in `services/lead-intel/src/`, ML code in `ml/lead-intel/tra
 | ID | Requirement | Endpoint / module | Test | Evidence |
 | --- | --- | --- | --- | --- |
 | FR1 | ingest lead records (source, tags, activity, stage) | `training/prepare_data.py` | `test_features.py` | `c3-mapping.md` |
-| FR2 | conversion score 0–100 | `POST /leads/score` | `test_api.py` | contract I-04 |
-| FR3 | cold / warm / hot segments | `services/scoring.segment()` | `test_api.py` | `reports/c3-05_segments.csv` |
+| FR2 | conversion score 0–100 | `POST /leads/score` (input checked by `models/schemas.Lead`; a CRM Lead ID with changed details is a what-if, `services/crm_match.py`), `GET /leads/{id}/profile` | `test_api.py`, `test_scoring_logic.py`, `test_validation.py`, `test_crm_match.py` | contract I-04 |
+| FR3 | cold / warm / hot segments | `services/scoring.segment()` | `test_api.py`, `test_scoring_logic.py`, `test_calculations.py` | `reports/c3-05_segments.csv` |
 | FR4 | retrieve tenant context before generating | `agent/rag.retrieve()` | `test_rag.py`, `test_retrieval.py` | `reports/c3-08_examples.json` |
-| FR5 | grounded personalised recommendation/message | `GET /leads/{id}/recommendation` | `test_rag.py` | `reports/c3-13_rag_eval_summary*.json` (30/30 grounded, base and fine-tuned) |
+| FR5 | grounded personalised recommendation/message | `GET /leads/{id}/recommendation` (+ per-lead `talking_points`, `agent/personalise.py`) | `test_rag.py`, `test_personalise.py` | `reports/c3-13_rag_eval_summary*.json` (30/30 grounded, base and fine-tuned) |
 | FR6 | pipeline insights (top source, drop-off, objections) | `GET /leads/analytics` | `test_analytics.py` | dashboard screenshots (`evidence/c3-12/`) |
 | FR7 | log prediction outcomes for accuracy evaluation | `POST /leads/{id}/outcome`, `GET /leads/monitoring` | `test_monitoring.py` | `reports/c3-fr7_monitoring.json` (481 held-out leads: AUC 0.892, Brier 0.124) |
 | FR8 | alert when a hot lead goes cold | `services/alerts.check_alert()` | `test_alerts.py` | contract I-04 v1.1.0 |
@@ -48,6 +48,7 @@ LLM generation time is not part of NFR1: about 77 s per answer on a laptop CPU (
 | C3-14 QLoRA fine-tuning of Mistral 7B (behaviour, not facts) | `training/finetune_data.py`, `notebooks/02_finetune_mistral_qlora.ipynb`, `training/configs/qlora.yaml` | `reports/c3-14_*`: policy citation 0% → 100%; `C3-ADR-003` |
 | Fine-tuned model served in Ollama (merged GGUF Q4_K_M) | `notebooks/03_merge_lora_to_gguf.ipynb`, `serving/` (lead-intel-model container) | `reports/c3-13_rag_eval_summary_c3-mistral-ft.json`; `C3-ADR-005` |
 | Dashboard UI | `frontend/src/features/lead-intel/` (React), `services/lead-intel/streamlit/` (older) | `evidence/c3-12/` |
+| Tested accuracy on held-out leads (AUC, accuracy, precision, recall, calibration, confusion) | `GET /leads/model-quality`, `services/quality.py`, Score check page | `test_model_quality.py`; `reports/c3-accuracy_check.json` |
 | Lead history page + own database | `frontend/.../pages/History.jsx`, `services/lead-intel/db/` | `C3-ADR-006` |
 
 ## Design decisions

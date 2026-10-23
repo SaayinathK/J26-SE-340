@@ -98,6 +98,15 @@ export function factorText(feature) {
   return f.replace(/_/g, ' ');
 }
 
+// a reason with the lead's own number: "Time spent on our website (10 min)"
+export function factorLabel(f) {
+  const text = factorText(f.feature);
+  if (f.value == null || !f.feature.startsWith('num__')) return text;
+  const key = f.feature.slice(5);
+  const v = key === 'time_on_site_sec' || key === 'time_per_visit' ? minutes(f.value) : Number(f.value).toLocaleString();
+  return `${text} (${v})`;
+}
+
 // ---------- recommendation sources in simple words ----------
 export function explainSource(s) {
   const t = s.text || '';

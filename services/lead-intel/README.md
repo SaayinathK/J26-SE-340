@@ -24,7 +24,7 @@ python -m venv .venv ; .venv\Scripts\activate
 pip install -r services/lead-intel/requirements.txt
 cd services/lead-intel
 uvicorn main:app --app-dir src --port 4003       # API: http://127.0.0.1:4003/docs
-python -m pytest -q                               # 40 tests pass (+4 database tests, skipped without a database)
+python -m pytest -q                               # 97 tests pass (+4 database tests, skipped without a database)
 ```
 
 Without `C3_DATABASE_URL` the history is saved in JSON-lines files in `services/lead-intel/state/` (gitignored).

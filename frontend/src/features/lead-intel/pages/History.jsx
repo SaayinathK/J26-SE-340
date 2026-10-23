@@ -6,7 +6,7 @@ import { AlertTriangle, BarChart3, BookOpen, Database, FileText, History as Hist
   Search, Sparkles, Target, ThumbsDown, ThumbsUp, Trophy, UserCheck, UserX, Users } from 'lucide-react';
 import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { api } from '../api.js';
-import { SEGMENT, explainSource, factorText, leadName, simpleAction } from '../lang.js';
+import { SEGMENT, explainSource, factorLabel, leadName, simpleAction } from '../lang.js';
 import { Avatar, Card, ChartTip, ErrorBox, Kpi, LeadName, PageHeader, Seg, Skeleton, useChart, useLoad } from '../../../components/ui.jsx';
 import './history.css';
 
@@ -247,7 +247,7 @@ function Event({ e, i }) {
         {e.top_factors?.length > 0 && (
           <ul className="tl-factors">
             {e.top_factors.map((f) => (
-              <li key={f.feature}><span className={f.impact >= 0 ? 'up' : 'down'}>{f.impact >= 0 ? 'raises' : 'lowers'}</span>{factorText(f.feature)}</li>
+              <li key={f.feature}><span className={f.impact >= 0 ? 'up' : 'down'}>{f.impact >= 0 ? 'raises' : 'lowers'}</span>{factorLabel(f)}</li>
             ))}
           </ul>
         )}

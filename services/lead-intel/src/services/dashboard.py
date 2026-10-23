@@ -5,7 +5,7 @@ from services.features import CATEGORICAL, NUMERIC
 from services.scoring import B, LEADS, segment
 
 DASH_CACHE: dict = {}          # tenant -> scored leads
-LIST_PER_SEGMENT = 50          # leads per segment sent to the UI lead list
+LIST_PER_SEGMENT = None        # leads per segment sent to the UI lead list (None = all of them)
 
 
 def scored_leads(tenant: str) -> pd.DataFrame:

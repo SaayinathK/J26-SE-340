@@ -9,5 +9,7 @@ export const api = {
   recommendation: (s, id) => call(s, `/leads/${encodeURIComponent(id)}/recommendation`, { timeout: 330000 }),
   outcome: (s, id, outcome) => call(s, `/leads/${encodeURIComponent(id)}/outcome`, { method: 'POST', body: { outcome } }),
   history: (s) => call(s, '/leads/history'),
+  modelQuality: (s) => call(s, '/leads/model-quality'),
+  profile: (s, id) => call(s, `/leads/${encodeURIComponent(id)}/profile`),
   leadHistory: (s, id) => call(s, `/leads/${encodeURIComponent(id)}/history`),
 };
