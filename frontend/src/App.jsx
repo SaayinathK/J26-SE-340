@@ -4,21 +4,24 @@ import { useAuth } from './hooks/useAuth.jsx';
 import AccountShell from './components/AccountShell.jsx';
 import SignIn from './pages/SignIn.jsx';
 import Register from './pages/Register.jsx';
+import Home from './pages/Home.jsx';
 import { navigation } from './data/navigation.js';
 import { Badge, Field, Modal } from './components/ui.jsx';
 import { campaignCSV, downloadFile } from './lib/records.js';
-const getPath = () => location.pathname !== '/' && location.pathname !== '/index.html' ? 'not-available' : location.hash.slice(1).split('?')[0] || 'overview';
+const getPath = () => location.pathname !== '/' && location.pathname !== '/index.html' ? 'not-available' : location.hash.slice(1).split('?')[0] || 'home';
 export default function App() {
   const auth = useAuth();
-  const [page, setPage] = useState(getPath);
+  const [route, setRoute] = useState(()=>location.hash);
+  const page=getPath();
   const [theme, setTheme] = useState(() => { try { return localStorage.getItem('ciftron-theme') || 'light'; } catch { return 'light'; } });
-  useEffect(() => { const handler = () => setPage(getPath()); window.addEventListener('hashchange', handler); return () => window.removeEventListener('hashchange', handler); }, []);
+  useEffect(() => { const handler = () => setRoute(location.hash); window.addEventListener('hashchange', handler); return () => window.removeEventListener('hashchange', handler); }, []);
   useEffect(() => { document.documentElement.dataset.theme = theme; try { localStorage.setItem('ciftron-theme', theme); } catch {} }, [theme]);
-  useEffect(() => { document.title = (page === 'sign-in' ? 'Sign in' : page === 'register' ? 'Create account' : navigation.find(item => item.path === page)?.label || 'Page not available') + ' · Ciftron'; window.scrollTo({ top: 0, behavior: 'instant' }); }, [page]);
-  function navigate(path) { if (location.pathname !== '/') history.replaceState(null, '', '/' + location.search + '#' + path); else location.hash = path; setPage(path.split('?')[0]); }
+  useEffect(() => { document.title = page === 'home' ? 'Ciftron · AI digital marketing platform' : (page === 'sign-in' ? 'Sign in' : page === 'register' ? 'Create account' : navigation.find(item => item.path === page)?.label || 'Page not available') + ' · Ciftron'; window.scrollTo({ top: 0, behavior: 'instant' }); }, [page]);
+  function navigate(path) { if (location.pathname !== '/') history.replaceState(null, '', '/' + location.search + '#' + path); else location.hash = path; setRoute('#'+path); }
   useEffect(() => {
-    if (!auth.loading && !auth.user && !['sign-in', 'register'].includes(page)) navigate('sign-in');
+    if (!auth.loading && !auth.user && !['home', 'sign-in', 'register'].includes(page)) navigate('sign-in');
   }, [auth.loading, auth.user, page]);
+  if (page === 'home') return <Home user={auth.user} />;
   if (auth.loading) return <div className="auth-loading-screen" role="status"><Icon name="loader" size={28} /><strong>Opening your workspace…</strong><span>Checking your secure session.</span></div>;
   if (!auth.user) return page === 'register' ? <Register key={location.hash} navigate={navigate} theme={theme} setTheme={setTheme} /> : <SignIn key={location.hash} navigate={navigate} theme={theme} setTheme={setTheme} />;
   return <AccountShell page={['sign-in', 'register'].includes(page) ? 'overview' : page} navigate={navigate} theme={theme} setTheme={setTheme} NewCampaign={NewCampaign} CampaignDetail={CampaignDetail} />;

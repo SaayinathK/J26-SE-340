@@ -50,6 +50,12 @@
   .connected-signin > div { min-width: 150px; }
   .connected-signin > .badge { margin-left: 37px; }
 }
+.signin-layout { position: relative; }
+.auth-home-link { position: absolute; z-index: 3; top: 34px; left: calc(50% + 40px); display: inline-flex; align-items: center; gap: 7px; color: var(--secondary); text-decoration: none; font-size: 11px; }
+.auth-home-link:hover { color: var(--accent); }
+@media (max-width: 700px) {
+  .auth-home-link { top: 34px; left: auto; right: 28px; color: #afe4d7; }
+}
 @media (prefers-reduced-motion: reduce) {
   .auth-loading-screen > svg, .auth-loading-inline svg, .google-status .lucide-loader-circle { animation: none; }
 }

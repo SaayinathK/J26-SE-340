@@ -11,7 +11,7 @@ if (!['http:', 'https:'].includes(gateway.protocol) || gateway.pathname !== '/' 
 const html = fs.readFileSync(path.join(root, 'index.html'));
 const hashes = [...html.toString().matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => "'sha256-" + crypto.createHash('sha256').update(match[1]).digest('base64') + "'");
 const policy = "default-src 'self'; script-src 'self' https://accounts.google.com " + hashes.join(' ') + "; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://accounts.google.com; frame-src https://accounts.google.com; img-src 'self' data: https://lh3.googleusercontent.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'";
-const types = { '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
+const types = { '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
 const server = http.createServer((req, res) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'no-referrer');
