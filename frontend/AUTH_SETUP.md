@@ -6,7 +6,7 @@ Authentication, registration, account/workspace profiles, invitations, membershi
 
 1. Start Docker Desktop, then run `docker compose up -d gateway-database` from the repository root.
 2. Existing installations must apply `services/gateway/db/migrations/004_accounts_and_sessions.sql` and `services/gateway/db/migrations/005_workspace_records.sql` as the database owner. Fresh installations apply migrations `001` through `005` in order. The gateway must connect as the restricted `c4_app` role, not a PostgreSQL superuser.
-3. Set the gateway environment using `services/gateway/.env.example` as the reference. Keep your existing database password and JWT secret. `CLIENT_ORIGINS` must contain the exact browser origins, for example `http://localhost:5173,http://127.0.0.1:5173`.
+3. Run `node scripts/setup.cjs` from the repository root to initialize missing local configuration, then configure `services/gateway/.env`. The setup script preserves existing credentials. `CLIENT_ORIGINS` must contain the exact browser origins, for example `http://localhost:5173,http://127.0.0.1:5173`. See [platform setup](../docs/setup.md) for configuration details.
 4. In `frontend`, run `npm install` then `npm run dev`. This starts only the gateway, waits for `/api/auth/config` to respond, then starts Vite. An existing healthy gateway is reused. Stopping this command stops only services it started.
 5. Open the chosen hostname consistently, such as `http://127.0.0.1:5173/#register`. Development requests to `/api` are proxied to the gateway's configured `PORT` (4000 by default). `npm run dev:frontend` remains available when you manage the gateway separately.
 
