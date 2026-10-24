@@ -13,4 +13,3 @@ psycopg[binary]
 pgvector
 rank-bm25
 pytest
-streamlit

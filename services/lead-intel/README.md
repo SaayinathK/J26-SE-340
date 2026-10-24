@@ -12,8 +12,10 @@ Port **4003**, called through the C4 gateway only (see `docs/architecture/lead-i
 | `services/lead-intel/src/` | the API: `main.py`, `api/` routes, `agent/` RAG + knowledge base, `services/` scoring, alerts, analytics, monitoring, history, `repositories/` database access, `models/` request schemas, `clients/model_client.py` (Ollama), `config/settings.py` (all paths) |
 | `services/lead-intel/db/` | `migrations/` (C3 database tables + row-level security), `seed/` (optional demo history) |
 | `services/lead-intel/tests/` | `unit/` and `integration/` tests |
-| `services/lead-intel/streamlit/` | older Streamlit dashboard (the main UI is `frontend/`) |
-| `ml/lead-intel/` | how the models are made: `training/`, `notebooks/`, `serving/` (Ollama model container), `reports/`, `data/` |
+| `ml/lead-intel/` | how the models are made: `training/`, `notebooks/`, `serving/` (Ollama model container), `data/raw/` + `data/processed/` |
+| `docs/evidence/lead-intel/` | `reports/` (every evaluation result) and `c3-12/` screenshots |
+| `docs/api/lead-intel/` | OpenAPI contracts (`v1/`) and example answers (`mocks/`) |
+| `docs/architecture/` | C3 decisions (`adr/C3-ADR-*.md`) and `lead-intel/` mapping + traceability |
 | `ml/models/lead-intel/` | trained files: `lead_scorer.joblib`, `c3-mistral-ft-Q4_K_M.gguf` (gitignored) |
 | `frontend/src/features/lead-intel/` | the Lead Intelligence screens of the platform web app |
 
@@ -33,7 +35,7 @@ How to rebuild the data, model and knowledge base: `ml/lead-intel/README.md`.
 
 ## Run with Docker (whole platform)
 
-From the repo root: `powershell -ExecutionPolicy Bypass -File .\scripts\start-docker.ps1` (details in `docs/docker.md`).
+From the repo root: `powershell -ExecutionPolicy Bypass -File .\scripts\start-docker.ps1` (details in `docs/setup.md`).
 
 | Container | Port (127.0.0.1) | What |
 | --- | --- | --- |
@@ -43,7 +45,7 @@ From the repo root: `powershell -ExecutionPolicy Bypass -File .\scripts\start-do
 | `frontend` | 3000 | platform web app (sign in through the gateway) |
 
 On a laptop with little Docker memory, set `C3_OLLAMA_URL=http://host.docker.internal:11434` in the root `.env` and
-run `docker compose stop lead-intel-model` so C3 uses Ollama on the host (`docs/docker-validation.md`).
+run `docker compose stop lead-intel-model` so C3 uses Ollama on the host (`docs/evidence/docker-validation.md`).
 
 ```powershell
 docker compose exec -T lead-intel python -m pytest -q -p no:cacheprovider
@@ -61,7 +63,7 @@ docker compose exec -T lead-intel python db/seed/seed_history.py tenant_a 5     
 
 Rows are never overwritten. Every table has a `tenant` column and **row-level security**: the service logs in as
 `lead_intel_app` (not a superuser, cannot bypass RLS) and sets `app.current_tenant` in each transaction, so the
-database itself refuses another tenant's rows. Decision: `docs/adr/C3-ADR-006-own-database-lead-history.md`.
+database itself refuses another tenant's rows. Decision: `docs/architecture/adr/C3-ADR-006-own-database-lead-history.md`.
 
 ## Endpoints
 
@@ -76,12 +78,12 @@ database itself refuses another tenant's rows. Decision: `docs/adr/C3-ADR-006-ow
 | `GET /leads/history` | FR10 | every lead with history: counts, last score, last result |
 | `GET /leads/{id}/history` | FR10 | one lead: timeline of scores, advice and results + score series |
 
-Contracts: `contracts/v1/lead-score.yaml` (I-04), `lead-recommendation.yaml` (I-05), `lead-outcome.yaml` (FR7),
+Contracts: `docs/api/lead-intel/v1/lead-score.yaml` (I-04), `lead-recommendation.yaml` (I-05), `lead-outcome.yaml` (FR7),
 `lead-history.yaml` (FR10).
 
 ## Results (tenant_a, 20-22 Oct 2026)
 
-| What | Result | Evidence (`ml/lead-intel/reports/`) |
+| What | Result | Evidence (`docs/evidence/lead-intel/reports/`) |
 | --- | --- | --- |
 | Lead scoring (O2) | GB test AUC 0.891 vs rule baseline 0.786 | `c3-04_model_comparison.csv` |
 | Calibration | hot 85% / warm 59% / cold 13% real conversion | `c3-05_segments.csv` |
@@ -92,7 +94,7 @@ Contracts: `contracts/v1/lead-score.yaml` (I-04), `lead-recommendation.yaml` (I-
 | RAG quality, base vs fine-tuned (30 leads) | grounded 100% / 100%; policy-consistent 93.3% / 100% | `c3-13_rag_eval_summary*.json` |
 | Fine-tuning (30 validation prompts) | cites the policy source 0% -> 100%; loss 1.15 -> 0.020 | `c3-14_finetune_summary.json` |
 | Outcome monitoring (FR7), 481 held-out leads | AUC 0.892, Brier 0.124, no retrain needed | `c3-fr7_monitoring.json` |
-| Docker + gateway (C3-06), 21 Oct | smoke 5/5 PASS; recommendation via gateway 91 s | `docs/docker-validation.md` |
+| Docker + gateway (C3-06), 21 Oct | smoke 5/5 PASS; recommendation via gateway 91 s | `docs/evidence/docker-validation.md` |
 
 ## Settings (environment variables)
 

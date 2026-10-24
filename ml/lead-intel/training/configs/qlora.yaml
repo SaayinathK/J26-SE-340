@@ -22,8 +22,8 @@ training:
   warmup_steps: 5% of the optimiser steps
   seed: 42
 data:
-  train: ml/lead-intel/data/finetune/train.jsonl   # 324 examples
-  val: ml/lead-intel/data/finetune/val.jsonl       # 36 examples
+  train: ml/lead-intel/data/processed/finetune/train.jsonl   # 324 examples
+  val: ml/lead-intel/data/processed/finetune/val.jsonl       # 36 examples
 export:
   merge: notebooks/03_merge_lora_to_gguf.ipynb
   gguf: ml/models/lead-intel/c3-mistral-ft-Q4_K_M.gguf

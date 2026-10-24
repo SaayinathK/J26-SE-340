@@ -2,7 +2,7 @@
 # Part A: recompute every dashboard number straight from the CRM file (plain pandas) and compare with the API.
 # Part B: model accuracy on the TEST split only (leads the model never saw in training).
 # Run:  python ml/lead-intel/training/evaluate.py [tenant_a]     (no Ollama needed, about 30 s)
-# Output: printed tables + ml/lead-intel/reports/c3-accuracy_check.json
+# Output: printed tables + docs/evidence/lead-intel/reports/c3-accuracy_check.json
 import json
 import os
 import sys
@@ -106,4 +106,4 @@ for k, v in result["part_b_test_all_tenants"].items():
     print(f"  {k:24} {v}")
 print(f"\nPart A all PASS: {ok_all}")
 json.dump(result, open(settings.REPORTS_DIR / "c3-accuracy_check.json", "w"), indent=2, default=str)
-print("Saved ml/lead-intel/reports/c3-accuracy_check.json")
+print("Saved docs/evidence/lead-intel/reports/c3-accuracy_check.json")

@@ -1,17 +1,18 @@
-// frontend/src/features/lead-intel/pages/Health.jsx — are the scores right?
+// frontend/src/features/lead-intel/components/Health.jsx — are the scores right?
 // 1. Tested on leads the model never saw (validation, O2)   2. Checked against results you record (FR7)
 import { useEffect } from 'react';
 import { CheckCircle2, FlaskConical, RefreshCw, ShieldAlert, Target, Trophy } from 'lucide-react';
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { api } from '../api.js';
 import { SEGMENT } from '../lang.js';
-import { Card, ChartTip, ErrorBox, Kpi, PageHeader, Skeleton, num, pct, useChart, useLoad } from '../../../components/ui.jsx';
+import { Card, ChartTip, ErrorBox, Kpi, PageHeader, Skeleton, num, pct, useChart } from '../../../components/ui.jsx';
+import { useLeadApi } from '../hooks/useLeadApi.js';
 import './lead-extras.css';
 
 
 function TestedAccuracy({ session }) {
   const C = useChart();
-  const { data: q, error, loading, reload } = useLoad(() => api.modelQuality(session), [session.token]);
+  const { data: q, error, loading, reload } = useLeadApi(session, 'modelQuality');
   if (loading) return <Skeleton h={300} />;
   if (error) return <ErrorBox error={error} onRetry={reload} />;
   const a = q.all_tenants;
@@ -65,7 +66,7 @@ function TestedAccuracy({ session }) {
 
 export default function Health({ session, onAuthError }) {
   const C = useChart();
-  const { data: m, error, loading, reload } = useLoad(() => api.monitoring(session), [session.token]);
+  const { data: m, error, loading, reload } = useLeadApi(session, 'monitoring');
   useEffect(() => { if (error?.status === 401) onAuthError(); }, [error, onAuthError]);
 
   const header = (

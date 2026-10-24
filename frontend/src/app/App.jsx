@@ -4,11 +4,11 @@ import { Activity, ArrowRight, Gauge, History as HistoryIcon, LayoutDashboard, L
 import { loadSession, login, saveSession } from '../lib/api-client.js';
 import { ThemeCtx, useToast } from '../components/ui.jsx';
 import { displayName } from '../features/lead-intel/lang.js';
-import Overview from '../features/lead-intel/pages/Overview.jsx';
-import Leads from '../features/lead-intel/pages/Leads.jsx';
-import History from '../features/lead-intel/pages/History.jsx';
-import Scorer from '../features/lead-intel/pages/Scorer.jsx';
-import Health from '../features/lead-intel/pages/Health.jsx';
+import Overview from '../features/lead-intel/components/Overview.jsx';
+import Leads from '../features/lead-intel/components/Leads.jsx';
+import History from '../features/lead-intel/components/History.jsx';
+import Scorer from '../features/lead-intel/components/Scorer.jsx';
+import Health from '../features/lead-intel/components/Health.jsx';
 
 const BRAND = 'ciftron';
 const PAGES = [

@@ -1,5 +1,5 @@
 # ml/lead-intel/training/build_kb.py  — C3-07 build the per-tenant knowledge base (needs Ollama + nomic-embed-text)
-# Writes ml/lead-intel/data/kb/<tenant>_docs.jsonl + <tenant>_vectors.npy and reports/c3-07_kb_counts.csv
+# Writes ml/lead-intel/data/processed/kb/<tenant>_docs.jsonl + <tenant>_vectors.npy and reports/c3-07_kb_counts.csv
 # Run:  python ml/lead-intel/training/build_kb.py [tenant_a tenant_b ...]     (all tenants if none given)
 #       python ml/lead-intel/training/build_kb.py --counts                     (only re-count the saved files)
 import sys

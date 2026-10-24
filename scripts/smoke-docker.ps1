@@ -23,5 +23,4 @@ if ($score.score -lt 0 -or $score.score -gt 100) { throw 'Invalid score' }
 $saved = Invoke-RestMethod "$baseUrl/api/leads/docker-smoke/history" -Headers $headers
 if ($saved.storage -ne 'postgres' -or $saved.counts.scores -lt 1) { throw 'Score was not saved in the C3 database' }
 Write-Output 'PASS score saved in the C3 database (lead history)'
-$null = Invoke-RestMethod 'http://127.0.0.1:8501/_stcore/health'
-Write-Output 'PASS login, scoring, dashboard health'
+Write-Output 'PASS login and scoring'

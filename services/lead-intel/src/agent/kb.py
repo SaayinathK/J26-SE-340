@@ -1,7 +1,7 @@
 # services/lead-intel/src/agent/kb.py  — C3-07 Tenant-scoped lead knowledge base (+ C3-09 retrieval methods)
 # Builds anonymised text documents per tenant, embeds them with nomic-embed-text
 # (through clients/model_client.py) and stores them per tenant. Storage: files in
-# ml/lead-intel/data/kb/<tenant>_* (see C3-ADR-004). Build them with:
+# ml/lead-intel/data/processed/kb/<tenant>_* (see C3-ADR-004). Build them with:
 #   python ml/lead-intel/training/build_kb.py
 import json
 import re

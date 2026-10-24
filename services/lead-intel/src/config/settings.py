@@ -1,7 +1,8 @@
 # services/lead-intel/src/config/settings.py — every path and setting of the C3 service in one place
 # Paths follow the team folder structure:
-#   ml/lead-intel/data/...      data (raw + processed are gitignored)
-#   ml/lead-intel/reports/...   evaluation results
+#   ml/lead-intel/data/raw/...        input data (gitignored, except the hand-written business_context/)
+#   ml/lead-intel/data/processed/...  generated data: CRM file, knowledge base (kb/), fine-tune set (gitignored)
+#   docs/evidence/lead-intel/reports/ evaluation results (evidence)
 #   ml/models/lead-intel/...    trained model files (gitignored)
 # Each value can be overridden with an environment variable (Docker does this).
 import os
@@ -20,10 +21,10 @@ def _path(env: str, default: Path) -> Path:
 DATA_DIR = ML_DIR / "data"
 RAW_LEADS = _path("C3_RAW_LEADS", DATA_DIR / "raw" / "Leads.csv")
 LEADS_PATH = _path("C3_LEADS_PATH", DATA_DIR / "processed" / "leads_ghl.jsonl")
-KB_DIR = _path("C3_KB_DIR", DATA_DIR / "kb")
-BC_DIR = _path("C3_BC_DIR", DATA_DIR / "business_context")
-FINETUNE_DIR = _path("C3_FINETUNE_DIR", DATA_DIR / "finetune")
-REPORTS_DIR = _path("C3_REPORTS_DIR", ML_DIR / "reports")
+KB_DIR = _path("C3_KB_DIR", DATA_DIR / "processed" / "kb")
+BC_DIR = _path("C3_BC_DIR", DATA_DIR / "raw" / "business_context")
+FINETUNE_DIR = _path("C3_FINETUNE_DIR", DATA_DIR / "processed" / "finetune")
+REPORTS_DIR = _path("C3_REPORTS_DIR", REPO_ROOT / "docs" / "evidence" / "lead-intel" / "reports")
 SEGMENTS_CSV = _path("C3_SEGMENTS", REPORTS_DIR / "c3-05_segments.csv")
 MODEL_PATH = _path("C3_MODEL_PATH", REPO_ROOT / "ml" / "models" / "lead-intel" / "lead_scorer.joblib")
 

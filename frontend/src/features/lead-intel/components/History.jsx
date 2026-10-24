@@ -1,4 +1,4 @@
-// frontend/src/features/lead-intel/pages/History.jsx — FR10 everything the AI said about each lead, in one page
+// frontend/src/features/lead-intel/components/History.jsx — FR10 everything the AI said about each lead, in one page
 // Left: every lead that has history. Right: the chosen lead's score over time + a timeline of
 // scores, advice and results (newest first). Uses only the shared UI pieces and theme colours.
 import { useEffect, useMemo, useState } from 'react';
@@ -7,7 +7,8 @@ import { AlertTriangle, BarChart3, BookOpen, Database, FileText, History as Hist
 import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { api } from '../api.js';
 import { SEGMENT, explainSource, factorLabel, leadName, simpleAction } from '../lang.js';
-import { Avatar, Card, ChartTip, ErrorBox, Kpi, LeadName, PageHeader, Seg, Skeleton, useChart, useLoad } from '../../../components/ui.jsx';
+import { Avatar, Card, ChartTip, ErrorBox, Kpi, LeadName, PageHeader, Seg, Skeleton, useChart } from '../../../components/ui.jsx';
+import { useLeadApi } from '../hooks/useLeadApi.js';
 import './history.css';
 
 const FILTERS = [
@@ -35,7 +36,7 @@ function ago(iso) {
 const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
 export default function History({ session, go, onAuthError }) {
-  const { data, error, loading, reload } = useLoad(() => api.history(session), [session.token]);
+  const { data, error, loading, reload } = useLeadApi(session, 'history');
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState('all');
   const [selected, setSelected] = useState(null);
@@ -124,7 +125,7 @@ export default function History({ session, go, onAuthError }) {
 
 function LeadStory({ id, session, onAuthError }) {
   const C = useChart();
-  const { data: h, error, loading, reload } = useLoad(() => api.leadHistory(session, id), [id, session.token]);
+  const { data: h, error, loading, reload } = useLeadApi(session, 'leadHistory', id);
   useEffect(() => { if (error?.status === 401) onAuthError(); }, [error, onAuthError]);
   const series = useMemo(() => (h?.score_series || []).map((p, i) => ({ ...p, n: i + 1, label: when(p.at) })), [h]);
 

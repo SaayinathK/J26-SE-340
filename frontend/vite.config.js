@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: { chunkSizeWarningLimit: 1000 },
+  test: { include: ['tests/**/*.test.{js,jsx}'], environment: 'node' },   // npm test (frontend/tests/)
   server: {
     port: 3000,
     proxy: { '/api': { target: process.env.GATEWAY_URL || 'http://127.0.0.1:4000', changeOrigin: true } },

@@ -1,4 +1,4 @@
-// src/pages/Leads.jsx — all segments, search / filter / sort / pages, and a lead drawer in plain English
+// frontend/src/features/lead-intel/components/Leads.jsx — all segments, search / filter / sort / pages, and a lead drawer in plain English
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { BarChart3, BookOpen, Check, ChevronLeft, ChevronRight, Copy, Mail, MessageCircle, Search, Sparkles,
   ThumbsDown, ThumbsUp, UserCheck, UserX, X } from 'lucide-react';
@@ -6,7 +6,8 @@ import { canWrite } from '../../../lib/api-client.js';
 import { api } from '../api.js';
 import './lead-extras.css';
 import { SEGMENT, activity, explainSource, leadName, minutes, origin, simpleAction, source, strength } from '../lang.js';
-import { Avatar, Card, ErrorBox, LeadName, PageHeader, ScoreBar, Seg, SEG_COLOURS, Skeleton, useLoad, useToast } from '../../../components/ui.jsx';
+import { Avatar, Card, ErrorBox, LeadName, PageHeader, ScoreBar, Seg, SEG_COLOURS, Skeleton, useToast } from '../../../components/ui.jsx';
+import { useLeadApi } from '../hooks/useLeadApi.js';
 
 const PAGE = 10;
 const SORTS = {
@@ -16,7 +17,7 @@ const SORTS = {
 };
 
 export default function Leads({ session, onAuthError }) {
-  const { data, error, loading, reload } = useLoad(() => api.dashboard(session), [session.token]);
+  const { data, error, loading, reload } = useLeadApi(session, 'dashboard');
   const [q, setQ] = useState('');
   const [seg, setSeg] = useState('all');
   const [src, setSrc] = useState('all');

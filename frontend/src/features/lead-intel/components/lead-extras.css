@@ -1,4 +1,4 @@
-/* frontend/src/features/lead-intel/pages/lead-extras.css — small additions for the Leads, Check and Score check pages.
+/* frontend/src/features/lead-intel/components/lead-extras.css — small additions for the Leads, Check and Score check pages.
    Uses only the theme variables from styles/styles.css (light + dark). */
 .todo-note { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; font-weight: 500; }
 .personal { margin: 0 0 16px; padding: 14px 16px; border-radius: 14px; background: var(--panel); border: 1px solid var(--line); }

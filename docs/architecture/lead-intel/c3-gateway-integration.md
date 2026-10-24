@@ -7,7 +7,7 @@
 **Update (20 Oct 2026):** The proxy is now implemented in
 `services/gateway/src/routes/leads.js`, with JWT-derived tenant context, roles,
 audit, outcome and monitoring routes, and a 300-second upstream timeout.
-See [Docker setup](../../../docs/docker.md) for the integrated deployment.
+See [Docker setup](../../../docs/setup.md) for the integrated deployment.
 The proposal and results below describe the earlier integration work.
 
 **Status (14 Oct 2026):** C3 works on its own (port 3001). The C4 gateway (`feature/c4-platform-email`, last checked at `6968cfa`)

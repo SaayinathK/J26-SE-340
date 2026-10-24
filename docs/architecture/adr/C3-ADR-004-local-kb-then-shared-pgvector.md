@@ -7,7 +7,7 @@ The architecture has one CRM-grounded knowledge base with tenant-scoped retrieva
 pgvector `knowledge_base` table (with `tenant_id`) was merged to `main` on 14 Oct; C3 was built before it existed.
 
 ## Decision
-Store C3 documents per tenant in `data/kb/<tenant>_docs.jsonl` + `_vectors.npy` (isolation by file), behind
+Store C3 documents per tenant in `data/processed/kb/<tenant>_docs.jsonl` + `_vectors.npy` (isolation by file), behind
 `kb._open()` / `kb.scores()`, so only those two functions change when moving to the shared table.
 
 ## Consequences

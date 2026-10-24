@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 Push-Location (Join-Path $PSScriptRoot '..')
 try {
-    foreach ($asset in @('ml/models/lead-intel/lead_scorer.joblib', 'ml/lead-intel/data/processed/leads_ghl.jsonl', 'ml/lead-intel/data/kb/tenant_a_vectors.npy', 'ml/lead-intel/data/kb/tenant_b_vectors.npy', 'ml/lead-intel/data/kb/tenant_c_vectors.npy')) {
+    foreach ($asset in @('ml/models/lead-intel/lead_scorer.joblib', 'ml/lead-intel/data/processed/leads_ghl.jsonl', 'ml/lead-intel/data/processed/kb/tenant_a_vectors.npy', 'ml/lead-intel/data/processed/kb/tenant_b_vectors.npy', 'ml/lead-intel/data/processed/kb/tenant_c_vectors.npy')) {
         if (-not (Test-Path $asset)) { throw "Missing Lead Intelligence asset: $asset. See ml/lead-intel/README.md." }
     }
     if (-not (Test-Path '.env')) {
@@ -17,8 +17,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Database or Lead Intelligence startup failed' }
     docker compose run --rm --no-deps gateway node scripts/seed-users.js
     if ($LASTEXITCODE -ne 0) { throw 'User seed failed' }
-    docker compose up -d --wait gateway dashboard frontend
-    if ($LASTEXITCODE -ne 0) { throw 'Gateway, dashboard or frontend startup failed' }
+    docker compose up -d --wait gateway frontend
+    if ($LASTEXITCODE -ne 0) { throw 'Gateway or frontend startup failed' }
     & (Join-Path $PSScriptRoot 'smoke-docker.ps1')
     docker compose up -d --wait ollama
     if ($LASTEXITCODE -ne 0) { throw 'Ollama startup failed' }

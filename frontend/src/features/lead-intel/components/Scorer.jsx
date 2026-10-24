@@ -1,4 +1,4 @@
-// src/pages/Scorer.jsx — check a new lead: chance score 0-100, group, and the reasons in plain words
+// frontend/src/features/lead-intel/components/Scorer.jsx — check a new lead: chance score 0-100, group, and the reasons in plain words
 import { useState } from 'react';
 import { AlertTriangle, ArrowDown, ArrowUp, Database, Info, RotateCcw, Target } from 'lucide-react';
 import { canWrite } from '../../../lib/api-client.js';

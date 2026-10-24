@@ -11,7 +11,7 @@
 # base-vs-fine-tuned comparison is on leads the model never saw.
 #
 # Needs Ollama (nomic-embed-text) and the KB.  Run:  python ml/lead-intel/training/finetune_data.py
-# Output: ml/lead-intel/data/finetune/train.jsonl + val.jsonl, ml/lead-intel/reports/c3-14_dataset_summary.json
+# Output: ml/lead-intel/data/processed/finetune/train.jsonl + val.jsonl, docs/evidence/lead-intel/reports/c3-14_dataset_summary.json
 import json
 import re
 from pathlib import Path

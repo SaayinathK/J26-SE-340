@@ -1,10 +1,11 @@
-// src/pages/Overview.jsx — main dashboard: greeting, hero, KPIs, weekly trend, AI workspace, hottest leads, groups, funnel, sources
+// frontend/src/features/lead-intel/components/Overview.jsx — main dashboard: greeting, hero, KPIs, weekly trend, AI workspace, hottest leads, groups, funnel, sources
 import { useEffect, useMemo } from 'react';
 import { ArrowRight, BookOpen, Flame, Lock, Percent, Sparkles, Target, TrendingDown, Users } from 'lucide-react';
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { api } from '../api.js';
 import { SEGMENT, activity, displayName, source } from '../lang.js';
-import { Card, ChartTip, ErrorBox, Kpi, LeadName, ScoreBar, Seg, SEG_COLOURS, Skeleton, num, pct, useChart, useLoad } from '../../../components/ui.jsx';
+import { Card, ChartTip, ErrorBox, Kpi, LeadName, ScoreBar, Seg, SEG_COLOURS, Skeleton, num, pct, useChart } from '../../../components/ui.jsx';
+import { useLoad } from '../../../hooks/useLoad.js';
 
 const STAGE = { 'Captured': 'New lead', 'Engaged': 'Showed interest', 'Engaged (visited site)': 'Showed interest',
   'Contacted': 'We contacted', 'Won': 'Became customer' };

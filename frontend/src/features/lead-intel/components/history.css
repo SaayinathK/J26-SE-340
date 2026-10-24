@@ -1,4 +1,4 @@
-/* frontend/src/features/lead-intel/pages/history.css — Lead history page only.
+/* frontend/src/features/lead-intel/components/history.css — Lead history page only.
    Uses the theme variables from styles/styles.css (light + dark); the shared theme is not changed. */
 .hist-grid { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); gap: 16px; align-items: start; }
 .hist-list-card { position: sticky; top: 76px; }

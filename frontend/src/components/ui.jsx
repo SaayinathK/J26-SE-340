@@ -1,5 +1,5 @@
 // frontend/src/components/ui.jsx — shared pieces: cards, KPI tiles, avatars, badges, toasts, loading, count-up animation
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { SEGMENT, avatarColour, initials, leadName } from '../features/lead-intel/lang.js';
 
 export const pct = (x, d = 0) => (x == null || Number.isNaN(x) ? '–' : `${(x * 100).toFixed(d)}%`);
@@ -139,21 +139,6 @@ export function ChartTip({ active, payload, label, fmt = (v) => v }) {
       ))}
     </div>
   );
-}
-
-// ---------- data loading hook ----------
-export function useLoad(fn, deps) {
-  const [state, set] = useState({ data: null, error: null, loading: true });
-  const alive = useRef(true);
-  useEffect(() => { alive.current = true; return () => { alive.current = false; }; }, []);
-  const load = useCallback(() => {
-    set((s) => ({ ...s, loading: true, error: null }));
-    fn().then((data) => alive.current && set({ data, error: null, loading: false }),
-      (error) => alive.current && set({ data: null, error, loading: false }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
-  useEffect(() => { load(); }, [load]);
-  return { ...state, reload: load };
 }
 
 // ---------- toasts ----------
