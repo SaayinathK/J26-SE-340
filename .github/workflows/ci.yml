@@ -1,0 +1,40 @@
+# .github/workflows/ci.yml - checks every push and pull request (no secrets, no data, no models needed)
+# The Lead Intelligence API tests need the CRM data and trained model, which are not in git (see .gitignore),
+# so CI checks that the Python code compiles; run the full suite locally:  cd services/lead-intel ; python -m pytest -q
+name: CI
+on:
+  push:
+    branches: [main, develop, "feature/**"]
+  pull_request:
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: frontend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: frontend/package-lock.json }
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+  gateway:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: services/gateway } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: services/gateway/package-lock.json }
+      - run: npm ci
+      - run: npx jest --testPathIgnorePatterns isolation   # the tenant-isolation test needs the running database
+
+  lead-intel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - run: python -m compileall -q services/lead-intel/src services/lead-intel/tests ml/lead-intel/training
+      - name: docker compose file is valid
+        run: JWT_SECRET=ci docker compose config --quiet

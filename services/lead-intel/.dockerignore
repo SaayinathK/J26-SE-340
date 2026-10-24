@@ -3,9 +3,4 @@
 __pycache__
 .pytest_cache
 .pytest_tmp
-models
-data/raw
-data/processed
-data/kb
-data/finetune
-notebooks
+state

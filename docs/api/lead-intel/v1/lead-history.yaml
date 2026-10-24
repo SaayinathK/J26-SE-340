@@ -1,0 +1,96 @@
+# Lead output history (FR10) — producer: C3 Lead Intelligence (Shathursini J)
+# Consumers: platform web app (Lead history page), Strategy agent (score trends), Email agent (new advice),
+# Component 2 (scores + real outcomes for retraining). Always called through the C4 gateway (/api/leads/...).
+openapi: 3.0.3
+info: { title: "C3 Lead output history (FR10)", version: "1.0.0" }
+servers: [ { url: "http://localhost:4003" } ]
+components:
+  parameters:
+    Tenant: { in: header, name: X-Tenant-Id, required: true, schema: { type: string },
+              description: "Set by the C4 gateway from the JWT. Clients must not send it." }
+  schemas:
+    LeadSummary:
+      type: object
+      properties:
+        lead_id: { type: string }
+        scores: { type: integer }
+        recommendations: { type: integer }
+        outcomes: { type: integer }
+        last_score: { type: integer, nullable: true }
+        last_segment: { type: string, enum: [hot, warm, cold], nullable: true }
+        last_outcome: { type: string, enum: [won, lost], nullable: true }
+        last_at: { type: string, format: date-time }
+paths:
+  /leads/history:
+    get:
+      summary: Every lead of this tenant that has history, newest activity first
+      parameters: [ { $ref: "#/components/parameters/Tenant" } ]
+      responses:
+        "200":
+          description: Totals and one row per lead
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  storage: { type: string, enum: [postgres, file] }
+                  totals:
+                    type: object
+                    properties:
+                      leads: { type: integer }
+                      scores: { type: integer }
+                      recommendations: { type: integer }
+                      outcomes: { type: integer }
+                  leads: { type: array, items: { $ref: "#/components/schemas/LeadSummary" } }
+        "404": { description: Unknown tenant }
+        "503": { description: C3 database not reachable }
+  /leads/{lead_id}/history:
+    get:
+      summary: Everything the agent produced for one lead (scores, advice, outcomes)
+      parameters:
+        - { in: path, name: lead_id, required: true, schema: { type: string } }
+        - { $ref: "#/components/parameters/Tenant" }
+      responses:
+        "200":
+          description: Timeline (newest first) and score series (oldest first)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lead_id: { type: string }
+                  storage: { type: string, enum: [postgres, file] }
+                  profile: { type: object, nullable: true, description: "The lead as in the lead list (current CRM score); null if checked by hand" }
+                  counts:
+                    type: object
+                    properties: { scores: { type: integer }, recommendations: { type: integer }, outcomes: { type: integer } }
+                  score_series:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        at: { type: string, format: date-time }
+                        score: { type: integer }
+                        segment: { type: string }
+                        source: { type: string, enum: [api, recommendation, outcome, seed] }
+                  events:
+                    type: array
+                    items:
+                      type: object
+                      required: [type, id, created_at]
+                      properties:
+                        type: { type: string, enum: [score, recommendation, outcome] }
+                        id: { type: string }
+                        created_at: { type: string, format: date-time }
+                        score: { type: integer }
+                        segment: { type: string }
+                        top_factors: { type: array, items: { type: object } }
+                        alert: { type: object, nullable: true }
+                        next_best_action: { type: string, nullable: true }
+                        message_draft: { type: string, nullable: true }
+                        sources: { type: array, items: { type: object } }
+                        grounded: { type: boolean }
+                        policy_check: { type: string }
+                        outcome: { type: string, enum: [won, lost] }
+        "404": { description: Lead not found for this tenant (or another tenant's lead) }
+        "503": { description: C3 database not reachable }

@@ -1,0 +1,11 @@
+# ml/lead-intel/serving/Modelfile — C3-14 run the fine-tuned Lead Intelligence model in Ollama
+# Ollama 0.34.1+ no longer supports ADAPTER, so the QLoRA adapter is merged into Mistral 7B Instruct v0.3
+# and exported as GGUF Q4_K_M by ml/lead-intel/notebooks/03_merge_lora_to_gguf.ipynb (Colab).
+# On your own computer:
+#   1. put c3-mistral-ft-Q4_K_M.gguf (Google Drive: My Drive/c3_finetune) into ml/models/lead-intel/
+#   2. cd ml/lead-intel/serving ; ollama create c3-mistral-ft -f Modelfile
+# In Docker, the lead-intel-model container does step 2 by itself (see entrypoint.sh).
+FROM ../../models/lead-intel/c3-mistral-ft-Q4_K_M.gguf
+TEMPLATE """[INST] {{ .Prompt }}[/INST]"""
+PARAMETER stop "[INST]"
+PARAMETER stop "[/INST]"
