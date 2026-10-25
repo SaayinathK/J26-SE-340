@@ -1,0 +1,66 @@
+# Lead outcome + model monitoring (FR7) — producer: C3 Lead Intelligence (Shathursini J)
+openapi: 3.0.3
+info: { title: "C3 Lead outcome and model monitoring (FR7)", version: "1.0.0" }
+servers: [ { url: "http://localhost:4003" } ]
+paths:
+  /leads/{lead_id}/outcome:
+    post:
+      summary: Record the real result (won / lost) next to the score the model gave
+      parameters:
+        - { in: path, name: lead_id, required: true, schema: { type: string } }
+        - { in: header, name: X-Tenant-Id, required: true, schema: { type: string },
+            description: "Set by the C4 gateway from the JWT. Clients must not send it." }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [outcome]
+              properties:
+                outcome: { type: string, enum: [won, lost] }
+      responses:
+        "200":
+          description: Outcome stored
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lead_id: { type: string }
+                  outcome: { type: string, enum: [won, lost] }
+                  score: { type: integer, minimum: 0, maximum: 100 }
+                  segment: { type: string, enum: [hot, warm, cold] }
+                  model_version: { type: string }
+                  recorded_at: { type: string, format: date-time }
+        "404": { description: Lead not scored / not found for this tenant }
+        "422": { description: outcome is not won or lost }
+  /leads/monitoring:
+    get:
+      summary: Is the scoring model still accurate on real outcomes for this tenant?
+      parameters:
+        - { in: header, name: X-Tenant-Id, required: true, schema: { type: string },
+            description: "Set by the C4 gateway from the JWT. Clients must not send it." }
+      responses:
+        "200":
+          description: Monitoring summary (AUC is null until there are >= 10 outcomes with both classes)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tenant_outcomes: { type: integer }
+                  status: { type: string, description: "only when no outcomes are recorded yet" }
+                  won_rate: { type: number }
+                  segments:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        leads: { type: integer }
+                        avg_score: { type: number }
+                        won_rate: { type: number }
+                  brier: { type: number }
+                  auc: { type: number, nullable: true }
+                  retrain_recommended: { type: boolean }
+                  reasons: { type: array, items: { type: string } }

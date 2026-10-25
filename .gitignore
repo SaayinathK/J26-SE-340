@@ -6,3 +6,26 @@ node_modules/
 .venv/
 __pycache__/
 *.pyc
+# ML data and model files (team folder structure)
+ml/models/
+ml/*/data/raw/*
+!ml/lead-intel/data/raw/business_context/
+ml/*/data/processed/
+*.log
+
+# build output and local state
+dist/
+.pytest_cache/
+.pytest_tmp/
+services/lead-intel/state/
+.vite/
+
+# local tool folders - never commit
+.agents/
+.claude/
+
+# safety net: data, weights and old outputs never go into a service folder or into git
+*.gguf
+services/*/data/
+services/*/models/
+services/*/eval/

@@ -1,0 +1,29 @@
+# ml/lead-intel/training/configs/qlora.yaml — the QLoRA settings used to fine-tune c3-mistral-ft (C3-14)
+# Record of the values in notebooks/02_finetune_mistral_qlora.ipynb (Colab T4). Change both together.
+base_model: unsloth/mistral-7b-instruct-v0.3   # open copy of mistralai/Mistral-7B-Instruct-v0.3
+max_tokens_per_example: 1536
+quantisation:
+  load_in_4bit: true
+  quant_type: nf4
+  compute_dtype: float16
+  double_quant: true
+lora:
+  r: 16
+  alpha: 32            # 2 x r
+  dropout: 0.05
+  bias: none
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+training:
+  epochs: 2
+  learning_rate: 0.0002
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 8
+  lr_scheduler: cosine
+  warmup_steps: 5% of the optimiser steps
+  seed: 42
+data:
+  train: ml/lead-intel/data/processed/finetune/train.jsonl   # 324 examples
+  val: ml/lead-intel/data/processed/finetune/val.jsonl       # 36 examples
+export:
+  merge: notebooks/03_merge_lora_to_gguf.ipynb
+  gguf: ml/models/lead-intel/c3-mistral-ft-Q4_K_M.gguf

@@ -1,5 +1,5 @@
 # services/lead-intel/tests/fakes.py — offline stand-in for nomic-embed-text (tests only)
-# Hashes words into a fixed-size vector so tests run without Ollama. Real runs use kb.embed.
+# Hashes words into a fixed-size vector so tests run without Ollama. Real runs use clients/model_client.embed.
 import re
 import zlib
 import numpy as np
@@ -14,7 +14,7 @@ def fake_embed(texts, batch=32, dim=256):
 
 def use_fake_kb(monkeypatch, tmp_path, tenants=("tenant_a",), n=300):
     """Build a small real-format KB from the first n leads of each tenant, offline."""
-    import kb, rag
+    from agent import kb, rag
     monkeypatch.setattr(kb, "embed", fake_embed)
     monkeypatch.setattr(rag, "embed", fake_embed)
     monkeypatch.setattr(kb, "KB_DIR", tmp_path)

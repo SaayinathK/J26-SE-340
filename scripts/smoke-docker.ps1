@@ -14,11 +14,13 @@ foreach ($otherLead in $otherDashboard.top_10_hottest) {
     if ($otherLead.lead_id -in $firstTenantIds) { throw 'Lead leaked between tenant dashboards' }
 }
 Write-Output 'PASS JWT tenant isolation and spoofed tenant header rejection'
-foreach ($endpoint in @('analytics', 'dashboard', 'monitoring')) {
+foreach ($endpoint in @('analytics', 'dashboard', 'monitoring', 'history')) {
     $null = Invoke-RestMethod "$baseUrl/api/leads/$endpoint" -Headers $headers
     Write-Output "PASS gateway -> lead-intel: $endpoint"
 }
 $score = Invoke-RestMethod "$baseUrl/api/leads/score" -Method Post -Headers $headers -ContentType 'application/json' -Body '{"lead_id":"docker-smoke","time_on_site_sec":600,"total_visits":5,"pages_per_visit":3}'
 if ($score.score -lt 0 -or $score.score -gt 100) { throw 'Invalid score' }
-$null = Invoke-RestMethod 'http://127.0.0.1:8501/_stcore/health'
-Write-Output 'PASS login, scoring, dashboard health'
+$saved = Invoke-RestMethod "$baseUrl/api/leads/docker-smoke/history" -Headers $headers
+if ($saved.storage -ne 'postgres' -or $saved.counts.scores -lt 1) { throw 'Score was not saved in the C3 database' }
+Write-Output 'PASS score saved in the C3 database (lead history)'
+Write-Output 'PASS login and scoring'

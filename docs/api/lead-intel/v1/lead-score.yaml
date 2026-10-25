@@ -1,0 +1,77 @@
+# I-04  Lead score  — producer: C3 Lead Intelligence (Shathursini J)
+openapi: 3.0.3
+info: { title: "C3 Lead score (I-04)", version: "1.1.0" }   # 1.1.0: + confidence, alert (additive, C3-11)
+servers: [ { url: "http://localhost:4003" } ]
+paths:
+  /leads/score:
+    post:
+      summary: Score one lead (0-100), segment it and explain the top factors
+      parameters:
+        - { in: header, name: X-Tenant-Id, required: true, schema: { type: string },
+            description: "Set by the C4 gateway from the JWT. Clients must not send it." }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [lead_id]
+              properties:
+                lead_id: { type: string }
+                source: { type: string }
+                lead_origin: { type: string }
+                last_activity: { type: string }
+                occupation: { type: string }
+                specialization: { type: string }
+                total_visits: { type: number }
+                time_on_site_sec: { type: number }
+                pages_per_visit: { type: number }
+      responses:
+        "200":
+          description: Lead score
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lead_id: { type: string }
+                  score: { type: integer, minimum: 0, maximum: 100 }
+                  segment: { type: string, enum: [hot, warm, cold] }
+                  top_factors:
+                    type: array
+                    description: "top 3 reasons; SHAP summed per original CRM column; value = this lead's own value"
+                    items: { type: object, properties: { feature: { type: string }, impact: { type: number }, value: {} } }
+                  model_version: { type: string }
+                  confidence:
+                    type: object
+                    description: "C3-11 (FR9) how far to trust the segment"
+                    properties:
+                      level: { type: string, enum: [low, medium, high] }
+                      points_from_boundary: { type: integer }
+                      segment_conversion_rate: { type: number }
+                      segment_validation_leads: { type: integer }
+                      note: { type: string }
+                  what_if:
+                    type: boolean
+                    description: "true when the Lead ID is in this tenant's CRM but the details sent are different; the score is then for the changed details and is NOT saved to the lead's history"
+                  crm:
+                    type: object
+                    nullable: true
+                    description: "null for a new lead; otherwise the real CRM score of this Lead ID and which fields were changed"
+                    properties:
+                      score: { type: integer }
+                      segment: { type: string, enum: [hot, warm, cold] }
+                      changed: { type: array, items: { type: object, properties: { field: { type: string }, label: { type: string } } } }
+                  alert:
+                    type: object
+                    nullable: true
+                    description: "C3-11 (FR8) set when the lead dropped a segment since its last score (same tenant)"
+                    properties:
+                      type: { type: string, enum: [segment_drop] }
+                      from: { type: string, enum: [hot, warm] }
+                      to: { type: string, enum: [warm, cold] }
+                      previous_score: { type: integer }
+                      score: { type: integer }
+                      previous_scored_at: { type: string, format: date-time }
+                      message: { type: string }
+        "422": { description: Missing X-Tenant-Id or invalid body }

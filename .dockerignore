@@ -1,0 +1,13 @@
+# Root .dockerignore - every image is built from its own folder (services/<name>, frontend, ml/<agent>/serving);
+# this file only matters if an image is ever built from the repository root.
+.git
+.env
+.env.*
+**/node_modules
+**/.venv
+**/__pycache__
+**/.pytest_cache
+ml/models
+ml/*/data/raw
+ml/*/data/processed
+docs/evidence

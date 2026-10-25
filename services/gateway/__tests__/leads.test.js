@@ -52,3 +52,13 @@ test('preserves upstream validation errors', async () => {
   expect(response.status).toBe(422);
   expect(response.body.detail).toBe('Invalid lead');
 });
+
+test('viewers can read lead history, forwarded with the JWT tenant', async () => {
+  for (const path of ['/api/leads/history', '/api/leads/L-123/history']) {
+    const response = await request(app).get(path).set('Authorization', 'Bearer ' + token('viewer'));
+    expect(response.status).toBe(200);
+  }
+  expect(global.fetch.mock.calls[0][0]).toMatch(/\/leads\/history$/);
+  expect(global.fetch.mock.calls[1][0]).toMatch(/\/leads\/L-123\/history$/);
+  expect(global.fetch.mock.calls[1][1].headers['X-Tenant-Id']).toBe('tenant_a');
+});

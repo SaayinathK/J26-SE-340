@@ -1,0 +1,2 @@
+# ml/lead-intel/requirements.txt — the training scripts use the same Python environment as the C3 service
+-r ../../services/lead-intel/requirements.txt
