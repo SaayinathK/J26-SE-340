@@ -18,11 +18,16 @@ test('Meta generation produces three personas with 30 hooks and 9 complete copy 
  expect(llm.callLLM.mock.calls[1][0].prompt).toContain('Audience 1');
  expect(llm.callLLM.mock.calls[1][0].prompt).not.toContain('Audience 2');
 });
-test('retries only the failing persona and counts all model usage',async()=>{
- llm.callLLM.mockResolvedValueOnce(response({personas})).mockResolvedValueOnce(response({hooks:['only one']})).mockResolvedValueOnce(response(creative(0))).mockResolvedValueOnce(response(creative(1))).mockResolvedValueOnce(response(creative(2)));
+test('repairs only a missing body and counts every model call',async()=>{
+ const broken=creative(0);broken.body_copies.pop();
+ llm.callLLM.mockResolvedValueOnce(response({personas})).mockResolvedValueOnce(response(broken))
+ .mockResolvedValueOnce(response(creative(0).body_copies[2]))
+ .mockResolvedValueOnce(response(creative(1))).mockResolvedValueOnce(response(creative(2)));
  const result=await generateWithRetry({},'', 'meta_ad');
  expect(result.attempts).toBe(5);expect(result.tokensUsed).toBe(25);
- expect(llm.callLLM.mock.calls[2][0].prompt).toContain('Return exactly 10 nonempty hooks');
+ expect(llm.callLLM.mock.calls[2][0].prompt).toContain('Write ONE new ad body');
+ expect(result.output.personas[0].hooks).toEqual(broken.hooks);
+ expect(validateMetaCampaign(result.output)).toEqual([]);
 });
 test('invalid persona planning fails rather than returning a single ad or partial campaign',async()=>{
  llm.callLLM.mockResolvedValue(response({hook:'Legacy ad'}));
@@ -34,7 +39,7 @@ test('partial campaigns are rejected after creative retry budget',async()=>{
  const invalid=creative(1);invalid.body_copies[0].cta='BUY NOW';
  llm.callLLM.mockReset().mockResolvedValueOnce(response({personas})).mockResolvedValueOnce(response(creative(0))).mockResolvedValue(response(invalid));
  await expect(generateWithRetry({},'', 'meta_ad',2)).rejects.toMatchObject({status:502});
- expect(llm.callLLM).toHaveBeenCalledTimes(4);
+ expect(llm.callLLM).toHaveBeenCalledTimes(5);
 });
 test('validators reject duplicate hooks, malformed bodies, and overlong Unicode copy',()=>{
  const output=creative(1);
@@ -102,16 +107,17 @@ test('aborted streaming request stops before generating more personas',async()=>
 test('repairs only missing hooks and duplicate body options while retaining valid work',async()=>{
  const broken=creative(0);broken.hooks=broken.hooks.slice(0,9);broken.body_copies[0].cta='learn_more';broken.body_copies[2]={...broken.body_copies[1]};
  llm.callLLM.mockResolvedValueOnce(response({personas})).mockResolvedValueOnce(response(broken))
- .mockResolvedValueOnce(response({hooks:['A new tenth angle?'],body_copies:[creative(0).body_copies[2]]}))
+ .mockResolvedValueOnce(response(creative(0).body_copies[2]))
+ .mockResolvedValueOnce(response({hooks:['A new tenth angle?']}))
  .mockResolvedValueOnce(response(creative(1))).mockResolvedValueOnce(response(creative(2)));
  const result=await generateWithRetry({},'', 'meta_ad');
  expect(validateMetaCampaign(result.output)).toEqual([]);
  expect(result.output.personas[0].hooks.slice(0,9)).toEqual(broken.hooks);
  expect(result.output.personas[0].body_copies[0].cta).toBe('LEARN MORE');
  const repair=llm.callLLM.mock.calls[2][0];
- expect(repair.schema.properties.hooks.minItems).toBe(1);
- expect(repair.schema.properties.body_copies.maxItems).toBe(1);
- expect(repair.prompt).toContain('repair_counts');
+ expect(repair.schema.required).toEqual(['body','headline','cta']);
+ expect(repair.prompt).toContain('excluded_bodies');
+ expect(llm.callLLM.mock.calls[3][0].schema.properties.hooks.minItems).toBe(1);
 });
 test('winner-only generation makes one creative call for the saved persona',async()=>{
  llm.callLLM.mockResolvedValueOnce(response(creative(1)));
@@ -134,4 +140,78 @@ test('awaits checkpoint persistence before starting the next persona',async()=>{
  queueCampaign();
  await expect(generateWithRetry({},'','meta_ad',3,{onProgress:async e=>{if(e.type==='persona')throw new Error('checkpoint failed');}})).rejects.toThrow('checkpoint failed');
  expect(llm.callLLM).toHaveBeenCalledTimes(2);
+});
+test('planning constrains pain points and repairs only the invalid persona',async()=>{
+ const broken={...personas[2],pain_points:['Same pain','SAME PAIN!','Third obstacle']};
+ llm.callLLM.mockResolvedValueOnce(response({personas:[...personas.slice(0,2),broken]}))
+ .mockResolvedValueOnce(response({personas:[personas[2]]}));
+ personas.forEach((p,i)=>llm.callLLM.mockResolvedValueOnce(response(creative(i))));
+ const result=await generateWithRetry({},'','meta_ad');
+ expect(validateMetaCampaign(result.output)).toEqual([]);
+ const first=llm.callLLM.mock.calls[0][0];
+ expect(first.schema.properties.personas.minItems).toBe(3);
+ expect(first.schema.properties.personas.items.properties.pain_points.minItems).toBe(3);
+ const repair=llm.callLLM.mock.calls[1][0];
+ expect(repair.schema.properties.personas.maxItems).toBe(1);
+ expect(repair.prompt).toContain('"repair_indexes":[3]');
+ expect(result.attempts).toBe(5);
+});
+test('planning rejects repeated names across retained and repaired personas',async()=>{
+ llm.callLLM.mockResolvedValueOnce(response({personas:[personas[0],personas[0],personas[2]]}))
+ .mockResolvedValue(response({personas:[personas[0]]}));
+ await expect(generateWithRetry({},'','meta_ad',2)).rejects.toMatchObject({status:502});
+ expect(llm.callLLM).toHaveBeenCalledTimes(2);
+});
+test.each([null, {}, {personas:[null]}, {personas:personas.slice(0,2)}])('malformed planning response is repaired without a TypeError: %p',async invalid=>{
+ llm.callLLM.mockResolvedValueOnce(response(invalid));
+ const missing=invalid?.personas?.length===2 ? [personas[2]] : personas;
+ llm.callLLM.mockResolvedValueOnce(response({personas:missing}));
+ personas.forEach((p,i)=>llm.callLLM.mockResolvedValueOnce(response(creative(i))));
+ const result=await generateWithRetry({},'','meta_ad');
+ expect(validateMetaCampaign(result.output)).toEqual([]);
+});
+test('invalid saved plan is regenerated before any creative generation',async()=>{
+ queueCampaign();
+ const result=await generateWithRetry({},'','meta_ad',3,{savedPlan:{personas:[null]}});
+ expect(validateMetaCampaign(result.output)).toEqual([]);
+ expect(llm.callLLM).toHaveBeenCalledTimes(4);
+});
+test('invalid selected persona returns a setup error without calling the model',async()=>{
+ await expect(generateWithRetry({},'','meta_ad',3,{selectedPersona:{name:'Broken'}})).rejects.toMatchObject({status:400});
+ expect(llm.callLLM).not.toHaveBeenCalled();
+});
+test('missing hooks get a dedicated repair without regenerating complete body copy',async()=>{
+ const initial=creative(0); initial.hooks=initial.hooks.slice(0,8);
+ llm.callLLM.mockResolvedValueOnce(response(initial))
+ .mockResolvedValueOnce(response({hooks:[initial.hooks[0], 'Fresh ninth angle?']}))
+ .mockResolvedValueOnce(response({hooks:['Fresh tenth angle?']}));
+ const result=await generateWithRetry({},'','meta_ad',3,{selectedPersona:personas[0]});
+ expect(validateMetaCampaign(result.output,1)).toEqual([]);
+ expect(result.output.personas[0].body_copies).toEqual(initial.body_copies);
+ expect(llm.callLLM.mock.calls[1][0].schema.properties.hooks.minItems).toBe(2);
+ expect(llm.callLLM.mock.calls[2][0].schema.properties.hooks.minItems).toBe(1);
+ expect(llm.callLLM.mock.calls[1][0].prompt).toContain('Do not write body copy');
+});
+test('hook repair exhaustion rejects incomplete output',async()=>{
+ const initial=creative(0);initial.hooks=[];
+ llm.callLLM.mockResolvedValueOnce(response(initial)).mockResolvedValue(response({hooks:['Repeated hook']}));
+ await expect(generateWithRetry({},'','meta_ad',2,{selectedPersona:personas[0]})).rejects.toMatchObject({status:502});
+});
+
+test('malformed creative JSON recovers using individual bodies and hooks',async()=>{
+ llm.callLLM.mockResolvedValueOnce({output:'{truncated',tokensUsed:1});
+ creative(0).body_copies.forEach(copy=>llm.callLLM.mockResolvedValueOnce(response(copy)));
+ llm.callLLM.mockResolvedValueOnce(response({hooks:creative(0).hooks}));
+ const result=await generateWithRetry({},'','meta_ad',3,{selectedPersona:personas[0]});
+ expect(validateMetaCampaign(result.output,1)).toEqual([]);
+ expect(result.attempts).toBe(5);
+});
+test('duplicate single-body repair is rejected before accepting a new angle',async()=>{
+ const broken=creative(0);broken.body_copies=broken.body_copies.slice(0,2);
+ llm.callLLM.mockResolvedValueOnce(response(broken))
+ .mockResolvedValueOnce(response(broken.body_copies[0]))
+ .mockResolvedValueOnce(response(creative(0).body_copies[2]));
+ const result=await generateWithRetry({},'','meta_ad',3,{selectedPersona:personas[0]});
+ expect(validateMetaCampaign(result.output,1)).toEqual([]);
+ expect(result.attempts).toBe(3);
 });

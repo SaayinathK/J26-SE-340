@@ -165,3 +165,25 @@ test('streaming quota failure does not send a saved completion',async()=>{
  expect(res.text).toContain('Generation limit reached');
  expect(res.text).not.toContain('"type":"complete"');
 });
+test('unexpected generation failure is not mislabeled as a save failure',async()=>{
+ const log=jest.spyOn(console,'error').mockImplementation(()=>{});
+ generator.generateWithRetry.mockRejectedValue(new TypeError('private internal detail'));
+ try {
+  const res=await request(app).post('/content/generate').set('Authorization',auth).set('Accept','application/x-ndjson').send({content_type:'meta_ad'});
+  const event=res.text.trim().split('\n').map(JSON.parse).at(-1);
+  expect(event).toMatchObject({type:'error',stage:'generation',request_id:expect.any(String)});
+  expect(event.error).toContain('before the final save');
+  expect(res.text).not.toContain('private internal detail');
+  expect(db.transaction).not.toHaveBeenCalled();
+ } finally {log.mockRestore();}
+});
+test('save failure never emits a completed campaign',async()=>{
+ const log=jest.spyOn(console,'error').mockImplementation(()=>{});
+ db.transaction.mockRejectedValueOnce(new Error('database offline'));
+ try {
+  const res=await request(app).post('/content/generate').set('Authorization',auth).set('Accept','application/x-ndjson').send({content_type:'meta_ad'});
+  const events=res.text.trim().split('\n').map(JSON.parse);
+  expect(events.at(-1)).toMatchObject({type:'error',stage:'save'});
+  expect(events.some(e=>e.type==='complete')).toBe(false);
+ } finally {log.mockRestore();}
+});

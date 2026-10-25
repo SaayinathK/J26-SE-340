@@ -169,6 +169,7 @@ export default function Generate() {
     setPlan([]);
     setProgress("");
     setResult(null);
+    setResultType("");
     setBrief("");
     setError("");
   }
@@ -284,7 +285,12 @@ export default function Generate() {
                     type="button"
                     aria-pressed={type === id}
                     className={`type-card ${type === id ? "selected" : ""}`}
-                    onClick={() => setType(id)}
+                    onClick={() => {
+                      if (id !== type) {
+                        setType(id);
+                        reset();
+                      }
+                    }}
                   >
                     <div className="type-card-top">
                       <span className="type-icon">

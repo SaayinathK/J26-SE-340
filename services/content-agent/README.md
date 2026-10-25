@@ -86,7 +86,7 @@ Run `npm run migrate:campaigns` once against the configured DATABASE_URL before 
 - `GET /content/history?campaign_id=<uuid>` scopes history to a campaign. Legacy generations remain visible in the unfiltered history.
 - The knowledge base remains shared business reference material. Campaign profile and voice override business defaults; approved examples are scoped to the selected campaign.
 
-Creative generation uses Ollama JSON schemas, canonical CTA formatting, and targeted repairs that preserve valid hooks and body options. The model stays loaded for 15 minutes; short copy and winner-only requests reduce generated tokens. Wall-clock time depends on the local model and hardware.
+Creative generation uses Ollama JSON schemas and canonical CTA formatting. It collects valid hooks and bodies from one compact response, then repairs missing bodies individually and missing hooks separately. Short bodies are reused as primary text, avoiding duplicate model output. Final validation still requires 10 distinct hooks and 3 complete body options per persona. Persona planning also uses a schema and retains valid personas during repairs; malformed or incomplete saved plans are regenerated. Ollama calls allow up to five minutes by default (override with `OLLAMA_TIMEOUT_MS` in milliseconds). Timeouts and connection failures are reported as model errors, while streamed errors identify the failing stage and include a request ID for backend logs. Completed personas remain checkpointed for resuming with unchanged settings. The model stays loaded for 15 minutes; short copy and winner-only requests reduce generated tokens. Wall-clock time depends on the local model and hardware.
 
 ## Continuous learning (purchases at the lowest cost)
 
@@ -133,3 +133,7 @@ After initial generation, review each persona description and pain point. Link s
 Reviews are tied to the exact persona set. New initial personas or campaign profile changes require new reviews. Evidence can be withdrawn without destroying its audit record; current statuses are recalculated, drafts invalidated, and future winner-only outputs lose unsupported labels. Generated history retains its support status at generation time, so consult Customer research for the current assessment. Research support and purchase-performance winners are separate concepts.
 
 Tests: `npm test`, `npm test --prefix client`, and `node scripts/smoke_research.js`. The last command creates disposable accounts against the configured local database and stubs model inference to test import deduplication, source delivery to generation, claim review, tenant isolation, evidence withdrawal, and stale-review rejection.
+
+### Live generation verification
+
+Run `node scripts/smoke_generation.js` from this directory to test the actual configured Ollama models and database together. It creates a disposable account, generates a full initial campaign, validates saved history, selects a persona, generates winner copy, and removes its test data. It does not stub model inference; allow several minutes. The backend should only be restarted with a generation change after regression tests and this check succeed.

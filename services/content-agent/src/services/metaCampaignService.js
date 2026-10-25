@@ -9,6 +9,14 @@ function cacheKey(ctx, brief) {
 }
 const CTAS = ['LEARN MORE', 'SIGN UP', 'GET TICKETS', 'REGISTER NOW', 'BOOK NOW'];
 const PERSONA_COUNT = 3;
+const personaSchema = {
+  type:'object', required:['personas'], additionalProperties:false,
+  properties:{personas:{type:'array', minItems:3, maxItems:3, items:{
+    type:'object', required:['name','description','pain_points'], additionalProperties:false,
+    properties:{name:{type:'string',minLength:1},description:{type:'string',minLength:1},
+      pain_points:{type:'array',minItems:3,maxItems:3,uniqueItems:true,items:{type:'string',minLength:1}}},
+  }}},
+};
 const creativeSchema = {
   type:'object', required:['hooks','body_copies'], properties:{
     hooks:{type:'array',items:{type:'string',minLength:1,maxLength:125}},
@@ -90,6 +98,7 @@ async function generateMetaCampaign(ctx, brief, maxAttempts = 3, { onProgress = 
       output = transform(output);
       errors = validate(output);
       if (!errors.length) return output;
+      if (attempt + 1 < maxAttempts) await onProgress({type:'status', message:`Repairing incomplete model output (attempt ${attempt + 2} of ${maxAttempts})…`});
     }
     throw Object.assign(new Error(`Campaign generation failed validation: ${errors.join('; ')}`),{status:502});
   }
@@ -97,10 +106,33 @@ async function generateMetaCampaign(ctx, brief, maxAttempts = 3, { onProgress = 
   const cached = key && personaCache.get(key);
   let plan = selectedPersona ? {personas:[selectedPersona]} : savedPlan || (cached && cached.expires > Date.now() ? structuredClone(cached.plan) : null);
   const count = selectedPersona ? 1 : PERSONA_COUNT;
+  if (plan && validatePersonas(plan.personas, count).length) {
+    if (selectedPersona) throw Object.assign(new Error('The selected persona is incomplete. Generate a new initial campaign first.'), {status:400});
+    plan = null;
+    completedPersonas = [];
+  }
   const cacheHit = !!plan;
   if (!plan) {
     await onProgress({type:'status', message:'Understanding your audience and preparing personas…'});
-    plan = await step(`Identify exactly 3 distinct suggested audience personas using the saved business and audience. Return {"personas":[{"name":"short segment name","description":"specific goal or situation within this audience","pain_points":["pain 1","pain 2","pain 3"]}]}. Supply three persona objects, not one. Do not write ads yet.`,{},value=>validatePersonas(value?.personas),1400);
+    const retained = Array(PERSONA_COUNT).fill(null);
+    let pending = [0,1,2];
+    plan = await step(`Identify suggested audience personas using the saved business and audience. Return {"personas":[{"name":"short segment name","description":"one concise sentence","pain_points":["first distinct obstacle","second distinct obstacle","third distinct obstacle"]}]}. Return ONLY the personas requested in repair_indexes, in that order. Keep retained personas unchanged and use different names. Each persona needs exactly 3 nonempty pain points with different wording, not punctuation or capitalization changes. Keep each pain point to one short sentence. Treat inferred pains as hypotheses. Do not write ads yet.`,{},value=>validatePersonas(value?.personas),1400, value => {
+      const candidates = Array.isArray(value?.personas) ? value.personas : [];
+      const names = new Set(retained.filter(Boolean).map(p=>normalized(p.name)));
+      pending.forEach((index, offset) => {
+        const candidate = candidates[offset];
+        if (validatePersonas([candidate],1).length || names.has(normalized(candidate.name))) return;
+        retained[index] = candidate;
+        names.add(normalized(candidate.name));
+      });
+      pending = retained.flatMap((p,index)=>p ? [] : [index]);
+      return {personas:retained.filter(Boolean)};
+    }, () => {
+      const schema = structuredClone(personaSchema);
+      schema.properties.personas.minItems = pending.length;
+      schema.properties.personas.maxItems = pending.length;
+      return schema;
+    }, () => ({repair_indexes:pending.map(index=>index+1),retained_personas:retained.filter(Boolean)}));
     if (key) {
       for (const [storedKey, value] of personaCache) if (value.expires <= Date.now()) personaCache.delete(storedKey);
       if (personaCache.size >= 100) personaCache.delete(personaCache.keys().next().value);
@@ -112,30 +144,80 @@ async function generateMetaCampaign(ctx, brief, maxAttempts = 3, { onProgress = 
   // Sequential steps keep each model response small enough for local inference.
   for (const persona of plan.personas) {
     const completed = completedPersonas[personas.length];
-    if (completed && completed.name === persona.name && !validateCreative(completed).length) {
+    if (completed && completed.name === persona.name && completed.description === persona.description && JSON.stringify(completed.pain_points) === JSON.stringify(persona.pain_points) && !validateCreative(completed).length) {
       personas.push(completed);
       await onProgress({type:"persona", index:personas.length - 1, total:count, persona:completed, resumed:true});
       continue;
     }
-    let retained = {hooks:[],body_copies:[]};
     await onProgress({type:'status', message:`Creating hooks and copy for persona ${personas.length + 1} of ${count}…`});
-    const creative = await step(`Write ads for ONLY the current persona. On repair, return only the missing hooks and body_copies requested in repair_counts. Do not repeat retained copy. Each body should be under 220 characters and primary_text can be identical to body. Return {"hooks":["10 different hooks"],"body_copies":[{"body":"body copy","primary_text":"concise ready-to-paste primary text","headline":"short headline","cta":"LEARN MORE"}]}. On the first attempt return 10 hooks and 3 complete body_copies objects. On repair, repair_counts overrides these counts: return ONLY that many NEW hooks and body_copies, excluding retained content. Each hook must address a specific pain or goal, with a different creative angle. Vary questions, empathy, obstacles, aspirations, and reframing; do not just reword one hook. Keep each hook under 125 characters. Each body under 600 characters, primary_text under 280, headline under 40. Write 3 substantially different body angles. Each MUST include the exact key "primary_text", plus body, headline, and cta. The primary_text may reuse the body when the body is already under 280 characters. CTA must be one of ${CTAS.join('|')}. Prefer short copy to avoid exceeding limits. Do not invent offer features.`,{persona}, value => validateCreative(value).filter(error => !/primary_text is required|primary_text exceeds/.test(error)),1900, value => {
-      const normalizedValue = normalizeCreative(value);
-      const hooks = [...retained.hooks, ...(Array.isArray(normalizedValue?.hooks) ? normalizedValue.hooks : [])];
-      const bodies = [...retained.body_copies, ...(Array.isArray(normalizedValue?.body_copies) ? normalizedValue.body_copies : [])];
-      const unique = (items, key, valid) => { const seen = new Set(); return items.filter(item => { if (!valid(item)) return false; const k = normalized(key(item)); if (seen.has(k)) return false; seen.add(k); return true; }); };
-      retained = {
-        hooks: unique(hooks, x=>x, x=>isText(x) && [...x].length <=125).slice(0,10),
-        body_copies: unique(bodies, x=>x.body, x=>x && isText(x.body) && [...x.body].length<=600 && isText(x.headline) && [...x.headline].length<=40 && CTAS.includes(x.cta)).slice(0,3),
-      };
-      return structuredClone(retained);
-    }, () => {
-      const schema=structuredClone(creativeSchema);
-      for (const [field,count] of [['hooks',10-retained.hooks.length],['body_copies',3-retained.body_copies.length]]) {
-        schema.properties[field].minItems=count; schema.properties[field].maxItems=count;
-      }
-      return schema;
-    }, () => ({retained, repair_counts:{hooks:10-retained.hooks.length,body_copies:3-retained.body_copies.length}}));
+    // Collect usable candidates once. Repair each component independently below;
+    // a partial response must never discard already valid creative work.
+    const creative = await step(
+      `Write concise ads for this persona. Return {"hooks":[10 different short hooks],"body_copies":[3 objects with body, headline, cta]}. Each body: one or two sentences under 220 characters. Each headline: under 40 characters. Hooks: under 125 characters. Use different angles. CTA must be one of ${CTAS.join('|')}. Do not repeat the body in a primary_text field; the server will reuse the short body. Use only supplied business facts.`,
+      {persona}, () => [], 1400, value => {
+        const candidate = normalizeCreative(value);
+        const unique = (items, key, valid) => {
+          const seen = new Set();
+          return items.filter(item => {
+            if (!valid(item)) return false;
+            const k = normalized(key(item));
+            if (!k || seen.has(k)) return false;
+            seen.add(k); return true;
+          });
+        };
+        return {
+          hooks:unique(Array.isArray(candidate?.hooks) ? candidate.hooks : [], x=>x, x=>isText(x) && [...x].length<=125).slice(0,10),
+          body_copies:unique(Array.isArray(candidate?.body_copies) ? candidate.body_copies : [], x=>x.body,
+            x=>x && isText(x.body) && [...x.body].length<=600 && isText(x.headline) && [...x.headline].length<=40 && CTAS.includes(x.cta)).slice(0,3),
+        };
+      }, (() => {
+        const schema = structuredClone(creativeSchema);
+        schema.additionalProperties = false;
+        schema.properties.hooks.minItems = schema.properties.hooks.maxItems = 10;
+        schema.properties.body_copies.minItems = schema.properties.body_copies.maxItems = 3;
+        const item = schema.properties.body_copies.items;
+        item.required = ['body','headline','cta'];
+        delete item.properties.primary_text;
+        item.properties.body.maxLength = 220;
+        item.additionalProperties = false;
+        return schema;
+      })()
+    );
+    while (creative.body_copies.length < 3) {
+      const index = creative.body_copies.length;
+      await onProgress({type:'status', message:`Finishing body option ${index + 1} of 3 for persona ${personas.length + 1}…`});
+      const copy = await step(
+        `Write ONE new ad body for this persona using a different angle from excluded_bodies. Return a single object {"body":"one or two short sentences","headline":"short headline","cta":"LEARN MORE"}. Body must be under 220 characters and headline under 40. Do not return an array or hooks. Do not invent business facts.`,
+        {persona,excluded_bodies:creative.body_copies.map(copy=>copy.body)},
+        value => {
+          if (!value || !isText(value.body) || [...value.body].length>220 || !isText(value.headline) || [...value.headline].length>40 || !CTAS.includes(value.cta)) return ['Return one complete short body, headline and allowed CTA'];
+          if (creative.body_copies.some(copy=>normalized(copy.body)===normalized(value.body))) return ['Write a different body; do not repeat an excluded body'];
+          return [];
+        }, 350, value=>normalizeCreative({body_copies:[value]}).body_copies[0],
+        {type:'object',additionalProperties:false,required:['body','headline','cta'],properties:{body:{type:'string',minLength:1,maxLength:220},headline:{type:'string',minLength:1,maxLength:40},cta:{type:'string',enum:CTAS}}}
+      );
+      creative.body_copies.push(copy);
+    }
+    // Fill missing hooks separately so full body-copy responses cannot crowd them out.
+    if (creative.hooks.length < 10) {
+      await onProgress({type:'status', message:`Finishing hooks for persona ${personas.length + 1}…`});
+      let hooks = [...creative.hooks];
+      const repaired = await step(
+        `Write ONLY the missing short advertising hooks for this persona. Return {"hooks":["short hook"]}. Return exactly missing_count NEW hooks. Do not repeat excluded_hooks, even with different punctuation or capitalization. Use different pains, goals and questions; keep each hook under 100 characters. Do not write body copy.`,
+        {persona}, value => value?.hooks?.length === 10 ? [] : [`Still need ${10-hooks.length} new distinct nonempty hooks under 125 characters`],
+        700, value => {
+          const seen = new Set(hooks.map(normalized));
+          for (const hook of Array.isArray(value?.hooks) ? value.hooks : []) {
+            if (!isText(hook) || [...hook].length > 125 || !normalized(hook) || seen.has(normalized(hook))) continue;
+            hooks.push(hook); seen.add(normalized(hook));
+            if (hooks.length === 10) break;
+          }
+          return {hooks:[...hooks]};
+        }, () => ({type:'object',required:['hooks'],additionalProperties:false,properties:{hooks:{type:'array',minItems:10-hooks.length,maxItems:10-hooks.length,items:{type:'string',minLength:1,maxLength:125}}}}),
+        () => ({missing_count:10-hooks.length,excluded_hooks:hooks})
+      );
+      creative.hooks = repaired.hooks;
+    }
     // Repair only missing/oversized primary text, preserving valid hooks and body copy.
     const repairIndexes = creative.body_copies.map((copy,index) =>
       !isText(copy.primary_text) || [...copy.primary_text].length > 280 ? index : -1).filter(index => index >= 0);

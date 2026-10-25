@@ -15,7 +15,8 @@ router.post(
   async (req, res, next) => {
     const streaming = req.body.content_type === 'meta_ad' && req.get('accept')?.includes('application/x-ndjson');
     const controller = new AbortController();
-    let heartbeat, unlock;
+    let heartbeat, unlock, stage = 'context';
+    const requestId = randomUUID();
     const disconnect = () => { if (!res.writableEnded) controller.abort(); };
     const send = event => { if (!res.destroyed && !res.writableEnded) res.write(JSON.stringify(event) + '\n'); };
     res.on('close', disconnect);
@@ -64,10 +65,13 @@ router.post(
         if (campaign && content_type === 'meta_ad' && (event.type === 'plan' || event.type === 'persona')) {
           if (event.type === 'plan') draft.plan = {personas:event.personas};
           else draft.completed[event.index] = event.persona;
+          stage = 'checkpoint';
           await db.query('UPDATE content_campaigns SET draft=$3, updated_at=now() WHERE tenant_id=$1 AND id=$2',[tenantId,campaign.id,JSON.stringify(draft)],tenantId);
         }
+        stage = 'generation';
         if (streaming) send(event);
       };
+      stage = 'generation';
       const result = await generator.generateWithRetry(ctx, effectiveBrief, content_type, 3, {
         onProgress,signal:controller.signal,selectedPersona,
         savedPlan:draft.plan,completedPersonas:draft.completed,
@@ -76,6 +80,7 @@ router.post(
       const id = randomUUID(),
         promptHash = learning.hashPrompt(content_type, ctx.intent.sub_type, {template_version:3,system:result.systemPrompt, mode:generation_mode, guidance:ctx.learning_guidance || null, model:process.env.CONTENT_MODEL || 'mistral:7b-instruct-q4_K_M'});
       const personaSetId = generation_mode === 'initial' ? id : campaign?.persona_set_id;
+      stage = 'save';
       await db.transaction(tenantId, async (run) => {
         const limit = await run(
           "UPDATE clients SET generations_used = generations_used + 1 WHERE id = $1 AND is_active = true AND generations_used < generations_limit RETURNING id",
@@ -132,6 +137,7 @@ router.post(
           }, run
         );
       });
+      stage = 'complete';
       const response = {
         success: true,
         content_id: id,
@@ -145,14 +151,23 @@ router.post(
       else res.json(response);
     } catch (error) {
       if (res.destroyed || controller.signal.aborted) return;
+      console.error('Campaign request failed', {requestId, stage, name:error.name, code:error.code, message:error.message});
       if (res.headersSent) {
-        send({type:'error', status:error.status || 500, error:error.status ? error.message : 'Campaign could not be saved. Please check history before trying again.'});
+        const fallback = stage === 'save'
+          ? 'Campaign saving failed. Check History before retrying; saved draft progress can be resumed.'
+          : stage === 'checkpoint'
+            ? 'Could not save campaign progress. Retry with the same settings to resume the last saved step.'
+            : 'Campaign generation failed before the final save. Retry with the same settings to resume saved progress.';
+        send({type:'error', status:error.status || 500, request_id:requestId, stage, error:error.status ? error.message : fallback});
         res.end();
       } else next(error);
     } finally {
       clearInterval(heartbeat);
       res.off('close', disconnect);
-      if (unlock) await unlock();
+      if (unlock) {
+        try { await unlock(); }
+        catch (error) { console.error('Campaign lock cleanup failed', {requestId, code:error.code, message:error.message}); }
+      }
     }
   }
 );
